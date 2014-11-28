@@ -1,0 +1,21 @@
+<div class="page-header">
+    <h1>Murnow List of Products</h1>
+  </div>
+      <div ng-repeat="product in products | orderBy: '-upvotes'">
+        <span ng-click="incrementUpvotes(product)">+</span><span ng-click="decrementUpvotes(product)">-</span>
+        {{product.title}} - upvotes: {{product.upvotes}}
+        <span>
+        <a href="#/products/{{$index}}">Product  </a>
+      </span>
+    </div>
+
+
+    <form name="productForm" ng-submit="productForm.$valid && addProduct()" novalidate>
+      <input type="text" placeholder="write here add a product " ng-model="title" required></input>
+
+      <button type="submit">Product</button>
+    </form>
+
+    <span>
+  <a href="#/posts/{{$index}}">Product</a>
+</span>

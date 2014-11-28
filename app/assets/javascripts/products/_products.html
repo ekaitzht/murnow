@@ -1,0 +1,25 @@
+  <div class="page-header">
+    <h3>
+      {{product.title}}
+      </span>
+    </h3>
+  </div>
+
+  <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
+    <span class="glyphicon glyphicon-thumbs-up"
+      ng-click="incrementUpvotes(review)"></span>
+    {{review.upvotes}} - by {{review.author}}
+    <span style="font-size:20px; margin-left:10px;">
+      {{review.body}}
+    </span>
+  </div>
+
+
+  <form ng-submit="addReview()" style="margin-top:30px;">
+    <h3>Add a new review</h3>
+
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Review</button>
+  </form>
