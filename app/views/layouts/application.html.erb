@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>MurnowAngular</title>
@@ -12,62 +11,5 @@
       <ui-view></ui-view>
     </div>
   </div>
-
-
-
-<script type="text/ng-template" id="/home.html">
-  <div class="page-header">
-    <h1>Murnow List of Products</h1>
-  </div>
-      <div ng-repeat="product in products | orderBy: '-upvotes'">
-        <span ng-click="incrementUpvotes(product)">+</span><span ng-click="decrementUpvotes(product)">-</span>
-        {{product.title}} - upvotes: {{product.upvotes}}
-        <span>
-        <a href="#/products/{{$index}}">Product  </a>
-      </span>
-    </div>
-
-
-    <form name="productForm" ng-submit="productForm.$valid && addProduct()" novalidate>
-      <input type="text" placeholder="write here add a product " ng-model="title" required></input>
-
-      <button type="submit">Product</button>
-    </form>
-
-    <span>
-  <a href="#/posts/{{$index}}">Product</a>
-</span>
- </script>
-
-<script type="text/ng-template" id="/products.html">
-  <div class="page-header">
-    <h3>
-      {{product.title}}
-      </span>
-    </h3>
-  </div>
-
-  <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
-    <span class="glyphicon glyphicon-thumbs-up"
-      ng-click="incrementUpvotes(review)"></span>
-    {{review.upvotes}} - by {{review.author}}
-    <span style="font-size:20px; margin-left:10px;">
-      {{review.body}}
-    </span>
-  </div>
-
-
-  <form ng-submit="addReview()" style="margin-top:30px;">
-    <h3>Add a new review</h3>
-
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Review</button>
-  </form>
-
-</script>
-
-
   </body>
 </html>
