@@ -1,4 +1,4 @@
-angular.module('flapperNews', ['ui.router','templates'])
+angular.module('flapperNews', ['ui.router'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -7,11 +7,11 @@ function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/home',
-      templateUrl: 'home/_home.html',
+      templateUrl: '/home.html',
       controller: 'MainCtrl'
     })
-    .state('product', {
-  		url: 'posts/_posts.html',
+    .state('products', {
+  		url: '/products/{id}',
   		templateUrl: '/products.html',
   		controller: 'ProductsCtrl'
 	});
