@@ -15,6 +15,17 @@ Rails.application.routes.draw do
   #   resources :products
   root to: 'application#angular'
 
+  resources :products, only: [:create, :index, :show] do
+    resources :reviews, only: [:show, :create] do
+      member do
+        put '/upvote' => 'reviews#upvote'
+      end
+    end
+
+    member do
+      put '/upvote' => 'products#upvote'
+    end
+  end
   # Example resource route with options:
   #   resources :products do
   #     member do

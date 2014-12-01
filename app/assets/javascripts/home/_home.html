@@ -3,7 +3,7 @@
   </div>
       <div ng-repeat="product in products | orderBy: '-upvotes'">
         <span ng-click="incrementUpvotes(product)">+</span><span ng-click="decrementUpvotes(product)">-</span>
-        {{product.title}} - upvotes: {{product.upvotes}}
+        {{product.product_name}} - upvotes: {{product.upvotes}}
         <span>
         <a href="#/products/{{$index}}">Product  </a>
       </span>

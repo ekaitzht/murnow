@@ -8,7 +8,12 @@ function($stateProvider, $urlRouterProvider) {
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/home',
       templateUrl: 'home/_home.html',
-      controller: 'MainCtrl'
+      controller: 'MainCtrl',
+      resolve: {
+        productPromise: ['products', function(products){
+          return products.getAll();
+        }]
+      }
     })
     .state('products', {
   		url: '/products/{id}',
