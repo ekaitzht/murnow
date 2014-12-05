@@ -1,7 +1,9 @@
 class ReviewsController < ApplicationController
+  before_filter :authenticate_user!, only: [:create, :upvote]
+  
   def create
     @product = Product.find(params[:product_id])
-    review = @product.reviews.create(review_params)
+    review = @product.reviews.create(review_params.merge(user_id: current_user.id))
     respond_with @product, review
   end
 

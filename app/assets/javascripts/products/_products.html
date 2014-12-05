@@ -8,9 +8,9 @@
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
     <span class="glyphicon glyphicon-thumbs-up"
       ng-click="incrementUpvotes(review)"></span>
-    {{review.upvotes}} - by {{review.author}}
+    {{review.upvotes}} 
     <span style="font-size:20px; margin-left:10px;">
-      {{review.body}}
+      {{review.body}} - by {{review.user.username}} {{review.user.created_at | date: 'medium'}}
     </span>
   </div>
 

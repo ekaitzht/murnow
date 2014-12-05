@@ -13,7 +13,10 @@ angular.module('flapperNews')
    			{ body: $scope.body }
   		).success(function(review) {
     		$scope.product.reviews.push(review);
-  		});
+  		}).error(function(error){
+
+
+      });
   		$scope.body = '';
 	};
 
