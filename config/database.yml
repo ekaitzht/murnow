@@ -6,6 +6,7 @@
 #postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
 #postgresql:///mydb?host=localhost&port=5433
 #  url: postgres://username:password@machine:port/database
+# testing heroku 
 
 default: &default
   url: postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
