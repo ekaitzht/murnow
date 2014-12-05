@@ -10,7 +10,7 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
       resolve: {
-        productPromise: ['products', function(products){
+        productsPromise: ['products', function(products){
           return products.getAll();
         }]
       }
@@ -18,7 +18,12 @@ function($stateProvider, $urlRouterProvider) {
     .state('products', {
   		url: '/products/{id}',
   		templateUrl: 'products/_products.html',
-  		controller: 'ProductsCtrl'
+  		controller: 'ProductsCtrl',
+      resolve: {
+      product: ['$stateParams', 'products', function($stateParams, products) {
+          return products.get($stateParams.id);
+        }]
+      }
 	});
 
   	$urlRouterProvider.otherwise('home');

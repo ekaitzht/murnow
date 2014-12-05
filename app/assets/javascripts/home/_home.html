@@ -5,7 +5,7 @@
         <span ng-click="incrementUpvotes(product)">+</span><span ng-click="decrementUpvotes(product)">-</span>
         {{product.product_name}} - upvotes: {{product.upvotes}}
         <span>
-        <a href="#/products/{{$index}}">Product  </a>
+        <a href="#/products/{{product.id}}">Product  </a>
       </span>
     </div>
 
@@ -17,5 +17,5 @@
     </form>
 
     <span>
-  <a href="#/posts/{{$index}}">Product</a>
+  <a href="#/products/{{$index}}">Product</a>
 </span>

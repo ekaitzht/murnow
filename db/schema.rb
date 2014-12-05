@@ -11,22 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201160955) do
+ActiveRecord::Schema.define(version: 20141205093529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "products", force: true do |t|
     t.string   "product_name"
-    t.string   "hash_image_url"
-    t.integer  "upvotes"
+    t.string   "upvotes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "reviews", force: true do |t|
     t.string   "body"
-    t.integer  "upvotes"
+    t.integer  "upvotes",    default: 0
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"

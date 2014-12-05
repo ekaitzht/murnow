@@ -2,10 +2,8 @@
 
 one:
   product_name: MyString
-  hash_image_url: MyString
-  upvotes: 1
+  upvotes: MyString
 
 two:
   product_name: MyString
-  hash_image_url: MyString
-  upvotes: 1
+  upvotes: MyString

@@ -1,21 +1,24 @@
 angular.module('flapperNews')
-.controller('ProductsCtrl', ['$scope','$stateParams', 'products', function($scope, $stateParams, products){
+.controller('ProductsCtrl', ['$scope','products', 'product', function($scope, products, product){
 
 
 
-	$scope.product = products.products[$stateParams.id];
+	$scope.product = product;
 
 	$scope.addReview = function(){
 
-	  if($scope.body === '') { return; }
-
-	  $scope.product.reviews.push({
-	    body: $scope.body,
-	    author: 'user',
-	    upvotes: 0
-	  });
-
-	  $scope.body = '';
+		if($scope.body === '') { return; }
+  		
+  		products.addReview(product.id, 
+   			{ body: $scope.body }
+  		).success(function(review) {
+    		$scope.product.reviews.push(review);
+  		});
+  		$scope.body = '';
 	};
+
+  $scope.incrementUpvotes = function(review){
+    products.upvoteReview(product, review);
+  };
 
 }]);

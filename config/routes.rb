@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   #   resources :products
   root to: 'application#angular'
 
-  resources :products, only: [:create, :index, :show] do
-    resources :reviews, only: [:show, :create] do
+
+  resources :products, only: [:create, :index, :show], defaults: { format: 'json' } do
+    resources :reviews, only: [:show, :create], defaults: { format: 'json' } do
       member do
         put '/upvote' => 'reviews#upvote'
       end

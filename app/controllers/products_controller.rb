@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
   def upvote
     product = Product.find(params[:id])
     product.increment!(:upvotes)
-
     respond_with product
   end
 

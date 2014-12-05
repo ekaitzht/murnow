@@ -3,9 +3,9 @@
 one:
   body: MyString
   upvotes: 1
-  prouduct_id: 
+  product_id: 
 
 two:
   body: MyString
   upvotes: 1
-  prouduct_id: 
+  product_id: 
