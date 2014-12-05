@@ -23,5 +23,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  url: postgres://qvykzipmarbfpp:m6SnGBt6im-p1pOa4Stg2vrDJ8@ec2-54-204-27-119.compute-1.amazonaws.com:5432/d2m11aaehkhq02
+  url: postgres://udpojgqtzawsih:f1hl9vgzlK4jXjvHV5b1N5f5Sp@ec2-54-221-249-3.compute-1.amazonaws.com:5432/d9h2g0bf4qj5h3
+
 
