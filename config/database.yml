@@ -8,11 +8,11 @@
 #  url: postgres://username:password@machine:port/database
 
 default: &default
-  url: postgresql://ekaitz:P.*mur11235@localhost:5432/ekaitz
+  url: postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
 
 development:
   <<: *default
-  database: postgresql://ekaitz:P.*mur11235@localhost:5432/ekaitz
+  database: postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
