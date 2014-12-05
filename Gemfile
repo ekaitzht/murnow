@@ -19,6 +19,11 @@ gem 'sdoc', '~> 0.4.0',        group: :doc
 gem 'spring',      group: :development
 
 
+# Devise for Angular
+gem 'devise', '~> 3.4.0'
+
+
+#angular templates in rails
 gem 'angular-rails-templates'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
