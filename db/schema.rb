@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206193428) do
+ActiveRecord::Schema.define(version: 20141206194606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20141206193428) do
     t.decimal  "sku_currency"
     t.decimal  "product_stars",            default: 0.0
     t.integer  "number_reviews",           default: 0
-    t.string   "image_url"
+    t.text     "image_url"
     t.string   "hash_url_image"
     t.text     "long_description"
   end
