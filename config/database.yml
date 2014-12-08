@@ -23,6 +23,7 @@ test:
   database: db/test.sqlite3
 
 production:
+  adapter: postgresql
   url: postgres://udpojgqtzawsih:f1hl9vgzlK4jXjvHV5b1N5f5Sp@ec2-54-221-249-3.compute-1.amazonaws.com:5432/d9h2g0bf4qj5h3
 
 
