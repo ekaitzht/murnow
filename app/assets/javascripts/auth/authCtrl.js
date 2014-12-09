@@ -22,6 +22,14 @@ function($scope, $state, Auth){
   $scope.register = function() {
     Auth.register($scope.user).then(function(){
       $state.go('home');
+    }).then(function(response) {
+        // Successfully recovered from unauthorized error.
+        // Resolve the original request's promise.
+
+    }, function(error) {
+        // There was an error logging in.
+        // Reject the original request's promise.
+        $scope.register.errorMessage = error.data.error;
     });
   };
   
