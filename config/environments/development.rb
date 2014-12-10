@@ -18,6 +18,11 @@ Rails.application.configure do
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
+  
+  #mailer
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
