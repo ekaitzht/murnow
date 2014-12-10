@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   respond_to :html, :json
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :set_config_email
 
   def angular
     render 'layouts/application'
@@ -14,5 +14,21 @@ class ApplicationController < ActionController::Base
     private
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
+  end
+
+  def set_config_email
+    if Rails.env.production?
+      ActionMailer::Base.default_url_options = {:host => request.domain}
+      ActionMailer::Base.delivery_method = :smtp
+
+      ActionMailer::Base.smtp_settings = {
+          :port =>           '587',
+          :address =>        'smtp.mandrillapp.com',
+          :user_name =>      ENV['MANDRILL_USERNAME'],
+          :password =>       ENV['MANDRILL_APIKEY'],
+          :domain =>         request.domain,
+          :authentication => :plain
+      }
+    end
   end
 end
