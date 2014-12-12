@@ -6,6 +6,7 @@ angular.module('flapperNews')
 function($scope, $state, Auth){
 
   $scope.login = function() {
+    $scope.errors = {};
     Auth.login($scope.user).then(function(){
       $state.go('home');
     }).then(function(response) {
@@ -13,13 +14,13 @@ function($scope, $state, Auth){
         // Resolve the original request's promise.
 
     }, function(error) {
-        // There was an error logging in.
-        // Reject the original request's promise.
-        $scope.login.errorMessage = error.data.error;
+        $scope.errors.errorPasswordEmail = error.data.error; 
     });
   };
 
   $scope.register = function() {
+
+    $scope.errors = {};
     Auth.register($scope.user).then(function(){
       $state.go('home');
     }).then(function(response) {
@@ -29,7 +30,13 @@ function($scope, $state, Auth){
     }, function(error) {
         // There was an error logging in.
         // Reject the original request's promise.
-        $scope.register.errorMessage = error.data.error;
+        errors = error.data.errors;
+        if ( errors.hasOwnProperty("email") ) {
+          $scope.errors.errorEmail = "Your email "+ errors.email[0];
+        }  
+        if ( errors.hasOwnProperty("password") ) {
+          $scope.errors.errorPassword = "Password min length 8 characters.";
+        }
     });
   };
   
