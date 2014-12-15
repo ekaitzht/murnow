@@ -1,4 +1,4 @@
-angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ng-token-auth'])
+angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -28,6 +28,11 @@ function($stateProvider, $urlRouterProvider) {
     .state('resetpassword', {
       url: '/resetpassword',
       templateUrl: 'auth/_resetpassword.html',
+      controller: 'AuthCtrl'
+    })
+    .state('changepassword', {
+      url: '/changepassword?resetToken',
+      templateUrl: 'auth/_changepassword.html',
       controller: 'AuthCtrl'
     })
     .state('products', {

@@ -4,7 +4,8 @@ angular.module('flapperNews')
 '$state',
 'Auth',
 'users',
-function($scope, $state, Auth, users){
+'$stateParams',
+function($scope, $state, Auth, users, $stateParams){
 
   $scope.login = function() {
     $scope.errors = {};
@@ -19,9 +20,26 @@ function($scope, $state, Auth, users){
     });
   };
 
-  $scope.resetPassword = function() {
-   
+
+  $scope.resetPassword = function(resetPasswordForm) {
+      $scope.errors = {};
+
+      users.resetPassword(resetPasswordForm.email
+      ).success(function(data) {
+         $scope.successfulMessage = "Check your inbox email to change your password please!";
+      }).error(function(error){
+          if ( error.errors.hasOwnProperty("email") ) { $scope.errors.emailNotFoundReset = "We can not find the email"; }  
+      });
+     /* var resetPasswordusers.resetPassword(resetPasswordForm.email);
+      resetPasswordPromise.then(function(result) {
+        if ( result.hasOwnProperty("email") ) { $scope.emailNotFoundReset = "We can not find the email"; }
+      });*/
     };
+
+  $scope.changePassword = function(changePassword) {
+    users.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken);
+  };
+
 
   $scope.register = function() {
 
@@ -45,6 +63,6 @@ function($scope, $state, Auth, users){
     });
   };
 
-  
+
 
 }]);
