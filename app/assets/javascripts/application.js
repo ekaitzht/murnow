@@ -1,4 +1,8 @@
 //= require angular
+//= require hammerjs
+//= require angular-animate
+//= require angular-aria
+//= require angular-material
 //= require angular-bootstrap
 //= require angular-devise
 //= require angular-rails-templates
