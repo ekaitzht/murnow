@@ -1,4 +1,5 @@
 //= require angular
+//= require ng-token-auth
 //= require hammerjs
 //= require angular-animate
 //= require angular-aria

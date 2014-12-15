@@ -6,7 +6,7 @@
     <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
     <md-text-float type="password" label="Password" ng-model="user.password"></md-text-float>
     <md-button class="md-raised md-primary">Log In</md-button>
-    <md-button class="md-primary" md-theme="cyan">Forgotten pasword?</md-button>
+    <md-button  ng-href="#/resetpassword" class="md-primary" md-theme="cyan">Forgotten pasword?</md-button>
   </form>
 </md-content>
     <div class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">

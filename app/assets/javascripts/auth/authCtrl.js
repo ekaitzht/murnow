@@ -3,7 +3,8 @@ angular.module('flapperNews')
 '$scope',
 '$state',
 'Auth',
-function($scope, $state, Auth){
+'users',
+function($scope, $state, Auth, users){
 
   $scope.login = function() {
     $scope.errors = {};
@@ -17,6 +18,10 @@ function($scope, $state, Auth){
         $scope.errors.errorPasswordEmail = error.data.error; 
     });
   };
+
+  $scope.resetPassword = function() {
+   
+    };
 
   $scope.register = function() {
 
@@ -39,5 +44,7 @@ function($scope, $state, Auth){
         }
     });
   };
+
   
+
 }]);
