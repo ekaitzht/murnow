@@ -8,4 +8,5 @@
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require angular-messages
+//= require angular-cookies
 //= require_tree .

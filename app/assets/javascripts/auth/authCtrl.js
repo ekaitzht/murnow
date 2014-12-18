@@ -5,12 +5,16 @@ angular.module('flapperNews')
 'Auth',
 'users',
 '$stateParams',
-function($scope, $state, Auth, users, $stateParams){
-
+'$cookieStore',
+function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
+ 
   $scope.login = function() {
+  
     $scope.errors = {};
-    Auth.login($scope.user).then(function(){
-      $state.go('home');
+
+    $scope.user.remember_me = $scope.user.remember_me;
+    Auth.login($scope.user).then(function(ev){
+      $state.go(users.fromState);
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -24,7 +28,7 @@ function($scope, $state, Auth, users, $stateParams){
   $scope.resetPassword = function(resetPasswordForm) {
       $scope.errors = {};
 
-      users.resetPassword(resetPasswordForm.email
+      users.forgotPassword(resetPasswordForm.email
       ).success(function(data) {
          $scope.successfulMessage = "Check your inbox email to change your password please!";
       }).error(function(error){
@@ -37,7 +41,18 @@ function($scope, $state, Auth, users, $stateParams){
     };
 
   $scope.changePassword = function(changePassword) {
-    users.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken);
+    $scope.errors = {};
+    users.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
+      success(function(data) {
+          $state.go('login');
+      }).error(function(error){
+         if ( error.errors.hasOwnProperty("reset_password_token") ) {
+          $scope.errors.errorReset = "Your link has expired"; // Reset token invalid.
+        }  
+         if ( error.errors.hasOwnProperty("password_confirmation") ) {
+          $scope.errors.errorReset = error.errors.password_confirmation[0]; // Reset token invalid.
+        }  
+      });
   };
 
 
@@ -62,7 +77,11 @@ function($scope, $state, Auth, users, $stateParams){
         }
     });
   };
-
-
+  
+  $scope.$on('$stateChangeSuccess', 
+    function(event, toState, toParams, fromState, fromParams) {
+      users.fromState = fromState.name;
+      // I want get the 'person' value in this function, what should I do?
+  });
 
 }]);

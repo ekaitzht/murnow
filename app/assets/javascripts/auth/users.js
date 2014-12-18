@@ -5,7 +5,7 @@ angular.module('flapperNews')
     	users: []
   	};
 
-    o.resetPassword = function(email) {
+    o.forgotPassword = function(email) {
 	    return $http.post('/users/password.json', {user: {email: email} });
 	};
 
@@ -15,8 +15,10 @@ angular.module('flapperNews')
 	     password: newPassword,
 	     password_confirmation: confirmPassword, 
 	     reset_password_token: resetPasswordToken }
-	 	}).success(function(data){});
+	 	});
 	  };
+
+	 o.fromState = null;
 
 	return o;
 }]);

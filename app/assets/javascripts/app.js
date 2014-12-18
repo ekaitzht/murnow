@@ -1,8 +1,8 @@
-angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial'])
+var murnowApp = angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider) {
+function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
 
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
@@ -17,7 +17,17 @@ function($stateProvider, $urlRouterProvider) {
     })
     .state('login', {
       url: '/login',
-      templateUrl: 'auth/_login.html',
+      onEnter: ['$mdDialog', function($mdDialog) {
+         $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login.html',
+            hasBackdrop: true,
+            clickOutsideToClose: false
+          });
+      }],
+      onExit: ['$mdDialog', function($mdDialog) {
+         $mdDialog.hide();
+      }],
       controller: 'AuthCtrl'
     })
     .state('register', {
@@ -25,14 +35,14 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: 'auth/_register.html',
       controller: 'AuthCtrl'
     })
-    .state('resetpassword', {
-      url: '/resetpassword',
-      templateUrl: 'auth/_resetpassword.html',
+    .state('forgotpassword', {
+      url: '/forgotpassword',
+      templateUrl: 'auth/_forgotpassword.html',
       controller: 'AuthCtrl'
     })
-    .state('changepassword', {
-      url: '/changepassword?resetToken',
-      templateUrl: 'auth/_changepassword.html',
+    .state('resetpassword', {
+      url: '/resetpassword?resetToken',
+      templateUrl: 'auth/_resetpassword.html',
       controller: 'AuthCtrl'
     })
     .state('products', {
@@ -46,8 +56,7 @@ function($stateProvider, $urlRouterProvider) {
       }
 	});
 
+
   	$urlRouterProvider.otherwise('home');
 }]);
-
-
 
