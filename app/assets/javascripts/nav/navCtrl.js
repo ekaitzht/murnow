@@ -2,7 +2,8 @@ angular.module('flapperNews')
 .controller('NavCtrl', [
 '$scope',
 'Auth',
-function($scope, Auth){
+'$mdDialog',
+function($scope, Auth, $mdDialog){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
 
@@ -16,11 +17,21 @@ function($scope, Auth){
 
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
+    $mdDialog.hide();
   });
 
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
   });
 
+  $scope.showDialogLogin = function() {
   
+     $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+  };
+
 }]);

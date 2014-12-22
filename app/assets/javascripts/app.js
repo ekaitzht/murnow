@@ -15,21 +15,6 @@ function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
         }]
       }
     })
-    .state('login', {
-      url: '/login',
-      onEnter: ['$mdDialog', function($mdDialog) {
-         $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_login.html',
-            hasBackdrop: true,
-            clickOutsideToClose: false
-          });
-      }],
-      onExit: ['$mdDialog', function($mdDialog) {
-         $mdDialog.hide();
-      }],
-      controller: 'AuthCtrl'
-    })
     .state('register', {
       url: '/register',
       templateUrl: 'auth/_register.html',

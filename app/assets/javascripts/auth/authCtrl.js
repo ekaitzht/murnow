@@ -14,7 +14,7 @@ function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
 
     $scope.user.remember_me = $scope.user.remember_me;
     Auth.login($scope.user).then(function(ev){
-      $state.go(users.fromState);
+        $state.go('home');
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
