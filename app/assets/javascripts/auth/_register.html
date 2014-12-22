@@ -9,7 +9,10 @@
         <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
           {{errors.errorEmail}}
         </div>
-        <md-text-float type="text" label="Name" ng-model="user.username"></md-text-float>
+        <md-text-float type="text" label="Name" ng-model="user.username"  ng-model-options="{ getterSetter: true }"></md-text-float>
+        <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
+          {{errors.errorName}}
+        </div>
         <md-text-float label="Password"  type="password" ng-model="user.password" class="long"> </md-text-float>
         <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
           {{errors.errorPassword}}

@@ -13,6 +13,7 @@ function($scope, Auth, $mdDialog){
 
   $scope.$on('devise:new-registration', function (e, user){
     $scope.user = user;
+     $mdDialog.hide();
   });
 
   $scope.$on('devise:login', function (e, user){

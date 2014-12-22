@@ -64,7 +64,7 @@ function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
-
+     
     }, function(error) {
         // There was an error logging in.
         // Reject the original request's promise.
@@ -74,6 +74,9 @@ function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
         }  
         if ( errors.hasOwnProperty("password") ) {
           $scope.errors.errorPassword = "Password min length 8 characters.";
+        }
+        if ( errors.hasOwnProperty("username") ) {
+          $scope.errors.errorName = "Name " + errors.username[0];
         }
     });
   };
