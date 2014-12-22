@@ -1,17 +1,21 @@
-<div class="page-header">
-  <h1>Register</h1>
-</div>
-<md-content md-theme="light-blue-dark">
-  <form name="registerForm" ng-submit="register()">
-      <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
-      <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
-        {{errors.errorEmail}}
-      </div>
-      <md-text-float type="text" label="Name" ng-model="user.username"></md-text-float>
-      <md-text-float label="Password"  type="password" ng-model="user.password" class="long"> </md-text-float>
-      <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
-        {{errors.errorPassword}}
-      </div>
-      <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
-  </form>
-</md-content>
+<md-dialog aria-label="Mango (Fruit)"> 
+  <md-content md-theme="light-blue-dark">
+    <div class="page-header">
+      <h1>Register</h1>
+    </div>
+  <md-content md-theme="light-blue-dark">
+    <form name="registerForm" ng-submit="register()">
+        <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
+        <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
+          {{errors.errorEmail}}
+        </div>
+        <md-text-float type="text" label="Name" ng-model="user.username"></md-text-float>
+        <md-text-float label="Password"  type="password" ng-model="user.password" class="long"> </md-text-float>
+        <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
+          {{errors.errorPassword}}
+        </div>
+        <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
+    </form>
+  </md-content>
+</md-dialog>
+

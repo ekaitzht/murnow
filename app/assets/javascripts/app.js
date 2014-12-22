@@ -15,11 +15,6 @@ function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
         }]
       }
     })
-    .state('register', {
-      url: '/register',
-      templateUrl: 'auth/_register.html',
-      controller: 'AuthCtrl'
-    })
     .state('forgotpassword', {
       url: '/forgotpassword',
       templateUrl: 'auth/_forgotpassword.html',
