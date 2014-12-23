@@ -1,11 +1,10 @@
 <md-dialog aria-label="Mango (Fruit)"> 
-  <md-content md-theme="light-blue-dark">
     <div class="page-header">
       <h1>Register</h1>
     </div>
   <md-content md-theme="light-blue-dark">
     <form name="registerForm" ng-submit="register()">
-        <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
+        <md-text-float type="email" label="Email" ng-model="user.email" class="long"> </md-text-float>
         <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
           {{errors.errorEmail}}
         </div>

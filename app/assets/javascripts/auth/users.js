@@ -18,6 +18,7 @@ angular.module('flapperNews')
 	 	});
 	  };
 
+
 	 o.fromState = null;
 
 	return o;

@@ -6,7 +6,7 @@ function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
 
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
-      url: '/home',
+      url: '/home?confirmation',
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
       resolve: {

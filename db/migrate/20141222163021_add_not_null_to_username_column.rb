@@ -4,3 +4,4 @@ class AddNotNullToUsernameColumn < ActiveRecord::Migration
 
   end
 end
+ 

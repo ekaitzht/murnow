@@ -5,14 +5,14 @@ angular.module('flapperNews')
 'Auth',
 'users',
 '$stateParams',
-'$cookieStore',
-function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
+'$cookies',
+'$mdDialog',
+function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootScope){
  
   $scope.login = function() {
   
     $scope.errors = {};
 
-    $scope.user.remember_me = $scope.user.remember_me;
     Auth.login($scope.user).then(function(ev){
         $state.go('home');
     }).then(function(response) {
@@ -44,7 +44,7 @@ function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
     $scope.errors = {};
     users.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
       success(function(data) {
-          $state.go('login');
+        $scope.login();
       }).error(function(error){
          if ( error.errors.hasOwnProperty("reset_password_token") ) {
           $scope.errors.errorReset = "Your link has expired"; // Reset token invalid.
@@ -86,5 +86,16 @@ function($scope, $state, Auth, users, $stateParams, $cookieStore, $rootScope){
       users.fromState = fromState.name;
       // I want get the 'person' value in this function, what should I do?
   });
+
+  $scope.showDialogForgotPassword = function() {
+    
+    $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_forgotpassword.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+  };
+
 
 }]);

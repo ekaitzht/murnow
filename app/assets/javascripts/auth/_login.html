@@ -1,25 +1,29 @@
 <md-dialog aria-label="Mango (Fruit)">
+  <md-content md-theme="light-blue-dark">
+  
+      <div class="page-header">
+        <h1>Log In</h1>
+      </div>
 
-<md-content md-theme="light-blue-dark">
-  <div class="page-header">
-    <h1>Log In</h1>
-  </div>
-    <form ng-submit="login()" >
-      <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
-      <md-text-float type="password" label="Password" ng-model="user.password"></md-text-float>
-      <md-checkbox ng-model="user.remember_me" aria-label="Checkbox 1">
-        Remember Me 
-      </md-checkbox>
-      <md-button class="md-raised md-primary">Log In</md-button>
+      <form ng-submit="login()" >
+        <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
+        <md-text-float type="password" label="Password" ng-model="user.password"></md-text-float>
+        <md-checkbox ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">
+          Remember Me 
+        </md-checkbox>
+        <md-button type="submit" class="md-raised md-primary">Log In</md-button>
+      </form>
 
-      <md-button  ng-href="#/forgotpassword" class="md-primary" md-theme="cyan">Forgotten pasword?</md-button>
-    </form>
-       <div class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
+      <md-button   ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
+      
+      <div class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
         {{errors.errorPasswordEmail}}
       </div>
-</md-content>
- 
+
+  </md-content>
 </md-dialog>
+
+
 
 
 

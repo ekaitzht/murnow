@@ -37,7 +37,7 @@ function($scope, Auth, $mdDialog){
 
 
   $scope.showDialogRegister = function() {
-  
+   
      $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_register.html',
