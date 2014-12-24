@@ -46,7 +46,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 
 app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $mdDialog) {
 
-  if ($location.path() == "/users/sign_in") {
+  if ($location.path() == "/users/confirmation") {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
         $mdDialog.show({
             controller: 'AuthCtrl',
