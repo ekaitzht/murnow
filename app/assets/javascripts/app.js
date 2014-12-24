@@ -8,7 +8,6 @@ app.config([
 '$rootScope',
 function($stateProvider, $urlRouterProvider,$locationProvider, $mdDialog, $rootScope) {
 
-  
 
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
@@ -41,11 +40,13 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $mdDialog, $rootS
         }]
       }
 	});
-$locationProvider.html5Mode(true);
-  	$urlRouterProvider.otherwise('/');
+
+  $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise('/');
+
 }]);
 
-app.run(function($rootScope,$location, $mdDialog) {
+app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $mdDialog) {
 
   if ($location.path() == "/users/sign_in") {
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
@@ -58,4 +59,4 @@ app.run(function($rootScope,$location, $mdDialog) {
     })
   }
 
-});
+}]);
