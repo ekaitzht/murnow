@@ -7,6 +7,7 @@ angular.module('flapperNews')
 '$stateParams',
 '$cookies',
 '$mdDialog',
+'$rootScope',
 function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootScope){
  
   $scope.login = function() {

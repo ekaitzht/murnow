@@ -4,6 +4,8 @@ app.config([
 '$stateProvider',
 '$urlRouterProvider',
 '$locationProvider',
+'$mdDialog',
+'$rootScope',
 function($stateProvider, $urlRouterProvider,$locationProvider, $mdDialog, $rootScope) {
 
   
