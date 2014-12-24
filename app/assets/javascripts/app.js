@@ -1,12 +1,16 @@
-var murnowApp = angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies'])
-.config([
+var app = angular.module('flapperNews', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies']);
+
+app.config([
 '$stateProvider',
 '$urlRouterProvider',
-function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
+'$locationProvider',
+function($stateProvider, $urlRouterProvider,$locationProvider, $mdDialog, $rootScope) {
+
+  
 
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
-      url: '/home?confirmation',
+      url: '/',
       templateUrl: 'home/_home.html',
       controller: 'MainCtrl',
       resolve: {
@@ -35,8 +39,21 @@ function($stateProvider, $urlRouterProvider,$mdDialog, $rootScope) {
         }]
       }
 	});
-
-
-  	$urlRouterProvider.otherwise('home');
+$locationProvider.html5Mode(true);
+  	$urlRouterProvider.otherwise('/');
 }]);
 
+app.run(function($rootScope,$location, $mdDialog) {
+
+  if ($location.path() == "/users/sign_in") {
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+        $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+    })
+  }
+
+});

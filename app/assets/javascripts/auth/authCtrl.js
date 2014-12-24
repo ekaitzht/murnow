@@ -25,10 +25,10 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
   };
 
 
-  $scope.resetPassword = function(resetPasswordForm) {
+  $scope.resetPassword = function() {
       $scope.errors = {};
 
-      users.forgotPassword(resetPasswordForm.email
+      users.forgotPassword($scope.resetPasswordForm.email
       ).success(function(data) {
          $scope.successfulMessage = "Check your inbox email to change your password please!";
       }).error(function(error){
@@ -60,7 +60,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
 
     $scope.errors = {};
     Auth.register($scope.user).then(function(){
-      $state.go('home');
+     
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -73,7 +73,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
           $scope.errors.errorEmail = "Your email "+ errors.email[0];
         }  
         if ( errors.hasOwnProperty("password") ) {
-          $scope.errors.errorPassword = "Password min length 8 characters.";
+          $scope.errors.errorPassword = "Password "+ errors.password[0];
         }
         if ( errors.hasOwnProperty("username") ) {
           $scope.errors.errorName = "Name " + errors.username[0];

@@ -3,15 +3,8 @@ angular.module('flapperNews')
 	
 	$scope.products = products.products;
 
-	if ($stateParams.confirmation == "1") {
-		   $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_login.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
-	}
-
+   
+    
 	$scope.addProduct = function(){
   		$scope.reviews.push({title: $scope.title, upvotes: 0});
 		$scope.title = '';
