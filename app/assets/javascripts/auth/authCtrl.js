@@ -98,5 +98,14 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
           });
   };
 
+  $scope.showDialogRegister= function() {
+  
+     $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_register.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+  };
 
 }]);

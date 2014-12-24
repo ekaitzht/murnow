@@ -25,8 +25,17 @@ function($scope, Auth, $mdDialog){
     $scope.user = {};
   });
 
-  $scope.showDialogLogin = function() {
+  $scope.showDialogRegisterOptions= function() {
   
+     $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_panel_signup_options.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+  };
+
+  $scope.showDialogLogin= function() {
      $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login.html',
@@ -34,7 +43,6 @@ function($scope, Auth, $mdDialog){
             clickOutsideToClose: true
           });
   };
-
 
   $scope.showDialogRegister = function() {
    
