@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def set_config_email
     if Rails.env.production?
-      ActionMailer::Base.default_url_options = {:host => request.domain}
+      ActionMailer::Base.default_url_options = {:host => ENV['APP_URL']}
       ActionMailer::Base.delivery_method = :smtp
 
       ActionMailer::Base.smtp_settings = {
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
           :address =>        'smtp.mandrillapp.com',
           :user_name =>      ENV['MANDRILL_USERNAME'],
           :password =>       ENV['MANDRILL_APIKEY'],
-          :domain =>         request.domain,
+          :domain =>         ENV['APP_URL'],
           :authentication => :plain
       }
     end
