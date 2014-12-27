@@ -37,6 +37,7 @@ body {
   margin: 0;
   padding: 0;
   outline: none; }
+  
 
 .inset {
   padding: 10px; }
@@ -4989,7 +4990,8 @@ md-tooltip {
 
 md-backdrop.md-opaque.md-default-theme {
   background-color: rgba(0, 0, 0, 0.3);
-  position: absolute; }
+  position: fixed;
+  overflow-y: scroll; }
 
 md-bottom-sheet.md-default-theme {
   background-color: #fafafa;

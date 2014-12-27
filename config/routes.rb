@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #   resources :products
   root to: 'application#angular'
 
-  get "*path.html" => "application#angular", :layout => 0
+  #get "*path.html" => "application#angular", :layout => 0  CHECK THIS IF YOU HAVE ERRORS AND TRY IT TO UNCOMMENT
 
   resources :products, only: [:create, :index, :show], defaults: { format: 'json' } do
     resources :reviews, only: [:show, :create], defaults: { format: 'json' } do
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       put '/upvote' => 'products#upvote'
     end
   end
+
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do
