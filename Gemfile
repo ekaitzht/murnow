@@ -8,6 +8,8 @@ group :production do
 	gem 'rails_12factor'
 end
 
+gem 'omniauth-facebook'
+
 gem 'pg'
 gem 'angular_rails_csrf'
 # Use SCSS for stylesheets
