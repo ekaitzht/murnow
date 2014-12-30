@@ -24,7 +24,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
         if (error.data.error == "You have to confirm your email address before continuing.") {
           $scope.sendConfirm = true;
           $scope.errors.errorPasswordEmail = "You can't login because
-          Your confirmation email has expired,
+          your confirmation email has expired,
           Click the button to resend confirmation instructions"
         } else {
           $scope.sendConfirm = false;
