@@ -7,20 +7,21 @@
        <a target="_self" href='/users/auth/facebook'>Login with facebook</a>
       <form ng-submit="login()">
         <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
-        <md-text-float type="password" label="Password" ng-model="user.password"></md-text-float>
-        <md-checkbox ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">
+        <md-text-float ng-hide="sendConfirm"  type="password" label="Password" ng-model="user.password"></md-text-float>
+        <md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">
           Remember Me 
         </md-checkbox>
-        <md-button type="submit" class="md-raised md-primary">Log In</md-button>
+        <md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>
 
       </form>
 
-      <md-button   ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
+      <md-button  ng-hide="sendConfirm"  ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
       
-      <div class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
+      <md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
+
+      <div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
         {{errors.errorPasswordEmail}}
       </div>
-
   </md-content>
 </md-dialog>
 
