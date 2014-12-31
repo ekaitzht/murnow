@@ -23,9 +23,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
     }, function(error) {
         if (error.data.error == "You have to confirm your email address before continuing.") {
           $scope.sendConfirm = true;
-          $scope.errors.errorPasswordEmail = "You can't login because
-          your confirmation email has expired,
-          Click the button to resend confirmation instructions"
+          $scope.errors.errorPasswordEmail = "You can't login because your confirmation email has expired, Click the button to resend confirmation instructions"
         } else {
           $scope.sendConfirm = false;
           $scope.errors.errorPasswordEmail = error.data.error; 
@@ -34,6 +32,13 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
   };
 
   $scope.sendConfirmationInstructions = function(email){
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Email sent!')
+        .content('We have sent you the confirmation instructions to your email address.')
+        .ariaLabel('Password notification')
+        .ok('Got it!')
+    );
     users.send_confirmation_instructions(email);
   }
 
