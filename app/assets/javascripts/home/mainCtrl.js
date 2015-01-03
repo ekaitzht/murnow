@@ -1,4 +1,4 @@
-angular.module('flapperNews')
+angular.module('murnow')
 .controller('MainCtrl', ['$scope','$stateParams','$mdDialog','products',function($scope,$stateParams, $mdDialog, products){
 	
 	$scope.products = products.products;

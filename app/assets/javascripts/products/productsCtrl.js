@@ -1,4 +1,4 @@
-angular.module('flapperNews')
+angular.module('murnow')
 .controller('ProductsCtrl', ['$scope','products', 'product', function($scope, products, product){
 
 

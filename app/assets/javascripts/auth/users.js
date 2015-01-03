@@ -1,4 +1,4 @@
-angular.module('flapperNews')
+angular.module('murnow')
 .factory('users',[ '$http', function($http){
     
     var o = {

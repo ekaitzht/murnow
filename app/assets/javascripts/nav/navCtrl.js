@@ -1,4 +1,4 @@
-angular.module('flapperNews')
+angular.module('murnow')
 .controller('NavCtrl', [
 '$scope',
 'Auth',
