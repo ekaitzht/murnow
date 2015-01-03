@@ -1,5 +1,11 @@
 angular.module('murnow')
-.controller('MainCtrl', ['$scope','$stateParams','$mdDialog','products',function($scope,$stateParams, $mdDialog, products){
+.controller('MainCtrl', 
+['$scope',
+'$state',
+'$stateParams',
+'$mdDialog',
+'products',
+function($scope,$state,$stateParams, $mdDialog, products){
 	
 	$scope.products = products.products;
 

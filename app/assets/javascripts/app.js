@@ -10,11 +10,16 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/',
-      templateUrl: 'home/_home.html',
-      controller: 'MainCtrl',
+      templateUrl: 'home/_background.html',
+      controller: 'MainCtrl'
+    })
+    .state('list_products', {  // CAMBIAR ESTOOOOOOO
+      url: '/list_products?searchQuery',
+      templateUrl: 'list_products/_products_list.html',
+      controller: 'ListProducts',
       resolve: {
-        productsPromise: ['products', function(products){
-          return products.getAll();
+        productsPromise: ['products', function(products, $stateParams){
+          return products.getAll($stateParams);
         }]
       }
     })

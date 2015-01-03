@@ -5,7 +5,7 @@ angular.module('murnow')
     	products: []
   	};
 
-    o.getAll = function() {
+  o.getAll = function() {
 	    return $http.get('/products.json').success(function(data){
 	      angular.copy(data, o.products);
 	    });
@@ -28,6 +28,9 @@ angular.module('murnow')
        		review.upvotes += 1;
     	});
   	};
+
+
+
 	
 	return o;
 }]);
