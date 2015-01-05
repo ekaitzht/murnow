@@ -1,4 +1,4 @@
-angular.module('murnow')
+sangular.module('murnow')
 .factory('products',[ '$http', function($http){
     
     var o = {
@@ -20,6 +20,12 @@ angular.module('murnow')
 	o.addReview = function(id, review) {
   		return $http.post('/products/' + id + '/reviews', review);
 	};
+
+  o.getBySearchQuery = function (searchQuery) {
+        return $http.get('/products.json').success(function(data){
+        angular.copy(data, o.products);
+      });
+  };
 
 
   	o.upvoteReview = function(product, review) {

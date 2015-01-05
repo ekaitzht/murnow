@@ -14,11 +14,11 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       controller: 'MainCtrl'
     })
     .state('list_products', {  // CAMBIAR ESTOOOOOOO
-      url: '/list_products?searchQuery',
+      url: '/list_products/:searchQuery',
       templateUrl: 'list_products/_products_list.html',
       controller: 'ListProducts',
       resolve: {
-        productsPromise: ['products', function(products, $stateParams){
+        productsPromise: ['products','$stateParams', function(products, $stateParams){
           return products.getAll($stateParams);
         }]
       }
