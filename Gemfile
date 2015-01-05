@@ -9,6 +9,8 @@ group :production do
 end
 
 gem 'omniauth-facebook'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 gem 'pg'
 gem 'angular_rails_csrf'

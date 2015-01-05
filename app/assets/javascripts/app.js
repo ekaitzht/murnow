@@ -19,7 +19,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       controller: 'ListProducts',
       resolve: {
         productsPromise: ['products','$stateParams', function(products, $stateParams){
-          return products.getAll($stateParams);
+          return products.search($stateParams.searchQuery);
         }]
       }
     })

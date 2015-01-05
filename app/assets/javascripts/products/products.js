@@ -1,4 +1,4 @@
-sangular.module('murnow')
+angular.module('murnow')
 .factory('products',[ '$http', function($http){
     
     var o = {
@@ -21,19 +21,19 @@ sangular.module('murnow')
   		return $http.post('/products/' + id + '/reviews', review);
 	};
 
-  o.getBySearchQuery = function (searchQuery) {
-        return $http.get('/products.json').success(function(data){
+  o.search = function (searchQuery) {
+        return $http.get('/search/?q='+searchQuery).success(function(data){
         angular.copy(data, o.products);
       });
   };
 
 
-  	o.upvoteReview = function(product, review) {
-    	return $http.put('/products/' + product.id + '/reviews/'+ review.id + '/upvote')
-     	 .success(function(data){
-       		review.upvotes += 1;
-    	});
-  	};
+	o.upvoteReview = function(product, review) {
+  	return $http.put('/products/' + product.id + '/reviews/'+ review.id + '/upvote')
+   	 .success(function(data){
+     		review.upvotes += 1;
+  	});
+	};
 
 
 

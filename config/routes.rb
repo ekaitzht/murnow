@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get 'search', to: 'search#search', defaults: { format: 'json' }
 
   # Example resource route with options:
   #   resources :products do
