@@ -4,6 +4,14 @@ class Product < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  settings index: { number_of_shards: 1 } do
+    mappings dynamic: 'false' do
+      indexes :long_description, analyzer: 'english', index_options: 'offsets'
+      indexes :long_product_description, analyzer: 'english', index_options: 'offsets'
+      indexes :product_name, analyzer: 'english', index_options: 'offsets'
+    end
+  end
+
   has_many :reviews
 
   def as_json(options = {})
@@ -13,7 +21,7 @@ class Product < ActiveRecord::Base
   def self.search(query)
     __elasticsearch__.search(
       {
-        _source:  ['product_name', 'brand_name', 'category', 'upvotes'],
+        _source:  ['product_name', 'brand_name', 'category', 'upvotes','long_description'],
         query: {
           multi_match: {
             query: query,
@@ -29,4 +37,17 @@ class Product < ActiveRecord::Base
 
 end
 
+
+# Delete the previous Products index in Elasticsearch
+Product.__elasticsearch__.client.indices.delete index: Product.index_name rescue nil
+ 
+# Create the new index with the new mapping
+Product.__elasticsearch__.client.indices.create \
+  index: Product.index_name,
+  body: { settings: Product.settings.to_hash, mappings: Product.mappings.to_hash }
+ 
+
+ 
+
+# Index all Product records from the DB to Elasticsearch
 Product.import
