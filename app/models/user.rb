@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
 	def self.from_omniauth(auth)
 		user = User.find_by(email: auth.info.email)
-	
+		logger.info "*****************______>>>>>> #{auth.inspect}"
 		if user.nil? then
 			# Find row with where data and if is not in the database we create new one
 			# however must pass validations
