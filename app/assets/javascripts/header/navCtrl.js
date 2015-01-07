@@ -3,21 +3,25 @@ angular.module('murnow')
 '$scope',
 'Auth',
 '$mdDialog',
-function($scope, Auth, $mdDialog){
+'User',
+function($scope, Auth, $mdDialog, User){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
 
    Auth.currentUser().then(function (user){
     $scope.user = user;
+   
   });
 
   $scope.$on('devise:new-registration', function (e, user){
     $scope.user = user;
+     User.setUser(user);
      $mdDialog.hide();
   });
 
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
+     User.setUser(user);
     $mdDialog.hide();
   });
 

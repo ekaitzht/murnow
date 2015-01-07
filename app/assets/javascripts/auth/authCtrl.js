@@ -3,12 +3,12 @@ angular.module('murnow')
 '$scope',
 '$state',
 'Auth',
-'users',
+'User',
 '$stateParams',
 '$cookies',
 '$mdDialog',
 '$rootScope',
-function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootScope){
+function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootScope){
  
   $scope.login = function() {
   
@@ -39,20 +39,20 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
         .ariaLabel('Password notification')
         .ok('Got it!')
     );
-    users.send_confirmation_instructions(email);
+    User.send_confirmation_instructions(email);
   }
 
 
   $scope.resetPassword = function() {
       $scope.errors = {};
 
-      users.forgotPassword($scope.resetPasswordForm.email
+      User.forgotPassword($scope.resetPasswordForm.email
       ).success(function(data) {
          $scope.successfulMessage = "Check your inbox email to change your password please!";
       }).error(function(error){
           if ( error.errors.hasOwnProperty("email") ) { $scope.errors.emailNotFoundReset = "We can not find the email"; }  
       });
-     /* var resetPasswordusers.resetPassword(resetPasswordForm.email);
+     /* var resetPasswordUser.resetPassword(resetPasswordForm.email);
       resetPasswordPromise.then(function(result) {
         if ( result.hasOwnProperty("email") ) { $scope.emailNotFoundReset = "We can not find the email"; }
       });*/
@@ -60,7 +60,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
 
   $scope.changePassword = function(changePassword) {
     $scope.errors = {};
-    users.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
+    User.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
       success(function(data) {
         $scope.login();
       }).error(function(error){
@@ -101,7 +101,7 @@ function($scope, $state, Auth, users, $stateParams, $cookies, $mdDialog, $rootSc
   
   $scope.$on('$stateChangeSuccess', 
     function(event, toState, toParams, fromState, fromParams) {
-      users.fromState = fromState.name;
+      User.fromState = fromState.name;
       // I want get the 'person' value in this function, what should I do?
   });
 

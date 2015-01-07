@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
 	def self.from_omniauth(auth)
 		user = User.find_by(email: auth.info.email)
-
+	
 		if user.nil? then
 			# Find row with where data and if is not in the database we create new one
 			# however must pass validations
@@ -19,15 +19,16 @@ class User < ActiveRecord::Base
 		  		logger.info "hey I am here -=====---------"
 				user.skip_confirmation! 
 				user.email = auth.info.email
+				user.image = auth.info.image
 				user.password = Devise.friendly_token[0,20]
 				user.username = auth.info.name   # assuming the user model has a name
-				logger.info "********"
 			end
 		else 
 		    logger.info "user in from_omniauth ====> #{user.inspect}"
 			user.skip_confirmation! 
 			user.provider = auth.provider
 			user.uid = auth.uid
+			user.image = auth.info.image
 			user.save
 			return user
 		end

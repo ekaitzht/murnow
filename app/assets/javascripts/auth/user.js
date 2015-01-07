@@ -1,9 +1,9 @@
 angular.module('murnow')
-.factory('users',[ '$http', function($http){
+.factory('User',[ '$http', function($http){
     
-    var o = {
-    	users: []
-  	};
+    var o = {};
+
+    o.user_session = {};
 
     o.forgotPassword = function(email) {
 	    return $http.post('/users/password.json', {user: {email: email} });
@@ -24,8 +24,12 @@ angular.module('murnow')
 	 	});
 	  };
 
+	o.setUser = function(user) {
+ 		o.user_session = user;
+	};
 
-	 o.fromState = null;
+
+	o.fromState = null;
 
 	return o;
 }]);
