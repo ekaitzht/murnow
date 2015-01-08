@@ -1,13 +1,14 @@
-  <div class="page-header">
-    <h3>
-      {{product.product_name}}
-      </span>
-    </h3>
+  <div layout= "row" class="page-header">
+      <figure ><img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
+      <span>{{product.product_name}}</span>
   </div>
+  <div class="all-comments"> All Comments ({{product.reviews.length}}) </div>
+  <form ng-submit="addReview()" style="margin-top:30px;">
+      <input type="text" class="form-control" placeholder="Add review hey!" ng-model="body"></input>
+  </form>
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
-    <span class="glyphicon glyphicon-thumbs-up"
-      ng-click="incrementUpvotes(review)"></span>
+    <span ng-click="incrementUpvotes(review)"></span>
     {{review.upvotes}} 
     <span style="font-size:20px; margin-left:10px;">
       {{review.body}} - by {{review.user.username}} {{review.user.created_at | date: 'medium'}}
@@ -15,11 +16,3 @@
   </div>
 
 
-  <form ng-submit="addReview()" style="margin-top:30px;">
-    <h3>Add a new review</h3>
-
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Comment" ng-model="body"></input>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Review</button>
-  </form>

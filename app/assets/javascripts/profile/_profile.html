@@ -1,14 +1,16 @@
 <div layout="row">
   <div>
-
   	<div ng-show="user.image" class="md-tile-left">
               <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
     </div>
   	<span ng-show="!user.image">Hey upload your image! </span>
   </div>
+  <div layout="column">
+    <div class="username">
+    	{{user.username}}
+    </div>
   <div>
-  	{{user.username}}
-  </div>
+  
 </div>
 <div layout="row">
   <div>
