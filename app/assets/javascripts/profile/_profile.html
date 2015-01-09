@@ -8,13 +8,19 @@
   </div>
   <div layout="column">
     <div class="username">
-    	{{user.username}}
+    	 <span> {{user.username}} </span>
+    </div>
+    <div class="bio">
+      <span ng-show="user.bio"> {{user.bio}}</span>
+      <span ng-hide="user.bio"> Bio </span>
     </div>
   <div> 
 </div>
+
 <div layout= "row">
 Profile
 </div>
+
 <div layout="row">
   <div> 
   		Skin type: <span> {{user.skin_type}} </span>
