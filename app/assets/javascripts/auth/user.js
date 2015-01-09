@@ -37,7 +37,8 @@ angular.module('murnow')
 	    {
 	     username: user.username,
 	     skin_type: user.skin_color, 
-	     skin_color: user.skin_type
+	     skin_color: user.skin_type,
+	     email: user.email
 	      }
 	 	});
 	};
