@@ -1,0 +1,31 @@
+<form name="registerForm" ng-submit="updateUser()">
+  <div layout="row">
+    <div>
+    	<div ng-show="user.image" class="md-tile-left">
+                <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+      </div>
+    	<span ng-show="!user.image">Hey upload your image! </span>
+    </div>
+    <div layout="column">
+      <div class="username">
+      	<input type="text"  value="{{user.username}}" ng-model="user.username"/>
+      </div>
+    <div> 
+  </div>
+  <div layout= "row">
+  Profile
+  </div>
+  <div layout="row">
+    <div>
+    		Skin type:  <input type="text" value="{{user.skin_type}}" ng-model="user.skin_type"/>
+    		Skin Color: <input type="text" value="{{user.skin_color}}" ng-model="user.skin_color"/>
+    </div>
+  </div>
+
+
+  <div layout="row">
+      <md-button type="submit" class="md-raised md-primary">Save Profile</md-button></a>
+  </div>
+</form>
+
+       

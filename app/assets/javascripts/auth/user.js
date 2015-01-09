@@ -28,10 +28,24 @@ angular.module('murnow')
  		o.user_session = user;
 	};
 
+	o.updateUser = function(user){
+		o.user_session.username = user.username;
+		o.user_session.skin_color = user.skin_color;
+		o.user_session.skin_type = user.skin_type;
+		
+		return $http.put('/users', {user: 
+	    {
+	     username: user.username,
+	     skin_type: user.skin_color, 
+	     skin_color: user.skin_type
+	      }
+	 	});
+	};
 
 	o.fromState = null;
 
 	return o;
 }]);
+
 
 

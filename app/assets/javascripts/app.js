@@ -33,6 +33,11 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       templateUrl: 'profile/_profile.html',
       controller: 'Profile'
     })
+    .state('edit_profile', {
+      url: '/edit_profile',
+      templateUrl: 'profile/_edit_profile.html',
+      controller: 'Profile'
+    })
     .state('resetpassword', {
       url: '/resetpassword?resetToken',
       templateUrl: 'auth/_resetpassword.html',
