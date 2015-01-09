@@ -9,4 +9,5 @@
 //= require angular-ui-router
 //= require angular-messages
 //= require angular-cookies
+//= require ng-file-upload
 //= require_tree .

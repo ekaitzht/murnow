@@ -16,6 +16,9 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
+  #S3 config 
+  ENV['S3_BUCKET'] = 'murnow'
+  ENV['AWS_SECRET_ACCESS_KEY'] = 'BBFo9r62T9/xXoHKZ3gOCEj4xRVex/u4rO7mJaip'
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
   

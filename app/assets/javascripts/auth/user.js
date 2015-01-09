@@ -42,6 +42,7 @@ angular.module('murnow')
 	 	});
 	};
 
+
 	o.fromState = null;
 
 	return o;

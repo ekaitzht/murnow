@@ -5,6 +5,7 @@
               <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
     </div>
   	<span ng-show="!user.image">Hey upload your image! </span>
+
   </div>
   <div layout="column">
     <div class="username">
@@ -29,5 +30,5 @@ Profile
 </div>
 
 <div layout="row">
-    <a href="/edit_profile"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
+    <a href="/edit_profile" ng-click="getS3PolicyDocument()"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
 </div>

@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   get 'search', to: 'search#search', defaults: { format: 'json' }
   
+  get 'amazon/policy', to: 'amazon#policy', defaults: { format: 'json' }
+
   # Example resource route with options:
   #   resources :products do
   #     member do
