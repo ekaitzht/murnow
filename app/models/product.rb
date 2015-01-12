@@ -1,8 +1,12 @@
 require 'elasticsearch/model'
 
 class Product < ActiveRecord::Base
+  has_many :reviews
+
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+
+
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
@@ -12,10 +16,10 @@ class Product < ActiveRecord::Base
     end
   end
 
-  has_many :reviews
+  
 
   def as_json(options = {})
-   super(options.merge(include: [:reviews, reviews: {include: :user}]))
+   super(options.merge(include: {reviews: {include: :user}}))
   end
 
   def self.search(query)

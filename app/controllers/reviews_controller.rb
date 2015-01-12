@@ -14,6 +14,12 @@ class ReviewsController < ApplicationController
     respond_with @product, review
   end
 
+  def show
+      @product = Product.find(params[:product_id])
+     review = @product.reviews.find(params[:id])
+     respond_with review
+  end
+
   private
   def review_params
     params.require(:review).permit(:body)

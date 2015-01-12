@@ -8,6 +8,8 @@
   </form>
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
+    <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
+    <span ng-show="!review.user.image">No Image</span>
     <span ng-click="incrementUpvotes(review)"></span>
     {{review.upvotes}} 
     <span style="font-size:20px; margin-left:10px;">

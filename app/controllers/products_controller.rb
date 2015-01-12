@@ -8,7 +8,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    respond_with Product.find(params[:id])
+    @product = Product.find(params[:id])
+    respond_with  @product
   end
 
   def upvote
