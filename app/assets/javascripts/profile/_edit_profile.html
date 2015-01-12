@@ -1,10 +1,15 @@
-<form name="registerForm" ng-submit="updateUser()">
+<form name="registerForm">
   <div layout="row">
     <div>
-    	<div ng-show="user.image" class="md-tile-left">
+    	<div ng-show="user.image" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
                 <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
       </div>
-    	<span ng-show="!user.image">Hey upload your image! </span>
+      <button ng-show="!user.image" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
+      <!--<div ng-file-drop ng-model="file" class="drop-box" 
+          drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+          multiple="false" allow-dir="false" accept="image/*">
+                  Drop Images or PDFs files here
+      </div> -->
     </div>
     <div layout="column">
       <div class="username">
@@ -27,8 +32,8 @@
 
 
   <div layout="row">
-      <md-button type="submit" class="md-raised md-primary">Save Profile</md-button></a>
+      <md-button type="submit" ng-click="updateUser()" class="md-raised md-primary">Save Profile</md-button></a>
   </div>
-</form>
+</form>  
 
        

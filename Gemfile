@@ -14,6 +14,7 @@ gem 'omniauth-facebook'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'bonsai-elasticsearch-rails'
+gem 'aws-sdk'
 
 
 gem 'pg'

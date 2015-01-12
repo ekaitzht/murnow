@@ -33,12 +33,17 @@ angular.module('murnow')
 		o.user_session.skin_color = user.skin_color;
 		o.user_session.skin_type = user.skin_type;
 		o.user_session.bio = user.bio;
+		o.user_session.image = user.image;
+
 		return $http.put('/users', {user: 
 	    {
 	     username: user.username,
 	     skin_type: user.skin_color, 
 	     skin_color: user.skin_type,
-	     bio: user.bio	      }
+	     bio: user.bio,
+	     image: user.image
+
+	      }
 	 	});
 	};
 
