@@ -5,6 +5,7 @@ angular.module('murnow')
 
     o.policy = undefined;
   	o.signature = undefined;
+  	o.folder = undefined;
     
 	o.getS3PolicyDocument = function (searchQuery) {
 	     return $http.get('/amazon/policy/');

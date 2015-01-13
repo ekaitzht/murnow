@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('Profile', [
-'$scope','User','$state','$upload', 'Auth', 'Amazon',
-function($scope, User, $state, $upload, Auth, Amazon){
+'$scope','User','$state','$upload', 'Auth', 'Amazon','$mdDialog',
+function($scope, User, $state, $upload, Auth, Amazon, $mdDialog){
 	
  $scope.user = User.user_session;
 
@@ -21,7 +21,8 @@ function($scope, User, $state, $upload, Auth, Amazon){
     Amazon.getS3PolicyDocument().success(function(data) {
          Amazon.policy = data.policy;
          Amazon.signature = data.signature;
-         Amazon.unique_name_file_hash = data.unique_name_file_hash
+         Amazon.unique_name_file_hash = data.unique_name_file_hash;
+         Amazon.folder = data.folder;
     }).error(function(error){
          
     });
@@ -30,13 +31,25 @@ function($scope, User, $state, $upload, Auth, Amazon){
   $scope.$watch('file', function(newValue, oldValue) {
       if (newValue === oldValue) {
         return; 
-      }
+      } 
+
+      if ( ($scope.file[0].size/1024) >= 2048 ) { // if the file is bigger than  2048 KB
+        $mdDialog.show(
+          $mdDialog.alert()
+            .title('Photo too big')
+            .content('Size of the photo is too big you need  a file with less than 2MB!')
+            .ariaLabel('Password notification')
+            .ok('Got it!')
+        );
+        return;      
+      } 
       var file = $scope.file[0];
+        
       $scope.upload = $upload.upload({
         url: 'https://murnow.s3.amazonaws.com/', 
         method: 'POST',
         data : {
-          key: 'images_user_profile/' + Amazon.unique_name_file_hash, // the key to store the file on S3, could be file name or customized
+          key: Amazon.folder + Amazon.unique_name_file_hash, // the key to store the file on S3, could be file name or customized
           AWSAccessKeyId: 'AKIAII73EHYMIQ22FBHQ', 
           acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public 
           policy: Amazon.policy, // base64-encoded json policy (see article below)
@@ -46,14 +59,19 @@ function($scope, User, $state, $upload, Auth, Amazon){
         },
         file: file, 
       }).progress(function(evt) {
-        console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.file.name);
+
+        var percent =  parseInt(100.0 * evt.loaded / evt.total);
+
+        console.log('progress: ' +percent + '% file :'+ evt.config.file.name);
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
 
-        var imageUrl = "https://s3.amazonaws.com/murnow/images_user_profile/" + Amazon.unique_name_file_hash;
+        var imageUrl = "https://s3.amazonaws.com/murnow/" + Amazon.folder + Amazon.unique_name_file_hash;
         var random = (new Date()).toString();
         $scope.user.image= imageUrl + "?cb=" + random;
         console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
+      }).error(function(err){
+
       });
    
   });

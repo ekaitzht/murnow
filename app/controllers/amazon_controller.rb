@@ -8,13 +8,13 @@ class AmazonController < ApplicationController
 	 	options =  {}
 		options[:content_type] = ''
 	    options[:acl] = 'public-read'
-	    options[:max_file_size] = 10.megabyte
+	    options[:max_file_size] = 2.megabyte
 	    options[:path] = ''
-		options[:folder] = 'images_user_profile/'
+		options[:folder] = 'profile_images_' + Rails.env + '/'
 
 		AWS.config(
 		access_key_id: 'AKIAII73EHYMIQ22FBHQ',
-		secret_access_key: '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')
+		secret_access_key:  ENV['AWS_SECRET_ACCESS_KEY'])
 		@s3 = AWS::S3.new
 		logger.info "------->/*******"
 		
@@ -46,8 +46,8 @@ class AmazonController < ApplicationController
 		amazon[:policy] = policy
 		amazon[:signature] = signature
 		#This the key name that we will use to upload the image profile to AWS S3 
-		amazon[:unique_name_file_hash] =  Digest::SHA256.hexdigest(current_user.email.to_s) 
-
+		amazon[:unique_name_file_hash] =  Digest::SHA256.hexdigest(current_user.id.to_s) 
+		amazon[:folder] = options[:folder]
    
 		respond_with amazon
 	end
