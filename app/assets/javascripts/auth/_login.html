@@ -6,11 +6,16 @@
       </div>
        <a target="_self" href='/users/auth/facebook'>Login with facebook</a>
       <form ng-submit="login()">
-        <md-text-float label="Email" ng-model="user.email" class="long"> </md-text-float>
-        <md-text-float ng-hide="sendConfirm"  type="password" label="Password" ng-model="user.password"></md-text-float>
-        <md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">
-          Remember Me 
-        </md-checkbox>
+        <md-input-container>
+          <label> Email </label>
+          <input ng-model="user.email">
+        </md-input-container>
+        <md-input-container>
+          <label> Password </label>
+          <input ng-hide="sendConfirm"  type="password"  ng-model="user.password">
+        </md-input-container>
+        
+        <md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">Remember Me </md-checkbox>
         <md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>
 
       </form>

@@ -18,6 +18,7 @@
       <div class="bio">
         <input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
       </div>
+
     <div> 
   </div>
   <div layout= "row">
@@ -25,8 +26,28 @@
   </div>
   <div layout="row">
     <div>
-    		Skin type:  <input type="text" value="{{user.skin_type}}" ng-model="user.skin_type"/>
-    		Skin Color: <input type="text" value="{{user.skin_color}}" ng-model="user.skin_color"/>
+        Skin type:
+        <select ng-model="user.skin_type" ng-options="skin_type.type for skin_type in skin_types">
+          <option value="" disabled selected>Choose your skin type</option>
+        </select>
+       
+        Skin Color:
+        <select ng-model="user.skin_color" ng-options="skin_color.color for skin_color in skin_colors">
+          <option value="" disabled selected>Choose your skin color</option>
+        </select>
+
+        Skin Tone:
+        <select ng-model="user.skin_tone" ng-options="skin_tone.tone for skin_tone in skin_tones">
+          <option value="" disabled selected>Choose your skin tone</option>
+        </select>
+
+        Skin Problem: 
+        <select ng-model="user.skin_problem" ng-options="skin_tone.problem for skin_problem in skin_problems">
+          <option value="" disabled selected>What skin problem you have?</option>
+        </select>
+
+
+    
     </div>
   </div>
 

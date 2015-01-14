@@ -4,15 +4,28 @@
     </div>
   <md-content md-theme="light-blue-dark">
     <form name="registerForm" ng-submit="register()">
-        <md-text-float type="email" label="Email" ng-model="user.email" class="long"> </md-text-float>
+
+        <md-input-container>
+          <label> Email </label>
+          <input ng-model="user.email" type="email">
+        </md-input-container>
         <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
           {{errors.errorEmail}}
         </div>
-        <md-text-float type="text" label="Name" ng-model="user.username"  ng-model-options="{ getterSetter: true }"></md-text-float>
+        
+        <md-input-container>
+          <label> Name </label>
+          <input type="text"  ng-model="user.username"  ng-model-options="{ getterSetter: true }">
+        </md-input-container>
         <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
           {{errors.errorName}}
         </div>
-        <md-text-float label="Password"  type="password" ng-model="user.password" class="long"> </md-text-float>
+
+        <md-input-container>
+          <label> Password </label>
+          <input ng-model="user.password" type="password" ng-model="user.password" >
+        </md-input-container>
+
         <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
           {{errors.errorPassword}}
         </div>

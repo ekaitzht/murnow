@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.7.0-rc1-master-84842ff
+ * v0.7.0-rc2
  */
 (function() {
 'use strict';
@@ -166,8 +166,8 @@ MdConstantFactory.$inject = ["$$rAF", "$sniffer"];
 
       first: first,
       last: last,
-      next: next,
-      previous: previous,
+      next: angular.bind(null, findSubsequentItem, false),
+      previous: angular.bind(null, findSubsequentItem, true),
 
       hasPrevious: hasPrevious,
       hasNext: hasNext
@@ -292,48 +292,6 @@ MdConstantFactory.$inject = ["$$rAF", "$sniffer"];
     }
 
     /**
-     * Find the next item. If reloop is true and at the end of the list, it will
-     * go back to the first item. If given ,the `validate` callback will be used
-     * determine whether the next item is valid. If not valid, it will try to find the
-     * next item again.
-     * @param item
-     * @param {optional} validate function
-     * @param {optional} recursion limit
-     * @returns {*}
-     */
-    function next(item, validate, limit) {
-      validate = validate || trueFn;
-
-      var index = indexOf(item) + 1;
-      var found = inRange(index) ? _items[ index ] : (reloop ? first() : null);
-
-          found = hasCheckedAll(found, limit) ? null : found;
-
-      return !found || validate(found) ? found : next(found, validate, limit || index);
-    }
-
-    /**
-     * Find the previous item. If reloop is true and at the beginning of the list, it will
-     * go back to the last item. If given ,the `validate` callback will be used
-     * determine whether the previous item is valid. If not valid, it will try to find the
-     * previous item again.
-     * @param item
-     * @param {optional} validation function
-     * @param {optional} recursion limit
-     * @returns {*}
-     */
-    function previous(item, validate, limit) {
-      validate = validate || trueFn;
-
-        var index = indexOf(item) - 1;
-        var found = inRange(index) ? _items[ index ] : (reloop ? last() : null);
-
-            found = hasCheckedAll(found, limit) ? null : found;
-
-        return !found || validate(found) ? found : previous(found, validate, limit || index);
-    }
-
-    /**
      * Return first item in the list
      * @returns {*}
      */
@@ -350,15 +308,42 @@ MdConstantFactory.$inject = ["$$rAF", "$sniffer"];
     }
 
     /**
-     * Has the iteration checked all items in the list
-     * @param item current found item in th list
-     * @param {optional} stopAt index
-     * @returns {*|boolean}
+     * Find the next item. If reloop is true and at the end of the list, it will
+     * go back to the first item. If given ,the `validate` callback will be used
+     * determine whether the next item is valid. If not valid, it will try to find the
+     * next item again.
+     * @param item
+     * @param {optional} validate function
+     * @param {optional} recursion limit
+     * @returns {*}
      */
-    function hasCheckedAll(item, stopAt) {
-      return stopAt && item && (indexOf(item) == stopAt);
-    }
+    function findSubsequentItem(backwards, item, validate, limit) {
+      validate = validate || trueFn;
 
+      var curIndex = indexOf(item);
+      if (!inRange(curIndex)) {
+        return null;
+      }
+
+      var nextIndex = curIndex + (backwards ? -1 : 1);
+      var foundItem = null;
+      if (inRange(nextIndex)) {
+        foundItem = _items[nextIndex];
+      } else if (reloop) {
+        foundItem = backwards ? last() : first();
+        nextIndex = indexOf(foundItem);
+      }
+
+      if ((foundItem === null) || (nextIndex === limit)) {
+        return null;
+      }
+
+      if (angular.isUndefined(limit)) {
+        limit = nextIndex;
+      }
+
+      return validate(foundItem) ? foundItem : findSubsequentItem(backwards, foundItem, validate, limit);
+    }
   }
 
 })();
@@ -434,7 +419,7 @@ mdMediaFactory.$inject = ["$mdConstant", "$mdUtil", "$rootScope", "$window"];
 var nextUniqueId = ['0','0','0'];
 
 angular.module('material.core')
-.factory('$mdUtil', ["$cacheFactory", "$document", function($cacheFactory, $document) {
+.factory('$mdUtil', ["$cacheFactory", "$document", "$timeout", function($cacheFactory, $document, $timeout) {
   var Util;
   return Util = {
     now: window.performance ? angular.bind(window.performance, window.performance.now) : Date.now,
@@ -476,18 +461,23 @@ angular.module('material.core')
 
     // Returns a function, that, as long as it continues to be invoked, will not
     // be triggered. The function will be called after it stops being called for
-    // N milliseconds. If `immediate` is passed, trigger the function on the
-    // leading edge, instead of the trailing.
-    debounce: function debounce(func, wait, immediate) {
-      var timeout;
+    // N milliseconds.
+    // @param wait Integer value of msecs to delay (since last debounce reset); default value 10 msecs
+    // @param invokeApply should the $timeout trigger $digest() dirty checking
+    debounce: function (func, wait, scope, invokeApply) {
+      var timer;
+
       return function debounced() {
-        var context = this, args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-          timeout = null;
-          if (!immediate) func.apply(context, args);
-        }, wait);
-        if (immediate && !timeout) func.apply(context, args);
+        var context = scope,
+          args = Array.prototype.slice.call(arguments);
+
+        $timeout.cancel(timer);
+        timer = $timeout(function() {
+
+          timer = undefined;
+          func.apply(context, args);
+
+        }, wait || 10, invokeApply );
       };
     },
 
@@ -501,7 +491,7 @@ angular.module('material.core')
         var args = arguments;
         var now = Util.now();
 
-        if (!recent || recent - now > delay) {
+        if (!recent || (now - recent > delay)) {
           func.apply(context, args);
           recent = now;
         }
@@ -581,6 +571,21 @@ angular.module('material.core')
       } else {
         parent.$$childHead = parent.$$childTail = child;
       }
+    },
+  /*
+   * getClosest replicates jQuery.closest() to walk up the DOM tree until it finds a matching nodeName
+   *
+   * @param el Element to start walking the DOM from
+   * @param tagName Tag name to find closest to el, such as 'form'
+   */
+    getClosest: function getClosest(el, tagName) {
+      tagName = tagName.toUpperCase();
+      do {
+        if (el.nodeName === tagName) {
+          return el;
+        }
+      } while (el = el.parentNode);
+      return null;
     }
   };
 
@@ -1053,6 +1058,8 @@ function InterimElementProvider() {
         optionsFactory: definition.options,
         argOption: definition.argOption
       };
+      if (definition.argOption) {
+      }
       return provider;
     }
 
@@ -1113,6 +1120,15 @@ function InterimElementProvider() {
             return this;
           };
         });
+
+        // Create shortcut method for one-linear methods
+        if (definition.argOption) {
+          var methodName = 'show' + name.charAt(0).toUpperCase() + name.slice(1);
+          publicService[methodName] = function(arg) {
+            var config = publicService[name](arg);
+            return publicService.show(config);
+          };
+        }
 
         // eg $mdDialog.alert() will return a new alert preset
         publicService[name] = function(arg) {
@@ -1332,7 +1348,7 @@ function InterimElementProvider() {
      * for interpolation. This allows pre-defined templates (for components such as dialog, toast etc)
      * to continue to work in apps that use custom interpolation start-/endSymbols.
      *
-     * @param {string} text The test in which to replace `{{` / `}}`
+     * @param {string} text The text in which to replace `{{` / `}}`
      * @returns {string} The modified string using the actual interpolation start-/endSymbols
      */
     function replaceInterpolationSymbols(text) {
@@ -1556,6 +1572,9 @@ function InkRippleService($window, $timeout) {
         node = element[0],
         hammertime = new Hammer(node),
         color = parseColor(element.attr('md-ink-ripple')) || parseColor($window.getComputedStyle(options.colorElement[0]).color || 'rgb(0, 0, 0)');
+
+    // expose onInput for ripple testing
+    scope._onInput = onInput;
 
     options.mousedown && hammertime.on('hammer.input', onInput);
 
@@ -1788,7 +1807,7 @@ function InkRippleService($window, $timeout) {
        */
       function getRippleContainer() {
         if (rippleContainer) return rippleContainer;
-        var container = rippleContainer = angular.element('<div class="md-ripple-container">');
+        var container = rippleContainer = angular.element('<div class="md-ripple-container"></div>');
         element.append(container);
         return container;
       }
@@ -1821,7 +1840,7 @@ function InkRippleService($window, $timeout) {
         var grandparent = parent && parent.parentNode;
         var ancestor = grandparent && grandparent.parentNode;
         return !node.hasAttribute('disabled') &&
-          !(parent && parent.hasAttribute('disabled')) &&
+          !(parent && parent.hasAttribute && parent.hasAttribute('disabled')) &&
           !(grandparent && grandparent.hasAttribute('disabled')) &&
           !(ancestor && ancestor.hasAttribute('disabled'));
       }
@@ -1921,7 +1940,7 @@ var LIGHT_FOREGROUND = {
   '4': 'rgba(255,255,255,0.12)'
 };
 
-var DARK_SHADOW = '1px 1px 0px rgba(black, 0.4), -1px -1px 0px rgba(black, 0.4)';
+var DARK_SHADOW = '1px 1px 0px rgba(0,0,0,0.4), -1px -1px 0px rgba(0,0,0,0.4)';
 var LIGHT_SHADOW = '';
 
 var DARK_CONTRAST_COLOR = colorToRgbaArray('rgba(0,0,0,0.87)');
@@ -1933,10 +1952,10 @@ var DEFAULT_COLOR_TYPE = 'primary';
 // A color in a theme will use these hues by default, if not specified by user.
 var LIGHT_DEFAULT_HUES = {
   'accent': {
-    'default': '400',
-    'hue-1': '300',
-    'hue-2': '800',
-    'hue-3': 'A100',
+    'default': 'A700',
+    'hue-1': 'A200',
+    'hue-2': 'A400',
+    'hue-3': 'A100'
   }
 };
 var DARK_DEFAULT_HUES = {
@@ -2004,7 +2023,7 @@ function ThemingProvider() {
 
     var backgroundImage = getComputedStyle(element).backgroundImage;
     if (backgroundImage === 'none' || !backgroundImage) {
-      backgroundImage = '{}'
+      backgroundImage = '{}';
     }
 
     backgroundImage = backgroundImage
@@ -2404,7 +2423,7 @@ function colorToRgbaArray(clr) {
     });
   }
   if (clr.charAt(0) == '#') clr = clr.substring(1);
-  if (!/^([a-f0-9]{3}){1,2}$/g.test(clr)) return;
+  if (!/^([a-fA-F0-9]{3}){1,2}$/g.test(clr)) return;
 
   var dig = clr.length / 3;
   var red = clr.substr(0, dig);
