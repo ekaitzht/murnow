@@ -35,6 +35,14 @@ Rails.application.routes.draw do
   
   get 'amazon/policy', to: 'amazon#policy', defaults: { format: 'json' }
 
+
+  # Association model between User and SkinProblem    User <=== UserSkinProblem ===> SkinProblem
+  put 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#create', defaults: { format: 'json' }
+  delete 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#destroy', defaults: { format: 'json' }
+  get 'users/:user_id/skin_problems/', to: 'skin_problems#show', defaults: { format: 'json' }
+
+
+
   # Example resource route with options:
   #   resources :products do
   #     member do

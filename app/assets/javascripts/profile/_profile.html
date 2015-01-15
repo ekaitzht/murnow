@@ -24,10 +24,12 @@ Profile
 
 <div layout="row">
   <div> 
+      Age: <span> {{user.age}} </span>
   		Skin Type: <span> {{user.skin_type}} </span>
   		Skin Color: <span> {{user.skin_color}} </span>
       Skin Tone: <span> {{user.skin_tone}} </span>
-      Skin Tone: <span> {{user.skin_problem}} </span>
+      Skin Problems: <span ng-if="skin_problem.state == true"ng-repeat="skin_problem in user.skin_problems | orderBy:'name'"> {{skin_problem.name}}  <span ng-show=" ! $last ">,</span></span>
+
 
   </div>
 </div>

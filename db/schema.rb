@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108151232) do
+ActiveRecord::Schema.define(version: 20150115115013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,20 @@ ActiveRecord::Schema.define(version: 20150108151232) do
   add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
+  create_table "skin_problems", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_skin_problems", force: true do |t|
+    t.integer "user_id"
+    t.integer "skin_problem_id"
+  end
+
+  add_index "user_skin_problems", ["skin_problem_id"], name: "index_user_skin_problems_on_skin_problem_id", using: :btree
+  add_index "user_skin_problems", ["user_id"], name: "index_user_skin_problems_on_user_id", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -75,8 +89,8 @@ ActiveRecord::Schema.define(version: 20150108151232) do
     t.integer  "age"
     t.string   "skin_type"
     t.string   "skin_color"
-    t.string   "skin_problems"
     t.string   "favourite_brand"
+    t.string   "skin_tone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

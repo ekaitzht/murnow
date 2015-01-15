@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+
+cities = SkinProblem.create([{ name: 'Acne prone' }, { name: 'Sensitive' }])

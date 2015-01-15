@@ -18,7 +18,7 @@
       <div class="bio">
         <input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
       </div>
-
+    
     <div> 
   </div>
   <div layout= "row">
@@ -26,28 +26,33 @@
   </div>
   <div layout="row">
     <div>
+        <div class="age">
+          <label> Age </label>
+          <input type="text"  value="{{user.age}}" ng-model="user.age"/>
+        </div>
         Skin type:
-        <select ng-model="user.skin_type" ng-options="skin_type.type for skin_type in skin_types">
+        <select ng-model="user.skin_type" ng-options="skin_type for skin_type in skin_types">
           <option value="" disabled selected>Choose your skin type</option>
         </select>
        
         Skin Color:
-        <select ng-model="user.skin_color" ng-options="skin_color.color for skin_color in skin_colors">
+        <select ng-model="user.skin_color" ng-options="skin_color for skin_color in skin_colors">
           <option value="" disabled selected>Choose your skin color</option>
         </select>
 
         Skin Tone:
-        <select ng-model="user.skin_tone" ng-options="skin_tone.tone for skin_tone in skin_tones">
+        <select ng-model="user.skin_tone" ng-options="skin_tone for skin_tone in skin_tones">
           <option value="" disabled selected>Choose your skin tone</option>
         </select>
 
-        Skin Problem: 
-        <select ng-model="user.skin_problem" ng-options="skin_tone.problem for skin_problem in skin_problems">
-          <option value="" disabled selected>What skin problem you have?</option>
-        </select>
+     
+        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
+          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
+            {{skin_problem.name}}
+          </md-checkbox>
+        </div>
 
 
-    
     </div>
   </div>
 

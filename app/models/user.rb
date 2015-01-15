@@ -1,17 +1,18 @@
 class User < ActiveRecord::Base
   	# Include default devise modules. Others available are:
   	# :lockable, :timeoutable and :omniauthable
-  	has_many :reviews
-  	
+  	has_many :user_skin_problems
+	has_many :skin_problems, :through => :user_skin_problems
+
   	devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
   	validates :username, presence: true 
-  	validates :skin_type, :inclusion=> { :in => ['Dry','Combination', 'Oily'] }
-  	validates :skin_color, :inclusion=> { :in => ['Porcelain', 'Ivory', 'Beige', 'Caramel', 'Mocha', 'Dark Chocolate'] }
-  	validates :skin_tone, :inclusion=> { :in => [ 'Warm', 'Neutral', 'Cool'] }
-  	validates :skin_problem, :inclusion=> { :in => [ 'Acne', 'Sensitive', 'Both'] }
+  	validates :skin_type, :inclusion=> { :in => ['Dry','Combination', 'Oily'] }, :allow_nil => true
+  	validates :skin_color, :inclusion=> { :in => ['Porcelain', 'Ivory', 'Beige',
+  	 'Caramel', 'Mocha', 'Dark Chocolate'] }, :allow_nil => true
+  	validates :skin_tone, :inclusion=> { :in => [ 'Warm', 'Neutral', 'Cool'] }, :allow_nil => true
 
 	def self.from_omniauth(auth)
 		user = User.find_by(email: auth.info.email)

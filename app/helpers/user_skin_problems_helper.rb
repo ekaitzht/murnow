@@ -1,0 +1,2 @@
+module UserSkinProblemsHelper
+end

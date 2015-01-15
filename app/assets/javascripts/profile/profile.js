@@ -1,42 +1,23 @@
 angular.module('murnow')
 .controller('Profile', [
-'$scope','User','$state','$upload', 'Auth', 'Amazon','$mdDialog',
-function($scope, User, $state, $upload, Auth, Amazon, $mdDialog){
+'$scope','User','$state','$upload', 'Auth', 'Amazon','$mdDialog','$http',
+function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
 	
  $scope.user = User.user_session;
 
- $scope.skin_types = [
-    { type: 'Dry', value: 'Dry' },
-    { type: 'Combination', value: 'Combination'},
-    { type: 'Oily', value: 'Oily' }
-  ];
+ $scope.skin_types = ['Dry','Combination','Oily'];
+ $scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
+ $scope.skin_tones = ['Warm', 'Neutral', 'Cool'];
 
-  $scope.skin_colors = [
-    { color: 'Porcelain', value: 'Porcelain'},
-    { color: 'Ivory', value: 'Ivory'},
-    { color: 'Beige', value: 'Beige'},
-    { color: 'Caramel', value: 'Caramel'},
-    { color: 'Mocha', value: 'Mocha'},
-    { color: 'Dark Chocolate', value: 'Dark Chocolate' }
-  ];
 
-  $scope.skin_tones = [
-    { tone: 'Warm', value: 'Warm'},
-    { tone: 'Neutral', value: 'Neutral'},
-    { tone: 'Cool', value: 'Cool' }
-  ];
+  User.getSkinProblems().success(function(data, status, headers, config) {
+    $scope.user.skin_problems =  data; 
+  });
 
-  $scope.skin_problems = [
-    { problem: 'Acne Prone', value: 'Acne Prone'},
-    { problem: 'Sensitive', value: 'Sentitive'},
-    { problem: 'Both', value: 'Both'}
-
-  ];
- 
 
   $scope.updateUser = function() {
     
-    User.updateUser($scope.user)
+    User.updateUserProfile($scope.user, $scope.skin_problems)
     
     Auth.currentUser().then(function(user) {
        	 User.setUser(user);
