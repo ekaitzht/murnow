@@ -15,7 +15,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
     $scope.errors = {};
 
     Auth.login($scope.user).then(function(ev){
-        $state.go('home');
+       
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.

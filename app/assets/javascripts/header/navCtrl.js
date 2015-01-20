@@ -1,10 +1,11 @@
 angular.module('murnow')
 .controller('NavCtrl', [
 '$scope',
+'$state',
 'Auth',
 '$mdDialog',
 'User',
-function($scope, Auth, $mdDialog, User){
+function($scope,$state, Auth, $mdDialog, User){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
 
@@ -27,6 +28,7 @@ function($scope, Auth, $mdDialog, User){
 
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
+    $state.go('home');
   });
 
   $scope.showDialogRegisterOptions= function() {

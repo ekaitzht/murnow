@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope', '$mdDialog','products', 'product',
-function($scope, $mdDialog, products, product){
+  ['$scope', '$mdDialog','products', 'product', 'Auth',
+function($scope, $mdDialog, products, product, Auth){
   $scope.Math = window.Math;
 	$scope.product = product;
 
@@ -14,15 +14,26 @@ function($scope, $mdDialog, products, product){
   
 
   $scope.showAddReviewPanel= function() {
-  
-     $mdDialog.show({
-            controller: 'ReviewCtrl',
-            templateUrl: 'products/_add_review_dialog.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true,
-            bindToController: true,
-            locals: {scopeProduct: $scope}
-          });
+    if(Auth._currentUser == null){
+      $mdDialog.show(
+          $mdDialog.alert()
+            .title('')
+            .content('You need to sign up to add reviews!')
+            .ariaLabel('')
+            .ok('Got it!')
+        );
+    } else {
+        
+      $mdDialog.show({
+        controller: 'ReviewCtrl',
+        templateUrl: 'products/_add_review_dialog.html',
+        hasBackdrop: true,
+        clickOutsideToClose: true,
+        bindToController: true,
+        locals: {scopeProduct: $scope}
+      });
+    }
+     
   };
 
 
