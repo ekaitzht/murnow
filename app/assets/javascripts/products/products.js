@@ -27,16 +27,10 @@ angular.module('murnow')
       });
   };
 
-
-	o.upvoteReview = function(product, review) {
-  	return $http.put('/products/' + product.id + '/reviews/'+ review.id + '/upvote')
-   	 .success(function(data){
-     		review.upvotes += 1;
-  	});
+	o.upvoteReview = function(user_id, review_id) {
+  	return $http.put('/votes/' + review_id + '/users/'+ user_id);
+   	 
 	};
 
-
-
-	
 	return o;
 }]);

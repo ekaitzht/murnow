@@ -5,6 +5,7 @@ function($scope, $mdDialog, products, product, Auth){
   $scope.Math = window.Math;
 	$scope.product = product;
 
+
   var total_buyers = product.buyers + product.not_buyers;
   if (product.buyers == 0 && product.not_buyers == 0) {
     $scope.repurchase_again_percent = 0;
@@ -37,10 +38,15 @@ function($scope, $mdDialog, products, product, Auth){
   };
 
 
-  $scope.incrementUpvotes = function(review){
-    products.upvoteReview(product, review);
+  $scope.incrementUpvotes = function(review_id, $index){
+    products.upvoteReview(Auth._currentUser.id, review_id).success(function(data){
+      $scope.product.reviews[$index].votes.length += 1;
+    }).error(function(err){
+      $scope.showTooltip[$index] = true;
+    });
+
+    
+   
   };
-
-
 
 }]);

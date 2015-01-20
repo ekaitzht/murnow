@@ -21,9 +21,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:create, :index, :show], defaults: { format: 'json' } do
     resources :reviews, only: [:show, :create], defaults: { format: 'json' } do
-      member do
-        put '/upvote' => 'reviews#upvote'
-      end
+    
     end
 
     member do
@@ -41,6 +39,8 @@ Rails.application.routes.draw do
   delete 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#destroy', defaults: { format: 'json' }
   get 'users/:user_id/skin_problems/', to: 'skin_problems#show', defaults: { format: 'json' }
 
+  # Association model between User and Reviews for who is voting what review    User <=== Vote ===> Review
+  put 'votes/:review_id/users/:user_id', to: 'votes#create', defaults: { format: 'json' }
 
 
   # Example resource route with options:

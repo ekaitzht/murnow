@@ -19,7 +19,9 @@ class Product < ActiveRecord::Base
   
 
   def as_json(options = {})
-   super(options.merge(include: {reviews: {include: :user}}))
+   super(options.merge(include: {reviews:
+    {include: [:user,:votes]}
+    }))
   end
 
   def self.search(query)

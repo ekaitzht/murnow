@@ -19,9 +19,12 @@
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
     <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
     <span ng-show="!review.user.image">No Image</span>
-    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review)"> </span> 
-    {{review.upvotes}}
-    
+    <span ng-model="showTooltip" class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)"> <md-tooltip md-visible="showTooltip[$index]">
+    You already like this review
+    </md-tooltip>  </span>
+   
+    {{review.votes.length}}
+
     <span style="font-size:20px; margin-left:10px;">
       {{review.body}} - by {{review.user.username}} {{review.user.created_at | date: 'medium'}}
     </span>
