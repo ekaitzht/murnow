@@ -19,10 +19,16 @@ class SkinProblemsController < ApplicationController
   	end
 
     def show
-      user_problems = UserSkinProblem.find_by_sql("SELECT skin_problem_id, name, skin_problems.id id 
-        FROM user_skin_problems 
-        RIGHT JOIN skin_problems ON user_skin_problems.skin_problem_id = skin_problems.id ;")
-      
+      user_problems = UserSkinProblem.find_by_sql("SELECT a.skin_problem_id,name, skin_problems.id
+          FROM  skin_problems
+          LEFT JOIN 
+              (
+                  SELECT  *
+                  FROM user_skin_problems
+                  WHERE user_id = "+params[:user_id]+"
+              ) AS a
+          ON skin_problems.id = a.skin_problem_id;")
+
       response = []
 
       user_problems.each do |skin_problem|

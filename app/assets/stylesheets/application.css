@@ -13,4 +13,5 @@
  *= require angular-material/angular-material
  *= require_tree .
  *= require_self
+ *= require bootstrap/dist/css/bootstrap
  */

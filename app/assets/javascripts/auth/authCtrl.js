@@ -124,5 +124,5 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
             clickOutsideToClose: true
           });
   };
-
+  
 }]);

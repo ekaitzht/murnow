@@ -1,0 +1,20 @@
+<md-dialog >
+  <md-content>
+  	<form ng-submit="addReview()" style="margin-top:30px;">
+    	<md-input-container>
+    		<input type="text" class="form-control" placeholder="Add your review here!" ng-model="body"></input>
+    	</md-input-container>
+    	<div> Would you buy again? </div>
+		<md-radio-group ng-model="repurchase">
+      		<md-radio-button value="TRUE">Yes</md-radio-button>
+   			<md-radio-button value="FALSE"> No </md-radio-button>
+    	</md-radio-group>
+    	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>
+  	</form>
+  </md-content>
+</md-dialog>
+
+
+  
+
+

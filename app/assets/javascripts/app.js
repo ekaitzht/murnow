@@ -46,7 +46,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
     .state('products', {
   		url: '/products/{id}',
   		templateUrl: 'products/_products.html',
-  		controller: 'ProductsCtrl',
+  		controller: 'ProductCtrl',
       resolve: {
       product: ['$stateParams', 'products', function($stateParams, products) {
           return products.get($stateParams.id);

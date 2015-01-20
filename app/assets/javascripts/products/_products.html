@@ -1,11 +1,21 @@
   <div layout= "row" class="page-header">
       <figure ><img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
-      <span>{{product.product_name}}</span>
+      <div layout="column" class="information-product">
+        <div class="product-name">{{product.product_name}}</div>
+        <div class="buyers-again">{{repurchase_again_percent}} <span> % of users would repurchase</span></div>
+        <div class="ratings">    
+          <rating ng-model="product.product_stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+        </div>
+      </div>
   </div>
+
+
+
+
   <div class="all-comments"> All Comments ({{product.reviews.length}}) </div>
-  <form ng-submit="addReview()" style="margin-top:30px;">
-      <md-input-container>
-        <input type="text" class="form-control" placeholder="Add review hey!" ng-model="body"></input>
+  <form ng-click="showAddReviewPanel()" ng-submit="addReview()" style="margin-top:30px;">
+      <md-input-container ng-click="showAddReviewPanel()">
+        <input type="text" class="form-control" placeholder="Add review hey!" ></input>
       </md-input-container>
   </form>
 
