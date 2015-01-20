@@ -4,6 +4,11 @@
     	<md-input-container>
     		<input type="text" class="form-control" placeholder="Add your review here!" ng-model="body"></input>
     	</md-input-container>
+
+      <div class="ratings-for-user">    
+          <rating ng-model="stars"    state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+        </div>
+
     	<div> Would you buy again? </div>
 		<md-radio-group ng-model="repurchase">
       		<md-radio-button value="TRUE">Yes</md-radio-button>

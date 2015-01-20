@@ -9,9 +9,6 @@
       </div>
   </div>
 
-
-
-
   <div class="all-comments"> All Comments ({{product.reviews.length}}) </div>
   <form ng-click="showAddReviewPanel()" ng-submit="addReview()" style="margin-top:30px;">
       <md-input-container ng-click="showAddReviewPanel()">
@@ -22,11 +19,16 @@
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'">
     <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
     <span ng-show="!review.user.image">No Image</span>
-    <span ng-click="incrementUpvotes(review)"></span>
-    {{review.upvotes}} 
+    <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review)"> </span> 
+    {{review.upvotes}}
+    
     <span style="font-size:20px; margin-left:10px;">
       {{review.body}} - by {{review.user.username}} {{review.user.created_at | date: 'medium'}}
     </span>
+
+    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+  
+
   </div>
 
 

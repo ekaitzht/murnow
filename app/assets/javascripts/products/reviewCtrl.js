@@ -8,7 +8,7 @@ function($scope, scopeProduct, products, $mdDialog){
 		if($scope.body === '') { return; }
   		
   		products.addReview(scopeProduct.product.id, 
-   			{ body: $scope.body, repurchase: $scope.repurchase }
+   			{ body: $scope.body, repurchase: $scope.repurchase, stars: $scope.stars }
   		).success(function(review) {
     		scopeProduct.product.reviews.push(review);
     		$mdDialog.hide();
