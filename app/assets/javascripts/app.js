@@ -60,16 +60,21 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 }]);
 
 app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $mdDialog) {
-
+  var lock = false
   if ($location.path() == "/users/sign_in") {
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+    $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
         $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login.html',
             hasBackdrop: true,
             clickOutsideToClose: true
           });
-    })
+        $rootScope.deregistration_login_after_confirmation();
+        delete $rootScope.deregistration_login_after_confirmation;
+    });
+    
+    
+
   }
 
 }]);

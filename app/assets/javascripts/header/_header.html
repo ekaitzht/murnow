@@ -1,10 +1,14 @@
-<div ng-hide=" 'home'  | isState " id="nav-auth-bar" class="" ng-controller="NavCtrl">
-  <ul class="nav navbar-nav">
-    <li><a href="/">Home</a></li>
-    <li ng-hide="signedIn()"><a ng-click="showDialogLogin()">Log In</a></li>
-    <li ng-hide="signedIn()"><a ng-click="showDialogRegisterOptions()">Sign Up</a></li>
-    <li ng-show="signedIn()"><a ng-href="/profile">{{ user.username }}</a></li>
-    <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
-  </ul>
+<div>
+	<div class="" ng-controller="NavCtrl">
+	  <ul id="menu">
+	    <li><a href="/">Home</a></li>
+	    <li ng-hide="signedIn()"><a ng-click="showDialogLogin()">Log In</a></li>
+	    <li ng-hide="signedIn()"><a ng-click="showDialogRegisterOptions()">Sign Up</a></li>
+	    <li ng-show="signedIn()"><a ng-href="/profile">{{ user.username }}</a></li>
+	    <li ng-show="signedIn()"><a ng-click="logout()">Log Out</a></li>
+	  </ul>
+	</div>
+	
 </div>
-<div ng-include="'header/search-filter/search-filter.html'"></div>
+
+

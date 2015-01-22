@@ -15,3 +15,8 @@
  *= require_self
  *= require bootstrap/dist/css/bootstrap
  */
+
+ul li {float: right;}
+
+md-content {margin-top: 12px;}
+.search-box-container input{width: 100%;}

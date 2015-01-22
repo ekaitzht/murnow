@@ -8,12 +8,24 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
- <body ng-app="murnow">
-  <div flex="55">
-    <div> 
-      <div ng-include="'header/_header.html'" layout="column"></div>
-      <ui-view></ui-view>
-    </div>
-  </div>
+ <body layout="column" ng-app="murnow">
+
+      <md-toolbar ng-hide=" 'home'  | isState ">
+        <div ng-include="'header/_header.html'"></div>
+     
+      </md-toolbar>
+
+
+     
+      
+  <form class="search-box-container" ng-hide=" 'home'  | isState " class="search-box-container"  ng-show=" 'home'  | isState " ng-submit="searchProducts()" ng-controller="SearchCtrl">
+        <input class="search-box" type="search" ng-model="searchFilter.searchQuery">
+      </form>
+      <form  class="search-box-container"  ng-show=" 'home'  | isState " ng-submit="searchProducts()" ng-controller="SearchCtrl">
+        <input class="search-box" type="search" ng-model="searchFilter.searchQuery">
+      </form>
+      <md-content  class="md-padding" >
+        <ui-view></ui-view>
+      </md-content>
   </body>
 </html>
