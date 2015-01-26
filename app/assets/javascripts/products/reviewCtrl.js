@@ -17,6 +17,7 @@ function($scope, scopeProduct, products, $mdDialog){
       }
   		).success(function(review) {
     		scopeProduct.product.reviews.push(review);
+    		scopeProduct.hasReviewUser = true;
     		$mdDialog.hide();
   		}).error(function(error){
 

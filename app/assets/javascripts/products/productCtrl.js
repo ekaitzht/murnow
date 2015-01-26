@@ -3,7 +3,21 @@ angular.module('murnow')
   ['$scope', '$mdDialog','products', 'product', 'Auth',
 function($scope, $mdDialog, products, product, Auth){
   $scope.Math = window.Math;
-	$scope.product = product;
+  $scope.product = product;
+  
+  
+  
+  this.hasReviewUser = function(reviews){
+	   var hasReview = false;
+	   angular.forEach(reviews, function(review, key) {
+		    if (review.user_id == Auth._currentUser.id) { 
+				hasReview = true;
+							}
+		});
+		return hasReview;
+  }
+  $scope.hasReviewUser = this.hasReviewUser($scope.product.reviews);
+	
 
 
   var total_buyers = product.buyers + product.not_buyers;
@@ -33,6 +47,7 @@ function($scope, $mdDialog, products, product, Auth){
         bindToController: true,
         locals: {scopeProduct: $scope}
       });
+      
     }
      
   };
@@ -45,6 +60,8 @@ function($scope, $mdDialog, products, product, Auth){
       $scope.showTooltip[$index] = true;
     });
 
+
+   
     
    
   };
