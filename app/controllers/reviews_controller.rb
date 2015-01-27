@@ -18,6 +18,7 @@ class ReviewsController < ApplicationController
 	}, :location => nil)
 	
   end
+  
 
   def upvote
     @product = Product.find(params[:product_id])

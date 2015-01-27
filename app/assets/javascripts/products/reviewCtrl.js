@@ -18,6 +18,8 @@ function($scope, scopeProduct, products, $mdDialog){
   		).success(function(response) {
 	  		var review = response.review;
 	  		var product = response.product;
+	  		  		
+	  		review["votes"] = []; // Adding votes property because when we start we don't votes properties
 	  		
     		scopeProduct.product.reviews.push(review);
     		scopeProduct.hasReviewUser = true;
