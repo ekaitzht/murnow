@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   
   def create
     @product = Product.find(params[:product_id])
+    @product.update_attributes(:product_stars => ((review_params[:stars] + @product.product_stars)/2))
     
     review = @product.reviews.create(review_params.merge(user_id: current_user.id))
     if (review.repurchase == true) then
