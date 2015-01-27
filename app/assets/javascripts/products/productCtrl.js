@@ -10,9 +10,12 @@ function($scope, $mdDialog, products, product, Auth){
   this.hasReviewUser = function(reviews){
 	   var hasReview = false;
 	   angular.forEach(reviews, function(review, key) {
-		    if (review.user_id == Auth._currentUser.id) { 
-				hasReview = true;
-							}
+		    Auth.currentUser().then(function (user){
+				if (review.user_id == user.id) { 
+					hasReview = true;
+				}
+  			});
+
 		});
 		return hasReview;
   }
