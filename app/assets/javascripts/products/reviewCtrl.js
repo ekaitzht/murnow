@@ -15,9 +15,15 @@ function($scope, scopeProduct, products, $mdDialog){
           stars: $scope.stars 
         }
       }
-  		).success(function(review) {
+  		).success(function(response) {
+	  		var review = response.review;
+	  		var product = response.product;
+	  		
     		scopeProduct.product.reviews.push(review);
     		scopeProduct.hasReviewUser = true;
+    		scopeProduct.repurchase_again_percent =  (product.buyers/(product.buyers + product.not_buyers))*100;
+    		scopeProduct.product.product_stars = product.product_stars;
+    		
     		$mdDialog.hide();
   		}).error(function(error){
 

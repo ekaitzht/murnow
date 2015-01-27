@@ -5,15 +5,18 @@ class ReviewsController < ApplicationController
     @product = Product.find(params[:product_id])
     @product.update_attributes(:product_stars => ((review_params[:stars] + @product.product_stars)/2))
     
-    review = @product.reviews.create(review_params.merge(user_id: current_user.id))
-    if (review.repurchase == true) then
+    @review = @product.reviews.create(review_params.merge(user_id: current_user.id))
+    if (@review.repurchase == true) then
       @product.increment!(:buyers)
     else 
       @product.increment!(:not_buyers)
     end
-   
-
-    respond_with @product, review
+	
+	respond_with({
+	  :product => @product.as_json(:only => [:buyers, :not_buyers, :product_stars]),
+	  :review =>  @review
+	}, :location => nil)
+	
   end
 
   def upvote
