@@ -2,7 +2,7 @@
       <figure ><img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
         <div class="product-name">{{product.product_name}}</div>
-        <div class="buyers-again">{{repurchase_again_percent}} <span> % of users would repurchase</span></div>
+        <div class="buyers-again">{{repurchase_again_percent | number:0}} <span> % of users would repurchase</span></div>
         <div class="ratings">    
           <rating ng-model="product.product_stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
         </div>
