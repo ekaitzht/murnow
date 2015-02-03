@@ -26,7 +26,7 @@
     {{review.votes.length}}
 
     <span style="font-size:20px; margin-left:10px;">
-      {{review.body}} - by {{review.user.username}} {{review.user.created_at | date: 'medium'}}
+      {{review.body}} - by {{review.user.username}} {{review.created_at | date: 'medium'}}
     </span>
 
     <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>

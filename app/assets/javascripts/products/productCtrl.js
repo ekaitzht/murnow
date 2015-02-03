@@ -3,7 +3,7 @@ angular.module('murnow')
   ['$scope', '$mdDialog','products', 'product', 'Auth',
 function($scope, $mdDialog, products, product, Auth){
   $scope.Math = window.Math;
-  $scope.product = product;
+  $scope.product = product.product;
   
 
   	this.hasReviewUser = function(reviews){

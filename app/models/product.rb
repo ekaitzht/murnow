@@ -17,12 +17,13 @@ class Product < ActiveRecord::Base
   end
 
   
-
+=begin
   def as_json(options = {})
    super(options.merge(include: {reviews:
     {include: [:user,:votes]}
     }))
-  end
+  end 
+=end
 
   def self.search(query)
     __elasticsearch__.search(

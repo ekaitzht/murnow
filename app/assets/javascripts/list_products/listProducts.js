@@ -2,7 +2,7 @@ angular.module('murnow')
 .controller('ListProducts', ['$scope','$state','$stateParams','$mdDialog','products',
 function($scope,$state,$stateParams, $mdDialog, products){
 	
-	$scope.products = products.products;
+	$scope.products = products.products.search;
 
 
     
