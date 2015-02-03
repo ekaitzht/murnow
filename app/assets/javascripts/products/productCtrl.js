@@ -6,24 +6,26 @@ function($scope, $mdDialog, products, product, Auth){
   $scope.product = product;
   
 
-  this.hasReviewUser = function(reviews){
-	   var hasReview = false;
-	   angular.forEach(reviews, function(review, key) {
-		   
-		    Auth.currentUser().then(function (user){
+  	this.hasReviewUser = function(reviews){
+	    $scope.hasReviewUser = false;
+	  
+	    Auth.currentUser().then(function (user){
+		    angular.forEach(reviews, function(review, key) {
 				if (review.user_id == user.id) { 
-					hasReview = true;
+					$scope.hasReviewUser = true;
 				}
-  			});
-
-		});
-		return hasReview;
-  }
-  $scope.hasReviewUser = this.hasReviewUser($scope.product.reviews);
+			});
+		}, function(error) {
+			// unauthenticated error
+			$scope.hasReviewUser = false;
+        });
+	};
+        
 	
-
+  this.hasReviewUser($scope.product.reviews);
 
   var total_buyers = product.buyers + product.not_buyers;
+  
   if (product.buyers == 0 && product.not_buyers == 0) {
     $scope.repurchase_again_percent = 0;
   } else {
