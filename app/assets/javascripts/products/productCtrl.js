@@ -5,11 +5,11 @@ function($scope, $mdDialog, products, product, Auth){
   $scope.Math = window.Math;
   $scope.product = product;
   
-  
-  
+
   this.hasReviewUser = function(reviews){
 	   var hasReview = false;
 	   angular.forEach(reviews, function(review, key) {
+		   
 		    Auth.currentUser().then(function (user){
 				if (review.user_id == user.id) { 
 					hasReview = true;
@@ -55,12 +55,17 @@ function($scope, $mdDialog, products, product, Auth){
      
   };
 
-
   $scope.incrementUpvotes = function(review_id, $index){
     products.upvoteReview(Auth._currentUser.id, review_id).success(function(data){
       $scope.product.reviews[$index].votes.length += 1;
     }).error(function(err){
-      $scope.showTooltip[$index] = true;
+	    $mdDialog.show(
+          $mdDialog.alert()
+            .title('')
+            .content('You have already voted this review!')
+            .ariaLabel('')
+            .ok('Got it!')
+        );
     });
 
 

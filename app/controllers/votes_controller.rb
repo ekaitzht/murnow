@@ -6,10 +6,4 @@ class VotesController < ApplicationController
 
         respond_with @response
   	end
-
-
 end
-
-
-
- 
