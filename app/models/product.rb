@@ -28,7 +28,7 @@ class Product < ActiveRecord::Base
   def self.search(query)
     __elasticsearch__.search(
       {
-        _source:  ['id','product_name', 'brand_name', 'category', 'upvotes','long_description','hash_url_image'],
+        _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image'],
         query: {
           multi_match: {
             query: query,

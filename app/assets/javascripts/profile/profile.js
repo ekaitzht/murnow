@@ -11,7 +11,7 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
 
 
   User.getSkinProblems().success(function(data, status, headers, config) {
-    $scope.user.skin_problems =  data; 
+    $scope.user.skin_problems =  data.skin_problems; 
   });
 
 
