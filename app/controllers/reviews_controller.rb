@@ -12,11 +12,7 @@ class ReviewsController < ApplicationController
       @product.increment!(:not_buyers)
     end
 	
-	respond_with({
-	  :product => @product.as_json(:only => [:buyers, :not_buyers, :product_stars]),
-	  :review =>  @review
-	}, :location => nil)
-	
+	render json: @review
   end
   
 

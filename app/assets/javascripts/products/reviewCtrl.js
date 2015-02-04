@@ -17,14 +17,24 @@ function($scope, scopeProduct, products, $mdDialog){
       }
   		).success(function(response) {
 	  		var review = response.review;
-	  		var product = response.product;
+	  	
 	  		  		
 	  		review["votes"] = []; // Adding votes property because when we start we don't have votes properties
 	  		
     		scopeProduct.product.reviews.push(review);
     		scopeProduct.hasReviewUser = true;
-    		scopeProduct.repurchase_again_percent =  (product.buyers/(product.buyers + product.not_buyers))*100;
-    		scopeProduct.product.product_stars = product.product_stars;
+    		
+    		if( $scope.repurchase == true){
+	   			var buyers = scopeProduct.product.buyers + 1;
+	   			var not_buyers = scopeProduct.product.not_buyers;
+	   		} else {
+		   		var buyers = scopeProduct.product.buyers;
+	   			var not_buyers = scopeProduct.product.not_buyers + 1;
+    		}
+    		
+			scopeProduct.repurchase_again_percent =  (buyers/(buyers + not_buyers))*100;
+    			    		
+    		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + $scope.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
     		
     		$mdDialog.hide();
   		}).error(function(error){

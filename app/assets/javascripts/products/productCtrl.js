@@ -24,12 +24,12 @@ function($scope, $mdDialog, products, product, Auth){
 	
   this.hasReviewUser($scope.product.reviews);
 
-  var total_buyers = product.buyers + product.not_buyers;
+  var total_buyers = $scope.product.buyers + $scope.product.not_buyers;
   
-  if (product.buyers == 0 && product.not_buyers == 0) {
+  if ($scope.product.buyers == 0 && $scope.product.not_buyers == 0) {
     $scope.repurchase_again_percent = 0;
   } else {
-    $scope.repurchase_again_percent = (product.buyers/total_buyers)*100;
+    $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   
 

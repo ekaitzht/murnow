@@ -3,5 +3,6 @@ class ReviewSerializer < ActiveModel::Serializer
 	  	  
 	  has_one :user,  serializer: UserReviewSerializer
 	  has_many :votes
+	  
 end
 

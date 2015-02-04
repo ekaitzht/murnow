@@ -6,6 +6,9 @@ class Review < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, :scope => :product_id
 
+ def active_model_serializer
+      ReviewSerializer
+  end
 
 =begin
   def as_json(options = {})
