@@ -23,7 +23,7 @@ function($scope, scopeProduct, products, $mdDialog){
 	  		
     		scopeProduct.product.reviews.push(review);
     		scopeProduct.hasReviewUser = true;
-    		
+    		scopeProduct.zero_reviews = false;
     		if( $scope.repurchase == true){
 	   			var buyers = scopeProduct.product.buyers + 1;
 	   			var not_buyers = scopeProduct.product.not_buyers;
