@@ -1,7 +1,7 @@
 <div>
 	<div class="" ng-controller="NavCtrl">
+	  <div class="home left"> <div class="left" ><a  href="/">Home</a> </div></div>
 	  <ul id="menu">
-	    <li><a href="/">Home</a></li>
 	    <li ng-hide="signedIn()"><a ng-click="showDialogLogin()">Log In</a></li>
 	    <li ng-hide="signedIn()"><a ng-click="showDialogRegisterOptions()">Sign Up</a></li>
 	    <li ng-show="signedIn()"><a ng-href="/profile">{{ user.username }}</a></li>

@@ -1,3 +1,5 @@
+  
+<div class="product-profile" layout="column" layout-align="center"> 
   <div layout= "row" class="page-header">
       <figure ><img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
@@ -11,27 +13,29 @@
       </div>
   </div>
 
-  <div class="all-comments"> All Comments ({{product.reviews.length}}) </div>
+  <div class="all-comments"  layout="row"> All Comments ({{product.reviews.length}}) </div>
+  
   <form ng-click="showAddReviewPanel()" ng-hide="hasReviewUser" ng-submit="addReview()" style="margin-top:30px;">
       <md-input-container ng-click="showAddReviewPanel()">
-        <input disabled type="text"  placeholder="{{inputReviewPlaceholder}}" >
+        <input  type="text"  placeholder="{{inputReviewPlaceholder}}" >
       </md-input-container>
   </form>
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
-    <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
-    <span ng-show="!review.user.image">No Image</span>
-    <span   class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)">  
-    
-     </span>
- 
-    {{review.votes.length}}
-
-    <span style="font-size:20px; margin-left:10px;">
-      {{review.body}} - by {{review.user.username}} {{review.created_at | date: 'medium'}}
-    </span>
-
-    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
-  
-
+	<div class="review-item" layout="row">
+	    <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
+	    <span ng-show="!review.user.image">No Image</span>
+	    <span   class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)">  
+	    
+	     </span>
+	 
+	    {{review.votes.length}}
+	
+	    <span style="font-size:20px; margin-left:10px;">
+	      {{review.body}} - by {{review.user.username}} {{review.created_at | date: 'medium'}}
+	    </span>
+	
+	    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+    </div>
   </div>
+</div>
