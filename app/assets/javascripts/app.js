@@ -77,4 +77,16 @@ app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $m
 
   }
 
+
+   $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
+		
+		switch(toState.name) {
+		    case 'home':
+		        $rootScope.isHomePage = true;
+		        break;
+		    default:
+		        $rootScope.isHomePage = false;
+		}										 
+   });
+
 }]);
