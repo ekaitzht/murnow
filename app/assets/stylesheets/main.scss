@@ -1,15 +1,17 @@
 
 
-
+.home-page {background-image: image-url('girly-wallpaper.jpg');}
+.home-page md-content.md-default-theme {background-color:transparent;}
 
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
+.home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
 
 md-content {margin-top: 12px;}
 
 .search-box-container input{width: 100%;}
-.title-landing-page{height: 200px; font-size:62px; font-family: 'Amatic SC';font-style: normal;font-weight: 700;}
+.title-landing-page{height: 200px; font-size:62px; font-family: 'Amatic SC';font-style: normal;font-weight: 700;color:black}
 
 .face {
   border-radius: 30px;

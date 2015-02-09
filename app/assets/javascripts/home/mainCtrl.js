@@ -1,13 +1,13 @@
 angular.module('murnow')
 .controller('MainCtrl', 
-['$scope',
+['$scope','$rootScope',
 '$state',
 '$stateParams',
 '$mdDialog',
 'products',
-function($scope,$state,$stateParams, $mdDialog, products){
+function($scope, $rootScope, $state,$stateParams, $mdDialog, products){
 	
-
+	$rootScope.isHomePage = true;
 
 	$scope.addProduct = function(){
   		$scope.reviews.push({title: $scope.title, upvotes: 0});

@@ -9,7 +9,7 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
- <body layout="column" ng-app="murnow">
+ <body layout="column" ng-class="{'home-page':isHomePage}" ng-app="murnow">
 	  <md-toolbar layout="column">
 	      <header  layout="column">
 		   	        <div ng-include="'header/_header.html'"></div>
