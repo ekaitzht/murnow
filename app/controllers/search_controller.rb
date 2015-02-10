@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 	  if params[:q].nil?
 	    respond_with = []
 	  else
-	  	response = Product.search(params[:q])
+	  	response = Product.search(params[:q],  params[:from])
 
 	  	filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
 

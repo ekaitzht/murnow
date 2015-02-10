@@ -1,3 +1,4 @@
+//= require jquery
 //= require angular
 //= require hammerjs
 //= require angular-animate
@@ -10,4 +11,5 @@
 //= require angular-messages
 //= require angular-cookies
 //= require ng-file-upload
+//= require ngInfiniteScroll
 //= require_tree .

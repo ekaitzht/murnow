@@ -35,6 +35,7 @@ function($scope, $mdDialog, products, product, Auth){
     $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   
+  
 
   $scope.showAddReviewPanel= function() {
     if(Auth._currentUser == null){

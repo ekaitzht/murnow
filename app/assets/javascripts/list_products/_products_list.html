@@ -1,4 +1,4 @@
-<md-list  class="products-list" layout="column" layout-align="space-around start">
+<md-list  class="products-list" layout="column" layout-align="center center" infinite-scroll='paginator.nextPage()' infinite-scroll-distance='1'>
   <md-item ng-repeat="product in products | orderBy: '-upvotes'">
     <md-item-content>
       
@@ -7,8 +7,14 @@
       <div class="md-tile-content">
         {{product.product_name}}         <a href="/products/{{product.id}}">Product  </a>
       </div>
-    <md-item-content>
+    </md-item-content>
+    <md-divider md-inset ng-if="!$last"></md-divider>
+
   </md-item>
+  <div  ng-show='paginator.busy' class="progress-bar-wrapper" layout="column" layout-align="center center">  
+	<md-progress-circular  class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+  </div>
+  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
 </md-list>
 
 

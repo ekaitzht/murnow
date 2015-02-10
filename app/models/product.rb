@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   end 
 =end
 
-  def self.search(query)
+  def self.search(query, from)
     __elasticsearch__.search(
       {
         _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image'],
@@ -33,10 +33,10 @@ class Product < ActiveRecord::Base
           multi_match: {
             query: query,
             # Here you can add what search field can be matcheables
-            fields: ['product_name^10', 'long_product_description','long_description'] 
+            fields: ['product_name^3', 'long_product_description','long_description'] 
           }
         },
-        from: 0, size: 20
+        from: from, size: 20
       }
     )
   end

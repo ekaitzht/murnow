@@ -2,7 +2,9 @@ angular.module('murnow')
 .factory('products',[ '$http', function($http){
     
     var o = {
-    	products: []
+    	products: [],
+    	searchQuery: "",
+    	from: 0
   	};
 
   o.getAll = function() {
@@ -22,9 +24,16 @@ angular.module('murnow')
 	};
 
   o.search = function (searchQuery) {
+        o.searchQuery = searchQuery;
+        o.from = 0;
         return $http.get('/search/?q='+searchQuery).success(function(data){
         angular.copy(data, o.products);
       });
+  };
+  
+  o.searchNextPage = function () {  
+	   o.from += 20
+       return $http.get('/search/?q='+o.searchQuery+'&from='+ o.from );
   };
 
 	o.upvoteReview = function(user_id, review_id) {
