@@ -2,17 +2,17 @@
 <head>
   <base href="/">
   <title>MurnowAngular</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Amatic+SC">
 
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
- <body layout="column" ng-class="{'home-page':isHomePage}" ng-app="murnow">
+ <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage}" ng-app="murnow">
 	  <md-toolbar layout="column">
-	      <header  layout="column" layout-padding>
-		   	        <div ng-include="'header/_header.html'"></div>
+	      <header   layout="column" layout-padding>
+		   	        <div  ng-include="'header/_header.html'"></div>
 		     
 		      <div layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState "> Murnow </div>
 	      </header>

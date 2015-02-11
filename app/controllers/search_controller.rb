@@ -8,6 +8,8 @@ class SearchController < ApplicationController
 	  	filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
 
 		response.results.map { |r| filteringMetaData << r._source }
+		
+		
 	    respond_with filteringMetaData
 	  end
 	end

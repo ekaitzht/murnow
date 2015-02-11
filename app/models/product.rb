@@ -36,7 +36,7 @@ class Product < ActiveRecord::Base
             fields: ['product_name^3', 'long_product_description','long_description'] 
           }
         },
-        from: from, size: 20
+        from: from, size: 40
       }
     )
   end

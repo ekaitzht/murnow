@@ -20,7 +20,10 @@ function($scope,$state,$stateParams, $mdDialog, products){
 		$scope.paginator.busy = true;
 		$scope.ProductsFactory.searchNextPage().success(function(response){
 		  $scope.paginator.busy = false;
-		  if(response.search.length ===  0) { $scope.paginator.ended = true;}
+		  
+		  if(response.search.length ===  0) {
+			$scope.paginator.ended = true;
+		  }
 		  
 		  $.merge($scope.products, response.search);
 		  

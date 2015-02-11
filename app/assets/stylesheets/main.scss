@@ -1,18 +1,23 @@
 
 
-.home-page {background-image: image-url('girly-wallpaper.jpg');}
-.home-page md-content.md-default-theme {background-color:transparent;}
-
-
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
-.home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
 
-md-content {margin-top: 12px;}
 
+body * {
+	font-family: 'Josefin Sans', sans-serif ;	
+}
+
+.thin-font {font-weight:100;}
+.light-font {font-weight:200;}
+.normal-font {font-weight:400;}
+
+.justify-text {text-align:center;}
+md-content{ margin-top:25px;}
+
+/* GENERAL ELEMENTS RELATED WITH THE CLASSES */
 .search-box-container input{width: 100%;}
-.title-landing-page{height: 200px; font-size:62px; font-family: 'Amatic SC';font-style: normal;font-weight: 700;color:black}
 
 .face {
   border-radius: 30px;
@@ -26,9 +31,13 @@ md-content {margin-top: 12px;}
   width: 70px;
  }
 
-  body {
-	font-family: Helvetica, arial, freesans, clean, sans-serif;	
-}
+.home-page header {color:white;}
+.home-page li {cursor:pointer;}
 
+/* HOME STYLE and HOME TEMPLATE VIEW */
+.home-page {background-image: image-url('girly-wallpaper.jpg');}
+.home-page md-content.md-default-theme {background-color:transparent;}
+.home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
+.title-landing-page{height: 200px; font-size:62px; font-family: 'Amatic SC';font-style: normal;font-weight: 700;color:white}
+.twitter-pitch-home{font-family: 'Josefin Sans';font-style: normal;font-weight: 100;color:white; font-size:40px;}
 
-md-content{ margin-top:25px;}
