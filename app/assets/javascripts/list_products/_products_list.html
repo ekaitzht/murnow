@@ -1,19 +1,21 @@
 <md-list  class="products-list" layout="column" layout-align="center center">
-  <md-item ng-repeat="product in products | orderBy: '-upvotes'">
-    <md-item-content>
-      
-        <figure><a href="/products/{{product.id}}"> <img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
-      
-      <div class="md-tile-content">
-        {{product.product_name}}         <a href="/products/{{product.id}}">Product  </a>
-      </div>
-    </md-item-content>
-    <md-divider md-inset ng-if="!$last"></md-divider>
-
-  </md-item>
-  <md-button ng-hide='paginator.ended' ng-click='paginator.nextPage()' class="md-raised md-primary">Load more products</md-button>
-  
-  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
+		  <md-item ng-repeat="product in products | orderBy: '-upvotes'">
+		    <md-item-content>
+		      <div class='figure-wrapper'>
+		        <figure><a href="/products/{{product.id}}"> <img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
+		      </div>
+		      <div class="md-tile-content">
+		        {{product.product_name}}         <a href="/products/{{product.id}}">Product  </a>
+		      </div>
+		    </md-item-content>
+		    <md-divider md-inset ng-if="!$last"></md-divider>
+		
+		  </md-item>
+		  <md-button ng-hide='paginator.ended' ng-click='paginator.nextPage()' class="md-raised md-primary">Load more products</md-button>
+		  
+		  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
+		  
 </md-list>
 
 
+    
