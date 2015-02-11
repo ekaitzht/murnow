@@ -3,11 +3,13 @@
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
+body,html {background:transparent;}
 
 
 body * {
 	font-family: 'Josefin Sans', sans-serif ;	
 }
+
 
 .thin-font {font-weight:100;}
 .light-font {font-weight:200;}
@@ -33,16 +35,17 @@ md-content{ margin-top:25px;}
 
 .home-page header {color:white;}
 .home-page li {cursor:pointer;}
-md-content:not(.home-page){margin-top:20px;}
+md-content:not(.home-page){margin-top:24px;}
 
 
 
 /* HOME STYLE and HOME TEMPLATE VIEW */
 .home-page {background-image: image-url('girly-wallpaper.jpg');}
+
 .home-page md-content.md-default-theme {background-color:transparent;}
 .home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
 .title-landing-page{height: 200px; font-size:62px; font-family: 'Amatic SC';font-style: normal;font-weight: 700;color:white}
-.twitter-pitch-home{font-family: 'Josefin Sans';font-style: normal;font-weight: 100;color:white; font-size:40px;}
+.twitter-pitch-home{font-family: 'Josefin Sans';font-style: normal;font-weight: 100;color:white; font-size:30px;}
 
 /* LIST STYLES */
 
