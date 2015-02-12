@@ -38,10 +38,12 @@ md-content{ margin-top:25px;}
   .product-thumbnail {
   width: 70px;
  }
+ 
+ md-item{width:100%;}
 
 .home-page header {color:white;}
 .home-page li {cursor:pointer;}
-md-content:not(.home-page){margin-top:24px;}
+md-content:not(.home-page){margin-top:20px;}
 
 .profile-header{font-size:28px; @extend .amatic-pink}
 .user-name {font-size:28px; @extend .amatic-pink}
@@ -49,7 +51,7 @@ md-content:not(.home-page){margin-top:24px;}
 
 /* HOME STYLE and HOME TEMPLATE VIEW */
 .home-page {background-image: image-url('girly-wallpaper.jpg');}
-
+md-toolbar{box-shadow:none;}
 .home-page md-content.md-default-theme {background-color:transparent;}
 .home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
 .title-landing-page{height: 200px; font-size:62px; font-family: $amatic-font;font-style: normal;font-weight: 700;color:white}
