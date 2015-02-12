@@ -8,11 +8,11 @@
       <form ng-submit="login()">
         <md-input-container>
           <label> Email </label>
-          <input ng-model="user.email">
+          <input class="md-no-float" ng-model="user.email">
         </md-input-container>
-        <md-input-container>
+        <md-input-container class="md-no-float">
           <label> Password </label>
-          <input ng-hide="sendConfirm"  type="password"  ng-model="user.password">
+          <input  ng-hide="sendConfirm"  type="password"  ng-model="user.password">
         </md-input-container>
         
         <md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">Remember Me </md-checkbox>
