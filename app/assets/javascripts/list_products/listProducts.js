@@ -5,6 +5,7 @@ function($scope,$state,$stateParams, $mdDialog, products){
 	$scope.products = products.products.search;
     $scope.paginator = {busy: false, ended: false};
 
+
 	if($scope.products.length === 0 ) { 
 		$scope.paginator.ended = true;
 	} else {
