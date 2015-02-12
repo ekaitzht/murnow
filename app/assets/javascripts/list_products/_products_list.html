@@ -11,7 +11,7 @@
 		    <md-divider md-inset ng-if="!$last"></md-divider>
 		
 		  </md-item>
-		  <md-button ng-hide='paginator.ended' ng-click='paginator.nextPage()' class="md-raised md-primary">Load more products</md-button>
+		  <md-button id="load-more-product" ng-hide='paginator.ended' ng-click='paginator.nextPage()' class="md-raised md-primary">Load more products</md-button>
 		  
 		  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
 		  

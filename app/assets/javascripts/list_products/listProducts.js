@@ -3,7 +3,16 @@ angular.module('murnow')
 function($scope,$state,$stateParams, $mdDialog, products){
 	$scope.from = 0;
 	$scope.products = products.products.search;
-	$scope.paginator = {busy: false, ended: false};
+    $scope.paginator = {busy: false, ended: false};
+
+	if($scope.products.length === 0 ) { 
+		$scope.paginator.ended = true;
+	} else {
+		$scope.paginator.ended = false;
+
+	}
+	
+	
 	$scope.ProductsFactory = products;
 
 
