@@ -3,6 +3,8 @@ $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
 
+.amatic {font-family:$amatic-font;}
+
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
@@ -16,9 +18,10 @@ body {
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 
 
-.thin-font {font-weight:100;}
-.light-font {font-weight:200;}
-.normal-font {font-weight:400;}
+.weight-100 {font-weight:100;}
+.weight-200 {font-weight:200;}
+.weight-400 {font-weight:400;}
+.weight-700 {font-weight: 700;}
 
 .justify-text {text-align:center;}
 md-content{ margin-top:25px;}
@@ -62,3 +65,7 @@ md-toolbar{box-shadow:none;}
 .figure-wrapper { width:38.2%;}
 .md-tile-content {width:61.2%;}
 md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100%;}
+.products-list .wrapper-rate-approval{@extend .amatic; @extend .weight-700;position:relative;top:-11px;}
+.products-list .approval-rate {font-size:14px;}
+.products-list .repurchase-percent {font-size:30px;}
+
