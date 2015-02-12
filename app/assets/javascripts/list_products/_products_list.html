@@ -1,22 +1,22 @@
 <md-list  class="products-list" layout="column" layout-align="center center">
 		  <md-item layout-padding ng-repeat="product in products | orderBy: '-upvotes'">
 		    <md-item-content >
-		      <div class='figure-wrapper'>
+		      <div class='figure-wrapper' flex="38">
 		        <figure><a ng-href="/products/{{product.id}}"> <img ng-src="https://s3.amazonaws.com/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
 		      </div>
-		      <div class="md-tile-content" layout="column">
+		      <div class="md-tile-content" layout="column" flex="50">
 			   	<div> {{product.product_name}}  </div>
 			   	<div>{{product.brand_name}} </div>
 			   	<div>{{product.product_stars}}</div>
 			  </div>
-		      <div class="wrapper-rate-approval" layout="column"  layout-align="start center">
+		      <div class="wrapper-rate-approval" layout="column"  layout-align="start center" flex="6">
 			      <div class="repurchase-percent"> 
 			      {{ (product.buyers/(product.buyers + product.not_buyers))*100 | number:0}}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
 			      </div>
 				  <div ng-hide="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
 					  APPROVAL RATE
 				  </div>
-				   <div ng-show="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
+				  <div ng-show="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
 					  We don't have approval rate for this product
 				  </div>
 		      </div>
