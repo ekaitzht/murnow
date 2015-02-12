@@ -10,7 +10,7 @@
 			   	<div>{{product.product_stars}}</div>
 			  </div>
 		      <div class="repurchase-percent">
-			      {{ (product.buyers/(product.buyers + product.not_buyers))*100 | number:0}} <span> % </span>
+			      {{ (product.buyers/(product.buyers + product.not_buyers))*100 | number:0}} <span ng-show="isNaN(product.buyers/product.not_buyers)"> % </span>
 		      </div>
 		    </md-item-content>
 		    <md-divider md-inset ng-if="!$last"></md-divider>
