@@ -15,13 +15,15 @@ function($scope,$state,$stateParams, $mdDialog, products){
 	
 	
 	$scope.ProductsFactory = products;
-
-
     
 	$scope.addProduct = function(){
   		$scope.reviews.push({title: $scope.title, upvotes: 0});
 		$scope.title = '';
 	};
+	
+	$scope.goToProductState = function (state, id){
+		$state.go(state, {id: id});
+	}
 	
 	
 	$scope.paginator.nextPage = function(){
