@@ -68,4 +68,5 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 .products-list .wrapper-rate-approval{@extend .amatic; @extend .weight-700;position:relative;top:-11px;}
 .products-list .approval-rate {font-size:14px;}
 .products-list .repurchase-percent {font-size:30px;}
+.products-list .md-item {cursor:pointer;}
 

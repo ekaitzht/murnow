@@ -12,4 +12,5 @@
 //= require angular-cookies
 //= require ng-file-upload
 //= require ngInfiniteScroll
+//= require angular-touch
 //= require_tree .
