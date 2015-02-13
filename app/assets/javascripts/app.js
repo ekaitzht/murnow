@@ -35,6 +35,10 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
     })
     .state('edit_profile', {
       url: '/edit_profile',
+      onEnter: function(){
+	   event.preventDefault();
+       event.stopPropagation();
+  	  },
       templateUrl: 'profile/_edit_profile.html',
       controller: 'Profile'
     })
