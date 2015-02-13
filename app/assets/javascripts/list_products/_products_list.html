@@ -2,7 +2,7 @@
 			  <md-item layout-padding ng-repeat="product in products | orderBy: '-upvotes'" >
 			    <md-item-content ng-click="goToProductState('products',product.id)">
 			      <div class='figure-wrapper' flex="38">
-			        <figure><a ng-href="/products/{{product.id}}"> <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/murnow/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
+			        <figure><a ng-href="/products/{{product.id}}"> <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
 			      </div>
 			      <div class="md-tile-content" layout="column" flex="50">
 				   	<div> {{product.product_name}}  </div>
