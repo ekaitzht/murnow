@@ -7,6 +7,7 @@ gem 'rails', '4.1.6'
 group :production do
 	gem 'rails_12factor'
 end
+gem 'heroku_rails_deflate', :group => :production
 
 gem 'omniauth-facebook'
 
