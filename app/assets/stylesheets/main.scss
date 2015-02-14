@@ -3,18 +3,18 @@ $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
 
-.amatic {font-family:$amatic-font;}
 
+body {
+	font-family: $josefin-sans, sans-serif;	
+}
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
 body,html {background:transparent;}
 
+img {max-width:100%}
 
-body {
-	font-family: $josefin-sans, sans-serif;	
-}
-
+.amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 
 
@@ -38,10 +38,6 @@ md-content{ margin-top:25px;}
   height: 48px;
   margin: 16px; }
 
-  .product-thumbnail {
-  width: 70px;
- }
- 
  md-item{width:100%;}
 
 .home-page header {color:white;}
@@ -69,4 +65,5 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 .products-list .approval-rate {font-size:14px;}
 .products-list .repurchase-percent {font-size:30px;}
 .products-list .md-item {cursor:pointer;}
+.products-list .figure-wrapper figure{margin:18px;}
 
