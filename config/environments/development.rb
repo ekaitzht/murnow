@@ -18,7 +18,7 @@ Rails.application.configure do
 
   #S3 config 
   ENV['S3_BUCKET'] = 'murnow'
-  ENV['AWS_SECRET_ACCESS_KEY'] = 'BBFo9r62T9/xXoHKZ3gOCEj4xRVex/u4rO7mJaip'
+  ENV['AWS_SECRET_ACCESS_KEY'] = 'tm92OiI3h+Kbzg+4/5/xhE2E6zpV35eq9IgJJvti'
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
   

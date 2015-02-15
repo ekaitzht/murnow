@@ -13,4 +13,5 @@
 //= require ng-file-upload
 //= require ngInfiniteScroll
 //= require angular-touch
+//= require ngImgCrop
 //= require_tree .

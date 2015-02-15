@@ -54,7 +54,8 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
         return;      
       } 
       var file = $scope.file[0];
-        
+      
+      
       $scope.upload = $upload.upload({
         url: 'https://murnow.s3.amazonaws.com/', 
         method: 'POST',

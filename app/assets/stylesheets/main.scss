@@ -2,6 +2,7 @@ $pink-color: #FCBEE9;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
+$background-color-pink:#FFB5E8;
 
 
 body {
@@ -14,14 +15,18 @@ body,html {background:transparent;}
 
 img {max-width:100%}
 
+ui-view {width:100%;}
 .amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
+ui-view{padding-left:15%;padding-right:15%;}
 
 
 .weight-100 {font-weight:100;}
 .weight-200 {font-weight:200;}
 .weight-400 {font-weight:400;}
 .weight-700 {font-weight: 700;}
+
+md-content.md-default-theme {background-color:$background-color-pink;}
 
 .justify-text {text-align:center;}
 md-content{ margin-top:25px;}
@@ -42,7 +47,7 @@ md-content{ margin-top:25px;}
 
 .home-page header {color:white;}
 .home-page li {cursor:pointer;}
-md-content:not(.home-page){margin-top:20px;}
+md-content:not(.home-page){margin-top:21px;}
 
 .profile-header{font-size:28px; @extend .amatic-pink}
 .user-name {font-size:28px; @extend .amatic-pink}
@@ -50,12 +55,21 @@ md-content:not(.home-page){margin-top:20px;}
 
 /* HOME STYLE and HOME TEMPLATE VIEW */
 .home-page {background-image: image-url('girly-wallpaper.jpg');}
-md-toolbar{box-shadow:none;}
 .home-page md-content.md-default-theme {background-color:transparent;}
 .home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
 .title-landing-page{height: 200px; font-size:62px; font-family: $amatic-font;font-style: normal;font-weight: 700;color:white}
 .twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; font-size:30px;}
 
+
+/* PRODUCT PROFILE */
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:500px;
+  height:350px;
+}
+
+.product-profile {background-color:white;}
 /* LIST STYLES */
 
 //.figure-wrapper { width:38.2%;}
@@ -66,4 +80,8 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 .products-list .repurchase-percent {font-size:30px;}
 .products-list .md-item {cursor:pointer;}
 .products-list .figure-wrapper figure{margin:18px;}
+.products-list {border-radius:3px;box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);margin-top:25px;background-color:white;}
 
+@media screen and (max-width: 960px) {
+    ui-view{padding-left:inherit;padding-right:inherit;}
+}
