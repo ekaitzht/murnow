@@ -10,7 +10,7 @@ class AmazonController < ApplicationController
 	    options[:acl] = 'public-read'
 	    options[:max_file_size] = 2.megabyte
 	    options[:path] = ''
-		options[:folder] = 'profile_images_development/'
+		options[:folder] = 'profile_images_' + Rails.env + '/'
 
 		AWS.config(
 		access_key_id: 'AKIAIAVU6XU6O6VGHBVA',
