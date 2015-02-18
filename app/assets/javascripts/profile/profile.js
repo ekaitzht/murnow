@@ -61,7 +61,7 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
         method: 'POST',
         data : {
           key: Amazon.folder + Amazon.unique_name_file_hash, // the key to store the file on S3, could be file name or customized
-          AWSAccessKeyId: 'AKIAIAVU6XU6O6VGHBVA', 
+          AWSAccessKeyId: 'AKIAI7BVF5NB3PEWGV2Q', 
           acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public 
           policy: Amazon.policy, // base64-encoded json policy (see article below)
           signature: Amazon.signature, // base64-encoded signature based on policy string (see article below)

@@ -11,10 +11,10 @@ class AmazonController < ApplicationController
 	    options[:max_file_size] = 2.megabyte
 	    options[:path] = ''
 		options[:folder] = 'profile_images_' + Rails.env + '/'
-
+		
 		AWS.config(
-		access_key_id: 'AKIAIAVU6XU6O6VGHBVA',
-		secret_access_key:  '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')
+		access_key_id:   ENV['AWS_ACCESS_KEY_ID'] ,
+		secret_access_key:    ENV['AWS_SECRET_ACCESS_KEY'] )
 		
 		@s3 = AWS::S3.new
 		logger.info "------->/*******"
@@ -37,7 +37,7 @@ class AmazonController < ApplicationController
 		signature = Base64.encode64(
 		    OpenSSL::HMAC.digest(
 		        OpenSSL::Digest.new('sha1'), 
-		        ENV['AWS_SECRET_ACCESS_KEY'], policy)
+		          ENV['AWS_SECRET_ACCESS_KEY'], policy)
 		    ).gsub("\n","")
  
 		logger.info "Policy " + policy
