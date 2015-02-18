@@ -14,7 +14,8 @@ class AmazonController < ApplicationController
 
 		AWS.config(
 		access_key_id: 'AKIAIAVU6XU6O6VGHBVA',
-		secret_access_key:  ENV['AWS_SECRET_ACCESS_KEY'])
+		secret_access_key:  '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')
+		
 		@s3 = AWS::S3.new
 		logger.info "------->/*******"
 		
