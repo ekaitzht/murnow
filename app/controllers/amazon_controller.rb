@@ -20,7 +20,7 @@ class AmazonController < ApplicationController
 		logger.info "------->/*******"
 		
   		  
-  		@policy_document = "{\"expiration\": \"#{1.day.from_now.utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')}\",
+  		@policy_document = "{\"expiration\": \"#{3.day.from_now.utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')}\",
 	        \"conditions\": [
 	          {\"bucket\": \"#{ENV["S3_BUCKET"]}\"},
 	          [\"starts-with\", \"$key\", \"#{options[:folder]}\"],
