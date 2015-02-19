@@ -1,4 +1,4 @@
-var app = angular.module('murnow', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch']);
+var app = angular.module('murnow', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop']);
 
 app.config([
 '$stateProvider',

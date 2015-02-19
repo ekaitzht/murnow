@@ -4,6 +4,8 @@
     	<div ng-show="user.image" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
             <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
     	</div>
+    
+
 		<button ng-show="!user.image" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
 		<!--<div ng-file-drop ng-model="finle" class="drop-box" 
           	drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"

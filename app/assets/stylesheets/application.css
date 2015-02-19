@@ -12,6 +12,7 @@
  * require bootstrap/dist/css/bootstrap
  *= require angular-material/angular-material
  *= require normalize.css/normalize
+ *= require ngImgCrop
  *= require_tree .
  *= require_self
  */
