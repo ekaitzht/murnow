@@ -13,6 +13,7 @@
  *= require angular-material/angular-material
  *= require normalize.css/normalize
  *= require ngImgCrop
+ *= require animate.css/animate
  *= require_tree .
  *= require_self
  */

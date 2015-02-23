@@ -37,7 +37,9 @@ class User < ActiveRecord::Base
 			user.skip_confirmation! 
 			user.provider = auth.provider
 			user.uid = auth.uid
-			user.image = auth.info.image
+			if user.image.blank? then
+			 	user.image = auth.info.image
+			end
 			user.save
 			return user
 		end
