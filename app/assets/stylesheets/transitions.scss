@@ -1,0 +1,17 @@
+/*.products,.list_products{
+	&.ng-enter {
+		
+	  -webkit-animation: fadeInRightBig  2s;
+	  animation: fadeInRightBig  2s;
+	
+	}
+	
+}
+
+.products,.list_products{
+	&.ng-leave {
+		
+	  -webkit-animation: fadeOutLefttBig  2s;
+			  animation: fadeOutLeftBig  2s;
+		}
+}*/

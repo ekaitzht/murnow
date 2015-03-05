@@ -2,20 +2,21 @@ $pink-color: #FCBEE9;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
-$background-color-pink:#FFB5E8;
+$background-color-pink:white;
 
-
+//#FFB5E8
 body {
 	font-family: $josefin-sans, sans-serif;	
 }
 ul li {float: right;list-style-type: none;}
 
 .left {float:left;}
-body,html {background:transparent;}
+body,html {background:$background-color-pink;}
 
 img {max-width:100%}
 
 ui-view {width:100%;}
+.not-home-page ui-view div{background-color:white;}
 .amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 ui-view{padding-left:15%;padding-right:15%;}

@@ -51,11 +51,14 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
   		url: '/products/{id}',
   		templateUrl: 'products/_products.html',
   		controller: 'ProductCtrl',
-      resolve: {
-      product: ['$stateParams', 'products', function($stateParams, products) {
-          return products.get($stateParams.id);
-        }]
-      }
+  		resolve: {
+	  		product: ['$stateParams', 'products', function($stateParams, products) {
+	        	return products.get($stateParams.id);
+	        }]
+      	},
+      	onEnter: function(){
+	  		$("md-content").scrollTop(0);	
+  		}
 	});
 
   $locationProvider.html5Mode(true);
@@ -63,8 +66,9 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 
 }]);
 
-app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $mdDialog) {
-  var lock = false
+app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function($rootScope,$location, $mdDialog, $state, $anchorScroll) {
+  var lock = false;
+  
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
         $mdDialog.show({
@@ -81,9 +85,9 @@ app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $m
 
   }
 
-
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	    $("#search-box-input").blur();
+	    
 		switch(toState.name) {
 		    case 'home':
 		        $rootScope.isHomePage = true;
@@ -92,5 +96,9 @@ app.run(['$rootScope','$location', '$mdDialog',function($rootScope,$location, $m
 		        $rootScope.isHomePage = false;
 		}										 
    });
+   
+    $rootScope.getCurrentNameState = function() {
+        return $state.current.name;
+    };
 
 }]);

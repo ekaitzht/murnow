@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.8.0-rc1
+ * v0.8.2
  */
 (function () {
   'use strict';
@@ -13,7 +13,10 @@
   /*
    * @see js folder for autocomplete implementation
    */
-  angular.module('material.components.autocomplete', [ 'material.core' ]);
+  angular.module('material.components.autocomplete', [
+    'material.core',
+    'material.components.icon'
+  ]);
 })();
 
 (function () {
@@ -22,34 +25,36 @@
       .module('material.components.autocomplete')
       .controller('MdAutocompleteCtrl', MdAutocompleteCtrl);
 
-  function MdAutocompleteCtrl ($scope, $element, $timeout, $q, $mdUtil, $mdConstant) {
+  function MdAutocompleteCtrl ($scope, $element, $q, $mdUtil, $mdConstant) {
 
     //-- private variables
     var self = this,
-        itemParts = $scope.itemsExpr.split(/\ in\ /i),
+        itemParts = $scope.itemsExpr.split(/ in /i),
         itemExpr = itemParts[1],
         elements = {
           main:  $element[0],
           ul:    $element[0].getElementsByTagName('ul')[0],
           input: $element[0].getElementsByTagName('input')[0]
         },
-        promise  = null,
-        cache    = {};
+        promise = null,
+        cache = {};
 
     //-- public variables
-    self.scope    = $scope;
-    self.parent   = $scope.$parent;
+    self.scope = $scope;
+    self.parent = $scope.$parent;
     self.itemName = itemParts[0];
-    self.matches  = [];
-    self.loading  = false;
-    self.hidden   = true;
-    self.index    = 0;
-    self.keydown  = keydown;
-    self.clear    = clearValue;
-    self.select   = select;
-    self.fetch    = $mdUtil.debounce(fetchResults);
+    self.matches = [];
+    self.loading = false;
+    self.hidden = true;
+    self.index = 0;
+    self.keydown = keydown;
+    self.blur = blur;
+    self.clear = clearValue;
+    self.select = select;
+    self.getCurrentDisplayValue = getCurrentDisplayValue;
+    self.fetch = $mdUtil.debounce(fetchResults);
+    self.messages = [];
 
-    //-- return init
     return init();
 
     //-- start method definitions
@@ -66,88 +71,143 @@
       input.attr('aria-owns', id);
     }
 
+    function getItemScope (item) {
+      if (!item) return;
+      var locals = {};
+      if (self.itemName) locals[self.itemName] = item;
+      return locals;
+    }
+
     function configureWatchers () {
-      $scope.$watch('searchText', function (searchText) {
-        if (!searchText) {
-          self.loading = false;
-          return self.matches = [];
-        }
-        var term = searchText.toLowerCase();
-        if (promise && promise.cancel) {
-          promise.cancel();
-          promise = null;
-        }
-        if (cache[term]) {
-          self.matches = cache[term];
-        } else if (!self.hidden) {
-          self.loading = true;
-          self.fetch(searchText);
-        }
+      var wait = parseInt($scope.delay, 10) || 0;
+      $scope.$watch('searchText', wait
+          ? $mdUtil.debounce(handleSearchText, wait)
+          : handleSearchText);
+      $scope.$watch('selectedItem', function (selectedItem, previousSelectedItem) {
+        if ($scope.itemChange && selectedItem !== previousSelectedItem)
+          $scope.itemChange(getItemScope(selectedItem));
       });
+    }
+
+    function handleSearchText (searchText, previousSearchText) {
+      self.index = -1;
+      if (!searchText || searchText.length < Math.max(parseInt($scope.minLength, 10), 1)) {
+        self.loading = false;
+        self.matches = [];
+        self.hidden = shouldHide();
+        updateMessages();
+        return;
+      }
+      var term = searchText.toLowerCase();
+      if (promise && promise.cancel) {
+        promise.cancel();
+        promise = null;
+      }
+      if (!$scope.noCache && cache[term]) {
+        self.matches = cache[term];
+        updateMessages();
+      } else {
+        self.fetch(searchText);
+      }
+      self.hidden = shouldHide();
+      if ($scope.textChange && searchText !== previousSearchText)
+        $scope.textChange(getItemScope($scope.selectedItem));
     }
 
     function fetchResults (searchText) {
       var items = $scope.$parent.$eval(itemExpr),
           term = searchText.toLowerCase();
-      promise = $q.when(items).then(function (matches) {
+      if (angular.isArray(items)) {
+        handleResults(items);
+      } else {
+        self.loading = true;
+        promise = $q.when(items).then(handleResults);
+      }
+      function handleResults (matches) {
         cache[term] = matches;
         if (searchText !== $scope.searchText) return; //-- just cache the results if old request
         promise = null;
         self.loading = false;
         self.matches = matches;
-      });
+        self.hidden = shouldHide();
+        updateMessages();
+      }
+    }
+
+    function updateMessages () {
+      if (self.hidden) return;
+      switch (self.matches.length) {
+        case 0:  return self.messages.splice(0);
+        case 1:  return self.messages.push({ display: 'There is 1 match available.' });
+        default: return self.messages.push({ display: 'There are '
+            + self.matches.length
+            + ' matches available.' });
+      }
+    }
+
+    function updateSelectionMessage () {
+      self.messages.push({ display: getCurrentDisplayValue() });
+    }
+
+    function blur () {
+      self.hidden = true;
     }
 
     function keydown (event) {
       switch (event.keyCode) {
         case $mdConstant.KEY_CODE.DOWN_ARROW:
-          if (self.loading) return;
-          event.preventDefault();
-          self.index = Math.min(self.index + 1, self.matches.length - 1);
-          updateScroll();
-          break;
+            if (self.loading) return;
+            event.preventDefault();
+            self.index = Math.min(self.index + 1, self.matches.length - 1);
+            updateScroll();
+            updateSelectionMessage();
+            break;
         case $mdConstant.KEY_CODE.UP_ARROW:
-          if (self.loading) return;
-          event.preventDefault();
-          self.index = Math.max(0, self.index - 1);
-          updateScroll();
-          break;
+            if (self.loading) return;
+            event.preventDefault();
+            self.index = Math.max(0, self.index - 1);
+            updateScroll();
+            updateSelectionMessage();
+            break;
         case $mdConstant.KEY_CODE.ENTER:
-          if (self.loading) return;
-          event.preventDefault();
-          select(self.index);
-          break;
+            if (self.loading || self.index < 0) return;
+            event.preventDefault();
+            select(self.index);
+            break;
         case $mdConstant.KEY_CODE.ESCAPE:
-          self.matches = [];
-          self.hidden = true;
-          self.index = -1;
-          break;
+            self.matches = [];
+            self.hidden = true;
+            self.index = -1;
+            break;
+        case $mdConstant.KEY_CODE.TAB:
+            break;
         default:
-          self.index = -1;
-          self.hidden = false;
-          //-- after value updates, check if list should be hidden
-          $timeout(function () { self.hidden = isHidden(); });
       }
     }
 
     function clearValue () {
       $scope.searchText = '';
       select(-1);
+      elements.input.focus();
     }
 
-    function isHidden () {
+    function shouldHide () {
       return self.matches.length === 1 && $scope.searchText === getDisplayValue(self.matches[0]);
     }
 
+    function getCurrentDisplayValue () {
+      return getDisplayValue(self.matches[self.index]);
+    }
+
     function getDisplayValue (item) {
-      return (item && $scope.itemText) ? item[$scope.itemText] : item;
+      return (item && $scope.itemText) ? $scope.itemText(getItemScope(item)) : item;
     }
 
     function select (index) {
       $scope.selectedItem = self.matches[index];
       $scope.searchText = getDisplayValue($scope.selectedItem) || $scope.searchText;
-      self.hidden  = true;
-      self.index   = -1;
+      self.hidden = true;
+      self.index = -1;
       self.matches = [];
     }
 
@@ -163,7 +223,7 @@
     }
 
   }
-  MdAutocompleteCtrl.$inject = ["$scope", "$element", "$timeout", "$q", "$mdUtil", "$mdConstant"];
+  MdAutocompleteCtrl.$inject = ["$scope", "$element", "$q", "$mdUtil", "$mdConstant"];
 })();
 
 (function () {
@@ -183,9 +243,15 @@
    *
    * @param {string=} md-search-text A model to bind the search query text to
    * @param {object=} md-selected-item A model to bind the selected item to
-   * @param {expression=} md-items An expression in the format of `item in items` to iterate over matches for your search.
-   * @param {string=} md-item-text A property on your object used to convert your object to a string
-   * @param {placeholder=} Placeholder text that will be forwarded to the input.
+   * @param {expression} md-items An expression in the format of `item in items` to iterate over matches for your search.
+   * @param {string=} md-item-text An expression that will convert your object to a single string.
+   * @param {string=} placeholder Placeholder text that will be forwarded to the input.
+   * @param {boolean=} md-no-cache Disables the internal caching that happens in autocomplete
+   * @param {expression} md-selected-item-change An expression to be run each time a new item is selected
+   * @param {expression} md-search-text-change An expression to be run each time the search text updates
+   * @param {boolean=} ng-disabled Determines whether or not to disable the input field
+   * @param {number=} md-min-length Specifies the minimum length of text before autocomplete will make suggestions
+   * @param {number=} md-delay Specifies the amount of time (in milliseconds) to wait before looking for results
    *
    * @usage
    * <hljs lang="html">
@@ -193,19 +259,21 @@
    *       md-selected-item="selectedItem"
    *       md-search-text="searchText"
    *       md-items="item in getMatches(searchText)"
-   *       md-item-text="display">
+   *       md-item-text="item.display">
    *     <span md-highlight-text="searchText">{{item.display}}</span>
    *   </md-autocomplete>
-   * </hlhs>
+   * </hljs>
    */
 
   function MdAutocomplete () {
     return {
-      template: '\
+      template:     '\
         <md-autocomplete-wrap role="listbox">\
           <input type="text"\
+              ng-disabled="isDisabled"\
               ng-model="searchText"\
               ng-keydown="$mdAutocompleteCtrl.keydown($event)"\
+              ng-blur="$mdAutocompleteCtrl.blur()"\
               placeholder="{{placeholder}}"\
               aria-label="{{placeholder}}"\
               aria-autocomplete="list"\
@@ -216,15 +284,17 @@
               type="button"\
               ng-if="searchText"\
               ng-click="$mdAutocompleteCtrl.clear()">\
-              <span aria-hidden="true">X</span>\
-              <span class="visually-hidden">Clear</span>\
-              </button>\
-          <md-progress-linear ng-if="$mdAutocompleteCtrl.loading" md-mode="indeterminate"></md-progress-linear>\
+            <md-icon md-svg-icon="cancel"></md-icon>\
+            <span class="visually-hidden">Clear</span>\
+          </button>\
+          <md-progress-linear\
+              ng-if="$mdAutocompleteCtrl.loading"\
+              md-mode="indeterminate"></md-progress-linear>\
         </md-autocomplete-wrap>\
         <ul role="presentation">\
           <li ng-repeat="(index, item) in $mdAutocompleteCtrl.matches"\
               ng-class="{ selected: index === $mdAutocompleteCtrl.index }"\
-              ng-if="searchText && !$mdAutocompleteCtrl.hidden"\
+              ng-show="searchText && !$mdAutocompleteCtrl.hidden"\
               ng-click="$mdAutocompleteCtrl.select(index)"\
               ng-transclude\
               md-autocomplete-list-item="$mdAutocompleteCtrl.itemName">\
@@ -232,20 +302,25 @@
         </ul>\
         <aria-status\
             class="visually-hidden"\
-            aria-atomic="true"\
             role="status"\
-            aria-live="polite">\
-          <p ng-repeat="item in $mdAutocompleteCtrl.matches">{{item.display}}</p>\
+            aria-live="assertive">\
+          <p ng-repeat="message in $mdAutocompleteCtrl.messages">{{message.display}}</p>\
         </aria-status>',
-      transclude: true,
-      controller: 'MdAutocompleteCtrl',
+      transclude:   true,
+      controller:   'MdAutocompleteCtrl',
       controllerAs: '$mdAutocompleteCtrl',
-      scope: {
-        searchText: '=mdSearchText',
+      scope:        {
+        searchText:   '=mdSearchText',
         selectedItem: '=mdSelectedItem',
-        itemsExpr: '@mdItems',
-        itemText: '@mdItemText',
-        placeholder: '@placeholder'
+        itemsExpr:    '@mdItems',
+        itemText:     '&mdItemText',
+        placeholder:  '@placeholder',
+        noCache:      '=mdNoCache',
+        itemChange:   '&mdSelectedItemChange',
+        textChange:   '&mdSearchTextChange',
+        isDisabled:   '=ngDisabled',
+        minLength:    '=mdMinLength',
+        delay:        '=mdDelay'
       }
     };
   }
@@ -259,12 +334,13 @@
 
   function MdHighlightCtrl ($scope, $element, $interpolate) {
     var term = $element.attr('md-highlight-text'),
-        text = $interpolate($element.text())($scope);
-    $scope.$watch(term, function (term) {
-      var regex = new RegExp('^' + sanitize(term), 'i'),
-          html = text.replace(regex, '<span class="highlight">$&</span>');
-      $element.html(html);
-    });
+        text = $interpolate($element.text())($scope),
+        watcher = $scope.$watch(term, function (term) {
+          var regex = new RegExp('^' + sanitize(term), 'i'),
+              html = text.replace(regex, '<span class="highlight">$&</span>');
+          $element.html(html);
+        });
+    $element.on('$destroy', function () { watcher(); });
 
     function sanitize (term) {
       if (!term) return term;
@@ -327,8 +403,8 @@
       scope: false
     };
     function link (scope, element, attr, ctrl) {
-      var newScope = ctrl.parent.$new(false, ctrl.parent);
-      var itemName = ctrl.scope.$eval(attr.mdAutocompleteListItem);
+      var newScope = ctrl.parent.$new(false, ctrl.parent),
+          itemName = ctrl.scope.$eval(attr.mdAutocompleteListItem);
       newScope[itemName] = scope.item;
       $compile(element.contents())(newScope);
       element.attr({ 'role': 'option', 'id': 'item_' + $mdUtil.nextUid() });
