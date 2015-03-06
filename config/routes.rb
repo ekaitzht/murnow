@@ -41,7 +41,9 @@ Rails.application.routes.draw do
 
   # Association model between User and Reviews for who is voting what review    User <=== Vote ===> Review
   put 'votes/:review_id/users/:user_id', to: 'votes#create', defaults: { format: 'json' }
-
+  
+  #Get a specific user this only should use for public_profile
+  get 'users/:id/', to: 'users#show', defaults: { format: 'json' }
 
   # Example resource route with options:
   #   resources :products do

@@ -28,6 +28,7 @@ angular.module('murnow')
  		o.user_session = user;
 	};
 
+
 	o.updateUserProfile = function(user, skin_problems){
 		o.user_session.username = user.username;
 		o.user_session.skin_color = user.skin_color;
@@ -61,8 +62,16 @@ angular.module('murnow')
 	};
 
 
-	o.getSkinProblems  = function() {
-	    return $http.get('/users/'+o.user_session.id+'/skin_problems');
+	o.getSkinProblems  = function(user_id) {
+		var id = user_id || o.user_session.id;
+	    return $http.get('/users/'+id+'/skin_problems');
+	};
+
+
+	o.getPublicUser = function(id) {
+ 		return $http.get('/users/' + id).then(function(res){
+    		return res.data;
+  		});
 	};
 
 

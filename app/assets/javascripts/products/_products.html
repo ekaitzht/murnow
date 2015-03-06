@@ -23,7 +23,7 @@
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
 	<div class="review-item" layout="row">
-	    <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}">
+		<a ng-href="/public_profile/{{review.user.id}}">   <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> </a>
 	    <span ng-show="!review.user.image">No Image</span>
 	    <span   class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)">  
 	    

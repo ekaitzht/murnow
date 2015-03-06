@@ -33,6 +33,16 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       templateUrl: 'profile/_profile.html',
       controller: 'Profile'
     })
+    .state('public_profile', {
+      url: '/public_profile/{id}',
+      templateUrl: 'profile/_public_profile.html',
+      controller: 'PublicProfileCtrl',
+      resolve: {
+	  		user: ['$stateParams', 'User', function($stateParams, User) {
+	        	return User.getPublicUser($stateParams.id);
+	        }]
+      }
+    })
     .state('edit_profile', {
       url: '/edit_profile',
       onEnter: function(){
