@@ -4,14 +4,14 @@ angular.module('murnow')
 function($scope,User, user, $mdDialog, $state){
 
 
-   User.getSkinProblems(user.user.id).success(function(data, status, headers, config) {
+   User.getSkinProblems(user.id).success(function(data, status, headers, config) {
     $scope.user.skin_problems =  data.skin_problems; 
   });
   
   
 
-  $scope.user = user.user;
-  $scope.reviews = user.user.reviews;
+  $scope.user = user;
+  $scope.reviews = user.reviews;
 
 
 
