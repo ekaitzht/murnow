@@ -30,7 +30,29 @@
 		      	
 		</div>
 	</div>
-
+	
+	
+	<md-list  class="user-list-reviews" layout="column" layout-align="center center">
+		<md-item  ng-repeat="review in reviews | orderBy: '-upvotes'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column" layout-padding>
+			<div  class="product-thumbnail" flex="20" >
+				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}">
+			</div>	    
+			<div class='data-review-public-profile' flex="80">
+				<div> 
+				 {{review.product.product_name}} 
+				</div>
+				<span style="font-size:20px; margin-left:10px;">
+					{{review.body}} - {{review.created_at | date: 'medium'}}
+			  	</span>
+				<span>  
+			    	votes {{review.votes.length}}
+			    </span>
+			    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
+			    </rating>
+			</div>
+		   
+		</md-item>
+	</md-list>	
 
 
  </div>

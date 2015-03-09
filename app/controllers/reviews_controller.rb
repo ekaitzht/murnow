@@ -28,6 +28,12 @@ class ReviewsController < ApplicationController
     review = @product.reviews.find(params[:id])
     respond_with review
   end
+  
+  def reviews_by_user
+	 @reviews = Review.find_by(user_id: params[:user_id]) 
+	 
+	 respond_with @reviews;
+  end
 
   private
   def review_params

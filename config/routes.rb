@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   
   #Get a specific user this only should use for public_profile
   get 'users/:id/', to: 'users#show', defaults: { format: 'json' }
+  
+  
+  get 'reviews_by_user/:user_id', to: 'reviews#reviews_by_user', defaults: { format: 'json' } 
 
   # Example resource route with options:
   #   resources :products do
