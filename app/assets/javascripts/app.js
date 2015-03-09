@@ -67,7 +67,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 	        }]
       	},
       	onEnter: function(){
-	  		$("md-content").scrollTop(0);	
+	  		
   		}
 	});
 
@@ -96,8 +96,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
   }
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
-	    $("#search-box-input").blur();
-	    
+	    $("#search-box-input").blur(); // This fix a bug in mobile 
+	    $("md-content").scrollTop(0);	
 		switch(toState.name) {
 		    case 'home':
 		        $rootScope.isHomePage = true;
