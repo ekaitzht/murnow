@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   	has_many :user_skin_problems
 	has_many :skin_problems, :through => :user_skin_problems
 	has_many :votes
-	has_many :reviews, :through => :votes
-
+	has_many :reviews
+	
   	devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
