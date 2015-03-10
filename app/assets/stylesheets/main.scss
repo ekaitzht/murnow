@@ -68,9 +68,10 @@ md-content:not(.home-page){margin-top:21px;}
   height:350px;
 }
 
-.product-profile {background-color:white;}
+.product-profile {background-color:white; width:100%;}
 
-
+.glyphicon-thumbs-up {cursor:pointer;}
+.review-body{border:1px solid; border-color:$pink-color;margin:5px 5px 5px 5px;border-radius:5px;}
 /* PUBLIC USER PROFILE */
 
 /* LIST STYLES */
