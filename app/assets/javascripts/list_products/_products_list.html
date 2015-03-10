@@ -8,7 +8,9 @@
 			      <div class="md-tile-content" layout="column" flex="50">
 				   	<div> {{product.product_name}}  </div>
 				   	<div>{{product.brand_name}} </div>
-				   	<div>{{product.product_stars}}</div>
+				   	<div class="ratings">    
+					   <rating ng-model="product.product_stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+        			</div>
 				  </div>
 			      <div class="wrapper-rate-approval" layout="column"  layout-align="start center" flex="6">
 				      <div class="repurchase-percent"> 

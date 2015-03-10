@@ -23,20 +23,22 @@
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
 	<div class="review-item" layout="row">
-		<div class="image-review" flex="15" flex-sm="20" >
+		<div class="image-review" flex="10" flex-sm="20" >
 					<a ng-href="/public_profile/{{review.user.id}}">   <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> </a>
 					<span ng-show="!review.user.image">No Image</span>
 		</div>
 	    
-		<div class="review-body" flex="65" flex-sm="50">
-			{{review.body}} -  {{review.created_at | date: 'medium'}}
+		<div class="review-body" flex="70" flex-sm="50" layout="column">
+			<p class="wordwrap"> {{review.body}} </p>
+			<div class="date-review"> {{review.created_at | date: 'medium'}}</div>
+			
 		</div>
-		<div class="thumbs-up" flex="10" flex-sm="1">
+		<div class="thumbs-up" flex="5" flex-sm="10">
 	    	<span   class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
 	    	<span> {{review.votes.length}} </span>
 		</div>
 
-		<div class="product-rating" flex="10" flex-sm="20">
+		<div class="product-rating" flex="15" flex-sm="20">
 			<rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
 		</div>
     </div>

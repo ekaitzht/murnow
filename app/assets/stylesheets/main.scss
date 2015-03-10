@@ -4,7 +4,13 @@ $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
 $background-color-pink:white;
 
-//#FFB5E8
+.wordwrap {  
+   white-space: pre-wrap;      /* Webkit */    
+   white-space: -moz-pre-wrap; /* Firefox */     
+   white-space: -pre-wrap;     /* Opera <7 */    
+   white-space: -o-pre-wrap;   /* Opera 7 */     
+   word-wrap: break-word;      /* IE */ 
+}
 body {
 	font-family: $josefin-sans, sans-serif;	
 }
@@ -15,7 +21,7 @@ body,html {background:$background-color-pink;}
 
 img {max-width:100%}
 
-ui-view {width:100%;}
+ui-view {width:100%;overflow-x:hidden;}
 .not-home-page ui-view div{background-color:white;}
 .amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
@@ -68,10 +74,11 @@ md-content:not(.home-page){margin-top:21px;}
   height:350px;
 }
 
-.product-profile {background-color:white; width:100%;}
+.product-profile {background-color:white; }
 
 .glyphicon-thumbs-up {cursor:pointer;}
-.review-body{border:1px solid; border-color:$pink-color;margin:5px 5px 5px 5px;border-radius:5px;}
+.review-body p{border:1px solid; border-color:$pink-color;margin:5px 5px 5px 5px;border-radius:5px;}
+.date-review {font-size:0.8em;text-align: right;margin-right: 7px;}
 /* PUBLIC USER PROFILE */
 
 /* LIST STYLES */
