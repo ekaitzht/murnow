@@ -33,7 +33,7 @@ class Product < ActiveRecord::Base
           multi_match: {
             query: query,
             # Here you can add what search field can be matcheables
-            fields: ['product_name^3', 'long_product_description','long_description'] 
+            fields: ['product_name^3','long_description'] 
           }
         },
         from: from, size: 40
