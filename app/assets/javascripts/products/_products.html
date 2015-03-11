@@ -4,6 +4,7 @@
       <figure ><img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
         <div class="product-name">{{product.product_name}}</div>
+        <div class="brand-name">{{product.brand_name}}</div>
         <div class="ratings">    
           <rating ng-model="product.product_stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
         </div>
@@ -24,7 +25,7 @@
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
 	<div class="review-item" layout="row">
 		<div class="image-review" flex="10" flex-sm="20" >
-					<a ng-href="/public_profile/{{review.user.id}}">   <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> </a>
+			<a ng-href="/public_profile/{{review.user.id}}">   <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> </a>
 					<span ng-show="!review.user.image">No Image</span>
 		</div>
 	    
