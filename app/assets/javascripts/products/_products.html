@@ -6,7 +6,7 @@
         <div class="product-name">{{product.product_name}}</div>
         <div class="brand-name">{{product.brand_name}}</div>
         <div class="ratings">    
-          <rating ng-model="product.product_stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+          <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
         </div>
         <div class="buyers-again" ng-hide="zero_reviews">{{repurchase_again_percent | number:0}} <span> % of users would repurchase</span></div>
 		<div class="zero-reviews-for-now" ng-show="zero_reviews">For now we don't have reviews</div>
@@ -41,7 +41,7 @@
 		</div>
 
 		<div class="product-rating" flex="15" flex-sm="20">
-			<rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5"></rating>
+			<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		</div>
     </div>
   </div>

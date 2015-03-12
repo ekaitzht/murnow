@@ -15,7 +15,7 @@ body {
 	font-family: $josefin-sans, sans-serif;	
 }
 ul li {float: right;list-style-type: none;}
-
+span.sr-only.ng-binding {display:none;}
 .left {float:left;}
 body,html {background:$background-color-pink;}
 
