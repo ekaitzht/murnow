@@ -1,5 +1,5 @@
   
-<div class="product-profile" layout="column" layout-align="center"> 
+<div class="product-profile" layout="column" layout-align="center" > 
   <div layout= "row" class="page-header">
       <figure ><img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
@@ -35,7 +35,8 @@
 			
 		</div>
 		<div class="thumbs-up" flex="5" flex-sm="10">
-	    	<span   class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
+			
+	    	<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
 	    	<span> {{review.votes.length}} </span>
 		</div>
 

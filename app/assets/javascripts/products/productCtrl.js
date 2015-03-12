@@ -62,17 +62,30 @@ function($scope, $mdDialog, products, product, Auth){
   };
 
   $scope.incrementUpvotes = function(review_id, $index){
-    products.upvoteReview(Auth._currentUser.id, review_id).success(function(data){
-      $scope.product.reviews[$index].votes.length += 1;
-    }).error(function(err){
-	    $mdDialog.show(
+	  
+	if(Auth._currentUser === null){
+		 $mdDialog.show(
           $mdDialog.alert()
             .title('')
-            .content('You have already voted this review!')
+            .content('You need to sign up to vote a comment!')
             .ariaLabel('')
             .ok('Got it!')
         );
-    });
+
+	} else {
+		products.upvoteReview(Auth._currentUser.id, review_id).success(function(data){
+	      $scope.product.reviews[$index].votes.length += 1;
+	    }).error(function(err){
+		    $mdDialog.show(
+	          $mdDialog.alert()
+	            .title('')
+	            .content('You have already voted this review!')
+	            .ariaLabel('')
+	            .ok('Got it!')
+	        );
+	    });
+	}
+
 
 
    

@@ -14,6 +14,7 @@
  *= require normalize.css/normalize
  *= require ngImgCrop
  *= require animate.css/animate
+ *= require fontawesome/css/font-awesome
  *= require_tree .
  *= require_self
  */
