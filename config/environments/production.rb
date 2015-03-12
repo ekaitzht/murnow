@@ -23,7 +23,7 @@ Rails.application.configure do
   config.serve_static_assets = true
   config.assets.compress = true
   #app.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')  
-  #config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
