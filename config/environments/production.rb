@@ -22,8 +22,8 @@ Rails.application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = true
   config.assets.compress = true
-  #app.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')  
-  app.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+  app.config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')  
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
