@@ -22,7 +22,8 @@ body,html {background:$background-color-pink;}
 img {max-width:100%}
 
 ui-view {width:100%;overflow-x:hidden;}
-.not-home-page ui-view div{background-color:white;}
+
+
 .amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 ui-view{padding-left:15%;padding-right:15%;}
