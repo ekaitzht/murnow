@@ -22,14 +22,16 @@
 	        <input id="search-box-input" class="search-box" type="search" placeholder="Find make up reviews" ng-model="searchFilter.searchQuery">
 	      </form>
 	      
+
+	      
       </div>
       <md-content>
       	<!-- <div flex="20" flex-sm="0" flex-md="0"></div> -->
         <ui-view ng-class="getCurrentNameState()"  layout="row" autoscroll="false"></ui-view>
         <!--<div flex="20" flex-sm="0" flex-md="0"></div> -->
       </md-content>
-	  <md-progress-circular id="progress-circular" md-mode="indeterminate" ></md-progress-circular>
-      
+            <md-progress-circular id="progress-circular" md-mode="indeterminate" ></md-progress-circular>
+
       <%= javascript_include_tag 'application' %>
   </body>
 </html>
