@@ -43,7 +43,7 @@ md-content{ margin-top:25px;}
 .search-box-container input{width: 100%;}
 .search-box-container form{margin-bottom:0px;}
 #search-box-input {-webkit-box-sizing: inherit;box-sizing: inherit;}
-#progress-circular{display:none;  position: fixed; top: 243px; margin: 0 auto;left: 50%;}
+#progress-circular{display:none;  position: fixed; top: 24%; margin: 0 auto;left: 46%;z-index:1001;}
 .face {
   border-radius: 30px;
   border: 1px solid #ddd;
@@ -65,7 +65,7 @@ md-content:not(.home-page){margin-top:21px;}
 .home-page {background-image: image-url('girly-wallpaper.jpg');}
 .home-page md-content.md-default-theme {background-color:transparent;}
 .home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
-.title-landing-page{height: 200px; font-size:62px; font-family: $amatic-font;font-style: normal;font-weight: 700;color:white}
+.title-landing-page{height: 200px; font-size:62px; font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
 .twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; font-size:30px;}
 
 
