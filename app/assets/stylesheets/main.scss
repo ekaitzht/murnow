@@ -43,7 +43,8 @@ md-content{ margin-top:25px;}
 .search-box-container input{width: 100%;}
 .search-box-container form{margin-bottom:0px;}
 #search-box-input {-webkit-box-sizing: inherit;box-sizing: inherit;}
-
+#progress-circular{display:none;position: relative;
+  top: -35px;margin:0 auto;}
 .face {
   border-radius: 30px;
   border: 1px solid #ddd;

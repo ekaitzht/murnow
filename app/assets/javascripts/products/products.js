@@ -26,8 +26,11 @@ angular.module('murnow')
   o.search = function (searchQuery) {
         o.searchQuery = searchQuery;
         o.from = 0;
+        $("#progress-circular").show();
         return $http.get('/search/?q='+searchQuery).success(function(data){
         angular.copy(data, o.products);
+        $("#progress-circular").hide();
+
       });
   };
   
@@ -43,3 +46,4 @@ angular.module('murnow')
 
 	return o;
 }]);
+
