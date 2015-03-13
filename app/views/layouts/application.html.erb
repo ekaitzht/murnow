@@ -13,6 +13,7 @@
 		   	        <div  ng-include="'header/_header.html'"></div>
 		     
 		      <div layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState "> Murnow </div>
+		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	      </header>
 	  
       </md-toolbar>
@@ -30,7 +31,7 @@
         <ui-view ng-class="getCurrentNameState()"  layout="row" autoscroll="false"></ui-view>
         <!--<div flex="20" flex-sm="0" flex-md="0"></div> -->
       </md-content>
-            <md-progress-circular id="progress-circular" md-mode="indeterminate" ></md-progress-circular>
+           
 
       <%= javascript_include_tag 'application' %>
   </body>

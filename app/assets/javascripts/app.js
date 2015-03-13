@@ -81,6 +81,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
   
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	    $("#search-box-input").blur();
         $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login.html',
