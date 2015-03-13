@@ -27,6 +27,7 @@ angular.module('murnow')
         o.searchQuery = searchQuery;
         o.from = 0;
         $("#progress-circular").show();
+        $("#search-box-input").blur();
         return $http.get('/search/?q='+searchQuery).success(function(data){
         angular.copy(data, o.products);
         $("#progress-circular").hide();

@@ -81,7 +81,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
   
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
-	    $("#search-box-input").blur();
+	    
         $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login.html',
@@ -97,7 +97,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
   }
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
-	    $("#search-box-input").blur(); // This fix a bug in mobile 
+	    //$("#search-box-input").blur(); // This fix a bug in mobile 
 	    $("md-content").scrollTop(0);	
 		switch(toState.name) {
 		    case 'home':
