@@ -35,9 +35,12 @@ function($scope,$state,$stateParams, $mdDialog, products){
 		  
 		  if(response.search.length ===  0) {
 			$scope.paginator.ended = true;
+		  } else{
+			$.merge($scope.products, response.search);
+			
 		  }
 		  
-		  $.merge($scope.products, response.search);
+		  
 		  
 	  	});
 	  }

@@ -18,8 +18,14 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       templateUrl: 'list_products/_products_list.html',
       controller: 'ListProducts',
       resolve: {
-        productsPromise: ['products','$stateParams', function(products, $stateParams){
-          return products.search($stateParams.searchQuery);
+        productsPromise: ['products','$stateParams', function(products, $stateParams){        
+	       if( $stateParams.searchQuery === products.searchQuery) { // If qhe searchQuery is the same than in the last we don't do again the request.
+		       angular.copy(products.accumulateProducts,  products.products.search);
+		       return products;
+	       } else {
+		       products.accumulateProducts = [];
+		       return products.searchFirstPage($stateParams.searchQuery);
+	       }     
         }]
       }
     })
@@ -39,6 +45,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       controller: 'PublicProfileCtrl',
       resolve: {
 	  		user: ['$stateParams', 'User', function($stateParams, User) {
+		  		if(products.products.length === 0) {}
 	        	return User.getPublicUser($stateParams.id);
 	        }]
       }
@@ -98,7 +105,13 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	    //$("#search-box-input").blur(); // This fix a bug in mobile 
-	    $("md-content").scrollTop(0);	
+		 if (toState.name = 'list_products'){
+			 
+		 } else {
+			$("md-content").scrollTop(0);	 
+		 }
+		 
+	    	
 		switch(toState.name) {
 		    case 'home':
 		        $rootScope.isHomePage = true;
