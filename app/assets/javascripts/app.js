@@ -45,7 +45,6 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       controller: 'PublicProfileCtrl',
       resolve: {
 	  		user: ['$stateParams', 'User', function($stateParams, User) {
-		  		if(products.products.length === 0) {}
 	        	return User.getPublicUser($stateParams.id);
 	        }]
       }
