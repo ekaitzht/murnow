@@ -12,6 +12,7 @@ end
 gem 'heroku_rails_deflate', :group => :production
 
 gem 'omniauth-facebook'
+gem 'font_assets'
 
 #elasticsearch libraries
 gem 'elasticsearch-model'
