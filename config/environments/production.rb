@@ -35,6 +35,10 @@ Rails.application.configure do
 
   # Generate digests for assets URLs.
   config.assets.digest = true
+  
+  #cloudfront assets config 
+  config.font_assets.origin = '*'
+  config.action_controller.asset_host = "d1ov3ct5x7s0z9.cloudfront.net"
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
