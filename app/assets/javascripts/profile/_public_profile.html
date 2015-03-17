@@ -45,7 +45,7 @@
 				 {{review.product.product_name}} 
 				</div>
 				<span style="font-size:20px; margin-left:10px;">
-					{{review.body}} - {{review.created_at | date: 'medium'}}
+					{{review.body}} - {{review.created_at | fromNow }}
 			  	</span>
 				<span>  
 			    	<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
