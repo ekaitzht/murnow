@@ -11,7 +11,6 @@ function($scope,$state, Auth, $mdDialog, User){
 
    Auth.currentUser().then(function (user){
     $scope.user = user;
-   
   });
 
   $scope.$on('devise:new-registration', function (e, user){

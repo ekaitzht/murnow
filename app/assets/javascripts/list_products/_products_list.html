@@ -1,5 +1,5 @@
 <md-list  class="products-list" layout="column" layout-align="center center">
-		<md-item  ng-repeat="product in products | orderBy: '-upvotes'" >
+		<md-item  ng-repeat="product in products" >
 			<div class='md-item-content-wrapper'>
 			    <md-item-content ng-click="goToProductState('products',product.id)">
 			      <div class='figure-wrapper' flex="38">
