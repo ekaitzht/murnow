@@ -1,8 +1,9 @@
-$pink-color: #FCBEE9;
+$pink-color: #FCB4E6;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
 $background-color-pink:white;
+
 
 .wordwrap {  
    white-space: pre-wrap;      /* Webkit */    
@@ -20,7 +21,7 @@ span.sr-only.ng-binding {display:none;}
 body,html {background:$background-color-pink;}
 
 img {max-width:100%}
-
+.fa {color:$pink-color;}
 ui-view {width:100%;overflow-x:hidden;}
 ui-view > * {width:100%;}
 
@@ -29,6 +30,7 @@ ui-view > * {width:100%;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 ui-view{padding-left:15%;padding-right:15%;}
 
+.fa-thumbs-o-up,fa-thumbs-up  {color:black;}
 
 .weight-100 {font-weight:100;}
 .weight-200 {font-weight:200;}

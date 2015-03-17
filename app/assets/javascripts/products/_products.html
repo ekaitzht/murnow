@@ -4,7 +4,7 @@
       <figure ><img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
         <div class="product-name">{{product.product_name}}</div>
-        <div class="brand-name">{{product.brand_name}}</div>
+        <div class="brand-name">by {{product.brand_name}}</div>
         <div class="ratings">    
           <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
         </div>
@@ -31,7 +31,7 @@
 	    
 		<div class="review-body" flex="70" flex-sm="50" layout="column">
 			<p class="wordwrap"> {{review.body}} </p>
-			<div class="date-review"> {{review.created_at | date: 'medium'}}</div>
+			<div class="date-review"> {{review.created_at | fromNow}}</div>
 			
 		</div>
 		<div class="thumbs-up" flex="5" flex-sm="10">

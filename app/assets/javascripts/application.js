@@ -14,4 +14,7 @@
 //= require ngInfiniteScroll
 //= require angular-touch
 //= require ngImgCrop
+//= require moment
+//= require moment-twitter
+//= require filters
 //= require_tree .
