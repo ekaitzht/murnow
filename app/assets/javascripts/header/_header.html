@@ -1,6 +1,6 @@
 <div>
 	<div class="" ng-controller="NavCtrl">
-	  <div class="home left"> <div class="left" ><a  href="/">Home</a> </div></div>
+	  <div class="home" id="logo"> <div class="left" ><a  href="/">Home</a> </div></div>
 	  
 	  <!--- the nav menu should be implemented when 0.9.0 material angular has released -->
 	  <!-- Nav when you are not authenticated --> 
@@ -16,7 +16,7 @@
 		<li>
 			<a  ng-href="/profile">
 				
-			<div  ng-show="signedIn()" class="md-tile-left">
+			<div  ng-show="signedIn()" >
 		    	<img ng-show="signedIn()" ng-src="{{user.image}}" class="face-header" alt="{{user.username}}">
 			</div>  </a>
 		</li>
