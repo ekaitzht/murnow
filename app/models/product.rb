@@ -11,8 +11,8 @@ class Product < ActiveRecord::Base
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
       indexes :long_description, analyzer: 'english', index_options: 'offsets'
-      indexes :long_product_description, analyzer: 'english', index_options: 'offsets'
       indexes :product_name, analyzer: 'english', index_options: 'offsets'
+      indexes :brand_name, analyzer: 'english', index_options: 'offsets'
     end
   end
 
@@ -33,7 +33,7 @@ class Product < ActiveRecord::Base
           multi_match: {
             query: query,
             # Here you can add what search field can be matcheables
-            fields: ['product_name^3','long_description'] 
+            fields: ['product_name^3','long_description','brand_name'] 
           }
         },
         from: from, size: 40

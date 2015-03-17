@@ -6,10 +6,13 @@ angular.module('murnow')
 	  $scope.myCroppedImage='';	
 	  $scope.myImage = myImage;
 	  
-	  $scope.closedCropDialog = function(){
+	  $scope.saveCroppedImg = function(){
 		  scopeEditProfile.user.image = this.myCroppedImage;
 		  scopeEditProfile.fileImage =  this.myCroppedImage;
 		  $mdDialog.hide();
 	  }
-
+	  
+	  $scope.closeCropDialog = function(){
+			$mdDialog.hide();
+	  }
 }]);

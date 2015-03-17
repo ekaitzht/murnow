@@ -83,7 +83,7 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
             controller: 'CropImageCtrl',
             templateUrl: 'profile/_dialogCropImage.html',
             hasBackdrop: true,
-            clickOutsideToClose: true,
+            clickOutsideToClose: false,
             locals: {myImage: evt.target.result, scopeEditProfile: $scope}
           });
 
