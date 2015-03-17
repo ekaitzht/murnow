@@ -13,8 +13,7 @@
   	  <!-- Nav when you are authentificated --> 
   	
 	  <ul ng-show="signedIn()"  id="menu">
-		<li> <a  ng-show="signedIn()" >{{ user.username }}</a>  </li>
-		<li> <a ng-href="/profile"> View Profile </a> </li>
+		<li> <a  ng-show="signedIn()" ng-href="/profile" >{{ user.username }}</a>  </li>
 	    <li  ng-click="logout()" ><a>Log Out</a></li>
 	  </ul>
 	  
