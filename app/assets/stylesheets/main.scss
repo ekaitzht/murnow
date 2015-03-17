@@ -23,7 +23,8 @@ body,html {background:$background-color-pink;}
 img {max-width:100%}
 .fa {color:$pink-color;}
 ui-view {width:100%;overflow-x:hidden;}
-ui-view > * {width:100%;}
+
+
 
 
 .amatic {font-family:$amatic-font;}
@@ -99,6 +100,3 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 .products-list .figure-wrapper figure{margin:18px;}
 .products-list {border-radius:3px;box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);margin-top:25px;background-color:white;}
 
-@media screen and (max-width: 960px) {
-    ui-view{padding-left:inherit;padding-right:inherit;}
-}
