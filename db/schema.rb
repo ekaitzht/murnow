@@ -11,33 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120151730) do
+ActiveRecord::Schema.define(version: 20150320141156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "products", force: true do |t|
     t.string   "product_name"
-    t.string   "upvotes",                  default: "0"
+    t.string   "upvotes",          default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "brand_name"
     t.string   "category"
-    t.text     "long_product_description"
-    t.string   "product_id"
-    t.string   "sku_label"
-    t.string   "sku_code"
-    t.string   "size_label"
-    t.string   "size_value"
-    t.string   "sku_currency"
-    t.decimal  "product_stars",            default: 0.0
-    t.integer  "number_reviews",           default: 0
-    t.text     "image_url"
+    t.decimal  "product_stars",    default: 0.0
+    t.integer  "number_reviews",   default: 0
     t.string   "hash_url_image"
     t.text     "long_description"
     t.string   "sku_price"
-    t.integer  "buyers",                   default: 0
-    t.integer  "not_buyers",               default: 0
+    t.integer  "buyers",           default: 0
+    t.integer  "not_buyers",       default: 0
+    t.string   "ref_elastic"
   end
 
   create_table "reviews", force: true do |t|

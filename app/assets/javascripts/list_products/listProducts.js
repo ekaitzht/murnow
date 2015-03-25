@@ -5,13 +5,17 @@ function($scope,$state,$stateParams, $mdDialog, products){
 	$scope.products = products.products.search;
     $scope.paginator = {busy: false, ended: false};
 
-
+	
 	if($scope.products.length === 0 ) { 
 		$scope.paginator.ended = true;
 	} else {
 		$scope.paginator.ended = false;
 
 	}
+	
+	$scope.percentFilter = function(product) {
+		return  (product.buyers/(product.buyers + product.not_buyers))*100;
+	};
 	
 	
 	$scope.ProductsFactory = products;

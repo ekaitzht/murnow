@@ -27,3 +27,5 @@ test:
 # localhost postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
 # staging HEROKU_POSTGRESQL_MAROON_URL  postgres://tsxkxdycwrdkba:8InQsHtQPeOCqvpzB1_KfbxSxV@ec2-54-197-241-64.compute-1.amazonaws.com:5432/d2lo01k3v0ddq0
 # producton HEROKU_POSTGRESQL_AQUA_URL postgres://udpojgqtzawsih:f1hl9vgzlK4jXjvHV5b1N5f5Sp@ec2-54-221-249-3.compute-1.amazonaws.com:5432/d9h2g0bf4qj5h3
+
+
