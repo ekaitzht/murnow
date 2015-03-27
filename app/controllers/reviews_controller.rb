@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   
   def create
     @product = Product.find(params[:product_id])
-    @product.update_attributes(:product_stars => ((review_params[:stars] + @product.product_stars)/2))
+    
     
     @review = @product.reviews.create(review_params.merge(user_id: current_user.id))
     if (@review.repurchase == true) then
@@ -11,7 +11,10 @@ class ReviewsController < ApplicationController
     else 
       @product.increment!(:not_buyers)
     end
-	
+    buyers = @product.buyers
+    not_buyers = @product.not_buyers
+    @product.update_attributes({:product_stars => ((review_params[:stars] + @product.product_stars)/2), :rating => (product.buyers/(product.buyers + product.not_buyers))*100 })
+
 	render json: @review
   end
   
