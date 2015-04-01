@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     end
     buyers = @product.buyers
     not_buyers = @product.not_buyers
-    @product.update_attributes({:product_stars => ((review_params[:stars] + @product.product_stars)/2), :rating => (product.buyers/(product.buyers + product.not_buyers))*100 })
+    @product.update_attributes({:product_stars => ((review_params[:stars] + @product.product_stars)/2), :rating => (buyers/(buyers + not_buyers))*100 })
 
 	render json: @review
   end
