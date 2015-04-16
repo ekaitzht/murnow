@@ -17,7 +17,12 @@
 			<a  ng-href="/profile">
 				
 			<div  ng-show="signedIn()" >
-		    	<img ng-show="signedIn()" ng-src="{{user.image}}" class="face-header" alt="{{user.username}}">
+		    	<div ng-show="user.image" >
+		    		<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+				</div>
+				<div ng-show="!user.image" >
+		    		<img ng-src="/assets/anonymousUser.jpg" class="face no-face" alt="Anonymous user">
+				</div>
 			</div>  </a>
 		</li>
 	    <li  ng-click="logout()" id="logout"><a>Log Out</a></li>
@@ -30,3 +35,4 @@
 
        
 			
+		

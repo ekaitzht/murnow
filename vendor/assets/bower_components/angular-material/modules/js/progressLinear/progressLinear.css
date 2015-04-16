@@ -2,8 +2,9 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.7.0-rc3
+ * v0.9.0-rc1
  */
+/* mixin definition ; sets LTR and RTL within the same style call */
 md-progress-linear {
   display: block;
   width: 100%;
@@ -15,8 +16,7 @@ md-progress-linear {
     top: 5px;
     -webkit-transform: translate(0, 5px) scale(1, 0);
             transform: translate(0, 5px) scale(1, 0);
-    -webkit-transition: all 0.3s linear;
-            transition: all 0.3s linear; }
+    transition: all 0.3s linear; }
   md-progress-linear .md-container.md-ready {
     -webkit-transform: translate(0, 0) scale(1, 1);
             transform: translate(0, 0) scale(1, 1); }
@@ -25,8 +25,7 @@ md-progress-linear {
     position: absolute;
     width: 100%; }
   md-progress-linear .md-bar1, md-progress-linear .md-bar2 {
-    -webkit-transition: all 0.2s linear;
-            transition: all 0.2s linear; }
+    transition: all 0.2s linear; }
   md-progress-linear[md-mode=determinate] .md-bar1 {
     display: none; }
   md-progress-linear[md-mode=indeterminate] .md-bar1 {
@@ -42,7 +41,7 @@ md-progress-linear {
     display: block;
     height: 5px;
     width: 100%;
-    margin-top: 0px;
+    margin-top: 0;
     position: absolute;
     background-color: transparent;
     background-size: 10px 10px !important;

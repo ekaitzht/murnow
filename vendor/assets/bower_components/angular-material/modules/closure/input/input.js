@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.8.3
+ * v0.9.0-rc1
  */
 goog.provide('ng.material.components.input');
 goog.require('ng.material.core');
@@ -13,7 +13,7 @@ goog.require('ng.material.core');
  * @name material.components.input
  */
 
-angular.module('material.components.input', [
+ng.material.components.input = angular.module('material.components.input', [
   'material.core'
 ])
   .directive('mdInputContainer', mdInputContainerDirective)
@@ -70,6 +70,9 @@ function mdInputContainerDirective($mdTheming, $parse) {
 
     self.isErrorGetter = $attrs.mdIsError && $parse($attrs.mdIsError);
 
+    self.delegateClick = function() {
+      self.input.focus();
+    };
     self.element = $element;
     self.setFocused = function(isFocused) {
       $element.toggleClass('md-input-focused', !!isFocused);
@@ -116,7 +119,7 @@ function labelDirective() {
  * Use the `<input>` or the  `<textarea>` as a child of an `<md-input-container>`.
  *
  * @param {number=} md-maxlength The maximum number of characters allowed in this input. If this is specified, a character counter will be shown underneath the input.<br/><br/>
- * The purpose of **`md-maxength`** is exactly to show the max length counter text. If you don't want the counter text and only need "plain" validation, you can use the "simple" `ng-maxlength` or maxlength attributes.
+ * The purpose of **`md-maxlength`** is exactly to show the max length counter text. If you don't want the counter text and only need "plain" validation, you can use the "simple" `ng-maxlength` or maxlength attributes.
  *
  * @usage
  * <hljs lang="html">
@@ -180,9 +183,8 @@ function inputTextareaDirective($mdUtil, $window) {
       setupTextarea();
     }
 
-    var touched = false;
     var isErrorGetter = containerCtrl.isErrorGetter || function() {
-      return ngModelCtrl.$invalid && (touched || ngModelCtrl.$touched);
+      return ngModelCtrl.$invalid && ngModelCtrl.$touched;
     };
     scope.$watch(isErrorGetter, containerCtrl.setInvalid);
 
@@ -194,9 +196,7 @@ function inputTextareaDirective($mdUtil, $window) {
     if (!isReadonly) {
       element
         .on('focus', function(ev) {
-          touched = true;
           containerCtrl.setFocused(true);
-          scope.$evalAsync();
         })
         .on('blur', function(ev) {
           containerCtrl.setFocused(false);
@@ -204,6 +204,9 @@ function inputTextareaDirective($mdUtil, $window) {
         });
 
     }
+
+    //ngModelCtrl.$setTouched();
+    //if( ngModelCtrl.$invalid ) containerCtrl.setInvalid();
 
     scope.$on('$destroy', function() {
       containerCtrl.setFocused(false);
@@ -337,7 +340,9 @@ function placeholderDirective() {
     var placeholderText = attr.placeholder;
     element.removeAttr('placeholder');
 
-    inputContainer.element.append('<div class="md-placeholder">' + placeholderText + '</div>');
+    var placeholder = '<div class="md-placeholder" ng-click="delegateClick()">' +
+                       placeholderText + '</div>';
+    inputContainer.element.append(placeholder);
   }
 }
 
