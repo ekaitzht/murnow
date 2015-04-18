@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope', '$mdDialog','products', 'product', 'Auth',
-function($scope, $mdDialog, products, product, Auth){
+  ['$scope', '$mdDialog','products', 'product', 'Auth','$state',
+function($scope, $mdDialog, products, product, Auth, $state){
   $scope.Math = window.Math;
   $scope.product = product.product;
   
@@ -35,7 +35,16 @@ function($scope, $mdDialog, products, product, Auth){
     $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   
-  
+  $scope.goProfile = function(id){
+	 	var user_id = id;
+	  Auth.currentUser().then(function (user){
+		    $state.go('profile', { id: user_id});
+
+		}, function(error) {
+			// unauthenticated error
+		    $state.go('public_profile', { id: user_id});
+        });
+	}
 
   $scope.showAddReviewPanel= function() {
     if(Auth._currentUser == null){
@@ -85,6 +94,8 @@ function($scope, $mdDialog, products, product, Auth){
 	        );
 	    });
 	}
+	
+	
 
 
 

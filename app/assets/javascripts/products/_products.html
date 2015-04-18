@@ -24,7 +24,7 @@
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
 	<div class="review-item" layout="row">
-		<a ng-href="/public_profile/{{review.user.id}}"> 
+		<a ng-click="goProfile(review.user_id)"> 
 			<div class="image-review" flex="10" flex-sm="20" >
 				  <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> 
 						<span ng-show="!review.user.image">No Image</span>
