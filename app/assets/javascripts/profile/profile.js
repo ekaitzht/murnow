@@ -16,7 +16,12 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
   User.getSkinProblems().success(function(data, status, headers, config) {
     $scope.user.skin_problems =  data.skin_problems; 
   });
-
+  
+  User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
+	  
+    $scope.reviews =  data.reviews; 
+  });
+  
 
   $scope.updateUser = function() {
     if ($scope.fileImage !== '') {
@@ -91,5 +96,9 @@ function($scope, User, $state, $upload, Auth, Amazon, $mdDialog, $http){
       };
       reader.readAsDataURL(file);
   });
+  
+    $scope.goToProduct = function(product_id){
+	  $state.go('products', { id: product_id});
+  }
 
 }]);

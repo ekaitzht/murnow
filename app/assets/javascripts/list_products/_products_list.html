@@ -1,9 +1,10 @@
+<md-card>
 	<md-list  class="products-list" layout="column" layout-align="center center">
 			<md-item  ng-repeat="product in products" >
 				<div class='md-item-content-wrapper'>
 				    <md-item-content ng-click="goToProductState('products',product.id)" layout="row" layout-align="start center" layout-padding>
 				      <div class='figure-wrapper' flex="38">
-				        <figure><a ng-href="/products/{{product.id}}"> <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a></figure>
+				        <a ng-href="/products/{{product.id}}"> <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></a>
 				      </div>
 				      <div class="md-tile-content" layout="column" flex="50">
 					   	<div> {{product.product_name}}  </div>
@@ -33,3 +34,4 @@
 			  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
 			  
 	</md-list>
+</md-card>

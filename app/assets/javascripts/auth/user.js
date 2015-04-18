@@ -74,6 +74,9 @@ angular.module('murnow')
   		});
 	};
 
+	o.getReviewsUser = function(id) {
+  		return $http.get('/reviews_by_user/'+id);
+	};
 
 
 	o.fromState = null;

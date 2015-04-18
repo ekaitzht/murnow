@@ -39,7 +39,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
      .state('profile', {
       url: '/profile',
       templateUrl: 'profile/_profile.html',
-      controller: 'Profile'
+      controller: 'Profile',
     })
     .state('public_profile', {
       url: '/public_profile/{id}',

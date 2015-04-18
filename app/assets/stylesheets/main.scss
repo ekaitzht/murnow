@@ -2,7 +2,8 @@ $pink-color: #FCB4E6;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
-$background-color-pink:white;
+$background-color-pink:#D4FFFB;
+$header-color:#80CBC4;
 
 
 .wordwrap {  
@@ -18,13 +19,13 @@ body {
 ul li {float: right;list-style-type: none;}
 span.sr-only.ng-binding {display:none;}
 .left {float:left;}
-body,html {background:$background-color-pink;}
+.not-home-page{overflow:hidden;}
+.not-home-page header{background-color:$header-color !important;}
+
 
 img {max-width:100%}
 .fa {color:$pink-color;}
 ui-view {width:100%;overflow-x:hidden;}
-
-
 
 
 .amatic {font-family:$amatic-font;}
@@ -39,7 +40,6 @@ ui-view > * {width:100%;}
 .weight-400 {font-weight:400;}
 .weight-700 {font-weight: 700;}
 
-md-content.md-default-theme {background-color:$background-color-pink;}
 
 .justify-text {text-align:center;}
 md-content{ margin-top:25px;}

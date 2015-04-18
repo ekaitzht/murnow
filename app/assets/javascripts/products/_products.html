@@ -1,5 +1,5 @@
-  
-<div class="product-profile" layout="column" layout-align="center" > 
+ <md-card> 
+<div class="product-profile" layout="column" layout-align="center" layout-padding> 
   <div layout= "row" class="page-header">
       <figure ><img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
       <div layout="column" class="information-product">
@@ -24,10 +24,12 @@
 
   <div ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
 	<div class="review-item" layout="row">
-		<div class="image-review" flex="10" flex-sm="20" >
-			<a ng-href="/public_profile/{{review.user.id}}">   <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> </a>
-					<span ng-show="!review.user.image">No Image</span>
-		</div>
+		<a ng-href="/public_profile/{{review.user.id}}"> 
+			<div class="image-review" flex="10" flex-sm="20" >
+				  <img ng-show="review.user.image" ng-src="{{review.user.image}}" class="face" alt="{{user.username}}"> 
+						<span ng-show="!review.user.image">No Image</span>
+			</div>
+		</a>
 	    
 		<div class="review-body" flex="70" flex-sm="50" layout="column">
 			<p class="wordwrap"> {{review.body}} </p>
@@ -46,3 +48,4 @@
     </div>
   </div>
 </div>
+ </md-card>

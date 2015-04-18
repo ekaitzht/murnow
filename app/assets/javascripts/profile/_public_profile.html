@@ -1,61 +1,64 @@
-<div layout="column" layout-padding >
-	<div layout="row"> 
-		<div class="wrapper-image-profile">
-			<div ng-show="user.image" class="md-tile-left">
-		    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
-			</div>
-		    <span ng-show="!user.image">NO IMAGE </span>
-		</div>  
-		<div layout="column">
-		    <div class="username">
-		    	 <span class="user-name"> {{user.username}} </span>
-		    </div>
-		    <div class="bio">
-		      <span ng-show="user.bio"> {{user.bio}}</span>
-		      <span ng-hide="user.bio"> Bio </span>
-		    </div>
-		</div>  	
-	</div>	
-	
-    <div class="profile-user" layout="column">
-		<div  class="profile-header">
-		Profile
-		</div>
-		<div layout="column">
-		      <div>Age: <span> {{user.age}} </span></div>
-		      <div> Skin Type: <span> {{user.skin_type}} </span></div>
-		      <div>	Skin Color: <span> {{user.skin_color}} </span> </div>
-		      <div>	Skin Tone: <span> {{user.skin_tone}} </span></div>
-		      <div> Skin Problems: <span ng-if="skin_problem.state == true" ng-repeat="skin_problem in user.skin_problems | filter:{state:true} | orderBy:'name'"> {{skin_problem.name}} <span ng-show=" ! $last ">,</span></span> </div>	      
-		      	
-		</div>
-	</div>
-	
-	<div>
-		
-	</div>
-	
-	<md-list  class="user-list-reviews" layout="column" layout-align="center center">
-		<md-item  ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column" layout-padding>
-			<div  class="product-thumbnail" flex="20" >
-				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}">
-			</div>	    
-			<div class='data-review-public-profile' flex="80">
-				<div> 
-				 {{review.product.product_name}} 
+<md-card>
+	<div layout="column" layout-padding>
+		<div layout="row" layout-sm="column"> 
+			<div layout="row" flex="40" layout-padding>
+					
+					<div class="wrapper-image-profile" layout="column" layout-padding >
+						<div ng-show="user.image" class="md-tile-left">
+					    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+						</div>
+					    <span ng-show="!user.image">Hey upload your image! </span>
+					</div>  
+					<div layout="column">
+					    <div class="username">
+					    	 <span class="user-name"> {{user.username}} </span>
+					    </div>
+					    <div class="bio">
+					      <span ng-show="user.bio"> {{user.bio}}</span>
+					      <span ng-hide="user.bio"> Bio </span>
+					    </div>
+					</div> 
 				</div>
-				<span style="font-size:20px; margin-left:10px;">
-					{{review.body}} - {{review.created_at | fromNow }}
-			  	</span>
-				<span>  
-			    	<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
-			    </span>
-			    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
-			    </rating>
-			</div>
-		   
-		</md-item>
-	</md-list>	
+			<div class="profile-user" layout="column" flex="60" layout-padding>
+					<div  class="profile-header">
+					Profile
+					</div>
+					<div layout="column">
+					      <div>Age: <span> {{user.age}} </span></div>
+					      <div> Skin Type: <span> {{user.skin_type}} </span></div>
+					      <div>	Skin Color: <span> {{user.skin_color}} </span> </div>
+					      <div>	Skin Tone: <span> {{user.skin_tone}} </span></div>
+					      <div> Skin Problems: <span ng-if="skin_problem.state == true" ng-repeat="skin_problem in user.skin_problems | filter:{state:true} | orderBy:'name'"> {{skin_problem.name}} <span ng-show=" ! $last ">,</span></span> </div>	      
+					      	
+					</div>
+				</div>
+		</div>	
+		
+		<div  layout="row" layout-padding> Reviews written ({{reviews.length}}) </div>
 
-
- </div>
+		
+		<md-list  class="user-list-reviews" layout="column" layout-align="center center">
+			<md-item  ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column" layout-padding>
+				<div  class="product-thumbnail" flex="20" >
+					<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}">
+				</div>	    
+				<div class='data-review-public-profile' flex="80">
+					<div> 
+					 {{review.product.product_name}} 
+					</div>
+					<span style="font-size:20px; margin-left:10px;">
+						{{review.body}} - {{review.created_at | fromNow }}
+				  	</span>
+					<span>  
+				    	<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
+				    </span>
+				    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
+				    </rating>
+				</div>
+			   
+			</md-item>
+		</md-list>	
+	
+	
+	 </div>
+ <md-card>

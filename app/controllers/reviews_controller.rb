@@ -33,8 +33,7 @@ class ReviewsController < ApplicationController
   end
   
   def reviews_by_user
-	 @reviews = Review.find_by(user_id: params[:user_id]) 
-	 
+	 @reviews =Review.where(:user_id => params[:user_id])
 	 respond_with @reviews;
   end
 

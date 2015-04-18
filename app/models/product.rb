@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
       indexes :long_description, analyzer: 'english', index_options: 'offsets'
       indexes :product_name, analyzer: 'english', index_options: 'offsets'
       indexes :brand_name, analyzer: 'english', index_options: 'offsets'
+      indexes :category, analyzer: 'english', index_options: 'offsets'
       indexes :rating, analyzer: 'english', index_options: 'offsets'
     end
   end
@@ -34,7 +35,7 @@ class Product < ActiveRecord::Base
           multi_match: {
             query: query,
             # Here you can add what search field can be matcheables
-            fields: ['product_name','long_description','brand_name'] 
+            fields: ['product_name','brand_name','long_description', 'category^10'] 
           }
         },
         sort: [{rating: {order: 'desc'}}],

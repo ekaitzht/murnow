@@ -1,5 +1,6 @@
 class SkinProblemsController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :only => [:destroy,:create]
+    
   	def create
   		logger.info params.inspect
   		UserSkinProblem.create(user_id: params[:user_id],
