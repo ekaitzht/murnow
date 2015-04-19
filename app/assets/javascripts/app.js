@@ -12,7 +12,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/',
-      templateUrl: 'home/_background.html',
+      templateUrl: 'home/_reviews.html',
       controller: 'MainCtrl'
     })
     .state('list_products', {  // CAMBIAR ESTOOOOOOO

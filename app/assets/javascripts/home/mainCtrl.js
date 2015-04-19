@@ -8,17 +8,6 @@ angular.module('murnow')
 function($scope, $rootScope, $state,$stateParams, $mdDialog, products){
 	
 
-	$scope.addProduct = function(){
-  		$scope.reviews.push({title: $scope.title, upvotes: 0});
-		$scope.title = '';
-	};
-
-
-	$scope.incrementUpvotes = function(review){
-		review.upvotes += 1;
-	}
-	$scope.decrementUpvotes = function(review){
-		review.upvotes -= 1;
-	}
+	//$scope.mostPopularReviews = products.getMostPopularReviews();
 
 }]);

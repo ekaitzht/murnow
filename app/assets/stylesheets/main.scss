@@ -5,7 +5,7 @@ $color-divider: #FDD1F0;
 $background-color-pink:#D4FFFB;
 $header-color:#80CBC4;
 
-
+h1 {margin:0px;}
 .wordwrap {  
    white-space: pre-wrap;      /* Webkit */    
    white-space: -moz-pre-wrap; /* Firefox */     
@@ -61,6 +61,8 @@ header {
 		position:relative;
 		top:-10px;
 	}
+	
+	margin-bottom:50px;
 }
 
 
@@ -79,8 +81,8 @@ md-content:not(.home-page){margin-top:21px;}
 .home-page {background-image: image-url('girly-wallpaper.jpg');}
 .home-page md-content.md-default-theme {background-color:transparent;}
 .home-page md-toolbar.md-default-theme{background-color: transparent;color:black}
-.title-landing-page{height: 200px; font-size:62px; font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
-.twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; font-size:30px;}
+.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
+.twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; }
 
 
 /* PRODUCT PROFILE */
