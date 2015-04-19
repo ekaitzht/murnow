@@ -6,7 +6,8 @@ app.config([
 '$stateProvider',
 '$urlRouterProvider',
 '$locationProvider',
-function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDialog) {
+'$provide',
+function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDialog, $provide) {
 
 
   $stateProvider
@@ -85,7 +86,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 }]);
 
 app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function($rootScope,$location, $mdDialog, $state, $anchorScroll) {
-  var lock = false;
+	   var lock = false;
   
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
@@ -106,7 +107,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
 
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	    //$("#search-box-input").blur(); // This fix a bug in mobile 
-		$("md-content").scrollTop(0);
+		//$("md-content").scrollTop(0);
 	    	
 		switch(toState.name) {
 		    case 'home':
