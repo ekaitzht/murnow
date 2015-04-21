@@ -70,7 +70,6 @@ header {
 
 
 
-md-item{width:100%;}
 
 
 .not-home-page md-content{margin-top:21px;}
@@ -101,7 +100,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 .products-list .wrapper-rate-approval{@extend .amatic; @extend .weight-700;position:relative;top:-11px;}
 .products-list .approval-rate {font-size:14px;}
 .products-list .repurchase-percent {font-size:30px;}
-.products-list .md-item {cursor:pointer;}
+.products-list .md-list-item {cursor:pointer;}
 .products-list .figure-wrapper figure{margin:18px;}
 //.products-list {border-radius:3px;box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);margin-top:25px;background-color:white;}
 

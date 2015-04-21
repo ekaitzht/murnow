@@ -46,13 +46,10 @@
 	 
 	 <div  layout="row" layout-padding> Your last reviews ({{reviews.length}}) </div>
 
-	 <md-list  class="user-list-reviews" layout="column" layout-align="center center">
-			<md-item  ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column" layout-padding>
-			
-				<div  class="product-thumbnail" flex="20" >
-					<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}">
-				</div>	    
-				<div class='data-review-public-profile' flex="80">
+		<md-list  class="user-list-reviews" layout="column">
+			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column">
+				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
+				<div class="md-list-item-text">
 					<div> 
 					 {{review.product.product_name}} 
 					</div>
@@ -67,6 +64,7 @@
 				</div>
 			   
 			</md-item>
-	</md-list>	
+		</md-list>	
+	
 	
  </md-card>
