@@ -12,7 +12,7 @@ function($scope, scopeProduct, products, $mdDialog){
         { 
           body: $scope.body,
           repurchase: $scope.repurchase,
-          stars: $scope.stars 
+          stars:  parseFloat($scope.stars )
         }
       }
   		).success(function(response) {
@@ -34,7 +34,7 @@ function($scope, scopeProduct, products, $mdDialog){
     		
 			scopeProduct.repurchase_again_percent =  (buyers/(buyers + not_buyers))*100;
     			    		
-    		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + $scope.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
+    		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + review.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
     		
     		$mdDialog.hide();
   		}).error(function(error){

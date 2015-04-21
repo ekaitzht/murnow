@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325213016) do
+ActiveRecord::Schema.define(version: 20150420131315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150325213016) do
     t.datetime "updated_at"
     t.string   "brand_name"
     t.string   "category"
-    t.decimal  "product_stars",    default: 0.0
+    t.float    "product_stars",    default: 0.0
     t.integer  "number_reviews",   default: 0
     t.string   "hash_url_image"
     t.text     "long_description"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150325213016) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "repurchase", null: false
-    t.integer  "stars",      null: false
+    t.float    "stars",      null: false
   end
 
   add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree

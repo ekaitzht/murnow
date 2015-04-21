@@ -32,6 +32,11 @@ angular.module('murnow')
 	o.addReview = function(id, review) {
   		return $http.post('/products/' + id + '/reviews', review);
 	};
+	
+	o.getMostPopularReviews = function(id, review) {
+  		return $http.get('/most_popular_reviews_for_the_most_popular_products');
+	};
+
 
 	o.searchFirstPage = function (searchQuery) {    
 		

@@ -8,6 +8,18 @@ angular.module('murnow')
 function($scope, $rootScope, $state,$stateParams, $mdDialog, products){
 	
 
-	//$scope.mostPopularReviews = products.getMostPopularReviews();
+	 products.getMostPopularReviews().success(function(data){
+		
+		for (i = 0; i <= 3; i++) {
+			
+			if( data[i].image === null) {
+				data[i].image = "/assets/anonymousUser.jpg";	
+			}
+		} 
+		$scope.mostPopularReviews = data;
+	});
+	
+	
+
 
 }]);

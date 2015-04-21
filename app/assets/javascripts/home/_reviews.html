@@ -1,0 +1,80 @@
+<div align="center center" class="reviews" layout="column">
+	<div layout="row" layout-sm="column"  layout-align="start center">
+		<div flex="50" layout="row" layout-padding>
+			<a ng-href="public_profile/{{mostPopularReviews[0].id}}">
+				<div>
+					<img ng-src="{{mostPopularReviews[0].image}}" class="face" alt="Anonymous user">
+				</div>
+			</a>
+			<a ng-href="products/{{mostPopularReviews[0].product_id}}">
+				<div  layout-padding class="bubble">
+					<div class="product-name">{{mostPopularReviews[0].product_name}}</div>
+					<div class="brand-name">by {{mostPopularReviews[0].brand_name}}</div>
+					<div class="ratings">    
+						<rating ng-model="mostPopularReviews[0].stars"  
+							readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+	        		</div>
+					{{mostPopularReviews[0].body}}
+				</div>
+			</a>
+		</div>
+		<div flex="50" layout="row" layout-padding>
+			<a ng-href="public_profile/{{mostPopularReviews[1].id}}">
+				<div>
+					<img ng-src="{{mostPopularReviews[1].image}}" class="face" alt="Anonymous user">
+				</div>
+			</a>
+			<a ng-href="products/{{mostPopularReviews[1].product_id}}">
+				<div  layout-padding class="bubble">
+					<div class="product-name">{{mostPopularReviews[1].product_name}}</div>
+					<div class="brand-name">by {{mostPopularReviews[1].brand_name}}</div>
+					<div class="ratings">    
+						<rating ng-model="mostPopularReviews[1].stars"  
+							readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+	        		</div>
+					{{mostPopularReviews[1].body}}
+				</div>
+			</a>
+		</div>
+	</div>
+	<div layout="row" layout-sm="column" layout-align="start center" >
+		<div flex="50" layout="row" layout-padding>
+			<a ng-href="public_profile/{{mostPopularReviews[2].id}}">
+				<div>
+					<img ng-src="{{mostPopularReviews[2].image}}" class="face" alt="Anonymous user">
+				</div>
+			</a>
+			<a ng-href="products/{{mostPopularReviews[2].product_id}}">
+				<div  layout-padding class="bubble">
+					<div class="product-name">{{mostPopularReviews[2].product_name}}</div>
+					<div class="brand-name">by {{mostPopularReviews[2].brand_name}}</div>
+					<div class="ratings">    
+						<rating ng-model="mostPopularReviews[2].stars"  
+							readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+	        		</div>
+					{{mostPopularReviews[2].body}}
+				</div>
+			</a>
+		</div>
+		<div flex="50" layout="row" layout-padding>
+			<a ng-href="public_profile/{{mostPopularReviews[3].id}}">
+				<div>
+					<img ng-src="{{mostPopularReviews[3].image}}" class="face" alt="Anonymous user">
+				</div>
+			</a>
+			<a ng-href="products/{{mostPopularReviews[3].product_id}}">
+				<div  layout-padding class="bubble">
+					<div class="product-name">{{mostPopularReviews[3].product_name}}</div>
+					<div class="brand-name">by {{mostPopularReviews[3].brand_name}}</div>
+					<div class="ratings">    
+						<rating ng-model="mostPopularReviews[0].stars"  
+							readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+	        		</div>
+					{{mostPopularReviews[3].body}}
+				</div>
+			</a>
+		</div>		
+	</div>
+</div>
+  
+
