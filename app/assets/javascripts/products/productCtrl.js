@@ -35,14 +35,19 @@ function($scope, $mdDialog, products, product, Auth, $state){
     $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   
-  $scope.goProfile = function(id){
-	 	var user_id = id;
+  $scope.goProfile = function(user_id_clicked){
+	 	
 	  Auth.currentUser().then(function (user){
-		    $state.go('profile', { id: user_id});
+		 	if(user_id_clicked === user.id) {
+			 	 $state.go('profile', { id: user.id});
+		 	} else {
+			 	$state.go('public_profile', { id: user_id_clicked})
+		 	}
+		   
 
 		}, function(error) {
 			// unauthenticated error
-		    $state.go('public_profile', { id: user_id});
+		    $state.go('public_profile', { id: user_id_clicked});
         });
 	}
 
@@ -63,9 +68,13 @@ function($scope, $mdDialog, products, product, Auth, $state){
         hasBackdrop: true,
         clickOutsideToClose: true,
         bindToController: true,
+        onComplete:function(){
+           
+           $('#body-text-review').focus();
+        },
         locals: {scopeProduct: $scope}
       });
-      
+     
     }
      
   };

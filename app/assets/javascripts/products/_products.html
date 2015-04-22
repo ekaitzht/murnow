@@ -17,8 +17,8 @@
   <div class="all-comments"  layout="row" layout-padding> All Comments ({{product.reviews.length}}) </div>
   
   <form ng-click="showAddReviewPanel()" ng-hide="hasReviewUser" ng-submit="addReview()" style="margin-top:30px;">
-      <md-input-container>
-        <input  type="text"  placeholder="{{inputReviewPlaceholder}}" >
+      <md-input-container md-no-float>
+        <input  type="text"  placeholder="{{inputReviewPlaceholder}}" disabled>
       </md-input-container>
   </form>
 
