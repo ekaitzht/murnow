@@ -15,6 +15,9 @@
    			<md-radio-button value="false"> No </md-radio-button>
     	</md-radio-group>
     	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>
+    	<div  class="alert alert-danger" role="alert" ng-show="errors.reviewDialog">
+        	{{errors.reviewDialog}}
+      	</div>
   	</form>
   </md-content>
 </md-dialog>

@@ -4,7 +4,8 @@ angular.module('murnow')
 function($scope, scopeProduct, products, $mdDialog){
 
 	$scope.addReview = function(){
-
+		$scope.errors = {};
+		
 		if($scope.body === '') { return; }
   		
   		products.addReview(scopeProduct.product.id, 
@@ -39,7 +40,10 @@ function($scope, scopeProduct, products, $mdDialog){
     		$mdDialog.hide();
   		}).error(function(error){
 
-
+		  if (error.error == "You need to sign in or sign up before continuing.") {
+		         
+		          $scope.errors.reviewDialog = "You can't login because your confirmation email has expired, go to your email"
+		        } 
       });
   		$scope.body = '';
 	};
