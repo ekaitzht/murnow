@@ -13,6 +13,10 @@ h1 {margin:0px;}
    white-space: -o-pre-wrap;   /* Opera 7 */     
    word-wrap: break-word;      /* IE */ 
 }
+
+.line-height {
+	line-height: 18px;
+}
 body {
 	font-family: $josefin-sans, sans-serif;	
 }
@@ -101,7 +105,7 @@ header {
 /* LIST STYLES */
 
 md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100%;}
-.products-list .wrapper-rate-approval{@extend .amatic; @extend .weight-700;position:relative;top:-11px;}
+.products-list .wrapper-rate-approval{@extend .amatic; @extend .weight-700;}
 .products-list .approval-rate {font-size:14px;}
 .products-list .repurchase-percent {font-size:30px;}
 .products-list .md-list-item {cursor:pointer;}
@@ -193,6 +197,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 		  
 		  input {color:black;}
 	}
+	header {height:60px;}
 	
 }
 

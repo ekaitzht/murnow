@@ -11,6 +11,12 @@ $monte-carlo:#80CBC4;
 		background-color:$monte-carlo;
 		md-autocomplete {width:100%;}
 	}
+	
+	.not-home-page {
+		md-autocomplete {width:40%;position:relative;left:-30px;}
+		.home a {  line-height: 60px;}
+		
+	}
     
 	
 }
