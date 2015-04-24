@@ -4,11 +4,13 @@
 	  
 	  <!--- the nav menu should be implemented when 0.9.0 material angular has released -->
 	  <!-- Nav when you are not authenticated --> 
-	  <ul ng-show="!signedIn()">
+	  <ul class="mainNav" ng-show="!signedIn()">
 		    <li ng-click="showDialogLogin()" ><a >Log In</a></li>
 		    <li ng-click="showDialogRegister()"><a>Sign Up</a></li>
 	  </ul>
   	
+  	
+	  
   	
   	  <!-- Nav when you are authentificated --> 
   	

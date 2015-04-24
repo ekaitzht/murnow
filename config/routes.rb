@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'search', to: 'search#search', defaults: { format: 'json' }
-  
+  get 'search_autocomplete', to: 'search#autocomplete', defaults: { format: 'json' }
+   get 'search', to: 'search#search', defaults: { format: 'json' }
   get 'amazon/policy', to: 'amazon#policy', defaults: { format: 'json' }
 
 

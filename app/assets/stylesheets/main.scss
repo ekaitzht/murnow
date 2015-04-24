@@ -3,7 +3,7 @@ $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans';
 $color-divider: #FDD1F0;
 $background-color-pink:#D4FFFB;
-$header-color:#80CBC4;
+$monte-carlo:#80CBC4;
 
 h1 {margin:0px;}
 .wordwrap {  
@@ -16,11 +16,10 @@ h1 {margin:0px;}
 body {
 	font-family: $josefin-sans, sans-serif;	
 }
-ul li {float: right;list-style-type: none;}
 span.sr-only.ng-binding {display:none;}
 .left {float:left;}
 .not-home-page{overflow:hidden;}
-.not-home-page md-toolbar{background-color:$header-color !important;}
+.not-home-page md-toolbar{background-color:$monte-carlo !important;}
 
 
 img {max-width:100%}
@@ -49,8 +48,6 @@ ui-view > * {width:100%;}
 }
 
 /* GENERAL ELEMENTS RELATED WITH THE CLASSES */
-.search-box-container input{width: 100%;}
-.search-box-container form{margin-bottom:0px;}
 #search-box-input {-webkit-box-sizing: border-box;box-sizing: border-box;}
 #progress-circular{display:none; z-index:1001;position:fixed;  left: 0;
   right: 0;
@@ -111,7 +108,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
   right: 0.8em;
   cursor:pointer;
 }
-.home-page header {color:white;}
+
 
 
 
@@ -120,8 +117,10 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 
 
 .home-page{
+	header {background-color:$monte-carlo;}
 	ui-view {margin-top:50px;}
-	background-image: image-url('girly-wallpaper.jpg');
+	h1, h2 {color:white;}
+	//background-image: image-url('girly-wallpaper.jpg');
 	md-content.md-default-theme {background-color:transparent;}
 	md-toolbar.md-default-theme{background-color: transparent;color:black}
 	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
@@ -129,7 +128,8 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 	li {cursor:pointer;}
 	
 	md-content{ margin-top:3px;}
-	
+	.mainNav li {float: right;list-style-type: none;}
+
 	.reviews {
 		.face{border-radius:100px;width:100px;height:100px;}
 	}
@@ -162,7 +162,16 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 	top: 20px;
 	}
 	
-
+	md-autocomplete {
+		width:40%;margin:auto;
+	}
+	
+	.md-autocomplete-suggestions  li{
+				img {  padding-top: 5px !important;}
+		> span {position:relative !important; top:-7px !important;}
+		}
+	
+		
 
 }
 

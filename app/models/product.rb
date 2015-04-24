@@ -10,11 +10,11 @@ class Product < ActiveRecord::Base
 
   settings index: { number_of_shards: 1 } do
     mappings dynamic: 'false' do
-      indexes :long_description, analyzer: 'english', index_options: 'offsets'
       indexes :product_name, analyzer: 'english', index_options: 'offsets'
       indexes :brand_name, analyzer: 'english', index_options: 'offsets'
-      indexes :category, analyzer: 'english', index_options: 'offsets'
+      indexes :long_description, analyzer: 'english', index_options: 'offsets'
       indexes :rating, analyzer: 'english', index_options: 'offsets'
+      indexes :category, analyzer: 'english', index_options: 'offsets'
     end
   end
 
@@ -26,6 +26,16 @@ class Product < ActiveRecord::Base
     }))
   end 
 =end
+
+  def self.autocomplete_search(query)
+    __elasticsearch__.search(
+	     _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
+     query: { 
+	  	match_phrase_prefix: {
+                    product_name: query
+                }
+  	  }  )
+  end
 
   def self.search(query, from)
     __elasticsearch__.search(
@@ -43,8 +53,6 @@ class Product < ActiveRecord::Base
       }
     )
   end
-
-
 end
 
 

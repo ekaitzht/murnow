@@ -46,6 +46,16 @@ angular.module('murnow')
 		return searchToElasticSearch(searchQuery)		
 	 
 	};
+	
+	o.searchForAutoComplete = function (query) {    
+		
+		return $http.get('/search_autocomplete/?q='+query).then(function(data){
+	     	return data.data.search;
+		});
+	 
+	};
+	
+	
   
 	o.searchNextPage = function () {
 	  	  o.from += 20;
