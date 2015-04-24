@@ -59,14 +59,21 @@ header {
 		border: 1px solid #ddd;
 		width: 40px;
 		height: 40px; 
-		position:relative;
-		top:-10px;
+	
 	}
 	
 }
 
-
-
+#menu > * {display:inline-block;}
+#menu {float:right;
+	
+	
+	.md-button{
+		  position: relative;
+  top: -10px;
+  right: -8px;
+	}
+}	
 
 
 .not-home-page md-content{margin-top:21px;}
@@ -171,13 +178,25 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 		> span {position:relative !important; top:-7px !important;}
 		}
 	
+	
+	#autocomplete-not-home-page {display:none;}
 		
-
+	
+	
 }
 
+.not-home-page {
+	md-autocomplete {
+		width:40%;margin:auto;
+		  position: relative;
+		  top: -10px;
+		  
+		  input {color:black;}
+	}
+	
+}
 
-
-
+.mainNav {float:right;}
 
 
 

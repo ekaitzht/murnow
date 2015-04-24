@@ -1,4 +1,16 @@
+
+$monte-carlo:#80CBC4;
 @media screen and (max-width: 960px) {
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
+	
+}
+
+@media screen and (max-width: 768px) {
+	.home-page{
+		ui-view{display:none}
+		background-color:$monte-carlo;
+		md-autocomplete {width:100%;}
+	}
+    
 	
 }

@@ -4,13 +4,7 @@ class SearchController < ApplicationController
 	    respond_with = []
 	  else
 	  	response = Product.autocomplete_search(params[:q])
-
-	  	filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
-
-		response.results.map { |r| filteringMetaData << r._source }
-		
-		
-	    respond_with filteringMetaData
+	    respondSearchData(response)
 	  end
 	end
 	
@@ -19,14 +13,17 @@ class SearchController < ApplicationController
 	    respond_with = []
 	  else
 	  	response = Product.search(params[:q],  params[:from])
-
-	  	filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
+	  	respondSearchData(response)
+	  end
+	end
+	
+	def respondSearchData(response) 
+		filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
 
 		response.results.map { |r| filteringMetaData << r._source }
 		
 		
 	    respond_with filteringMetaData
-	  end
 	end
 end
 

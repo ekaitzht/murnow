@@ -2,19 +2,16 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.9.0-rc2-master-fdcceb5
  */
 goog.provide('ng.material.components.dialog');
 goog.require('ng.material.components.backdrop');
 goog.require('ng.material.core');
-(function() {
-'use strict';
-
 /**
  * @ngdoc module
  * @name material.components.dialog
  */
-ng.material.components.dialog = angular.module('material.components.dialog', [
+angular.module('material.components.dialog', [
   'material.core',
   'material.components.backdrop'
 ])
@@ -117,7 +114,7 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  *            '<md-dialog aria-label="List dialog">' +
  *            '  <md-content>'+
  *            '    <md-list>'+
- *            '      <md-item ng-repeat="item in items">'+
+ *            '      <md-list-item ng-repeat="item in items">'+
  *            '       <p>Number {{item}}</p>' +
  *            '      </md-item>'+
  *            '    </md-list>'+
@@ -669,4 +666,4 @@ function MdDialogProvider($$interimElementProvider) {
 }
 MdDialogProvider.$inject = ["$$interimElementProvider"];
 
-})();
+ng.material.components.dialog = angular.module("material.components.dialog");

@@ -2,11 +2,10 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.9.0-rc2-master-fdcceb5
  */
-(function() {
-'use strict';
-
+(function () {
+"use strict";
 /*
  * @ngdoc module
  * @name material.components.backdrop
@@ -35,4 +34,5 @@ function BackdropDirective($mdTheming) {
   return $mdTheming;
 }
 BackdropDirective.$inject = ["$mdTheming"];
+
 })();

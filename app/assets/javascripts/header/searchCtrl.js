@@ -46,9 +46,9 @@ angular.module('murnow')
  
    function submittingTextSearch(searchText) {
   
-
+   		$('.md-autocomplete-suggestions').hide();
    		$state.go('list_products', { searchQuery: searchText});
-
+   		
   	}
   	
   	

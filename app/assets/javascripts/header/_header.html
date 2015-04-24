@@ -4,20 +4,17 @@
 	  
 	  <!--- the nav menu should be implemented when 0.9.0 material angular has released -->
 	  <!-- Nav when you are not authenticated --> 
-	  <ul class="mainNav" ng-show="!signedIn()">
-		    <li ng-click="showDialogLogin()" ><a >Log In</a></li>
-		    <li ng-click="showDialogRegister()"><a>Sign Up</a></li>
-	  </ul>
-  	
-  	
-	  
+	  <div class="mainNav" ng-show="!signedIn()">
+		    <md-button ng-click="showDialogLogin()" >Log In</md-button>
+		    <md-button ng-click="showDialogRegister()">Sign Up</md-button>
+	  </div>
+
   	
   	  <!-- Nav when you are authentificated --> 
   	
-	  <ul ng-show="signedIn()"  id="menu">
-		<li>
-			<a  ng-href="/profile">
-				
+	  <div ng-show="signedIn()"  id="menu">
+		<md-button  ng-click="logout()" id="logout">Log Out</md-button>
+		<a  ng-href="/profile">
 			<div  ng-show="signedIn()" >
 		    	<div ng-show="user.image" >
 		    		<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
@@ -25,10 +22,10 @@
 				<div ng-show="!user.image" >
 		    		<img ng-src="/assets/anonymousUser.jpg" class="face no-face" alt="Anonymous user">
 				</div>
-			</div>  </a>
-		</li>
-	    <li  ng-click="logout()" id="logout"><a>Log Out</a></li>
-	  </ul>
+			</div>  
+		</a>
+	
+	  </div>
 	  
 	  
 	</div>
