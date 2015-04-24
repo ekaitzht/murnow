@@ -9,12 +9,12 @@ angular.module('murnow')
     	
   	};
   	var searchToElasticSearch = function(query){
-	  
+	  	$("#progress-circular").show();
         
         return $http.get('/search/?q='+query+'&from='+ o.from).success(function(data){
 	     	angular.copy(data, o.products);
 	     	$.merge( o.accumulateProducts, data.search);
-		 	
+		 	$("#progress-circular").hide();
 		});
   	}
   o.getAll = function() {

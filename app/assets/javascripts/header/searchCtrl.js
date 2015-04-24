@@ -20,7 +20,7 @@ angular.module('murnow')
      * remote dataservice call.
      */
     function querySearch (query) {
-      var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
+     /* var results = query ? self.states.filter( createFilterFor(query) ) : self.states,
           deferred;
       if (self.simulateQuery) {
         deferred = $q.defer();
@@ -32,7 +32,7 @@ angular.module('murnow')
         return deferred.promise;
       } else {
         return results;
-      }
+      }*/
     }
     function searchTextChange(text) {
 	  

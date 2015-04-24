@@ -22,7 +22,7 @@
           md-selected-item-change="ctrl.selectedItemChange(item)"
           md-items="item in ctrl.querySearch(ctrl.searchText)"
           md-item-text="item.product_name"
-          md-min-length="3"
+          md-min-length="100"
           md-autofocus="true"
           placeholder="Find make up reviews! :)">
             <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}.jpg" class='md-avatar' alt="{item.product_name}" with="25" height="25">
