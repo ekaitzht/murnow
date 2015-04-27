@@ -1,37 +1,39 @@
 <md-dialog aria-label="Mango (Fruit)"> 
-    <div class="page-header">
-      <h1>Register</h1>
-    </div>
-  <md-content md-theme="light-blue-dark">
-    <form name="registerForm" ng-submit="register()">
-
-        <md-input-container>
-          <label> Email </label>
-          <input ng-model="user.email" type="email">
-        </md-input-container>
-        <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
-          {{errors.errorEmail}}
-        </div>
-        
-        <md-input-container>
-          <label> Name </label>
-          <input type="text"  ng-model="user.username"  ng-model-options="{ getterSetter: true }">
-        </md-input-container>
-        <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
-          {{errors.errorName}}
-        </div>
-
-        <md-input-container>
-          <label> Password </label>
-          <input ng-model="user.password" type="password" ng-model="user.password" >
-        </md-input-container>
-
-        <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
-          {{errors.errorPassword}}
-        </div>
-        <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
-        <a target="_self" href='/users/auth/facebook'>Connect with facebook</a>
-    </form>
-  </md-content>
+	<md-dialog-content class="sticky-container">
+		<div>
+		    <form name="registerForm" ng-submit="register()">
+		
+		        <md-input-container>
+		          <label> Email </label>
+		          <input ng-model="user.email" type="email">
+		        </md-input-container>
+		        <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
+		          {{errors.errorEmail}}
+		        </div>
+		        
+		        <md-input-container>
+		          <label> Name </label>
+		          <input type="text"  ng-model="user.username"  ng-model-options="{ getterSetter: true }">
+		        </md-input-container>
+		        <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
+		          {{errors.errorName}}
+		        </div>
+		
+		        <md-input-container>
+		          <label> Password </label>
+		          <input ng-model="user.password" type="password" ng-model="user.password" >
+		        </md-input-container>
+		
+		        <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
+		          {{errors.errorPassword}}
+		        </div>
+		        <md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
+		        <a target="_self" href='/users/auth/facebook'>Connect with facebook</a>
+		    </form>
+		</div>
+		</md-dialog-content> 
 </md-dialog>
+
+
+
 
