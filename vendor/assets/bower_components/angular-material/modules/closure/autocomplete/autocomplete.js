@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-fdcceb5
+ * v0.9.0-rc2-master-4a648d5
  */
 goog.provide('ng.material.components.autocomplete');
 goog.require('ng.material.components.icon');
@@ -27,7 +27,7 @@ var ITEM_HEIGHT = 41,
     MAX_HEIGHT = 5.5 * ITEM_HEIGHT,
     MENU_PADDING = 8;
 
-function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $rootElement) {
+function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $mdTheming, $window, $animate, $rootElement) {
 
   //-- private variables
 
@@ -125,6 +125,7 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
     $mdTheming(elements.$.ul);
     elements.$.ul.detach();
     elements.$.root.append(elements.$.ul);
+    if ($animate.pin) $animate.pin(elements.$.ul, $rootElement);
   }
 
   function focusElement () {
@@ -321,6 +322,12 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   function clearValue () {
     $scope.searchText = '';
     select(-1);
+
+    // Per http://www.w3schools.com/jsref/event_oninput.asp
+    var eventObj = document.createEvent('CustomEvent');
+    eventObj.initCustomEvent('input', true, true, {value: $scope.searchText});
+    elements.input.dispatchEvent(eventObj);
+
     elements.input.focus();
   }
 
@@ -392,7 +399,7 @@ function MdAutocompleteCtrl ($scope, $element, $mdUtil, $mdConstant, $timeout, $
   }
 
 }
-MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$rootElement"];
+MdAutocompleteCtrl.$inject = ["$scope", "$element", "$mdUtil", "$mdConstant", "$timeout", "$mdTheming", "$window", "$animate", "$rootElement"];
 
 angular
     .module('material.components.autocomplete')
@@ -449,7 +456,6 @@ function MdAutocomplete ($mdTheming, $mdUtil) {
       noCache:       '=?mdNoCache',
       itemChange:    '&?mdSelectedItemChange',
       textChange:    '&?mdSearchTextChange',
-      isDisabled:    '=?ngDisabled',
       minLength:     '=?mdMinLength',
       delay:         '=?mdDelay',
       autofocus:     '=?mdAutofocus',
@@ -536,6 +542,9 @@ function MdAutocomplete ($mdTheming, $mdUtil) {
   };
 
   function link (scope, element, attr) {
+    if (attr.ngDisabled) {
+      scope.$parent.$watch(attr.ngDisabled, function (val) { scope.isDisabled = val; });
+    }
     scope.contents = attr.$mdAutocompleteTemplate;
     delete attr.$mdAutocompleteTemplate;
 
@@ -563,7 +572,7 @@ function MdHighlightCtrl ($scope, $element, $interpolate) {
 
   function sanitize (term) {
     if (!term) return term;
-    return term.replace(/[\*\[\]\(\)\{\}\\\^\$]/g, '\\$&');
+    return term.replace(/[\\\^\$\*\+\?\.\(\)\|\{\}\[\]]/g, '\\$&');
   }
 
   function getRegExp (text, flags) {
