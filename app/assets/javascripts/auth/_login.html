@@ -1,7 +1,9 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog>
     <md-dialog-content class="sticky-container">
+		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
 		<div>
 		       <md-button class="md-primary"  href='/users/auth/facebook' target="_self">Facebook Login</md-button>
+		        
 		        <md-input-container md-no-float>
 		          <label> Email </label>
 		          <input ng-model="user.email" >
@@ -17,11 +19,12 @@
 			 		{{errors.errorPasswordEmail}}
 	      		</div>
 		      </form>
+		      
 		</div>
 	</md-dialog-content>      
 	<div class="md-actions" layout="row">	
+			<md-button  ng-hide="sendConfirm"  ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
 			<md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary" ng-click="login()" >Log In</md-button>     
-		    <md-button  ng-hide="sendConfirm"  ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
 		    <md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
 	 </div>
 </md-dialog>

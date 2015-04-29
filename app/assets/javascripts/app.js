@@ -73,6 +73,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
   		resolve: {
 	  		product: ['$stateParams', 'products', function($stateParams, products) {
 	        	return products.get($stateParams.id);
+	        	$state.go('profile');
 	        }]
       	},
       	onEnter: function(){
@@ -87,7 +88,20 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 
 app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function($rootScope,$location, $mdDialog, $state, $anchorScroll) {
 	   var lock = false;
+  	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	    if ( $('md-dialog').length === 1) {
+		     	 event.preventDefault();
+		    	 $mdDialog.cancel()
+		    	 
+		    	
+	    } else {
+		    
+	    }
+       
+    });
   
+    
+    
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
@@ -100,11 +114,10 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
         $rootScope.deregistration_login_after_confirmation();
         delete $rootScope.deregistration_login_after_confirmation;
     });
-    
-    
-
   }
 
+  
+    
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	    //$("#search-box-input").blur(); // This fix a bug in mobile 
 		//$("md-content").scrollTop(0);
