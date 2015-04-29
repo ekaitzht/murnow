@@ -99,8 +99,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
 	    }
        
     });
-  c
-    
+  
     
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
@@ -119,7 +118,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
   
     
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
-	    $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
+	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
 		//$("md-content").scrollTop(0);
 	    	
 		switch(toState.name) {
