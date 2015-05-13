@@ -6,6 +6,7 @@ $background-color-pink:#D4FFFB;
 $monte-carlo:#80CBC4;
 
 h1 {margin:0px;}
+a {text-decoration:none;}
 .wordwrap {  
    white-space: pre-wrap;      /* Webkit */    
    white-space: -moz-pre-wrap; /* Firefox */     
@@ -196,7 +197,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 		  input {color:black;}
 	}
 	header {height:60px;}
-	.home a {  line-height: 60px;font-size: 31px; font-weight:600;text-decoration:none;color:white;}
+	.home a {  line-height: 60px;font-size: 31px; font-weight:600;color:white;}
 }
 
 .mainNav {float:right;}
