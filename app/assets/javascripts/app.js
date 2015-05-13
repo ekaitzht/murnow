@@ -38,19 +38,9 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       controller: 'AuthCtrl'
     })
      .state('profile', {
-      url: '/profile',
+      url: '/profile/{id}',
       templateUrl: 'profile/_profile.html',
       controller: 'Profile',
-    })
-    .state('public_profile', {
-      url: '/public_profile/{id}',
-      templateUrl: 'profile/_public_profile.html',
-      controller: 'PublicProfileCtrl',
-      resolve: {
-	  		user: ['$stateParams', 'User', function($stateParams, User) {
-	        	return User.getPublicUser($stateParams.id);
-	        }]
-      }
     })
     .state('edit_profile', {
       url: '/edit_profile',
@@ -59,7 +49,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
        event.stopPropagation();
   	  },
       templateUrl: 'profile/_edit_profile.html',
-      controller: 'Profile'
+      controller: 'EditProfileCtrl'
     })
     .state('resetpassword', {
       url: '/resetpassword?resetToken',

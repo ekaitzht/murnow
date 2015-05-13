@@ -69,9 +69,7 @@ angular.module('murnow')
 
 
 	o.getPublicUser = function(id) {
- 		return $http.get('/users/' + id).then(function(res){
-    		return res.data;
-  		});
+ 		return $http.get('/users/' + id);
 	};
 
 	o.getReviewsUser = function(id) {

@@ -1,51 +1,46 @@
-<md-card>	
-	<div layout="column" >
+<md-card>
+	<div layout="column" layout-padding>
 		<div layout="row" layout-sm="column"> 
-			<div layout="row" flex="30" layout-padding>
+			<div layout="row" flex="40" layout-padding>
+					
+					<div class="wrapper-image-profile" layout="column" layout-padding >
+						<div ng-show="user.image" class="md-tile-left">
+					    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+						</div>
+					    <span ng-show="!user.image">Hey upload your image! </span>
+					</div>  
+					<div layout="column">
+					    <div class="username">
+					    	 <span class="user-name"> {{user.username}} </span>
+					    </div>
+					    <div class="bio">
+					      <span ng-show="user.bio"> {{user.bio}}</span>
+					      <span ng-hide="user.bio"> Bio </span>
+					    </div>
+					</div> 
 				
-				<div class="wrapper-image-profile" layout="column" layout-padding >
-					<div ng-show="user.image" class="md-tile-left">
-				    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+				</div>
+			<div class="profile-user" layout="column" flex="40" layout-padding>
+					<div  class="profile-header">
+					Profile
 					</div>
-				    <span ng-show="!user.image">Hey upload your image! </span>
-				</div>  
-				<div layout="column">
-				    <div class="username">
-				    	 <span class="user-name"> {{user.username}} </span>
-				    </div>
-				    <div class="bio">
-				      <span ng-show="user.bio"> {{user.bio}}</span>
-				      <span ng-hide="user.bio"> Bio </span>
-				    </div>
-				</div> 
-			</div>
-			 	
-			<div class="profile-user" layout="column" flex="70" layout-padding>
-				<div  class="profile-header">
-				Profile
+					<div layout="column">
+					      <div>Age: <span> {{user.age}} </span></div>
+					      <div> Skin Type: <span> {{user.skin_type}} </span></div>
+					      <div>	Skin Color: <span> {{user.skin_color}} </span> </div>
+					      <div>	Skin Tone: <span> {{user.skin_tone}} </span></div>
+					      <div> Skin Problems: <span ng-if="skin_problem.state == true" ng-repeat="skin_problem in user.skin_problems | filter:{state:true} | orderBy:'name'"> {{skin_problem.name}} <span ng-show=" ! $last ">,</span></span> </div>	      
+					      	
+					</div>
 				</div>
-				<div layout="column">
-				      <div>Age: <span> {{user.age}} </span></div>
-				      <div> Skin Type: <span> {{user.skin_type}} </span></div>
-				      <div>	Skin Color: <span> {{user.skin_color}} </span> </div>
-				      <div>	Skin Tone: <span> {{user.skin_tone}} </span></div>
-				      <div> Skin Problems: <span ng-if="skin_problem.state == true" ng-repeat="skin_problem in user.skin_problems | filter:{state:true} | orderBy:'name'"> {{skin_problem.name}} <span ng-show=" ! $last ">,</span></span> </div>	      
-				      	
-				</div>
+			<div layout="row" flex="20" ng-show="user.isProfileAuthenticated">
+				<a ng-href="/edit_profile" ng-click="getS3PolicyDocument();"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
 			</div>
 		</div>	
 		
-	  
-		
-	
-	    <div layout="row">
-		    <a ng-href="/edit_profile" ng-click="getS3PolicyDocument();"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
-		</div>
-	 </div>
-	 
-	 
-	 <div  layout="row" layout-padding> Your last reviews ({{reviews.length}}) </div>
+		<div  layout="row"  layout-padding> Reviews written ({{reviews.length}}) </div>
 
+		
 		<md-list  class="user-list-reviews" layout="column">
 			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column">
 				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
@@ -67,4 +62,5 @@
 		</md-list>	
 	
 	
- </md-card>
+	 </div>
+ <md-card>

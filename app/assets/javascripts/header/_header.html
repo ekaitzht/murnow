@@ -14,7 +14,7 @@
   	
 	  <div ng-show="signedIn()"  id="menu">
 		<md-button  ng-click="logout()" id="logout">Log Out</md-button>
-		<a  ng-href="/profile">
+		<a  ng-href="/profile/{{user.id}}">
 			<div  ng-show="signedIn()" >
 		    	<div ng-show="user.image" >
 		    		<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
@@ -26,12 +26,11 @@
 		</a>
 	
 	  </div>
-	  
-	  
+	  		
+		  
 	</div>
 </div>
 
 
        
 			
-		
