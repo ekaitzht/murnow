@@ -135,7 +135,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; }
 	li {cursor:pointer;}
-	
+	#logo {display:none;}
 	md-content{ margin-top:3px;}
 	.mainNav li {float: right;list-style-type: none;}
 
@@ -196,7 +196,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 		  input {color:black;}
 	}
 	header {height:60px;}
-	.home a {  line-height: 60px;}
+	.home a {  line-height: 60px;font-size: 31px; font-weight:600;text-decoration:none;color:white;}
 }
 
 .mainNav {float:right;}

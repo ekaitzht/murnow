@@ -86,13 +86,22 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
 
 }]);
 
+   document.addEventListener('backbutton',function(e){
+            console.log("history is "+history.length);
+            if(history.length === 1){
+                e.preventDefault();
+            }
+            
+        });
+
 app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function($rootScope,$location, $mdDialog, $state, $anchorScroll) {
 	   var lock = false;
+	
   	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    if ( $('md-dialog').length === 1) {
 		     	 event.preventDefault();
 		    	 $mdDialog.cancel()
-		    	 
+		    	 document.addEventListener("backbutton", onBackKeyDown, false);
 		    	
 	    } else {
 		    
