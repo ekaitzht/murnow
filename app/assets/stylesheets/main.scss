@@ -32,6 +32,8 @@ ui-view {width:100%;overflow-x:hidden;}
 
 .amatic {font-family:$amatic-font;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
+.josefin-pink {font-family: $josefin-sans ; font-weight:400;color: $pink-color;}
+
 ui-view{padding-left:15%;padding-right:15%;}
 ui-view > * {width:100%;}
 
@@ -81,13 +83,18 @@ header {
 
 .not-home-page md-content{margin-top:21px;}
 
-.profile-header{font-size:28px; @extend .amatic-pink}
-.user-name {font-size:28px; @extend .amatic-pink}
+.amatic-h1{font-size:35px; @extend .amatic-pink}
+.amatic-h2 {font-size:28px; @extend .amatic-pink}
+
+.josefin-h3 {font-size:15px;@extend .josefin-pink}
 
 
+/* USER PROFILE */
 
-
-
+.profile {
+	.face { border-radius:50%;}
+	.bio-block {padding-left:15px;}
+}
 /* PRODUCT PROFILE */
 .cropArea {
   width:500px;

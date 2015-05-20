@@ -1,17 +1,17 @@
 <md-card>
 	<div layout="column" layout-padding>
 		<div layout="row" layout-sm="column"> 
-			<div layout="row" flex="40" layout-padding>
+			<div layout="row"  layout-padding>
 					
-					<div class="wrapper-image-profile" layout="column" layout-padding >
+					<div class="wrapper-image-profile" flex-sm="40" layout="column" layout-padding >
 						<div ng-show="user.image" class="md-tile-left">
 					    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
 						</div>
 					    <span ng-show="!user.image">Hey upload your image! </span>
 					</div>  
-					<div layout="column">
+					<div layout="column" class="bio-block">
 					    <div class="username">
-					    	 <span class="user-name"> {{user.username}} </span>
+					    	 <span class="amatic-h1"> {{user.username}} </span>
 					    </div>
 					    <div class="bio">
 					      <span ng-show="user.bio"> {{user.bio}}</span>
@@ -20,8 +20,8 @@
 					</div> 
 				
 				</div>
-			<div class="profile-user" layout="column" flex="40" layout-padding>
-					<div  class="profile-header">
+			<div class="profile-user" layout="column"  layout-padding>
+					<div  class="amatic-h1">
 					Profile
 					</div>
 					<div layout="column">
@@ -38,25 +38,31 @@
 			</div>
 		</div>	
 		
-		<div  layout="row"  layout-padding> Reviews written ({{reviews.length}}) </div>
+		<div  layout="row"  class="amatic-h2" layout-padding> Product reviewed({{reviews.length}}) </div>
 
 		
 		<md-list  class="user-list-reviews" layout="column">
 			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column">
 				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
-				<div class="md-list-item-text">
-					<div> 
+				<div class="md-list-item-text" layout="column">
+					<div class='josefin-h3'> 
 					 {{review.product.product_name}} 
 					</div>
-					<span style="font-size:20px; margin-left:10px;">
-						{{review.body}} - {{review.created_at | fromNow }}
-				  	</span>
-					<span>  
-				    	<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
-				    </span>
+					<div class="product-rating" flex="15" flex-sm="20">
+						<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+						<span>  
+				    		<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
+						</span>
+					</div>
+					
+					
 				    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
 				    </rating>
+				    	<div>
+						{{review.body}} - {{review.created_at | fromNow }}
 				</div>
+				</div>
+			
 			   
 			</md-item>
 		</md-list>	
