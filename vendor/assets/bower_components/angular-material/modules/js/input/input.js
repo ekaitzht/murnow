@@ -2,11 +2,10 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-4a648d5
+ * v0.9.6
  */
-(function () {
+(function( window, angular, undefined ){
 "use strict";
-(function() {
 
 /**
  * @ngdoc module
@@ -339,15 +338,17 @@ function mdMaxlengthDirective($animate) {
 mdMaxlengthDirective.$inject = ["$animate"];
 
 function placeholderDirective($log) {
+  var blackListElements = ['MD-SELECT'];
   return {
     restrict: 'A',
     require: '^^?mdInputContainer',
-    priority:200,
+    priority: 200,
     link: postLink
   };
 
   function postLink(scope, element, attr, inputContainer) {
     if (!inputContainer) return;
+    if (blackListElements.indexOf(element[0].nodeName) != -1) return;
     if (angular.isDefined(inputContainer.element.attr('md-no-float'))) return;
 
     var placeholderText = attr.placeholder;
@@ -366,6 +367,4 @@ function placeholderDirective($log) {
 }
 placeholderDirective.$inject = ["$log"];
 
-})();
-
-})();
+})(window, window.angular);

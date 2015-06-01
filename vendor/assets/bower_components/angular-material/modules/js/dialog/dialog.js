@@ -2,10 +2,11 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc2-master-4a648d5
+ * v0.9.6
  */
-(function () {
+(function( window, angular, undefined ){
 "use strict";
+
 /**
  * @ngdoc module
  * @name material.components.dialog
@@ -222,6 +223,37 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
  *            // post-show code here: DOM element focus, etc.
  *         }
  *     }
+ *
+ *     // Dialog #3 - Demonstrate use of ControllerAs and passing $scope to dialog
+ *     //             Here we used ng-controller="GreetingController as vm" and
+ *     //             $scope.vm === <controller instance>
+ *
+ *     function showCustomGreeting() {
+ *
+ *        $mdDialog.show({
+ *           clickOutsideToClose: true,
+ *
+ *           scope: $scope,        // use parent scope in template
+ *           preserveScope: true,  // do not forget this if use parent scope
+
+ *           // Since GreetingController is instantiated with ControllerAs syntax
+ *           // AND we are passing the parent '$scope' to the dialog, we MUST
+ *           // use 'vm.<xxx>' in the template markup
+ *
+ *           template: '<md-dialog>' +
+ *                     '  <md-dialog-content>' +
+ *                     '     Hi There {{vm.employee}}' +
+ *                     '  </md-dialog-content>' +
+ *                     '</md-dialog>',
+ *
+ *           controller: function DialogController($scope, $mdDialog) {
+ *             $scope.closeDialog = function() {
+ *               $mdDialog.hide();
+ *             }
+ *           }
+ *        });
+ *     }
+ *
  *   }
  *
  *   // Greeting controller used with the more complex 'showCustomGreeting()' custom dialog
@@ -372,7 +404,7 @@ function MdDialogProvider($$interimElementProvider) {
     return {
       template: [
         '<md-dialog md-theme="{{ dialog.theme }}" aria-label="{{ dialog.ariaLabel }}">',
-          '<md-dialog-content role="document" tabIndex="0">',
+          '<md-dialog-content role="document" tabIndex="-1">',
             '<h2 class="md-title">{{ dialog.title }}</h2>',
             '<p>{{ dialog.content }}</p>',
           '</md-dialog-content>',
@@ -429,6 +461,7 @@ function MdDialogProvider($$interimElementProvider) {
 
     // On show method for dialogs
     function onShow(scope, element, options) {
+      angular.element($document[0].body).addClass('md-dialog-is-showing');
       element = $mdUtil.extractElementByName(element, 'md-dialog');
 
       // Incase the user provides a raw dom element, always wrap it in jqLite
@@ -515,6 +548,7 @@ function MdDialogProvider($$interimElementProvider) {
 
     // On remove function for all dialogs
     function onRemove(scope, element, options) {
+      angular.element($document[0].body).removeClass('md-dialog-is-showing');
 
       if (options.backdrop) {
         $animate.leave(options.backdrop);
@@ -539,7 +573,6 @@ function MdDialogProvider($$interimElementProvider) {
         options.parent,
         options.popInTarget && options.popInTarget.length && options.popInTarget
       ).then(function() {
-        options.scope.$destroy();
         element.remove();
         options.popInTarget && options.popInTarget.focus();
       });
@@ -673,4 +706,4 @@ function MdDialogProvider($$interimElementProvider) {
 }
 MdDialogProvider.$inject = ["$$interimElementProvider"];
 
-})();
+})(window, window.angular);

@@ -91,9 +91,11 @@ header {
 
 /* USER PROFILE */
 
-.profile {
+.profile, .edit_profile {
 	.face { border-radius:50%;}
-	.bio-block {padding-left:15px;}
+	.bio-block {padding-left:16px;}
+	.md-list-item-inner > * {line-height:18px !important;}
+	.thumbs-up {margin-left:16px;}
 }
 /* PRODUCT PROFILE */
 .cropArea {

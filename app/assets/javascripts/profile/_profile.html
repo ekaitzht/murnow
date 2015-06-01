@@ -40,33 +40,43 @@
 		
 		<div  layout="row"  class="amatic-h2" layout-padding> Product reviewed({{reviews.length}}) </div>
 
-		
-		<md-list  class="user-list-reviews" layout="column">
-			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" layout="row" layout-sm="column">
+		<md-list >
+			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
 				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
-				<div class="md-list-item-text" layout="column">
-					<div class='josefin-h3'> 
-					 {{review.product.product_name}} 
-					</div>
-					<div class="product-rating" flex="15" flex-sm="20">
-						<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-						<span>  
-				    		<span   class="fa fa-thumbs-o-up">  </span> votes {{review.votes.length}}
-						</span>
+				<div class="md-list-item-text">
+					<div layout="row" layout-align="space-between start" >
+						<div layout="column">
+							<div class='josefin-h3'> 
+								{{review.product.product_name}} 
+							</div>
+							<div class="product-rating" flex="15" flex-sm="20">
+								<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+							</div>
+						</div>
+						<div class="date-created"> {{review.created_at | fromNow }} </div>
 					</div>
 					
 					
 				    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
 				    </rating>
-				    	<div>
-						{{review.body}} - {{review.created_at | fromNow }}
-				</div>
+				    
+				    <div layout="row">
+					     <div>
+							{{review.body}}  
+						</div>
+						<span class="thumbs-up">  
+					    	<span   class="fa fa-thumbs-o-up">  </span>  {{review.votes.length}}
+						</span>
+				    </div>
 				</div>
 			
-			   
-			</md-item>
+			</md-list-item>
+			 
 		</md-list>	
 	
 	
 	 </div>
  <md-card>
+
+
+  <md-
