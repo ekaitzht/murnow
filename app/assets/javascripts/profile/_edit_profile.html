@@ -1,66 +1,66 @@
-<form name="registerForm" layout="column">
-  	<div layout="row">
-    <div class="wrapper-image-profile-edit">
-    	<div ng-show="user.image" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
-            <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
-    	</div>
-    
-
-		<button ng-show="!user.image" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
-		<!--<div ng-file-drop ng-model="finle" class="drop-box" 
-          	drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-		  	multiple="false" allow-dir="false" accept="image/*">
-                  Drop Images or PDFs files here
-		</div> -->
-    </div>
-    <div layout="column">
-      <div class="username">
-      	<input type="text"  value="{{user.username}}" ng-model="user.username"/>
-      </div>
-      <div class="bio">
-        <input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
-      </div>
-    
-    </div> 
-  </div>
-  
-  	<div layout="column">
-	  <div class="profile-header"s>
-	  	Profile
+<md-card>
+	<form name="registerForm" layout="column" >
+	  <div layout="row" layout-sm="column">
+	    <div class="wrapper-image-profile" layout="row">
+	    	<div ng-show="user.image" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
+	            <img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
+	    	</div>
+			<button ng-show="!user.image" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
+			
+			<div layout="column">
+		      <div class="username">
+		      	<input type="text"  value="{{user.username}}" ng-model="user.username"/>
+		      </div>
+		      <div class="bio">
+		        <input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
+		      </div>
+	    	</div> 
+	    </div>
+	   
+	    <div layout="column" class="profile-user" >
+		  <div class="profile-header"s>
+		  	Profile
+		  </div>
+		  <div layout="column" >
+		        <div class="age" layout="row">
+		          <label> Age </label>
+		          <input type="text"  value="{{user.age}}" ng-model="user.age"/>
+		        </div>
+		        <div>
+			        <div>Skin type: </div> 
+			        <md-select placehodler="Choose your skin type" ng-model="user.skin_type">
+			          <md-option ng-repeat="skin_type in skin_types" value="{{skin_type}}">{{skin_type}}</md-option>
+			        </md-select>
+		        </div>
+		        
+		        <div>
+			        <div>Skin Color: </div> 
+			        <md-select placehodler="Choose your skin color" ng-model="user.skin_color">
+			          <md-option ng-repeat="skin_color in skin_colors" value="{{skin_color}}">{{skin_color}}</md-option>
+			        </md-select>
+		        </div>
+		        
+				<div>
+			        <div>Skin Color: </div> 
+			        <md-select placehodler="Choose your skin tone" ng-model="user.skin_tone">
+			          <md-option ng-repeat="skin_tone in skin_tones" value="{{skin_tone}}">{{skin_tone}}</md-option>
+			        </md-select>
+		        </div>
+		
+		     
+		        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
+		          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
+		            {{skin_problem.name}}
+		          </md-checkbox>
+		        </div>
+		  </div>
+		</div>
+	    <div layout="row" flex="20" ng-show="user.isProfileAuthenticated">
+				<a ng-href="/edit_profile" ng-click="getS3PolicyDocument();"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
+			</div>
 	  </div>
-	  <div layout="column">
-	        <div class="age">
-	          <label> Age </label>
-	          <input type="text"  value="{{user.age}}" ng-model="user.age"/>
-	        </div>
-	        Skin type:
-	        <select ng-model="user.skin_type" ng-options="skin_type for skin_type in skin_types">
-	          <option value="" disabled selected>Choose your skin type</option>
-	        </select>
-	       
-	        Skin Color:
-	        <select ng-model="user.skin_color" ng-options="skin_color for skin_color in skin_colors">
-	          <option value="" disabled selected>Choose your skin color</option>
-	        </select>
-	
-	        Skin Tone:
-	        <select ng-model="user.skin_tone" ng-options="skin_tone for skin_tone in skin_tones">
-	          <option value="" disabled selected>Choose your skin tone</option>
-	        </select>
-	
-	     
-	        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
-	          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
-	            {{skin_problem.name}}
-	          </md-checkbox>
-	        </div>
-	  </div>
-	</div>
-
-	<div layout="row">
-    	<md-button type="submit" ng-click="updateUser()" class="md-raised md-primary">Save Profile</md-button></a>
-	</div>
-</form>  
+	</form>  
+</md-card>
 
 
 

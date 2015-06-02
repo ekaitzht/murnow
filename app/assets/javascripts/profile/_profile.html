@@ -3,13 +3,13 @@
 		<div layout="row" layout-sm="column"> 
 			<div layout="row"  layout-padding>
 					
-					<div class="wrapper-image-profile" flex-sm="40" layout="column" layout-padding >
+				<div class="wrapper-image-profile" flex-sm="40" layout="column" layout-padding >
 						<div ng-show="user.image" class="md-tile-left">
 					    	<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
 						</div>
 					    <span ng-show="!user.image">Hey upload your image! </span>
 					</div>  
-					<div layout="column" class="bio-block">
+				<div layout="column" class="bio-block">
 					    <div class="username">
 					    	 <span class="amatic-h1"> {{user.username}} </span>
 					    </div>
@@ -19,7 +19,7 @@
 					    </div>
 					</div> 
 				
-				</div>
+			</div>
 			<div class="profile-user" layout="column"  layout-padding>
 					<div  class="amatic-h1">
 					Profile
@@ -40,7 +40,7 @@
 		
 		<div  layout="row"  class="amatic-h2" layout-padding> Product reviewed({{reviews.length}}) </div>
 
-		<md-list >
+		<md-list>
 			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
 				<img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
 				<div class="md-list-item-text">
