@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :only => [:create, :upvote]
   
   def create
     @product = Product.find(params[:product_id])
