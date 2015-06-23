@@ -20,6 +20,7 @@ a {text-decoration:none;}
 }
 body {
 	font-family: $josefin-sans, sans-serif;	
+	overflow-y:auto !important;
 }
 span.sr-only.ng-binding {display:none;}
 .left {float:left;}
@@ -69,16 +70,15 @@ header {
 	
 }
 
-#menu > * {display:inline-block;}
-#menu {float:right;
-	
-	
-	.md-button{
-		  position: relative;
-  top: -10px;
-  right: -8px;
-	}
-}	
+#menu {float:right; cursor:pointer !important;#image-thumbnail-menu:focus{outline:none;}position: relative;top: -10px;right: -5px;
+
+.my-icon-button {
+  padding: 0px 0px 0px 0px !important;
+  min-width: 0;
+  min-height: 0;
+  line-height: normal;
+}
+}
 
 
 .not-home-page md-content{margin-top:21px;}
@@ -122,11 +122,6 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 
 /* HEADER */
 
-#logout{
-  position: relative;
-  right: 0.8em;
-  cursor:pointer;
-}
 
 
 
@@ -142,7 +137,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 	//background-image: image-url('girly-wallpaper.jpg');
 	md-content.md-default-theme {background-color:transparent;}
 	md-toolbar.md-default-theme{background-color: transparent;color:black}
-	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;}
+	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;  margin-left: 15%;margin-right: 15%;width: 70%;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-style: normal;font-weight: 100;color:white; }
 	li {cursor:pointer;}
 	#logo {display:none;}

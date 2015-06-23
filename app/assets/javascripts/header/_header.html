@@ -12,25 +12,26 @@
   	
   	  <!-- Nav when you are authentificated --> 
   	
-	  <div ng-show="signedIn()"  id="menu">
-		<md-button  ng-click="logout()" id="logout">Log Out</md-button>
-		<a  ng-href="/profile/{{user.id}}">
-			<div  ng-show="signedIn()" >
-		    	<div ng-show="user.image" >
-		    		<img ng-src="{{user.image}}" class="face" alt="{{user.username}}">
-				</div>
-				<div ng-show="!user.image" >
-		    		<img ng-src="/assets/anonymousUser.jpg" class="face no-face" alt="Anonymous user">
-				</div>
-			</div>  
-		</a>
-	
-	  </div>
+  	  	<md-menu id="menu" md-offset="-20 50" ng-show="signedIn()" >
+             <md-button  class="my-icon-button" md-menu-origin ng-click="$mdOpenMenu()" >
+		    	<img ng-show="user.image"  ng-src="{{user.image}}" class="face" alt="{{user.username}}">	
+		    	<img ng-show="!user.image"  ng-src="/assets/anonymousUser.jpg" class="face no-face" alt="Anonymous user">
+			 </md-button>
+			<md-menu-content width="2">
+	            <md-menu-item>
+	            	<md-button ng-click="goToProfile(user.id)">Profile</md-button>
+	            </md-menu-item>
+	            <md-menu-item>
+	           	 	<md-button  ng-click="logout()" id="logout" >Log Out</md-button>
+	            </md-menu-item>
+			</md-menu-content>
+        </md-menu>
 	  		
 		  
 	</div>
 </div>
 
-
+   		
+     
        
 			

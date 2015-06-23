@@ -3,8 +3,8 @@ angular.module('murnow')
 '$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 
 function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http){
 	
-	
-	$scope._fetchDataUser =  function() {
+	 
+		$scope._fetchDataUser =  function() {
           User.getSkinProblems().success(function(data, status, headers, config) {
 		    $scope.user.skin_problems =  data.skin_problems; 
 		  });

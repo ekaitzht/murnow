@@ -58,5 +58,9 @@ function($scope,$state, Auth, $mdDialog, User){
             clickOutsideToClose: true
           });
   };
+  
+  $scope.goToProfile = function(profile_id){
+	  $state.go('profile', { id: profile_id});
+  	}
 
 }]);

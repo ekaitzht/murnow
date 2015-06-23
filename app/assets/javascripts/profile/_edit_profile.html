@@ -55,12 +55,13 @@
 		        </div>
 		  </div>
 		</div>
-	    <div layout="row" flex="20" ng-show="user.isProfileAuthenticated">
-				<a ng-href="/edit_profile" ng-click="getS3PolicyDocument();"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
-			</div>
+	
+		<div layout="row" flex="20"> 
+			  <md-button type="submit" ng-click="updateUser()" class="md-raised md-primary">Save Profile</md-button></a>
+        </div>
+
 	  </div>
 	</form>  
 </md-card>
-
 
 
