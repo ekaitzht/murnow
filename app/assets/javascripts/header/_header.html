@@ -13,9 +13,10 @@
   	  <!-- Nav when you are authentificated --> 
   	
   	  	<md-menu id="menu" md-offset="-20 50" ng-show="signedIn()" >
-             <md-button  class="my-icon-button" md-menu-origin ng-click="$mdOpenMenu()" >
+             <md-button  class="my-icon-button" md-menu-origin  ng-click="$mdOpenMenu()" >
 		    	<img ng-show="user.image"  ng-src="{{user.image}}" class="face" alt="{{user.username}}">	
 		    	<img ng-show="!user.image"  ng-src="/assets/anonymousUser.jpg" class="face no-face" alt="Anonymous user">
+		    	<img ng-src="/assets/arrow-down.svg"   class="svg18 arrow" ></md-icon>
 			 </md-button>
 			<md-menu-content width="2">
 	            <md-menu-item>

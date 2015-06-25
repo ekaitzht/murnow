@@ -22,7 +22,7 @@
 
   <md-list>
   	<md-list-item class="md-3-line" ng-repeat="review in product.reviews | orderBy:'-upvotes'">
-		<img ng-click="goProfile(review.user_id)"  ng-src="{{review.user.image && review.user.image  || '/assets/anonymousUser.jpg'}}" class="md-avatar" alt="{{user.username}}"> 
+		<img ng-click="goProfile(review.user_id)"  ng-src="{{review.user.image && review.user.image  || '/assets/anonymousUser.jpg'}}" class="md-avatar not-outline" alt="{{user.username}}"> 
 		<div class="md-list-item-text">
 			<div class="review-body">
 				<p class="wordwrap"> {{review.body}} </p>

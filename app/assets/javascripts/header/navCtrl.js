@@ -5,7 +5,8 @@ angular.module('murnow')
 'Auth',
 '$mdDialog',
 'User',
-function($scope,$state, Auth, $mdDialog, User){
+'$mdMenu',
+function($scope,$state, Auth, $mdDialog, User, $mdMenu){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
 
@@ -62,5 +63,10 @@ function($scope,$state, Auth, $mdDialog, User){
   $scope.goToProfile = function(profile_id){
 	  $state.go('profile', { id: profile_id});
   	}
+  	
+  
+  $scope.closeMenu = function(){
+	$mdMenu.hide();
+  }
 
 }]);

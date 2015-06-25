@@ -38,6 +38,9 @@ ui-view {width:100%;overflow-x:hidden;}
 ui-view{padding-left:15%;padding-right:15%;}
 ui-view > * {width:100%;}
 
+.not-outline:focus {
+	outline:none !important;
+}
 .fa-thumbs-o-up,fa-thumbs-up  {color:black;}
 
 .weight-100 {font-weight:100;}
@@ -67,6 +70,10 @@ header {
 		height: 40px; 
 	
 	}
+	.arrow {
+			position: relative;
+			top: -10px;
+		}
 	
 }
 
@@ -131,7 +138,10 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 
 
 .home-page{
-	header {background-color:$monte-carlo;}
+	header {background-color:$monte-carlo;
+		
+		
+	}
 	ui-view {margin-top:50px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
