@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
 			user.provider = auth.provider
 			user.uid = auth.uid
 			if user.image.blank? then
+				
+				 logger.info "Image in the database is empty adding image from facebook."
 			 	user.image = auth.info.image
 			end
 			user.save

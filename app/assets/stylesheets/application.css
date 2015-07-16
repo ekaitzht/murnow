@@ -17,5 +17,6 @@
  *= require_tree .
  *= require_self
  */
- @import url("//fonts.googleapis.com/css?family=Amatic+SC"); 
- @import url("//fonts.googleapis.com/icon?family=Material+Icons); 
+ @import url("//fonts.googleapis.com/css?family=Amatic+SC:400,700"); 
+@import url("//fonts.googleapis.com/css?family=Josefin+Sans:300,400");
+ @import url("//fonts.googleapis.com/icon?family=Material+Icons"); 
