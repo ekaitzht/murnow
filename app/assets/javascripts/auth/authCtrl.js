@@ -63,6 +63,8 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
     User.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
       success(function(data) {
         $scope.login();
+        $state.go('home');
+        
       }).error(function(error){
          if ( error.errors.hasOwnProperty("reset_password_token") ) {
           $scope.errors.errorReset = "Your link has expired"; // Reset token invalid.
