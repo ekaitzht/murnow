@@ -2,18 +2,21 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.0
+ * v0.9.0-rc1
  */
 goog.provide('ng.material.components.toast');
 goog.require('ng.material.components.button');
 goog.require('ng.material.core');
+(function() {
+'use strict';
+
 /**
  * @ngdoc module
  * @name material.components.toast
  * @description
  * Toast
  */
-angular.module('material.components.toast', [
+ng.material.components.toast = angular.module('material.components.toast', [
   'material.core',
   'material.components.button'
 ])
@@ -185,7 +188,7 @@ function MdToastProvider($$interimElementProvider) {
     .addPreset('simple', {
       argOption: 'content',
       methods: ['content', 'action', 'highlightAction', 'theme', 'parent'],
-      options: /* ngInject */ ["$mdToast", "$mdTheming", function($mdToast, $mdTheming) {
+      options: /* @ngInject */ ["$mdToast", "$mdTheming", function($mdToast, $mdTheming) {
         var opts = {
           template: [
             '<md-toast md-theme="{{ toast.theme }}" ng-class="{\'md-capsule\': toast.capsule}">',
@@ -195,7 +198,7 @@ function MdToastProvider($$interimElementProvider) {
               '</md-button>',
             '</md-toast>'
           ].join(''),
-          controller: /* ngInject */ ["$scope", function mdToastCtrl($scope) {
+          controller: /* @ngInject */ ["$scope", function mdToastCtrl($scope) {
             var self = this;
             $scope.$watch(function() { return activeToastContent; }, function() {
               self.content = activeToastContent;
@@ -218,7 +221,7 @@ function MdToastProvider($$interimElementProvider) {
   toastDefaultOptions.$inject = ["$timeout", "$animate", "$mdToast", "$mdUtil"];
     return $mdToast;
 
-  /* ngInject */
+  /* @ngInject */
   function toastDefaultOptions($timeout, $animate, $mdToast, $mdUtil) {
     return {
       onShow: onShow,
@@ -262,4 +265,4 @@ function MdToastProvider($$interimElementProvider) {
 }
 MdToastProvider.$inject = ["$$interimElementProvider"];
 
-ng.material.components.toast = angular.module("material.components.toast");
+})();
