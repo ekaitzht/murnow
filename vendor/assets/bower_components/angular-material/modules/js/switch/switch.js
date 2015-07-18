@@ -2,10 +2,10 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.10.1-rc2
  */
-(function() {
-'use strict';
+(function( window, angular, undefined ){
+"use strict";
 
 /**
  * @private
@@ -61,6 +61,7 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
 
   return {
     restrict: 'E',
+    priority:210, // Run before ngAria
     transclude: true,
     template:
       '<div class="md-container">' +
@@ -165,4 +166,4 @@ function MdSwitch(mdCheckboxDirective, $mdTheming, $mdUtil, $document, $mdConsta
 }
 MdSwitch.$inject = ["mdCheckboxDirective", "$mdTheming", "$mdUtil", "$document", "$mdConstant", "$parse", "$$rAF", "$mdGesture"];
 
-})();
+})(window, window.angular);

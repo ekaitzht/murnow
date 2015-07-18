@@ -2,14 +2,11 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.10.1-rc2
  */
 goog.provide('ng.material.components.subheader');
 goog.require('ng.material.components.sticky');
 goog.require('ng.material.core');
-(function() {
-'use strict';
-
 /**
  * @ngdoc module
  * @name material.components.subheader
@@ -28,7 +25,7 @@ goog.require('ng.material.core');
  *  > To improve the visual grouping of content, use the system color for your subheaders.
  *
  */
-ng.material.components.subheader = angular.module('material.components.subheader', [
+angular.module('material.components.subheader', [
   'material.core',
   'material.components.sticky'
 ])
@@ -64,9 +61,10 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
         '</div>' +
       '</h2>',
     compile: function(element, attr, transclude) {
-      var outerHTML = element[0].outerHTML;
       return function postLink(scope, element, attr) {
         $mdTheming(element);
+        var outerHTML = element[0].outerHTML;
+
         function getContent(el) {
           return angular.element(el[0].querySelector('.md-subheader-content'));
         }
@@ -82,7 +80,6 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
         if (!element.hasClass('md-no-sticky')) {
           transclude(scope, function(clone) {
             var stickyClone = $compile(angular.element(outerHTML))(scope);
-            $mdTheming(stickyClone);
             getContent(stickyClone).append(clone);
             $mdSticky(scope, element, stickyClone);
           });
@@ -92,4 +89,5 @@ function MdSubheaderDirective($mdSticky, $compile, $mdTheming) {
   };
 }
 MdSubheaderDirective.$inject = ["$mdSticky", "$compile", "$mdTheming"];
-})();
+
+ng.material.components.subheader = angular.module("material.components.subheader");
