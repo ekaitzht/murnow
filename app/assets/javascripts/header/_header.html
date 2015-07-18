@@ -2,7 +2,7 @@
 	<div class="" ng-controller="NavCtrl">
 	  <div class="home" id="logo"> <div class="left amatic" ><a  href="/"> Murnow</a> </div></div>
 	  
-	  <!--- the nav menu should be implemented when 0.9.0 material angular has released -->
+	 
 	  <!-- Nav when you are not authenticated --> 
 	  <div class="mainNav" ng-show="!signedIn()">
 		    <md-button ng-click="showDialogLogin()" >Log In</md-button>
@@ -11,7 +11,6 @@
 
   	
   	  <!-- Nav when you are authentificated --> 
-  	
   	  	<md-menu id="menu" md-offset="-20 50" ng-show="signedIn()" >
              <md-button  class="my-icon-button" md-menu-origin  ng-click="$mdOpenMenu()" >
 		    	<img ng-show="user.image"  ng-src="{{user.image}}" class="face" alt="{{user.username}}">	
