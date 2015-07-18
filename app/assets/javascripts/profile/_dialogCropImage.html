@@ -1,15 +1,17 @@
 <md-dialog> 
-   <md-content>
-   	<div class="cropArea">
+    <md-dialog-content class="sticky-container">
+		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
+		<div class="cropArea">
 		<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-   	</div>
-  </md-content>
-  <div class="md-actions" layout="row">
-	 <md-button ng-click="closeCropDialog()" class="md-primary">
-      Cancel
-    </md-button> 
-    <md-button ng-click="saveCroppedImg()" class="md-primary">
-      Finished!
-    </md-button>
-  </div>
+	   	</div>
+	</md-dialog-content>      
+	   	
+	<div class="md-actions" layout="row">
+		<md-button ng-click="closeCropDialog()" class="md-primary">
+			Cancel
+		</md-button> 
+		<md-button ng-click="saveCroppedImg()" class="md-primary">
+			Finished!
+			</md-button>
+  	</div>
 </md-dialog>
