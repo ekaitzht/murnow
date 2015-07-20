@@ -9,7 +9,6 @@ angular.module('murnow')
 '$mdDialog',
 '$rootScope',
 function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootScope){
- 
   $scope.login = function() {   
   
     $scope.errors = {};

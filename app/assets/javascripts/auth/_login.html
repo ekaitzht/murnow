@@ -1,8 +1,9 @@
 <md-dialog>
-    <md-dialog-content class="sticky-container">
+	<form name="registerForm" ng-submit="login()" layout="column">
+    <md-dialog-content>
 		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
 		<div>
-			<form name="registerForm" ng-submit="login()">
+			
 		       <md-button class="md-primary"  href='/users/auth/facebook' target="_self">Facebook Login</md-button>
 		        
 		        <md-input-container md-no-float>
@@ -19,15 +20,19 @@
 			 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
 			 		{{errors.errorPasswordEmail}}
 	      		</div>
-	      		<md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>     
-		      </form>
+	      		
+		      
 		      
 		</div>
 	</md-dialog-content>      
 	<div class="md-actions" layout="row">	
-			<md-button  ng-hide="sendConfirm"  ng-click="showDialogForgotPassword()" class="md-primary" >Forgotten pasword?</md-button>
-		    <md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
+			<div layout="row" layout-align="space-around start">
+		    	    <md-button  ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>
+					<md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  		
+	      	</div>
+	      		<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
 	 </div>
+	 </form>
 </md-dialog>
 
   
