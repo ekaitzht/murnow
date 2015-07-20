@@ -28,11 +28,12 @@
 			          {{errors.errorPassword}}
 			        </div>
 			    </div>
+			    <div layout="row" layout-align="space-between center">
+					<md-button class="md-primary" ng-href="/users/auth/facebook" target="_blank">Connect with facebook</md-button>
+					<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
+				</div>		  
 			</form>
-			<div layout="row" layout-align="space-between center">
-			    <md-button class="md-primary" ng-href="/users/auth/facebook" target="_blank">Connect with facebook</md-button>
-				<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
-			</div>		  
+
 			<md-button class="md-primary"  ng-click="showDialogLogin()">I already have an account</md-button>
 			
 		</div>
