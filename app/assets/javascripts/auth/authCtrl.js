@@ -127,4 +127,14 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
           });
   };
   
+    $scope.showDialogLogin= function() {
+     $mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login.html',
+            hasBackdrop: true,
+            clickOutsideToClose: true
+          });
+  };
+
+  
 }]);
