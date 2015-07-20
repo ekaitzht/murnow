@@ -134,6 +134,8 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
             clickOutsideToClose: true
           });
   };
-
+	$scope.closeDialog = function() {
+    	$mdDialog.hide();
+	};
   
 }]);

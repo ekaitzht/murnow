@@ -47,5 +47,7 @@ function($scope, scopeProduct, products, $mdDialog){
       });
   		$scope.body = '';
 	};
-
+	$scope.closeDialog = function() {
+    	$mdDialog.hide();
+	};
 }]);

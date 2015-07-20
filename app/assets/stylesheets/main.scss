@@ -27,7 +27,7 @@ body {
 span.sr-only.ng-binding {display:none;}
 .left {float:left;}
 .not-home-page{overflow:hidden;}
-.not-home-page md-toolbar{background-color:$monte-carlo !important;}
+md-toolbar{background-color:$monte-carlo !important;}
 
 img {max-width:100%}
 .fa {color:$pink-color;}
@@ -139,15 +139,12 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 
 
 .home-page{
-	header {background-color:$monte-carlo;
-		
-		
-	}
+	header {background-color:$monte-carlo;}
+	
 	ui-view {margin-top:50px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
-	md-content.md-default-theme {background-color:transparent;}
-	md-toolbar.md-default-theme{background-color: transparent;color:black}
+
 	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;  margin-left: 15%;margin-right: 15%;width: 70% ;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white; }
 	li {cursor:pointer;}
@@ -189,6 +186,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 	
 	md-autocomplete {
 		width:40%;margin:auto;
+		md-autocomplete-wrap {background-color: transparent;color:black}
 	}
 	
 	.md-autocomplete-suggestions  li{

@@ -1,5 +1,14 @@
 <md-dialog>
 	<form name="registerForm" ng-submit="login()" layout="column">
+	 <md-toolbar>
+	    <div class="md-toolbar-tools">
+	      <h2>Login </h2>
+	      <span flex></span>
+	      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
+	        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+	      </md-button>
+	    </div>
+	  </md-toolbar>
     <md-dialog-content>
 		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
 		<div>

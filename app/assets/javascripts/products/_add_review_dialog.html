@@ -1,6 +1,15 @@
 <md-dialog>
 	<form ng-submit="addReview()" >
-	  	<md-dialog-content class="sticky-container">
+		 <md-toolbar>
+		    <div class="md-toolbar-tools">
+		      <h2>Add your review </h2>
+		      <span flex></span>
+		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
+		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+		      </md-button>
+		    </div>
+		  </md-toolbar>
+	  	<md-dialog-content >
 			
 		    	<md-input-container md-no-float>
 		    		<textarea type="text" id="body-text-review" class="form-control" placeholder="Add your review here!" ng-model="body" required></textarea>
@@ -21,9 +30,7 @@
 		    
 	    </md-dialog-content>
 	    <div class="md-actions" layout="row">
-	    	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>
-	    	
-		  
+	    	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>  
 	  	</div>
 	</form>
 </md-dialog>
