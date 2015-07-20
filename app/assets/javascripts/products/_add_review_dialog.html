@@ -1,29 +1,31 @@
 <md-dialog>
-  	<md-dialog-content class="sticky-container">
-		<form ng-submit="addReview()" style="margin-top:30px;">
-	    	<md-input-container md-no-float>
-	    		<textarea type="text" id="body-text-review" class="form-control" placeholder="Add your review here!" ng-model="body" required></textarea>
-	    	</md-input-container>
-	
-			<div class="ratings-for-user">    
-	          <rating ng-model="stars"    state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-	        </div>
-	
-	    	<div> Would you buy again? </div>
-			<md-radio-group ng-model="repurchase">
-	      		<md-radio-button value="true">Yes</md-radio-button>
-	   			<md-radio-button value="false"> No </md-radio-button>
-	    	</md-radio-group>
-	    	<div  class="alert alert-danger" role="alert" ng-show="errors.reviewDialog">
-	        	{{errors.reviewDialog}}
-	      	</div>
-	    </form>
-    </md-dialog-content>
-    <div class="md-actions" layout="row">
-    	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>
-    	
-	  
-  	</div>
+	<form ng-submit="addReview()" >
+	  	<md-dialog-content class="sticky-container">
+			
+		    	<md-input-container md-no-float>
+		    		<textarea type="text" id="body-text-review" class="form-control" placeholder="Add your review here!" ng-model="body" required></textarea>
+		    	</md-input-container>
+		
+				<div class="ratings-for-user">    
+		          <rating ng-model="stars"    state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+		        </div>
+		
+		    	<div> Would you buy again? </div>
+				<md-radio-group ng-model="repurchase">
+		      		<md-radio-button value="true">Yes</md-radio-button>
+		   			<md-radio-button value="false"> No </md-radio-button>
+		    	</md-radio-group>
+		    	<div  class="alert alert-danger" role="alert" ng-show="errors.reviewDialog">
+		        	{{errors.reviewDialog}}
+		      	</div>
+		    
+	    </md-dialog-content>
+	    <div class="md-actions" layout="row">
+	    	<md-button  type='submit' class="md-raised md-primary">Send Review</md-button>
+	    	
+		  
+	  	</div>
+	</form>
 </md-dialog>
 
 
