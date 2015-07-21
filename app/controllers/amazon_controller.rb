@@ -12,12 +12,9 @@ class AmazonController < ApplicationController
 	    options[:path] = ''
 		options[:folder] = 'profile_images_' + Rails.env + '/'
 		
-		AWS.config(
-		access_key_id:   ENV['AWS_ACCESS_KEY_ID'] ,
-		secret_access_key:    ENV['AWS_SECRET_ACCESS_KEY'] )
 		
-		@s3 = AWS::S3.new
-		logger.info "------->/*******"
+		@s3 = Aws::S3::Client.new()  # Credianls are in ENV 
+		
 		
   		  
   		@policy_document = "{\"expiration\": \"#{3.day.from_now.utc.strftime('%Y-%m-%dT%H:%M:%S.000Z')}\",

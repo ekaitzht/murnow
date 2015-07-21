@@ -34,7 +34,18 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	  	});
   	}
   	
-  	
+  	$scope.getS3PolicyDocument = function(){
+	    Amazon.getS3PolicyDocument().success(function(data) {
+	         Amazon.policy = data.policy;
+	         Amazon.signature = data.signature;
+	         Amazon.unique_name_file_hash = data.unique_name_file_hash;
+	         Amazon.folder = data.folder;
+	         
+	    }).error(function(error){
+         
+    	});
+  	};
+ 
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
 	$scope.fileImage = '';

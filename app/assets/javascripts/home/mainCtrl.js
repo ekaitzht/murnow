@@ -12,7 +12,7 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products){
 		
 		for (i = 0; i <= 3; i++) {
 			
-			if( data[i].image === null) {
+			if( data[i] === undefined) {
 				data[i].image = "/assets/anonymousUser.jpg";	
 			}
 		} 

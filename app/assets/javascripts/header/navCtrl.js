@@ -5,7 +5,8 @@ angular.module('murnow')
 'Auth',
 '$mdDialog',
 'User',
-function($scope,$state, Auth, $mdDialog, User){
+'configMurnow',
+function($scope,$state, Auth, $mdDialog, User, configMurnow){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
 
