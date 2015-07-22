@@ -54,7 +54,7 @@ angular.module('murnow')
 	     skin_color: user.skin_color,
 	   	 skin_tone: user.skin_tone,
 	     bio: user.bio,
-	     image: user.image,
+	     hash_url_image: user.hash_url_image,
 	     age: user.age
 
 	      }

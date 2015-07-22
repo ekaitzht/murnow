@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	def self.from_omniauth(auth)
 		
 		@s3 = Aws::S3::Resource.new()  
-		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) 
+		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) + "_"+ Time.now.to_i.to_s
 		
 		logger.info "hash_url_image: " + hash_url_image
 		
@@ -33,12 +33,11 @@ class User < ActiveRecord::Base
 		  	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 
 
-		  						user.skip_confirmation! 
+		  		user.skip_confirmation! 
 				user.email = auth.info.email
 				
 				user.hash_url_image = hash_url_image
-				logger.info "(auth.info.image: " + auth.info.image
-				obj = @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image + ".jpg")
+				obj = @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image)
 				
 				open("fileToS3", "wb") do |file|
 				  open(auth.info.image) do |uri|
@@ -58,10 +57,9 @@ class User < ActiveRecord::Base
 			user.uid = auth.uid
 			if user.hash_url_image.blank? then
 				
-				logger.info "Image in the database is empty adding image from facebook."
 				
 			 	user.hash_url_image = hash_url_image
-			 	obj =  @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image + ".jpg")
+			 	obj =  @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image)
 			 
 			 	open("fileToS3", "wb") do |file|
 				  open(auth.info.image) do |uri|

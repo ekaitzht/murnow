@@ -8,7 +8,7 @@ var app = angular.module('murnow', ['ui.router','templates', 'Devise', 'ui.boots
 
 app.constant('configMurnow', {
   'enviroment':  "<%= Rails.env %>",
-  'cdn_domain_name': "d3gm19tlfubzts.cloudfront.net"
+  'cdn_domain_name':"<%= ENV['CDN_DOMAIN_NAME'] %>"
 });
 
 

@@ -22,7 +22,7 @@
 
   <md-list>
   	<md-list-item class="md-3-line" ng-repeat="review in product.reviews | orderBy:'-upvotes'">
-  		<img ng-click="goProfile(review.user_id)" ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}.jpg" class="md-avatar not-outline"> 
+  		<img ng-click="goProfile(review.user_id)" ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
 		<img ng-click="goProfile(review.user_id)" ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.jpg" class="md-avatar not-outline" > 
 		
 		

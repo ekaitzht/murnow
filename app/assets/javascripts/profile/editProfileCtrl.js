@@ -14,7 +14,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
   $scope.enviroment = configMurnow.enviroment;
   
   
-    $scope.srcImageProfile = "https://"+$scope.cdn+"/profile_images_"+$scope.enviroment+"/"+$scope.user.hash_url_image+".jpg";
+    $scope.srcImageProfile = "https://"+$scope.cdn+"/profile_images_"+$scope.enviroment+"/"+$scope.user.hash_url_image;
 	
     User.getSkinProblems().success(function(data, status, headers, config) {
 	    $scope.user.skin_problems =  data.skin_problems; 
@@ -35,21 +35,19 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		  
 		    var random = (new Date()).toString();
 		    $scope.user.hash_url_image= Amazon.unique_name_file_hash;
+		    User.updateUserProfile($scope.user, $scope.skin_problems);
+		    
+		    Auth.currentUser().then(function(user) {
+		       	 User.setUser(user);
+		         $state.go('profile', {id: user.id});
+		    }, function(error) {
+		        // unauthenticated error
+		    });
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
 		}).error(function(err){
 		
 		});    
     } 
-
-      
-    User.updateUserProfile($scope.user, $scope.skin_problems)
-    
-    Auth.currentUser().then(function(user) {
-       	 User.setUser(user);
-         $state.go('profile', {id: user.id});
-    }, function(error) {
-        // unauthenticated error
-    });
   };
 
 
