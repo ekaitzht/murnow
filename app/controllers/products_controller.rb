@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   #to return in the respone. To resolve this we should do like a left join or right join
   def most_popular_reviews_for_the_most_popular_products
 		response = ActiveRecord::Base.connection.execute("SELECT users.username, users.id,
-       users.image, 
+       users.hash_url_image, 
        reviews.body, 
        reviews.stars, 
        products.product_name,

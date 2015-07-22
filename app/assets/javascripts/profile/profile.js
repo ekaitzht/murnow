@@ -1,9 +1,10 @@
 angular.module('murnow')
 .controller('Profile', [
-'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 
-function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http){
+'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
+function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
-	 
+	 	 $scope.cdn = configMurnow.cdn_domain_name;
+	 	 $scope.enviroment = configMurnow.enviroment;
 		$scope._fetchDataUser =  function() {
           User.getSkinProblems().success(function(data, status, headers, config) {
 		    $scope.user.skin_problems =  data.skin_problems; 

@@ -5,21 +5,21 @@ angular.module('murnow')
 '$stateParams',
 '$mdDialog',
 'products',
-function($scope, $rootScope, $state,$stateParams, $mdDialog, products){
+'configMurnow',
+function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow){
 	
-
-	 products.getMostPopularReviews().success(function(data){
+  		$scope.cdn = configMurnow.cdn_domain_name;
+  		$scope.enviroment = configMurnow.enviroment;
+  		
+  		products.getMostPopularReviews().success(function(data){
 		
-		for (i = 0; i <= 3; i++) {
-			
-			if( data[i] === undefined) {
-				data[i].image = "/assets/anonymousUser.jpg";	
-			}
-		} 
-		$scope.mostPopularReviews = data;
-	});
+			for (i = 0; i <= 3; i++) {
+				
+				if( data[i] === undefined) {
+					data[i].image = "/assets/anonymousUser.jpg";	
+				}
+			} 
+			$scope.mostPopularReviews = data;
+		});
 	
-	
-	
-
 }]);

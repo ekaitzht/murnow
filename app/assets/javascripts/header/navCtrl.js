@@ -9,6 +9,8 @@ angular.module('murnow')
 function($scope,$state, Auth, $mdDialog, User, configMurnow){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
+  $scope.cdn = configMurnow.cdn_domain_name;
+  $scope.enviroment = configMurnow.enviroment;
 
    Auth.currentUser().then(function (user){
     $scope.user = user;

@@ -15,8 +15,16 @@ class User < ActiveRecord::Base
   	validates :skin_color, :inclusion=> { :in => ['Porcelain', 'Ivory', 'Beige',
   	 'Caramel', 'Mocha', 'Dark Chocolate'] }, :allow_nil => true
   	validates :skin_tone, :inclusion=> { :in => [ 'Warm', 'Neutral', 'Cool'] }, :allow_nil => true
-
+  	
 	def self.from_omniauth(auth)
+		
+		@s3 = Aws::S3::Resource.new()  
+		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) 
+		
+		logger.info "hash_url_image: " + hash_url_image
+		
+		
+		
 		user = User.find_by(email: auth.info.email)
 		logger.info "*****************______>>>>>> #{auth.inspect}"
 		if user.nil? then
@@ -25,10 +33,21 @@ class User < ActiveRecord::Base
 		  	where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 
 
-		  		logger.info "hey I am here -=====---------"
-				user.skip_confirmation! 
+		  						user.skip_confirmation! 
 				user.email = auth.info.email
-				user.image = auth.info.image
+				
+				user.hash_url_image = hash_url_image
+				logger.info "(auth.info.image: " + auth.info.image
+				obj = @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image + ".jpg")
+				
+				open("fileToS3", "wb") do |file|
+				  open(auth.info.image) do |uri|
+				     file.write(uri.read)
+				  end
+				end
+		
+				resp = obj.upload_file("fileToS3",  acl:'public-read')  # Writing image file to AWS murnow bucket
+				
 				user.password = Devise.friendly_token[0,20]
 				user.username = auth.info.name   # assuming the user model has a name
 			end
@@ -37,10 +56,22 @@ class User < ActiveRecord::Base
 			user.skip_confirmation! 
 			user.provider = auth.provider
 			user.uid = auth.uid
-			if user.image.blank? then
+			if user.hash_url_image.blank? then
 				
-				 logger.info "Image in the database is empty adding image from facebook."
-			 	user.image = auth.info.image
+				logger.info "Image in the database is empty adding image from facebook."
+				
+			 	user.hash_url_image = hash_url_image
+			 	obj =  @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image + ".jpg")
+			 
+			 	open("fileToS3", "wb") do |file|
+				  open(auth.info.image) do |uri|
+				     file.write(uri.read)
+				  end
+				end
+		
+				resp = obj.upload_file("fileToS3",  acl:'public-read')  # Writing image file to AWS murnow bucket
+				
+
 			end
 			user.save
 			return user
@@ -55,4 +86,11 @@ class User < ActiveRecord::Base
       		end
     	end
   	end
+  	
+  	private
+
+  	def open_uri(url)
+	  require 'open-uri'
+	end	
+	
 end

@@ -36,7 +36,7 @@ angular.module('murnow')
 		o.user_session.skin_tone = user.skin_tone;
 
 		o.user_session.bio = user.bio;
-		o.user_session.image = user.image;
+		o.user_session.hash_url_image = user.hash_url_image;
 		o.user_session.age = user.age;
 
 		angular.forEach(user.skin_problems, function(value, key) {

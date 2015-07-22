@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('EditProfileCtrl', [
-'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 
-function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http){
+'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
+function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
 	$scope.user = User.user_session;
 	$scope.myImage= '';
@@ -10,6 +10,11 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.skin_types = ['Dry','Combination','Oily'];
 	$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
 	$scope.skin_tones = ['Warm', 'Neutral', 'Cool'];
+	 $scope.cdn = configMurnow.cdn_domain_name;
+  $scope.enviroment = configMurnow.enviroment;
+  
+  
+    $scope.srcImageProfile = "https://"+$scope.cdn+"/profile_images_"+$scope.enviroment+"/"+$scope.user.hash_url_image+".jpg";
 	
     User.getSkinProblems().success(function(data, status, headers, config) {
 	    $scope.user.skin_problems =  data.skin_problems; 
@@ -27,9 +32,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		  }).success(function(data, status, headers, config) {
 		    // file is uploaded successfully
 		
-		    var imageUrl = "https://s3.amazonaws.com/murnow/" + Amazon.folder + Amazon.unique_name_file_hash;  //MODIFICAR PARA QUE APUNTE AL CDN
+		  
 		    var random = (new Date()).toString();
-		    $scope.user.image= imageUrl + "?cb=" + random;
+		    $scope.user.hash_url_image= Amazon.unique_name_file_hash;
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
 		}).error(function(err){
 		
