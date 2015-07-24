@@ -49,7 +49,7 @@ class Product < ActiveRecord::Base
           }
         },
         sort: [{rating: {order: 'desc'}}],
-        from: from, size: 40
+        from: from, size: 20
       }
     )
   end
