@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc2
+ * v0.10.1-rc3
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -176,10 +176,8 @@ function MenuDirective($mdMenu) {
     mdMenuCtrl.init(menuContainer);
 
     scope.$on('$destroy', function() {
-      if (mdMenuCtrl.isOpen) {
-        menuContainer.remove();
-        mdMenuCtrl.close();
-      }
+      menuContainer.remove();
+      mdMenuCtrl.close();
     });
 
   }
@@ -217,6 +215,8 @@ function MenuController($mdMenu, $attrs, $element, $scope) {
 
   // Use the $mdMenu interim element service to close the menu contents
   this.close = function closeMenu(skipFocus) {
+    if ( !ctrl.isOpen ) return;
+
     ctrl.isOpen = false;
     triggerElement.setAttribute('aria-expanded', 'false');
     $mdMenu.hide();
@@ -350,7 +350,7 @@ function MenuProvider($$interimElementProvider) {
           target: angular.element(opts.target), //make sure it's not a naked dom node
           parent: angular.element(opts.parent),
           menuContentEl: angular.element(element[0].querySelector('md-menu-content')),
-          backdrop: opts.hasBackdrop && angular.element('<md-backdrop class="md-menu-backdrop md-click-catcher">')
+          backdrop: opts.hasBackdrop && $mdUtil.createBackdrop(scope, "md-menu-backdrop md-click-catcher")
         });
       }
 

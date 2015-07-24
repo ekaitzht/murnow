@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc2
+ * v0.10.1-rc3
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -396,7 +396,7 @@ MdDialogDirective.$inject = ["$$rAF", "$mdTheming"];
 function MdDialogProvider($$interimElementProvider) {
 
   advancedDialogOptions.$inject = ["$mdDialog", "$mdTheming"];
-  dialogDefaultOptions.$inject = ["$mdAria", "$document", "$mdUtil", "$mdConstant", "$mdTheming", "$mdDialog", "$animate", "$q"];
+  dialogDefaultOptions.$inject = ["$mdDialog", "$mdAria", "$mdUtil", "$mdConstant", "$animate", "$document"];
   return $$interimElementProvider('$mdDialog')
     .setDefaults({
       methods: ['disableParentScroll', 'hasBackdrop', 'clickOutsideToClose', 'escapeToClose', 'targetEvent', 'parent'],
@@ -442,8 +442,7 @@ function MdDialogProvider($$interimElementProvider) {
   }
 
   /* ngInject */
-  function dialogDefaultOptions($mdAria, $document, $mdUtil, $mdConstant, $mdTheming, $mdDialog, $animate, $q ) {
-
+  function dialogDefaultOptions($mdDialog, $mdAria, $mdUtil, $mdConstant, $animate, $document) {
     return {
       hasBackdrop: true,
       isolateScope: true,
@@ -468,7 +467,7 @@ function MdDialogProvider($$interimElementProvider) {
 
       captureSourceAndParent(element, options);
       configureAria(element.find('md-dialog'), options);
-      showBackdrop(element, options);
+      showBackdrop(scope, element, options);
 
       return dialogPopIn(element, options)
         .then(function () {
@@ -501,15 +500,16 @@ function MdDialogProvider($$interimElementProvider) {
      * Remove function for all dialogs
      */
     function onRemove(scope, element, options) {
-      angular.element($document[0].body).removeClass('md-dialog-is-showing');
-
       options.deactivateListeners();
       options.unlockScreenReader();
+
       options.hideBackdrop();
 
       return dialogPopOut(element, options)
-        .then(function () {
+        .finally(function () {
+          angular.element($document[0].body).removeClass('md-dialog-is-showing');
           element.remove();
+
           options.origin.focus();
         });
     }
@@ -534,7 +534,7 @@ function MdDialogProvider($$interimElementProvider) {
          options.parent = angular.element(options.parent);
 
          if (options.disableParentScroll) {
-           options.restoreScroll = $mdUtil.disableScrollAround(element);
+           options.restoreScroll = $mdUtil.disableScrollAround(element,options.parent);
          }
        }
 
@@ -543,6 +543,13 @@ function MdDialogProvider($$interimElementProvider) {
      */
     function activateListeners(element, options) {
       var removeListeners = [ ];
+      var smartClose = function() {
+        // Only 'confirm' dialogs have a cancel button... escape/clickOutside will
+        // cancel or fallback to hide.
+        var closeFn =  ( options.$type == 'alert' ) ? $mdDialog.hide : $mdDialog.cancel;
+
+        $mdUtil.nextTick( closeFn, true );
+      };
 
       if (options.escapeToClose) {
         var target = options.parent;
@@ -551,7 +558,7 @@ function MdDialogProvider($$interimElementProvider) {
                 ev.stopPropagation();
                 ev.preventDefault();
 
-                $mdUtil.nextTick($mdDialog.cancel);
+                smartClose();
               }
             };
 
@@ -568,12 +575,12 @@ function MdDialogProvider($$interimElementProvider) {
       if (options.clickOutsideToClose) {
         var target = element;
         var clickHandler = function (ev) {
-              // Only close if we click the flex container outside the backdrop
+              // Only close if we click the flex container outside on the backdrop
               if (ev.target === target[0]) {
                 ev.stopPropagation();
                 ev.preventDefault();
 
-                $mdUtil.nextTick($mdDialog.cancel);
+                smartClose();
               }
             };
 
@@ -599,7 +606,7 @@ function MdDialogProvider($$interimElementProvider) {
     /**
      * Show modal backdrop element...
      */
-    function showBackdrop(element, options) {
+    function showBackdrop(scope, element, options) {
 
       if (options.hasBackdrop) {
         // Fix for IE 10
@@ -610,9 +617,7 @@ function MdDialogProvider($$interimElementProvider) {
 
         element.css('top', parentOffset + 'px');
 
-        options.backdrop = angular.element('<md-backdrop class="md-dialog-backdrop md-opaque">');
-        options.backdrop.css('top', parentOffset + 'px');
-        $mdTheming.inherit(options.backdrop, options.parent);
+        options.backdrop = $mdUtil.createBackdrop(scope, "md-dialog-backdrop md-opaque");
 
         $animate.enter(options.backdrop, options.parent);
       }
