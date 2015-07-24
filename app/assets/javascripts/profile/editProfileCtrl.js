@@ -6,6 +6,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.user = User.user_session;
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
+	
 	$scope.fileImage = '';
 	$scope.skin_types = ['Dry','Combination','Oily'];
 	$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];

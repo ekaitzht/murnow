@@ -2,10 +2,10 @@
 	<form name="registerForm" layout="column" >
 	  <div layout="row" layout-sm="column">
 	    <div class="wrapper-image-profile" layout="row">
-	    	<div ng-show="user.hash_url_image" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
+	    	<div ng-show="user.hash_url_image || srcImageProfile" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
 	            <img ng-src="{{srcImageProfile}}" class="face" alt="{{user.username}}">
 	    	</div>
-			<button ng-show="!user.hash_url_image" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
+			<button ng-show="!user.hash_url_image" ng-hide="srcImageProfile" ng-file-select ng-model="file" multiple="false">You don't have profile image!</button>
 			
 			<div layout="column">
 		      <div class="username">

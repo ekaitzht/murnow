@@ -16,7 +16,7 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 			for (i = 0; i <= 3; i++) {
 				
 				if( data[i] === undefined) {
-					data[i].image = "/assets/anonymousUser.jpg";	
+					data[i].hash_url_image = "/assets/anonymousUser.jpg";	
 				}
 			} 
 			$scope.mostPopularReviews = data;
