@@ -37,20 +37,8 @@ function($scope, $mdDialog, products, product, Auth, $state,configMurnow){
   }
   
   $scope.goProfile = function(user_id_clicked){
-	 	
-	  Auth.currentUser().then(function (user){
-		 	if(user_id_clicked === user.id) {
-			 	 $state.go('profile', { id: user.id});
-		 	} else {
-			 	$state.go('public_profile', { id: user_id_clicked})
-		 	}
-		   
-
-		}, function(error) {
-			// unauthenticated error
-		    $state.go('public_profile', { id: user_id_clicked});
-        });
-	}
+	 	   $state.go('profile', { id: user_id_clicked});
+   }
 
   $scope.showAddReviewPanel= function() {
     if(Auth._currentUser == null){

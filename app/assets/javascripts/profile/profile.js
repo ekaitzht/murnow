@@ -5,16 +5,31 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	
 	 	 $scope.cdn = configMurnow.cdn_domain_name;
 	 	 $scope.enviroment = configMurnow.enviroment;
-		$scope._fetchDataUser =  function() {
-          User.getSkinProblems().success(function(data, status, headers, config) {
-		    $scope.user.skin_problems =  data.skin_problems; 
-		  });
+	 	 
+	 	 
+ 	Auth.currentUser().then(function (user){
+	 	if(parseInt($stateParams.id) === user.id) { // if the user that we are is logged we have to modify profile view 
+		 	$scope.publicProfile = false;
+	 	} else {
+		 	$scope.publicProfile = true;
+	 	}
+	   
+	}, function(error) {
+		
+    });
+        
+        
+        
+	$scope._fetchDataUser =  function() {
+      User.getSkinProblems().success(function(data, status, headers, config) {
+	    $scope.user.skin_problems =  data.skin_problems; 
+	  });
+	  
+	 User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
 		  
-		 User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
-			  
-		    $scope.reviews =  data.reviews; 
-		  });
-    }  
+	    $scope.reviews =  data.reviews; 
+	  });
+	}  
     
     
   	if(Auth.isAuthenticated()) {
