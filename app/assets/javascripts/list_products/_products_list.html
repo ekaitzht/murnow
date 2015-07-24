@@ -13,7 +13,7 @@
 					  </div>
 				<div class="wrapper-rate-approval" layout="column"  flex="12">
 					      <div class="repurchase-percent "> 
-					      {{ product.rating }}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
+					      {{ product.rating | number:0 }}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
 					      </div>
 						  <div ng-hide="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
 							  APPROVAL RATE
