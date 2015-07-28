@@ -225,7 +225,7 @@ md-divider[md-inset] {margin-left:auto;border-top-color:$color-divider;width:100
 // * AD HOC Fixes for firefox *//
 
 @-moz-document url-prefix() {
-    .not-home-page form{
+    .not-home-page form md-autocomplete{
       position: absolute;
 	  display: block;
 	  left: 0px;
