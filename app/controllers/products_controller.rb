@@ -42,12 +42,8 @@ FROM   (
                                        user_id, 
                                        review_id 
                        FROM            ( 
-                                              SELECT product_id, 
-                                                     user_id, 
-                                                     review_id, 
-                                                     Max(number_votes) OVER (partition BY user_id) AS max_votes
-                                              FROM   ( 
-                                                              SELECT   Count(*) number_votes, 
+                                              SELECT DISTINCT ON(product_id) product_id, review_id, user_id, number_votes
+											  FROM    (SELECT   Count(*) number_votes, 
                                                                        r.product_id, 
                                                                        v.review_id, 
                                                                        r.user_id 
@@ -57,7 +53,7 @@ FROM   (
                                                               GROUP BY r.product_id, 
                                                                        v.review_id, 
                                                                        r.user_id 
-                                                              ORDER BY number_votes DESC) AS number_votes_per_user) AS aux) AS max_votes_user,
+                                                                       ORDER BY product_id, number_votes DESC) AS number_votes_per_user) AS aux) AS max_votes_user,
        users, 
        reviews, 
        products 
