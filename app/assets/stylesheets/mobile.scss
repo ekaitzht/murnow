@@ -1,9 +1,21 @@
 
 $monte-carlo:#80CBC4;
+$pink-color: #FCB4E6;
+$amatic-font: 'Amatic SC';
+$josefin-sans: 'Josefin Sans',sans-serif;
+$color-divider: #FDD1F0;
+$background-color-pink:#D4FFFB;
+$monte-carlo:#80CBC4;
+$lucida-grande: "Lucida Grande";
+
 @media screen and (max-width: 960px) {
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
 	
+	
+	#logo > div {width:32px; text-align:center;border:1px solid white;line-height: 32px;border-radius:16px;font-size:25px;margin-top:8px;}
 }
+
+
 
 @media screen and (max-width: 768px) {
 	.home-page{
@@ -20,5 +32,12 @@ $monte-carlo:#80CBC4;
     md-dialog{width:100%;height:100%;max-width:100%;max-height:100%;}
     #login-button {display:none;}
 	#progress-circular{display:none; z-index:1001;position:fixed;  left: 0;right: 0;margin: 0 auto;top:100px;}
+	
+	.products-list {
+  
+		#product-info {position: relative;top:auto; left:auto;font-size: 14px;font-family: $lucida-grande;line-height: 18px;}
+		#image-product {margin-bottom:auto;margin-top:autod;}
+		 
+	}
   
 }
