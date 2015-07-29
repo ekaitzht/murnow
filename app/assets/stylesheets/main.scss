@@ -42,7 +42,6 @@ ui-view {width:100%;overflow-x:hidden;}
 .amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
 .josefin-pink {font-family: $josefin-sans ; font-weight:400;color: $pink-color;}
 
-ui-view{padding-left:15%;padding-right:15%;}
 ui-view > * {width:100%;}
 
 .not-outline:focus {
@@ -123,12 +122,11 @@ header {
 .products-list {
   
   md-divider {border-top-color:$color-divider;width:100%;    border-width: 2px;}
- .wrapper-rate-approval{@extend .amatic; @extend .weight-700;}
+ .wrapper-rate-approval{@extend .amatic; @extend .weight-700; font-size:28px;color:white; background-color:#FDB3E7;width:172px; height:172px;}
  .approval-rate {font-size:14px;}
- .repurchase-percent {font-size:20px;}
+ .repurchase-percent {position: relative; top: 10px;}
  .md-list-item {cursor:pointer;}
  .products-list .figure-wrapper figure{margin:18px;}
- #image-product {margin-bottom:30px;margin-top:30px;}
  #product-info {
 	position: relative;top: -40px; left:20px;font-size: 25px;font-family: $lucida-grande;
 	#name-product,#brand-name {max-width:280px;}
@@ -147,16 +145,16 @@ header {
 
 	header {background-color:$monte-carlo;}
 		#search-bar-not-home-page {display:none;}
-	ui-view {margin-top:50px;}
+	ui-view {margin-top:50px;padding-left:15%;padding-right:15%;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
 
-	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;  margin-left: 15%;margin-right: 15%;width: 70% ;}
+	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white; }
 	li {cursor:pointer;}
 	#logo {display:none;}
 	md-content{ margin-top:3px;}
-	
+
 
 	.reviews {
 		.face{border-radius:100px;width:100px;height:100px;}
@@ -214,7 +212,9 @@ header {
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;}
 	overflow:hidden;
-	md-content{ margin-top:25px;}
+	md-card{max-width:960px;margin:auto;margin-top:20px;}
+	
+
 	form  {
 		text-align:center;
 		md-autocomplete {
