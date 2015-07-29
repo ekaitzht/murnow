@@ -5,7 +5,7 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 3000
+port        ENV['PORT']     || 5000
 environment ENV['RACK_ENV'] || 'development' # RACK_ENV is in your heroku config variables
 
 on_worker_boot do
