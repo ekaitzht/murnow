@@ -22,10 +22,13 @@ $lucida-grande: "Lucida Grande";
 		ui-view{display:none}
 		background-color:$monte-carlo;
 		md-autocomplete {width:100%;}
+	
+		
 	}
 	
 	.not-home-page {
 		md-autocomplete {width:40%;position:relative;}
+		#search-bar-not-home-page {position:relative;left:-30px;}
 		
 		
 	}

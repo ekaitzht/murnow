@@ -11,6 +11,7 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
   $scope.logout = Auth.logout;
   $scope.cdn = configMurnow.cdn_domain_name;
   $scope.enviroment = configMurnow.enviroment;
+//.not-home-page .mainNav {display: inline-block !important;float: right !important;}
 
    Auth.currentUser().then(function (user){
     $scope.user = user;

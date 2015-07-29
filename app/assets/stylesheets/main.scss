@@ -25,16 +25,9 @@ body {
 	overflow-y:auto !important;
 	
 	
-	.mainNav {
-		float:right;
-		position:relative;
-		left:20px;
-	}
+	.mainNav {position: fixed;    right: 0px;    top: -3px;}
+	#join-button{position: fixed; right: -20px;top: 7px;}
 
-	
-	
-	
-	
 	
 }
 span.sr-only.ng-binding {display:none;}
@@ -87,14 +80,14 @@ header {
 	
 }
 
-#menu {float:right; cursor:pointer !important;#image-thumbnail-menu:focus{outline:none;}position: relative;top: -10px;right: -5px;
+#menu {cursor:pointer !important;#image-thumbnail-menu:focus{outline:none;}
 
-.my-icon-button {
-  padding: 0px 0px 0px 0px !important;
-  min-width: 0;
-  min-height: 0;
-  line-height: normal;
-}
+	.my-icon-button {
+	  padding: 0px 0px 0px 0px !important;
+	  min-width: 0;
+	  min-height: 0;
+	  line-height: normal;
+	}
 }
 
 
@@ -149,8 +142,11 @@ header {
 
 
 .home-page{
-	header {background-color:$monte-carlo;}
 	
+		
+
+	header {background-color:$monte-carlo;}
+		#search-bar-not-home-page {display:none;}
 	ui-view {margin-top:50px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
@@ -160,7 +156,7 @@ header {
 	li {cursor:pointer;}
 	#logo {display:none;}
 	md-content{ margin-top:3px;}
-	.mainNav li {float: right;list-style-type: none;}
+	
 
 	.reviews {
 		.face{border-radius:100px;width:100px;height:100px;}
@@ -215,20 +211,21 @@ header {
 }
 
 .not-home-page {
+	//.mainNav {display: inline-block !important;float: right !important;}
+	#search-bar-home-page {display:none;}
 	overflow:hidden;
 	md-content{ margin-top:25px;}
 	form  {
 		text-align:center;
 		md-autocomplete {
-			 width:40%;margin:auto;position: relative;top: -45px;display:inline-block;
+			 width:40%;margin:auto;position: relative;display:inline-block;
 			 input {
 				color:black;
 				 
 			 }
 		}
 	}
-	
-		
+			
 		
 	header {height:60px;}
 	.home a {font-size: 31px; font-weight:600;color:white;}
@@ -243,17 +240,6 @@ header {
 
 
 // * AD HOC Fixes for firefox *//
-
-@-moz-document url-prefix() {
-    .not-home-page form md-autocomplete{
-      position: absolute;
-	  display: block;
-	  left: 0px;
-	  right: 0px;
-	  top: 20px;
-    }
-}
-
 
 
 
