@@ -122,7 +122,7 @@ header {
 /* LIST STYLES */
 .products-list {
   
-  md-divider {border-top-color:$color-divider;width:100%;}
+  md-divider {border-top-color:$color-divider;width:100%;    border-width: 2px;}
  .wrapper-rate-approval{@extend .amatic; @extend .weight-700;}
  .approval-rate {font-size:14px;}
  .repurchase-percent {font-size:20px;}

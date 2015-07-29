@@ -17,7 +17,7 @@ $lucida-grande: "Lucida Grande";
 
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
 	.home-page{
 		ui-view{display:none}
 		background-color:$monte-carlo;
@@ -27,6 +27,21 @@ $lucida-grande: "Lucida Grande";
 	}
 	
 	.not-home-page {
+		md-card {margin:0px;}
+		md-content {margin-top:0px;}
+		md-list {
+			padding-top:0px;
+			md-list-item  {
+				padding:0px;
+				> button {
+					padding:0px 0px;
+					.md-list-item-inner{padding:20px 22px 20px 24px;}
+				}
+				
+				
+			}
+			
+		}
 		md-autocomplete {width:40%;position:relative;}
 		#search-bar-not-home-page {position:relative;left:-30px;}
 		
