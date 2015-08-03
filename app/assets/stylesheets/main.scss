@@ -7,6 +7,10 @@ $color-divider: #FDD1F0;
 $background-color-pink:#D4FFFB;
 $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
+$subheader-color: #757575;
+
+
+
 h1 {margin:0px;}
 a {text-decoration:none;}
 .wordwrap {  
@@ -121,15 +125,13 @@ header {
 /* LIST STYLES */
 .products-list {
   
-  md-divider {border-top-color:$color-divider;width:100%;    border-width: 2px;}
  .wrapper-rate-approval{@extend .amatic; @extend .weight-700; font-size:28px;color:white; background-color:#FDB3E7;width:172px; height:172px;}
  .approval-rate {font-size:14px;}
  .repurchase-percent {position: relative; top: 10px;}
  .md-list-item {cursor:pointer;}
  .products-list .figure-wrapper figure{margin:18px;}
  #product-info {
-	position: relative;top: -40px; left:20px;font-size: 25px;font-family: $lucida-grande;
-	#name-product,#brand-name {max-width:280px;}
+	position: relative;font-size: 28px;font-family: $lucida-grande;
 	 
  }
  
@@ -229,6 +231,42 @@ header {
 		
 	header {height:60px;}
 	.home a {font-size: 31px; font-weight:600;color:white;}
+	
+	
+	
+	// * LIST STYLING */
+	
+	
+	md-list {
+		padding-top:0px;
+		#product-info {
+		
+		}
+		md-list-item  {
+			padding:0px;
+			> button {
+				padding:0px 0px;
+				.md-list-item-inner{
+					padding:44px 44px 44px 44px;
+					
+					#image-product {margin-left:40px; margin-right:40px;}
+					#brand-name {color:#757575;}
+					#product-info{padding:0px;padding-right:45px;}
+					md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
+					.wrapper-rate-approval{padding:0px;margin-right:45px; border-radius:50%;
+						.approval-rate{font-size:31px;}
+						.repurchase-percent{font-size:61px;}
+						
+						
+					}
+
+				}
+			}
+			
+			
+		}
+		
+	}
 }
 
 

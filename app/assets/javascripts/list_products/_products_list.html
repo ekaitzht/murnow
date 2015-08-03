@@ -1,26 +1,28 @@
 <md-card>
 	<md-list  class="products-list" layout="column">
-			<md-list-item  ng-repeat="product in products" ng-click="goToProductState('products',product.id)"  layout="row"  layout-padding>
-		        <div  id="image-product" flex-sm="16.3" flex=30>
-		        	<a ng-href="/products/{{product.id}}"> <img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
-		        </div>  
-				<div id="product-info" class="md-tile-content" layout="column"  flex-sm="40" flex="60" layout-padding>
-					<div id="name-product" class="wordwrap">{{product.product_name}}</div>
-					<div id="brand-name" >by {{product.brand_name}} </div>
-					<div class="ratings">    
-						   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-	        		</div>
-				</div>
-				<div class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center">
-					      <div class="repurchase-percent "> 
-					      {{ product.rating | number:0 }}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
-					      </div>
-						  <div ng-hide="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
-							  APPROVAL RATE
-						  </div>
-						  <div ng-show="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
-							  We don't have approval rate for this product
-						  </div>
+			<md-list-item  ng-repeat="product in products" ng-click="goToProductState('products',product.id)"  layout="column"  layout-padding>
+				<div layout="row"  flex="100" layout-align="center center">
+			        <div  id="image-product" flex-sm="16.3" flex-gt-sm="20">
+			        	<a ng-href="/products/{{product.id}}"> <img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
+			        </div>  
+					<div id="product-info" class="md-tile-content" layout="column"  flex-sm="40" flex-gt-sm="50" layout-padding >
+						<div id="name-product" class="wordwrap">{{product.product_name}}</div>
+						<div id="brand-name" >by {{product.brand_name}} </div>
+						<div class="ratings">    
+							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+		        		</div>
+					</div>
+					<div class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center"  flex-gt-sm="20">
+						      <div class="repurchase-percent "> 
+						      {{ product.rating | number:0 }}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
+						      </div>
+							  <div ng-hide="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
+								  APPROVAL RATE
+							  </div>
+							  <div ng-show="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
+								  We don't have approval rate for this product
+							  </div>
+					</div>
 				</div>
 				<md-divider ng-if="!$last"></md-divider>
 			</md-list-item>
