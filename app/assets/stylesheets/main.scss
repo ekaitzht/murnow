@@ -1,10 +1,9 @@
 
 
-$pink-color: #FCB4E6;
+$pink-color: #FDB3E7;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans',sans-serif;
 $color-divider: #FDD1F0;
-$background-color-pink:#D4FFFB;
 $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 $subheader-color: #757575;
@@ -236,37 +235,40 @@ header {
 	
 	// * LIST STYLING */
 	
-	
-	md-list {
-		padding-top:0px;
-		#product-info {
+	.list_products {  // state name
 		
-		}
-		md-list-item  {
-			padding:0px;
-			> button {
-				padding:0px 0px;
-				.md-list-item-inner{
-					padding:44px 44px 44px 44px;
-					
-					#image-product {margin-left:40px; margin-right:40px;}
-					#brand-name {color:#757575;}
-					#product-info{padding:0px;padding-right:45px;}
-					md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
-					.wrapper-rate-approval{padding:0px;margin-right:45px; border-radius:50%;
-						.approval-rate{font-size:31px;}
-						.repurchase-percent{font-size:61px;}
+		md-list {
+			padding-top:0px;
+			#product-info {
+			
+			}
+			md-list-item  {
+				padding:0px;
+				> button {
+					padding:0px 0px;
+					.md-list-item-inner{
+						padding:44px 44px 44px 44px;
 						
-						
+						#image-product {margin-left:40px; margin-right:40px;}
+						#brand-name {color:#757575;}
+						#product-info{padding:0px;padding-right:45px;}
+						md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
+						.wrapper-rate-approval{padding:0px;margin-right:45px; border-radius:50%;
+							.approval-rate{font-size:31px;}
+							.repurchase-percent{font-size:61px;}
+							
+							
+						}
+	
 					}
-
 				}
+				
+				
 			}
 			
-			
-		}
-		
+		}	
 	}
+	
 }
 
 

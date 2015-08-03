@@ -1,10 +1,9 @@
 
 $monte-carlo:#80CBC4;
-$pink-color: #FCB4E6;
+$pink-color: #FDB3E7;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans',sans-serif;
 $color-divider: #FDD1F0;
-$background-color-pink:#D4FFFB;
 $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 
@@ -34,24 +33,26 @@ $lucida-grande: "Lucida Grande";
 	.not-home-page {
 		md-card {margin:0px;}
 		md-content {margin-top:0px;}
-		md-list {
-			md-list-item  {
-				> button {
-					.md-list-item-inner{
-						padding:20px 22px 20px 24px;
-						.wrapper-rate-approval {width:79px; height:79px; border-radius:39.5px; margin-right:inherit;
-							.approval-rate{font-size:14px;}
-							.repurchase-percent{font-size:inherit;}
+		.list_products {
+			md-list {
+				md-list-item  {
+					> button {
+						.md-list-item-inner{
+							padding:20px 22px 20px 24px;
+							.wrapper-rate-approval {width:79px; height:79px; border-radius:39.5px; margin-right:inherit;
+								.approval-rate{font-size:14px;}
+								.repurchase-percent{font-size:inherit;}
+							}
+							#image-product {margin-left:0px; margin-right:15px;}
+							#product-info{padding:0px;padding-right:inherit;}
+							md-divider{width:100%;margin-left:0px;}
 						}
-						#image-product {margin-left:0px; margin-right:15px;}
-						#product-info{padding:0px;padding-right:inherit;}
-						md-divider{width:100%;margin-left:0px;}
 					}
+					
+					
 				}
 				
-				
 			}
-			
 		}
 		md-autocomplete {width:40%;position:relative;}
 		#search-bar-not-home-page {position:relative;left:-30px;}
@@ -79,6 +80,12 @@ $lucida-grande: "Lucida Grande";
 		    	 .approval-rate{font-size:20px !important;}
 		    	 .repurchase-percent{font-size:40px !important;}
 	    	 }
+	    	 
+	    .list_products {
+			.md-list-item-inner{width:100%;margin-left:0px;}    
+		    
+		}
+
 
 	}	
 
