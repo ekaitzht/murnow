@@ -30,9 +30,9 @@ function($scope, $mdDialog, products, product, Auth, $state,configMurnow){
   if ($scope.product.buyers == 0 && $scope.product.not_buyers == 0) {
     $scope.repurchase_again_percent = 0;
     $scope.zero_reviews = true;
-    $scope.inputReviewPlaceholder = "We don't have reviews for now click here to be the first to add a review"
+    $scope.inputReviewPlaceholder = "Be the first to review this product!"
   } else {
-	$scope.inputReviewPlaceholder = "Click here to add a review."
+	$scope.inputReviewPlaceholder = "Let us know what you think!"
     $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   

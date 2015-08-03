@@ -1,53 +1,61 @@
- <md-card> 
-<div class="product-profile" layout="column" layout-align="center" layout-padding> 
-  <div layout= "row" class="page-header">
-      <figure ><img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
-      <div layout="column" class="information-product">
-        <div class="product-name">{{product.product_name}}</div>
-        <div class="brand-name">by {{product.brand_name}}</div>
-        <div class="ratings">    
-          <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-        </div>
-        <div class="buyers-again" ng-hide="zero_reviews">{{repurchase_again_percent | number:0}} <span> % of users would repurchase</span></div>
-		<div class="zero-reviews-for-now" ng-show="zero_reviews">For now we don't have reviews</div>
-
-      </div>
-  </div>
-
-  <div class="all-comments"  layout="row" layout-padding> All Comments ({{product.reviews.length}}) </div>
-  
-      <md-input-container md-no-float ng-click="showAddReviewPanel()">
-        <input   type="text"  placeholder="{{inputReviewPlaceholder}}" disabled>
-      </md-input-container>
-
-  <md-list>
-  	<md-list-item class="md-3-line" ng-repeat="review in product.reviews | orderBy:'-upvotes'">
-  		<img ng-click="goProfile(review.user_id)" ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
-		<img ng-click="goProfile(review.user_id)" ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.jpg" class="md-avatar not-outline" > 
-		
-		
-		<div class="md-list-item-text">
-			<div class="review-body">
-				<p class="wordwrap"> {{review.body}} </p>
-				
-			</div>
-			<div layout="row" layout-align="space-between start">
-				<div class="product-rating">
-					<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+<md-card> 
+	<div class="product-profile" layout="column" layout-align="center" layout-padding> 
+		<div layout= "row" class="header-product" layout-align="space-between center">
+	    		<figure ><img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
+		        <div id="product-info" layout="column"  >
+						<div id="name-product" class="wordwrap">{{product.product_name}}</div>
+						<div id="brand-name" >by {{product.brand_name}} </div>
+						<div class="ratings">    
+							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+		        		</div>
 				</div>
-				<div class="date-review"> {{review.created_at | fromNow}}</div>
-			</div>
-			<div class="thumbs-up" >
-				<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
-				<span> {{review.votes.length}} </span>
-			</div>
-
-			
+		    	<div class="wrapper-rate-approval" layout="column"  layout-align="space-around center" >
+				      <div class="repurchase-percent "> {{ repurchase_again_percent | number:0 }} % </div>
+					  <div class="approval-rate"> 
+						  APPROVAL RATE
+					  </div>
+		        </div>   
+	      </div>
 	    </div>
-	</md-list-item>
-  </md-list>
-</div>
- </md-card>
+	    
+	    
+		<md-input-container md-no-float ng-click="showAddReviewPanel()">
+	        <input   type="text"  placeholder="{{inputReviewPlaceholder}}" disabled>
+	    </md-input-container>
+	    
+	    <!-- ALL COMMENTS -->
+	    <div class="all-comments"  layout="row" layout-padding> Reviews ({{product.reviews.length}}) </div>
+	  
+
+		<!-- LIST OF REVIEWS -->
+		<md-list>
+			<md-list-item class="md-3-line" ng-repeat="review in product.reviews | orderBy:'-upvotes'">
+				<img ng-click="goProfile(review.user_id)" ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
+				<img ng-click="goProfile(review.user_id)" ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.jpg" class="md-avatar not-outline" > 
+				
+				
+				<div class="md-list-item-text">
+					<div class="review-body">
+						<p class="wordwrap"> {{review.body}} </p>
+						
+					</div>
+					<div layout="row" layout-align="space-between start">
+						<div class="product-rating">
+							<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+						</div>
+						<div class="date-review"> {{review.created_at | fromNow}}</div>
+					</div>
+					<div class="thumbs-up" >
+						<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
+						<span> {{review.votes.length}} </span>
+					</div>
+		
+					
+			    </div>
+			</md-list-item>
+		  </md-list>
+	</div>
+</md-card>
  
  
  
