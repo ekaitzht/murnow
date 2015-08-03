@@ -39,11 +39,14 @@ $lucida-grande: "Lucida Grande";
 					> button {
 						.md-list-item-inner{
 							padding:20px 22px 20px 24px;
-							.wrapper-rate-approval {width:79px; height:79px; border-radius:39.5px; margin-right:inherit;
+							.wrapper-rate-approval {width:69px; height:69px; border-radius:39.5px; margin-right:inherit;
 								.approval-rate{font-size:14px;}
 								.repurchase-percent{font-size:inherit;}
 							}
-							#image-product {margin-left:0px; margin-right:15px;}
+							#image-product { margin-left:0px;margin-right:0px;
+								img{max-width: 82px;}
+									
+							}
 							#product-info{padding:0px;padding-right:inherit;}
 							md-divider{width:100%;margin-left:0px;}
 						}
@@ -83,6 +86,7 @@ $lucida-grande: "Lucida Grande";
 	    	 
 	    .list_products {
 			.md-list-item-inner{width:100%;margin-left:0px;}    
+			md-divider {width:100% !important;margin-left:0px !important;}
 		    
 		}
 
