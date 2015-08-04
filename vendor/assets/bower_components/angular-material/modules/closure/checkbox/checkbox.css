@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc5-master-f5a9101
+ * v0.9.0-rc1
  */
 /* mixin definition ; sets LTR and RTL within the same style call */
 md-checkbox {
@@ -15,17 +15,7 @@ md-checkbox {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none;
-  padding-left: 18px;
-  padding-right: 0;
-  position: relative;
-  line-height: 26px;
-  min-width: 18px;
-  min-height: 18px; }
-  html[dir=rtl] md-checkbox {
-    padding-left: 0; }
-  html[dir=rtl] md-checkbox {
-    padding-right: 18px; }
+          user-select: none; }
   md-checkbox *, md-checkbox *:before, md-checkbox *:after {
     box-sizing: border-box; }
   md-checkbox.md-focused:not([disabled]) .md-container:before {
@@ -36,19 +26,11 @@ md-checkbox {
   md-checkbox.md-focused:not([disabled]):not(.md-checked) .md-container:before {
     background-color: rgba(0, 0, 0, 0.12); }
   md-checkbox .md-container {
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    position: relative;
+    top: 4px;
     display: inline-block;
     width: 18px;
-    height: 18px;
-    left: 0;
-    right: auto; }
-    html[dir=rtl] md-checkbox .md-container {
-      left: auto; }
-    html[dir=rtl] md-checkbox .md-container {
-      right: 0; }
+    height: 18px; }
     md-checkbox .md-container:before {
       background-color: transparent;
       border-radius: 50%;
@@ -78,8 +60,6 @@ md-checkbox {
       top: -15px;
       right: -15px;
       bottom: -15px; }
-  md-checkbox.md-align-top-left > div.md-container {
-    top: 12px; }
   md-checkbox .md-icon {
     transition: 240ms;
     position: absolute;
@@ -87,8 +67,7 @@ md-checkbox {
     left: 0;
     width: 18px;
     height: 18px;
-    border-width: 2px;
-    border-style: solid;
+    border: 2px solid;
     border-radius: 2px; }
   md-checkbox.md-checked .md-icon {
     border: none; }
@@ -103,23 +82,19 @@ md-checkbox {
     display: table;
     width: 6px;
     height: 12px;
-    border-width: 2px;
-    border-style: solid;
+    border: 2px solid;
     border-top: 0;
     border-left: 0;
-    content: ''; }
+    content: ' '; }
   md-checkbox .md-label {
+    border: 1px dotted transparent;
     position: relative;
     display: inline-block;
+    margin-left: 10px;
     vertical-align: middle;
     white-space: normal;
+    pointer-events: none;
     -webkit-user-select: text;
        -moz-user-select: text;
         -ms-user-select: text;
-            user-select: text;
-    margin-left: 10px;
-    margin-right: 0; }
-    html[dir=rtl] md-checkbox .md-label {
-      margin-left: 0; }
-    html[dir=rtl] md-checkbox .md-label {
-      margin-right: 10px; }
+            user-select: text; }

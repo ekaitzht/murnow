@@ -2,18 +2,21 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc5-master-f5a9101
+ * v0.9.0-rc1
  */
 goog.provide('ng.material.components.bottomSheet');
 goog.require('ng.material.components.backdrop');
 goog.require('ng.material.core');
+(function() {
+'use strict';
+
 /**
  * @ngdoc module
  * @name material.components.bottomSheet
  * @description
  * BottomSheet
  */
-angular.module('material.components.bottomSheet', [
+ng.material.components.bottomSheet = angular.module('material.components.bottomSheet', [
   'material.core',
   'material.components.backdrop'
 ])
@@ -127,15 +130,15 @@ function MdBottomSheetProvider($$interimElementProvider) {
   var CLOSING_VELOCITY = 0.5;
   var PADDING = 80; // same as css
 
-  bottomSheetDefaults.$inject = ["$animate", "$mdConstant", "$mdUtil", "$mdTheming", "$mdBottomSheet", "$rootElement", "$mdGesture"];
+  bottomSheetDefaults.$inject = ["$animate", "$mdConstant", "$mdUtil", "$timeout", "$compile", "$mdTheming", "$mdBottomSheet", "$rootElement", "$mdGesture"];
   return $$interimElementProvider('$mdBottomSheet')
     .setDefaults({
       methods: ['disableParentScroll', 'escapeToClose', 'targetEvent'],
       options: bottomSheetDefaults
     });
 
-  /* ngInject */
-  function bottomSheetDefaults($animate, $mdConstant, $mdUtil, $mdTheming, $mdBottomSheet, $rootElement, $mdGesture) {
+  /* @ngInject */
+  function bottomSheetDefaults($animate, $mdConstant, $mdUtil, $timeout, $compile, $mdTheming, $mdBottomSheet, $rootElement, $mdGesture) {
     var backdrop;
 
     return {
@@ -153,9 +156,9 @@ function MdBottomSheetProvider($$interimElementProvider) {
       element = $mdUtil.extractElementByName(element, 'md-bottom-sheet');
 
       // Add a backdrop that will close on click
-      backdrop = $mdUtil.createBackdrop(scope, "md-bottom-sheet-backdrop md-opaque");
+      backdrop = $compile('<md-backdrop class="md-opaque md-bottom-sheet-backdrop">')(scope);
       backdrop.on('click', function() {
-        $mdUtil.nextTick($mdBottomSheet.cancel,true);
+        $timeout($mdBottomSheet.cancel);
       });
       $mdTheming.inherit(backdrop, options.parent);
 
@@ -185,7 +188,7 @@ function MdBottomSheetProvider($$interimElementProvider) {
           if (options.escapeToClose) {
             options.rootElementKeyupCallback = function(e) {
               if (e.keyCode === $mdConstant.KEY_CODE.ESCAPE) {
-                $mdUtil.nextTick($mdBottomSheet.cancel,true);
+                $timeout($mdBottomSheet.cancel);
               }
             };
             $rootElement.on('keyup', options.rootElementKeyupCallback);
@@ -251,7 +254,7 @@ function MdBottomSheetProvider($$interimElementProvider) {
           var distanceRemaining = element.prop('offsetHeight') - ev.pointer.distanceY;
           var transitionDuration = Math.min(distanceRemaining / ev.pointer.velocityY * 0.75, 500);
           element.css($mdConstant.CSS.TRANSITION_DURATION, transitionDuration + 'ms');
-          $mdUtil.nextTick($mdBottomSheet.cancel,true);
+          $timeout($mdBottomSheet.cancel);
         } else {
           element.css($mdConstant.CSS.TRANSITION_DURATION, '');
           element.css($mdConstant.CSS.TRANSFORM, '');
@@ -264,4 +267,4 @@ function MdBottomSheetProvider($$interimElementProvider) {
 }
 MdBottomSheetProvider.$inject = ["$$interimElementProvider"];
 
-ng.material.components.bottomSheet = angular.module("material.components.bottomSheet");
+})();

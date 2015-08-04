@@ -2,15 +2,18 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc5-master-f5a9101
+ * v0.9.0-rc1
  */
 goog.provide('ng.material.components.slider');
 goog.require('ng.material.core');
+(function() {
+  'use strict';
+
   /**
    * @ngdoc module
    * @name material.components.slider
    */
-  angular.module('material.components.slider', [
+  ng.material.components.slider = angular.module('material.components.slider', [
     'material.core'
   ])
   .directive('mdSlider', SliderDirective);
@@ -53,7 +56,7 @@ goog.require('ng.material.core');
  * @param {number=} min The minimum value the user is allowed to pick. Default 0.
  * @param {number=} max The maximum value the user is allowed to pick. Default 100.
  */
-function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdTheming, $mdGesture, $parse, $log) {
+function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdTheming, $mdGesture, $parse) {
   return {
     scope: {},
     require: '?ngModel',
@@ -119,9 +122,9 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     var throttledRefreshDimensions = $mdUtil.throttle(refreshSliderDimensions, 5000);
 
     // Default values, overridable by attrs
-    angular.isDefined(attr.min) ? attr.$observe('min', updateMin) : updateMin(0);
-    angular.isDefined(attr.max) ? attr.$observe('max', updateMax) : updateMax(100);
-    angular.isDefined(attr.step)? attr.$observe('step', updateStep) : updateStep(1);
+    attr.min ? attr.$observe('min', updateMin) : updateMin(0);
+    attr.max ? attr.$observe('max', updateMax) : updateMax(100);
+    attr.step ? attr.$observe('step', updateStep) : updateStep(1);
 
     // We have to manually stop the $watch on ngDisabled because it exists
     // on the parent scope, and won't be automatically destroyed when
@@ -192,24 +195,15 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     var tickCanvas, tickCtx;
     function redrawTicks() {
       if (!angular.isDefined(attr.mdDiscrete)) return;
-      if ( angular.isUndefined(step) )         return;
-
-      if ( step <= 0 ) {
-        var msg = 'Slider step value must be greater than zero when in discrete mode';
-        $log.error(msg);
-        throw new Error(msg);
-      }
 
       var numSteps = Math.floor( (max - min) / step );
       if (!tickCanvas) {
-        tickCanvas = angular.element('<canvas style="position:absolute;">');
-        tickContainer.append(tickCanvas);
-
         var trackTicksStyle = $window.getComputedStyle(tickContainer[0]);
+        tickCanvas = angular.element('<canvas style="position:absolute;">');
         tickCtx = tickCanvas[0].getContext('2d');
         tickCtx.fillStyle = trackTicksStyle.backgroundColor || 'black';
+        tickContainer.append(tickCanvas);
       }
-
       var dimensions = getSliderDimensions();
       tickCanvas[0].width = dimensions.width;
       tickCanvas[0].height = dimensions.height;
@@ -286,9 +280,7 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     }
     function stepValidator(value) {
       if (angular.isNumber(value)) {
-        var formattedValue = (Math.round(value / step) * step);
-        // Format to 3 digits after the decimal point - fixes #2015.
-        return (Math.round(formattedValue * 1000) / 1000);
+        return Math.round(value / step) * step;
       }
     }
 
@@ -407,6 +399,6 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     }
   }
 }
-SliderDirective.$inject = ["$$rAF", "$window", "$mdAria", "$mdUtil", "$mdConstant", "$mdTheming", "$mdGesture", "$parse", "$log"];
+SliderDirective.$inject = ["$$rAF", "$window", "$mdAria", "$mdUtil", "$mdConstant", "$mdTheming", "$mdGesture", "$parse"];
 
-ng.material.components.slider = angular.module("material.components.slider");
+})();

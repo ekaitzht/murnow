@@ -11,7 +11,7 @@
 	        <header   layout="column" layout-padding >
 		    	<div  ng-include="'header/_header.html'"></div>	
 				<h1 layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState "> Murnow </h1>
-				<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" ng-controller="SearchCtrl as ctrl" >
+				<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" flex-sm="100" ng-controller="SearchCtrl as ctrl" >
 						<md-autocomplete
 						          ng-disabled="ctrl.isDisabled"
 						          md-no-cache="ctrl.noCache"

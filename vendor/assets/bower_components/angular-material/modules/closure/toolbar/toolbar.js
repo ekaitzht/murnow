@@ -2,16 +2,19 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc5-master-f5a9101
+ * v0.9.0-rc1
  */
 goog.provide('ng.material.components.toolbar');
 goog.require('ng.material.components.content');
 goog.require('ng.material.core');
+(function() {
+'use strict';
+
 /**
  * @ngdoc module
  * @name material.components.toolbar
  */
-angular.module('material.components.toolbar', [
+ng.material.components.toolbar = angular.module('material.components.toolbar', [
   'material.core',
   'material.components.content'
 ])
@@ -64,15 +67,12 @@ angular.module('material.components.toolbar', [
  * shrinking by. For example, if 0.25 is given then the toolbar will shrink
  * at one fourth the rate at which the user scrolls down. Default 0.5.
  */
-
-function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate ) {
-  var translateY = angular.bind(null, $mdUtil.supplant, 'translate3d(0,{0}px,0)' );
+function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming) {
 
   return {
     restrict: 'E',
     controller: angular.noop,
     link: function(scope, element, attr) {
-
       $mdTheming(element);
 
       if (angular.isDefined(attr.mdScrollShrink)) {
@@ -122,10 +122,10 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate ) 
           //
           // As the user scrolls down, the content will be transformed up slowly
           // to put the content underneath where the toolbar was.
-          var margin =  (-toolbarHeight * shrinkSpeedFactor) + 'px';
-          contentElement.css('margin-top', margin);
-          contentElement.css('margin-bottom', margin);
-
+          contentElement.css(
+            'margin-top',
+            (-toolbarHeight * shrinkSpeedFactor) + 'px'
+          );
           onContentScroll();
         }
 
@@ -139,21 +139,16 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate ) 
             Math.max(0, y + scrollTop - prevScrollTop)
           );
 
-          element.css( $mdConstant.CSS.TRANSFORM, translateY([-y * shrinkSpeedFactor]) );
-          contentElement.css( $mdConstant.CSS.TRANSFORM, translateY([(toolbarHeight - y) * shrinkSpeedFactor]) );
+          element.css(
+            $mdConstant.CSS.TRANSFORM,
+            'translate3d(0,' + (-y * shrinkSpeedFactor) + 'px,0)'
+          );
+          contentElement.css(
+            $mdConstant.CSS.TRANSFORM,
+            'translate3d(0,' + ((toolbarHeight - y) * shrinkSpeedFactor) + 'px,0)'
+          );
 
           prevScrollTop = scrollTop;
-
-          $mdUtil.nextTick(function () {
-            var hasWhiteFrame = element.hasClass('md-whiteframe-z1');
-
-            if ( hasWhiteFrame && !y) {
-              $animate.removeClass(element, 'md-whiteframe-z1');
-            } else if ( !hasWhiteFrame && y ) {
-              $animate.addClass(element, 'md-whiteframe-z1');
-            }
-          });
-
         }
 
       }
@@ -162,6 +157,5 @@ function mdToolbarDirective($$rAF, $mdConstant, $mdUtil, $mdTheming, $animate ) 
   };
 
 }
-mdToolbarDirective.$inject = ["$$rAF", "$mdConstant", "$mdUtil", "$mdTheming", "$animate"];
-
-ng.material.components.toolbar = angular.module("material.components.toolbar");
+mdToolbarDirective.$inject = ["$$rAF", "$mdConstant", "$mdUtil", "$mdTheming"];
+})();

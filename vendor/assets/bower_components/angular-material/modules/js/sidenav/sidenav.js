@@ -2,10 +2,10 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.10.1-rc5-master-f5a9101
+ * v0.9.0-rc1
  */
-(function( window, angular, undefined ){
-"use strict";
+(function() {
+'use strict';
 
 /**
  * @ngdoc module
@@ -49,13 +49,13 @@ angular.module('material.components.sidenav', [
  *    });
  * // Async open the given sidenav
  * $mdSidenav(componentId)
- *    .open()
+ *    .open();
  *    .then(function(){
  *      $log.debug('opened');
  *    });
  * // Async close the given sidenav
  * $mdSidenav(componentId)
- *    .close()
+ *    .close();
  *    .then(function(){
  *      $log.debug('closed');
  *    });
@@ -218,7 +218,7 @@ function SidenavFocusDirective() {
  *   - `<md-sidenav md-is-locked-open="$mdMedia('min-width: 1000px')"></md-sidenav>`
  *   - `<md-sidenav md-is-locked-open="$mdMedia('sm')"></md-sidenav>` (locks open on small screens)
  */
-function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, $compile, $parse, $log, $q, $document) {
+function SidenavDirective($timeout, $animate, $parse, $log, $mdMedia, $mdConstant, $compile, $mdTheming, $q, $document) {
   return {
     restrict: 'E',
     scope: {
@@ -250,7 +250,9 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
         $mdMedia: $mdMedia
       });
     };
-    var backdrop = $mdUtil.createBackdrop(scope, "md-sidenav-backdrop md-opaque ng-enter");
+    var backdrop = $compile(
+      '<md-backdrop class="md-sidenav-backdrop md-opaque ng-enter">'
+    )(scope);
 
     element.on('$destroy', sidenavCtrl.destroy);
     $mdTheming.inherit(backdrop, element);
@@ -283,7 +285,6 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
      */
     function updateIsOpen(isOpen) {
       var parent = element.parent();
-      var focusEl = sidenavCtrl.focusElement();
 
       parent[isOpen ? 'on' : 'off']('keydown', onKeyDown);
       backdrop[isOpen ? 'on' : 'off']('click', close);
@@ -292,19 +293,18 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
         // Capture upon opening..
         triggeringElement = $document[0].activeElement;
       }
+      var focusEl = sidenavCtrl.focusElement();
 
       disableParentScroll(isOpen);
 
       return promise = $q.all([
-                isOpen ? $animate.enter(backdrop, parent) : $animate.leave(backdrop),
-                $animate[isOpen ? 'removeClass' : 'addClass'](element, 'md-closed')
-              ])
-              .then(function() {
-                // Perform focus when animations are ALL done...
-                if (scope.isOpen) {
-                  focusEl && focusEl.focus();
-                }
-              });
+        isOpen ? $animate.enter(backdrop, parent) : $animate.leave(backdrop),
+        $animate[isOpen ? 'removeClass' : 'addClass'](element, 'md-closed').then(function() {
+          if (scope.isOpen) {
+            focusEl && focusEl.focus();
+          }
+        })
+      ]);
     }
 
     /**
@@ -312,16 +312,12 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
      */
     function disableParentScroll(disabled) {
       var parent = element.parent();
-      if ( disabled && !lastParentOverFlow ) {
-
+      if ( disabled ) {
         lastParentOverFlow = parent.css('overflow');
         parent.css('overflow', 'hidden');
-
       } else if (angular.isDefined(lastParentOverFlow)) {
-
         parent.css('overflow', lastParentOverFlow);
         lastParentOverFlow = undefined;
-
       }
     }
 
@@ -343,7 +339,7 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
         // Toggle value to force an async `updateIsOpen()` to run
         scope.isOpen = isOpen;
 
-        $mdUtil.nextTick(function() {
+        $timeout(function() {
 
           // When the current `updateIsOpen()` animation finishes
           promise.then(function(result) {
@@ -357,7 +353,7 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
             deferred.resolve(result);
           });
 
-        });
+        },0,false);
 
         return deferred.promise;
       }
@@ -386,7 +382,7 @@ function SidenavDirective($mdMedia, $mdUtil, $mdConstant, $mdTheming, $animate, 
 
   }
 }
-SidenavDirective.$inject = ["$mdMedia", "$mdUtil", "$mdConstant", "$mdTheming", "$animate", "$compile", "$parse", "$log", "$q", "$document"];
+SidenavDirective.$inject = ["$timeout", "$animate", "$parse", "$log", "$mdMedia", "$mdConstant", "$compile", "$mdTheming", "$q", "$document"];
 
 /*
  * @private
@@ -417,10 +413,12 @@ function SidenavController($scope, $element, $attrs, $mdComponentRegistry, $q) {
     return focusElement;
   };
 
-  self.$toggleOpen = function(value) { return $q.when($scope.isOpen = value); };
+  self.$toggleOpen = function() { return $q.when($scope.isOpen); };
 
   self.destroy = $mdComponentRegistry.register(self, $attrs.mdComponentId);
 }
 SidenavController.$inject = ["$scope", "$element", "$attrs", "$mdComponentRegistry", "$q"];
 
-})(window, window.angular);
+
+
+})();

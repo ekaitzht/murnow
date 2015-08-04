@@ -1,8 +1,8 @@
 <div>
-	<div class="" ng-controller="NavCtrl">
+	<div class="" ng-controller="NavCtrl" layout="row" >
 	    <div hide-sm hide-md  class="home" id="logo"> <div class="left amatic" ><a  href="/"> Murnow</a> </div></div>
 	    <div show-sm show-md hide-gt-md class="home" id="logo"> <div class="left amatic" ><a  href="/"> M </a> </div></div>	 
-	    <form id="search-bar-not-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" ng-controller="SearchCtrl as ctrl" >
+	    <div class="form-wrapper-search"><form id="search-bar-not-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" ng-controller="SearchCtrl as ctrl" >
 			<md-autocomplete
 						          ng-disabled="ctrl.isDisabled"
 						          md-no-cache="ctrl.noCache"
@@ -18,15 +18,15 @@
 						            <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}" class='md-avatar' alt="{item.product_name}" with="25" height="25">
 						        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.product_name}}</span>
 			</md-autocomplete>
-     </form>
+     </form></div>
 	  <!-- Nav when you are not authenticated --> 
 	  <div class="mainNav" ng-show="!signedIn()">
 		    <md-button hide id="login-button" ng-click="showDialogLogin()" >Log In</md-button>
 		    <md-button id="join-button" ng-click="showDialogRegister()">Join</md-button>
 		    
 	  </div>
-
-  	
+	  
+	  <div>
   	  <!-- Nav when you are authentificated --> 
   	  	<md-menu class="mainNav" id="menu" md-offset="-20 50" ng-show="signedIn()" >
              <md-button  class="my-icon-button" md-menu-origin  ng-click="$mdOpenMenu()" >
@@ -43,7 +43,7 @@
 	            </md-menu-item>
 			</md-menu-content>
         </md-menu>
-	  		
+	  	</div>	
 		  
 	</div>
 </div>

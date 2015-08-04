@@ -9,12 +9,12 @@ $lucida-grande: "Lucida Grande";
 
 
 
-
 @media screen and (max-width: 960px) {
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
 	
 	
-	#logo > div {width:32px; text-align:center;border:1px solid white;line-height: 32px;border-radius:16px;font-size:25px;margin-top:8px;}
+	#logo > div {width:32px; text-align:center;border:1px solid white;line-height: 32px;border-radius:16px;font-size:25px;margin-top:8px;  }
+	
 }
 
 
@@ -22,10 +22,18 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 600px) {
+	
+	// Separate stars
+	.separate-stars {.ratings .fa-star:not(:first-child){margin-left:4px;}}
+
+	.heading2 {opacity:0.87 ; font-size:13px;color:black;}
+	.heading3 {opacity:0.38 ;font-size:11px ; color:black;}
+	.bodyType {opacity:0.54 ; font-size:11px;color:black;}
+
 	.home-page{
 		ui-view{display:none}
 		background-color:$monte-carlo;
-		md-autocomplete {width:100%;}
+		form md-autocomplete {width:100%;}
 	
 		
 	}
@@ -39,14 +47,16 @@ $lucida-grande: "Lucida Grande";
 					> button {
 						.md-list-item-inner{
 							padding:20px 22px 20px 24px;
-							.wrapper-rate-approval {width:69px; height:69px; border-radius:39.5px; margin-right:inherit;
-								.approval-rate{font-size:14px;}
-								.repurchase-percent{font-size:inherit;}
+							.wrapper-rate-approval {width:69px; height:69px; border-radius:39.5px; margin-right:inherit;padding: 0px 0px;
+								.approval-rate{font-size:12px;}
+								.repurchase-percent{font-size:inherit;font-size:25px;}
 							}
 							#image-product { margin-left:0px;margin-right:0px;
 								img{max-width: 82px;}
 									
 							}
+							.ratings{font-size:11px; }
+							@extend .separate-stars;
 							#product-info{padding:0px;padding-right:inherit;}
 							md-divider{width:100%;margin-left:0px;}
 						}
@@ -57,7 +67,6 @@ $lucida-grande: "Lucida Grande";
 				
 			}
 		}
-		md-autocomplete {width:40%;position:relative;}
 		#search-bar-not-home-page {position:relative;left:-30px;}
 		
 		

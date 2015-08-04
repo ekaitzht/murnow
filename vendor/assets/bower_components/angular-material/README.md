@@ -4,35 +4,12 @@ Please file issues and pull requests against that repo.
 
 ## Installing Angular Material
 
-You can install this package locally either with `npm`, `jspm`, or `bower`. 
+You can install this package locally either with `npm`, `bower`, or `jspm`.
 
 ### npm
 
 ```shell
-# To install latest formal release 
 npm install angular-material
-
-# To install latest release and update package.json
-npm install angular-material --save
-
-# To install from HEAD of master
-npm install http://github.com/angular/bower-material/tarball/master
-
-# To view all installed package 
-npm list;
-```
-
-### jspm
-
-```shell
-# To install latest formal release
-jspm install angular-material;
-
-# To install from HEAD of master
-jspm install angular-material=github:angular/bower-material@master;
-
-# To view all installed package versions
-jspm inspect;
 ```
 
 Now you can use `require('angular-material')` when installing with npm or jsmp and using Browserify or Webpack.
@@ -56,7 +33,7 @@ bower update
 > Please note that Angular Material requires **Angular 1.3.x** or higher.
 
 
-## Using the Angular Material Library
+### Using the Angular Material Library
 
 Now that you have installed the Angular libraries, simply include the scripts and 
 stylesheet in your main HTML file, in the order shown in the example below. Note that npm 
@@ -127,7 +104,7 @@ under `/bower_components/angular-material/`.
 </html>
 ```
 
-## Using the CDN
+#### CDN
 
 CDN versions of Angular Material are now available at 
 [Google Hosted Libraries](https://developers.google.com/speed/libraries/devguide#angularmaterial). 
@@ -139,73 +116,50 @@ This is especially useful when using online tools such as CodePen, Plunkr, or js
 ```html
   <head>
 
-    <!-- Angular Material CSS now available via Google CDN; version 0.9.4 used here -->
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+    <!-- Angular Material CSS now available via Google CDN; version 0.7.1 used here -->
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.css">
 
   </head>
   <body>
   
     <!-- Angular Material Dependencies -->
+    <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     
-    <!-- Angular Material Javascript now available via Google CDN; version 0.9.4 used here -->
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+    <!-- Angular Material Javascript now available via Google CDN; version 0.7.1 used here -->
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.7.1/angular-material.min.js"></script>
     
   </body>
 ```
 
-> Note that the above sample references the 0.9.4 CDN release. Your version will change 
+> Note that the above sample references the 0.7.1 CDN release. Your version will change 
 based on the latest stable release version.
 
-## Jasmine Testing with Angular Material
+Developers seeking the latest, most-current build versions can use [RawGit.com](//rawgit.com) to
+pull directly from the distribution GitHub
+[Bower-Material](https://github.com/angular/bower-material) repository:
 
-<br/>
-If you are using Angular Material and will be using Jasmine to test your own custom application code, you will need to also load two (2) Angular mock files:
+```html
+  <head>
 
-*  Angular Mocks - **angular-mocks.js** from `/node_modules/angular-mocks/angular-mocks.js`
-*  Angular Material Mocks - **angular-material-mocks.js** from `/node_modules/angular-material/angular-material-mocks.js`
+    <!-- Angular Material CSS using RawGit to load directly from `bower-material/master` -->
+    <link rel="stylesheet" href="//rawgit.com/angular/bower-material/master/angular-material.css">
 
-<br/>
+  </head>
+  <body>
 
-Shown below is a karma-configuration file (`karma.conf.js`) sample that may be a useful template for your own testing purposes:<br/><br/>
+    <!-- Angular Material Dependencies -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.js"></script>
 
-```js
-module.exports = function(config) {
+    <!-- Angular Material Javascript using RawGit to load directly from `bower-material/master` -->
+    <script src="//rawgit.com/angular/bower-material/master/angular-material.js"></script>
 
-  var SRC = [
-    'src/myApp/**/*.js',
-    'test/myApp/**/*.spec.js'
-  ];
-
-  var LIBS = [
-    'node_modules/angular/angular.js',
-    'node_modules/angular-animate/angular-animate.js',
-    'node_modules/angular-aria/angular-aria.js',
-    'node_modules/angular-material/angular-material.js',
-    
-    'node_modules/angular-mocks/angular-mocks.js',
-    'node_modules/angular-material/angular-material-mocks.js'
-  ];
-
-  config.set({
-
-    basePath: __dirname + '/..',
-    frameworks: ['jasmine'],
-    
-    files: LIBS.concat(SRC),
-
-    port: 9876,
-    reporters: ['progress'],
-    colors: true,
-
-    autoWatch: false,
-    singleRun: true,
-    browsers: ['PhantomJS,Chrome']
-
-  });
-
-};
+  </body>
 ```
 
+> Please note that the above RawGit access is intended **ONLY** for development purposes or sharing
+  low-traffic, temporary examples or demos with small numbers of people.
