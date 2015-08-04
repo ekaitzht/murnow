@@ -1,15 +1,17 @@
 <md-card> 
 	<div class="product-profile" layout="column" layout-align="center" layout-padding> 
-		<div layout= "row" class="header-product" layout-align="space-between center">
-	    		<figure ><img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}"></figure>
-		        <div id="product-info" layout="column"  >
-						<div id="name-product" class="wordwrap">{{product.product_name}}</div>
-						<div id="brand-name" >by {{product.brand_name}} </div>
+		<div layout= "row" class="header-product" layout-align="space-around center" flex="100">
+	    		<div  id="image-product" flex-sm="16" flex-gt-sm="20">
+	    			<img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}">
+	    		</div>
+		        <div id="product-info" layout="column"   flex-sm="50" flex-gt-sm="50">
+						<div id="name-product" class="wordwrap heading2">{{product.product_name}}</div>
+						<div id="brand-name" class="bodyType" >by {{product.brand_name}} </div>
 						<div class="ratings">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        		</div>
 				</div>
-		    	<div class="wrapper-rate-approval" layout="column"  layout-align="space-around center" >
+		    	<div class="wrapper-rate-approval" layout="column" layout-align="space-around center"  flex-gt-sm="20" >
 				      <div class="repurchase-percent "> {{ repurchase_again_percent | number:0 }} % </div>
 					  <div class="approval-rate"> 
 						  APPROVAL RATE
@@ -17,6 +19,16 @@
 		        </div>   
 	      </div>
 	    </div>
+	    
+	    
+	    
+	    
+	    
+	   
+	   
+	    <!-- TEXT AREA INPUT -->
+	    
+	    
 	    
 	    
 		<md-input-container md-no-float ng-click="showAddReviewPanel()">
