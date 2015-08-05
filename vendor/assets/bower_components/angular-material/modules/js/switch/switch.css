@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.10.1-rc5
  */
 /* mixin definition ; sets LTR and RTL within the same style call */
 md-switch {
@@ -71,7 +71,7 @@ md-switch {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26); }
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.14), 0px 2px 2px 0px rgba(0, 0, 0, 0.098), 0px 1px 5px 0px rgba(0, 0, 0, 0.084); }
     md-switch .md-thumb:before {
       background-color: transparent;
       border-radius: 50%;
@@ -104,10 +104,7 @@ md-switch {
 @media screen and (-ms-high-contrast: active) {
   md-switch.md-default-theme .md-bar {
     background-color: #666; }
-
   md-switch.md-default-theme.md-checked .md-bar {
     background-color: #9E9E9E; }
-
   md-switch.md-default-theme .md-thumb {
-    background-color: #fff; }
- }
+    background-color: #fff; } }

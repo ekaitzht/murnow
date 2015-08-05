@@ -2,11 +2,10 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.9.0-rc1
+ * v0.10.1-rc5
  */
-(function() {
-'use strict';
-
+(function( window, angular, undefined ){
+"use strict";
 
 /**
  * @ngdoc module
@@ -311,4 +310,4 @@ function mdRadioButtonDirective($mdAria, $mdUtil, $mdTheming) {
 }
 mdRadioButtonDirective.$inject = ["$mdAria", "$mdUtil", "$mdTheming"];
 
-})();
+})(window, window.angular);
