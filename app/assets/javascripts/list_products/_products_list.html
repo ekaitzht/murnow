@@ -6,7 +6,7 @@
 			        	<a ng-href="/products/{{product.id}}"> <img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
 			        </div>  
 					<div id="product-info" class="md-tile-content" layout="column"  flex-sm="50" flex-gt-sm="50" >
-						<div id="name-product " class="wordwrap"><h2>{{product.product_name}}</h2></div>
+						<div id="name-product " class="wordwrap"><h2>{{product.product_name}}<span></span></h2></div>
 						<div id="brand-name"><h3>by {{product.brand_name}}</h3></div>
 						<div class="ratings">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
