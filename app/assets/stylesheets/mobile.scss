@@ -35,7 +35,7 @@ $lucida-grande: "Lucida Grande";
 	
 	// product-info-row
 	.row-product-info {
-		padding:20px 22px 20px 24px;
+		
 		.wrapper-rate-approval {width:69px; height:69px; border-radius:39.5px; margin-right:inherit;padding: 0px 0px;
 			.approval-rate{font-size:12px;}
 			.repurchase-percent{font-size:inherit;font-size:25px;}
@@ -79,6 +79,7 @@ $lucida-grande: "Lucida Grande";
 				md-list-item  {
 					> button {
 						.md-list-item-inner{
+							padding:20px 22px 20px 24px;
 							@extend .row-product-info;
 						}
 					}
@@ -91,6 +92,7 @@ $lucida-grande: "Lucida Grande";
 		
 		
 		.products{
+			md-card {padding:19px 22px 7px 22px;}
 			.header-product {
 				@extend .row-product-info;	
 			}
