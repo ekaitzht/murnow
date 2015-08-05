@@ -8,35 +8,44 @@ $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 $subheader-color: #757575;
 
+
+// ** CONTROLLING REMS **//
+
+
+
+
+
 //**** EXTEND HELPERS ****/
 
 
 
 //* list products */
 	// Separate stars
-.separate-stars {.ratings .fa-star:not(:first-child){margin-left:7px;}}
+.separate-stars {.ratings .fa-star:not(:first-child){margin-left:0.43rem;}}
 
 // Row product info
 .row-product-info {
 				
-	#image-product {margin-left:40px; margin-right:40px;}
-	#product-info{padding:0px;padding-right:45px;position: relative;font-family: $lucida-grande;}
-	.ratings{font-size:25px; position: relative;top: 5px;}
+	#image-product {margin-left:2.5rem; margin-right:2.5rem;}
+	#product-info{padding:0px;padding-right:2.8rem;position: relative;}
+	.ratings{font-size:1.56rem; position: relative;top: 5px;}
 	@extend .separate-stars;
 	md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
 	.wrapper-rate-approval{
 		padding:0px;
 		margin-right:45px;
-	    border-radius:50%;padding: 15px 15px;@extend .amatic; @extend .weight-700; font-size:28px;color:white; background-color:#FDB3E7;width:172px; height:172px;
-		.approval-rate{font-size:31px;}
-		.repurchase-percent{font-size:61px;position: relative; top: 10px;}
+	    border-radius:50%;padding: 1rem 1rem;@extend .amatic; @extend .weight-700; font-size:2rem;color:white; background-color:#FDB3E7;width:10.75rem; height:10.75rem;
+		.approval-rate{font-size:1.93rem;}
+		.repurchase-percent{font-size:4rem;position: relative; top: 10px;}
 		
 	}
 }
 
-.heading2 {opacity:0.87; font-size:30px ;color:black;}
-.heading3 {opacity:0.38;font-size:26px; color:black;}
-.bodyType {opacity:0.54 ; font-size:28px;color:black;}
+h1 {font-size:2.5rem;}
+h2 {opacity:0.87; font-size:1.875rem ;color:black;line-height:2rem;margin:0rem; font-family:$lucida-grande;} // Name product
+h3 {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} // subitulo
+.hint-text {opacity:0.38;font-size:1.625rem; color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} //hint text
+p {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} // review text (paragraph) 
 
 
 
@@ -150,7 +159,7 @@ header {
 
 .glyphicon-thumbs-up {cursor:pointer;}
 .review-body p{border:1px solid; border-color:$pink-color;margin:5px 5px 5px 5px;border-radius:5px;}
-.date-review {font-size:0.8em;text-align: right;margin-right: 7px;}
+.date-review {font-size:0.8rem;text-align: right;margin-right: 7px;}
 /* PUBLIC USER PROFILE */
 
 /* LIST STYLES */
@@ -171,7 +180,8 @@ header {
 	ui-view {margin-top:50px;padding-left:15%;padding-right:15%;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
-
+	h1 {margin-top:4rem;font-family:$josefin-sans;}
+	h2 {font-size:3rem;font-family:$amatic-font;}
 	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white; }
 	li {cursor:pointer;}
@@ -235,7 +245,7 @@ header {
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 	overflow:hidden;
-	md-card{max-width:960px;margin:auto;margin-top:20px;}
+	md-card{max-width:960px;margin:auto;margin-top:1.25rem;}
 	#logo {position: relative;left:10px;top:5px;}
 	.form-wrapper-search {
 		margin:auto;
@@ -270,7 +280,7 @@ header {
 				> button {
 					padding:0px 0px;
 					.md-list-item-inner{
-						padding:44px 44px 44px 44px;	
+						padding:2.5rem;	
 						@extend .row-product-info;
 					}
 				}	
@@ -283,7 +293,7 @@ header {
 	
 	
 	.products {
-		md-card {padding:44px 44px 44px 44px;}
+		md-card {padding:2.5rem;}
 		.header-product {
 			
 			@extend .row-product-info;	
@@ -294,7 +304,7 @@ header {
 			padding:0px;
 		}
 		
-		.review-textarea{padding:0px; margin-bottom:7px;height: 60px; border: 2px solid #979797;border-radius: 8px;}
+		.review-textarea{padding:0rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 	   
 	}
 	    

@@ -10,7 +10,7 @@
 	    <md-toolbar layout="column">
 	        <header   layout="column" layout-padding >
 		    	<div  ng-include="'header/_header.html'"></div>	
-				<h1 layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState "> Murnow </h1>
+				<h2 layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState "> Murnow </h2>
 				<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" flex-sm="100" ng-controller="SearchCtrl as ctrl" >
 						<md-autocomplete
 						          ng-disabled="ctrl.isDisabled"
@@ -28,7 +28,7 @@
 						        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.product_name}}</span>
 						      </md-autocomplete>
      				<form/>
-				<h2 layout="column" class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The makeup reviews haven. Find makeup products rated by girls like you </h2>
+				<h1 layout="column" class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The makeup reviews haven. Find makeup products rated by girls like you </h1>
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
 		</md-toolbar>

@@ -10,10 +10,16 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 960px) {
+	
+	html{
+		font-size:7px;
+	}
+	
+	
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
 	
 	
-	#logo > div {width:32px; text-align:center;border:1px solid white;line-height: 32px;border-radius:16px;font-size:25px;margin-top:8px;  }
+	#logo > div {width:32px; text-align:center;border:1px solid white;line-height: 32px;border-radius:16px;font-size:3.6rem;margin-top:8px;  }
 	
 	.not-home-page{ 
 		#logo {position: relative;left:0px;top:0px;}
@@ -28,35 +34,25 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 600px) {
-	
-	// Separate stars
-	.separate-stars {.ratings .fa-star:not(:first-child){margin-left:4px;}}
-	
-	
+
 	// product-info-row
 	.row-product-info {
 		
 		.wrapper-rate-approval {width:69px; height:69px; border-radius:39.5px; margin-right:inherit;padding: 0px 0px;
-			.approval-rate{font-size:12px;}
-			.repurchase-percent{font-size:inherit;font-size:25px;}
+			.approval-rate{font-size:1.7rem;}
+			.repurchase-percent{font-size:inherit;font-size:3.5rem;}
 		}
 		#image-product { margin-left:0px;margin-right:0px;
 			img{max-width: 82px;}
 				
 		}
-		.ratings{font-size:11px; }
+
 		@extend .separate-stars;
-		#product-info{padding:0px;padding-right:inherit;}
+		#product-info{padding-right:inherit;}
 		md-divider{width:100%;margin-left:0px;}		
 	}
 
 							
-							
-
-	.heading2 {opacity:0.87 ; font-size:13px;color:black;}
-	.heading3 {opacity:0.38 ;font-size:11px ; color:black;}
-	.bodyType {opacity:0.54 ; font-size:11px;color:black;}
-	
 	
 	// *** HOME PAGE ***/
 	.home-page{
@@ -79,7 +75,6 @@ $lucida-grande: "Lucida Grande";
 				md-list-item  {
 					> button {
 						.md-list-item-inner{
-							padding:20px 22px 20px 24px;
 							@extend .row-product-info;
 						}
 					}
@@ -92,7 +87,6 @@ $lucida-grande: "Lucida Grande";
 		
 		
 		.products{
-			md-card {padding:19px 22px 7px 22px;}
 			.header-product {
 				@extend .row-product-info;	
 			}
@@ -110,7 +104,7 @@ $lucida-grande: "Lucida Grande";
 	
 	.products-list {
   
-		#product-info {position: relative;top:auto; left:auto;font-size: 14px;font-family: $lucida-grande;line-height: 18px;}
+		#product-info {position: relative;top:auto; left:auto;font-family: $lucida-grande;line-height: 18px;}
 		#image-product {margin-bottom:auto;margin-top:auto;margin-right: 20px;}
 		 
 	}
@@ -120,7 +114,6 @@ $lucida-grande: "Lucida Grande";
 
 @media screen and (max-width: 960px) and (min-width: 600px) {
     .not-home-page {
-	    md-card {margin:10px 10px;}
 	    	 .wrapper-rate-approval{width:120px !important; height:120px !important;
 		    	 .approval-rate{font-size:20px !important;}
 		    	 .repurchase-percent{font-size:40px !important;}
