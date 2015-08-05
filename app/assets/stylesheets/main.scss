@@ -29,7 +29,8 @@ html {font-size:16px;}
 				
 	#image-product {margin-left:2.5rem; margin-right:2.5rem;}
 	#product-info{padding:0px;padding-right:2.8rem;position: relative;}
-	.ratings{font-size:1.56rem; position: relative;top: 5px;}
+	.ratings{font-size:1.56rem; position: relative;top: 5px;margin-top:0.5rem;}
+	#brand-name{margin-top:0.5rem;}
 	@extend .separate-stars;
 	md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
 	.wrapper-rate-approval{
@@ -42,11 +43,11 @@ html {font-size:16px;}
 	}
 }
 
-h1 {font-size:2.5rem;}
-h2 {opacity:0.87; font-size:1.875rem ;color:black;line-height:2rem;margin:0rem; font-family:$lucida-grande;} // Name product
-h3 {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} // subitulo
-.hint-text {opacity:0.38;font-size:1.625rem; color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} //hint text
-p {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;} // review text (paragraph) 
+h1 {font-size:2.5rem;font-weight: 400;}
+h2 {opacity:0.87; font-size:1.875rem ;color:black;line-height:2rem;margin:0rem; font-family:$lucida-grande;font-weight: 400;} // Name product
+h3 {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // subitulo
+.hint-text {opacity:0.38;font-size:1.625rem; color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} //hint text
+p {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // review text (paragraph) 
 
 
 
