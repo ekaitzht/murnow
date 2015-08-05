@@ -1,5 +1,5 @@
 class ReviewSerializer < ActiveModel::Serializer
-	  attributes  :id, :body, :stars, :user_id, :product_id, :created_at
+	  attributes  :id, :body, :stars, :user_id, :product_id, :created_at, :repurchase
 	  	  	
       has_many :votes
       has_one :user, serializer: UserReviewSerializer
