@@ -57,8 +57,8 @@
 						<p class="wordwrap">{{review.body}}</p>
 					
 					</div>
-					<div layout="row" class="margin-top-rem" layout-align="space-between center">
-						<div class="product-rating">
+					<div layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
+						<div class="ratings">
 							<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 						</div>
 						<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>

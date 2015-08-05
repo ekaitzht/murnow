@@ -159,7 +159,6 @@ header {
 .product-profile {background-color:white; }
 
 .glyphicon-thumbs-up {cursor:pointer;}
-.date-review {font-size:0.8rem;text-align: right;margin-right: 7px;}
 /* PUBLIC USER PROFILE */
 
 /* LIST STYLES */
@@ -308,17 +307,22 @@ header {
 		
 		.review-textarea{padding:0rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 		
-		.count-reviews {font-size: 2.1rem;margin-top:2rem;margin-bottom:1.5rem;padding:0rem;}
-		md-list-item{
-			padding:0rem 0rem;margin-top:2rem;
-			img{border-radius:50%;}
-			.md-list-item-image {width:18%;padding-right:2rem;}	
-			.md-list-item-text{
-				width:82%;padding-right:2rem;
-				
-			}
+		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;}
+		md-list{
+			margin-left:2.5rem;
+			.ratings { font-size:1.56rem;}
+			md-list-item{
+				padding:0rem 0rem;margin-top:2rem;
+				img{border-radius:50%;}
+				.md-list-item-image {width:18%;padding-right:2rem;}	
+				.md-list-item-text{
+					width:82%;
+					
+				}
 		
+			}	
 		}
+		
 	   
 	}
 	    
