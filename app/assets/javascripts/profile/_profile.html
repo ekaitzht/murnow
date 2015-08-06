@@ -1,25 +1,30 @@
 <md-card>
-	<div layout="column" layout-padding>
+	<div layout="column" >
+		
+		<!-- HEADER PROFILE USER --> 
 		<div layout="row" layout-sm="column"> 
-			<div layout="row"  layout-padding>
+			<div layout="row"  >
 					
-				<div class="wrapper-image-profile" flex-sm="40" layout="column" layout-padding >
+				<div class="wrapper-image-profile" flex-sm="40" layout="column" >
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 						</div>
-					    <span ng-show="!user.hash_url_image">Hey upload your image! </span>
+					    <div ng-show="!user.hash_url_image" class="md-tile-left">
+					    	<img ng-src="/assets/anonymousUser.jpg" class="face" alt="{{user.username}}">
+						</div>
+					    
 					</div>  
 				<div layout="column" class="bio-block">
-					    <div class="username">
-					    	 <span class="amatic-h1"> {{user.username}} </span>
-					    </div>
-					    <div class="bio">
-					      <span ng-show="user.bio"> {{user.bio}}</span>
-					      <span ng-hide="user.bio"> Bio </span>
-					    </div>
-					</div> 
+				    <div class="username">
+				    	 <span class="amatic-h1"> {{user.username}} </span>
+				    </div>
+				    <div class="bio">
+				      <span ng-show="user.bio"> {{user.bio}}</span>
+				      <span ng-hide="user.bio"> Bio </span>
+				    </div>
+				</div> 
 			</div>
-			<div class="profile-user" layout="column"  layout-padding>
+			<div class="profile-user" layout="column">
 					<div  class="amatic-h1">
 					Profile
 					</div>
@@ -32,13 +37,14 @@
 					      	
 					</div>
 				</div>
-			<div layout="row" flex="20" ng-show="user.isProfileAuthenticated" ng-hide="publicProfile" >
-				<a ng-href="/edit_profile"  ng-click="getS3PolicyDocument();"><md-button  class="md-raised md-primary">Edit Profile</md-button></a>
-			</div>
+			<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
+            	<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
+			</md-button>
 		</div>	
 		
-		<div  layout="row"  class="amatic-h2" layout-padding> Product reviewed({{reviews.length}}) </div>
+		<div  layout="row"  class="amatic-h2" >  Reviews by Ulaize </div>
 
+		<!-- LIST OF REVIEWS -->
 		<md-list> 
 			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
 				<img ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
@@ -70,10 +76,7 @@
 				</div>
 			
 			</md-list-item>
-			 
 		</md-list>	
-	
-	
-	 </div>
+	</div>
  </md-card>
 

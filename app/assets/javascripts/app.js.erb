@@ -56,8 +56,8 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
     .state('edit_profile', {
       url: '/edit_profile',
       onEnter: function(){
-	   event.preventDefault();
-       event.stopPropagation();
+	   //event.preventDefault();   //this was before without comments may can cause an old bug but if dont remove this change state for firefox is not working
+       //event.stopPropagation();
   	  },
       templateUrl: 'profile/_edit_profile.html',
       controller: 'EditProfileCtrl'

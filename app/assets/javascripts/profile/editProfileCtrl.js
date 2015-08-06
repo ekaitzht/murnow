@@ -11,10 +11,13 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.skin_types = ['Dry','Combination','Oily'];
 	$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
 	$scope.skin_tones = ['Warm', 'Neutral', 'Cool'];
-	 $scope.cdn = configMurnow.cdn_domain_name;
-  $scope.enviroment = configMurnow.enviroment;
+	$scope.cdn = configMurnow.cdn_domain_name;
+	$scope.enviroment = configMurnow.enviroment;
   
-  
+    $scope.user.hash_url_image === null  ? showProfileImage = false : showProfileImage = true;
+     
+    
+    
     $scope.srcImageProfile = "https://"+$scope.cdn+"/profile_images_"+$scope.enviroment+"/"+$scope.user.hash_url_image;
 	
     User.getSkinProblems().success(function(data, status, headers, config) {
@@ -48,7 +51,14 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		}).error(function(err){
 		
 		});    
-    } 
+    } else {
+	     Auth.currentUser().then(function(user) {
+		     
+		         $state.go('profile', {id: user.id});
+		    }, function(error) {
+		        // unauthenticated error
+		    });
+    }
   };
 
 
