@@ -2,10 +2,10 @@
 	<form name="registerForm" layout="column" >
 	  <div layout="row" layout-sm="column">
 	    <div class="wrapper-image-profile" layout="row">
-	    	<div ng-show="showProfileImage" class="md-tile-left" ng-file-select ng-model="file" multiple="false">
+	    	<div ng-show="showProfileImage"  ng-file-select ng-model="file" multiple="false">
 	            <img ng-src="{{srcImageProfile}}" class="face" alt="{{user.username}}">
 	    	</div>
-			<div ng-show="!showProfileImage"   ng-file-select ng-model="file" multiple="false"  >
+			<div ng-hide="showProfileImage"   ng-file-select ng-model="file" multiple="false"  >
 				<img ng-src="/assets/anonymousUser.jpg" class="face" alt="{{user.username}}">
 			</div>
 					

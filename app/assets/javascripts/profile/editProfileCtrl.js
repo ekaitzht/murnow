@@ -14,7 +14,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.cdn = configMurnow.cdn_domain_name;
 	$scope.enviroment = configMurnow.enviroment;
   
-    $scope.user.hash_url_image === null  ? showProfileImage = false : showProfileImage = true;
+    $scope.user.hash_url_image === null  ? $scope.showProfileImage = false : $scope.showProfileImage = true;
      
     
     
