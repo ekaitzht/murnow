@@ -38,14 +38,17 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	  	$scope.user.isProfileAuthenticated = true;
 	  	$scope._fetchDataUser();
       }  else {
+	      
 	    User.getPublicUser($stateParams.id).then(function(res) {
 		  $scope.user = res.data;
 		  $scope._fetchDataUser();
 	  	});
       }
   	} else {
+	  	
 	  	User.getPublicUser($stateParams.id).then(function(res) {
 		  	$scope.user = res.data;
+		  	$scope.user.isProfileAuthenticated = false;
 		  	$scope._fetchDataUser();
 	  	});
   	}
