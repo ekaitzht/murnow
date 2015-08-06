@@ -48,7 +48,7 @@
 				</div>
 				<div class="md-list-item-text" layout="column" layout-align="start start">
 					
-					<div layout="row" layout-align="start center;">	
+					<div layout="row" layout-align="start center">	
 						<h2> {{review.user.username}}</h2>
 
 						<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
@@ -59,7 +59,7 @@
 						<p class="wordwrap">{{review.body}}</p>
 					
 					</div>
-					<div layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
+					<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
 						<div class="ratings">
 							<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 						</div>
