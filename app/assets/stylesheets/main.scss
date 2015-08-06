@@ -7,6 +7,9 @@ $color-divider: #FDD1F0;
 $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 $subheader-color: #757575;
+
+
+.invisible {visibility: hidden;}
  
 html {font-size:16px;}
 // ** CONTROLLING REMS **//
@@ -22,7 +25,7 @@ html {font-size:16px;}
 //* list products */
 	// Separate stars
 .separate-stars {.ratings .fa-star:not(:first-child){margin-left:0.43rem;}}
-.margin-top-rem{margin-top:1rem;}
+.margin-top-rem{margin-top:0.2rem;}
 
 // Row product info
 .row-product-info {
@@ -46,8 +49,9 @@ html {font-size:16px;}
 h1 {font-size:2.5rem;font-weight: 400;}
 h2 {opacity:0.87; font-size:1.875rem ;color:black;line-height:2rem;margin:0rem; font-family:$lucida-grande;font-weight: 400;} // Name product
 h3 {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // subitulo
-.hint-text {opacity:0.38;font-size:1.625rem; color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} //hint text
-p {opacity:0.54 ; font-size:1.75rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // review text (paragraph) 
+.hint-text {opacity:0.38;font-size:1.125rem; color:black;line-height:21px;margin:0rem;font-family:$josefin-sans;font-weight: 400;line-height:1.375rem} //hint text
+p {opacity:0.54 ; font-size:18px;color:black;line-height:21px;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // review text (paragraph) 
+.user-name-review-product {font-weight:bold;opacity:1;}
 
 
 
@@ -242,7 +246,15 @@ header {
 
 .not-home-page {
 	md-card {padding:2.5rem;}
-	.check-mark{margin-left: 1.625rem;font-size: 1rem;background-color:$pink-color; width: 1.562rem;height: 1.562rem;border-radius: 50%;padding: 0.625rem;}
+	.check-mark{    margin-left: 1.25rem;
+    font-size: 0.3125rem;
+    background-color: #fdb3e7;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 50%;
+    padding: 0.5rem;}
+	
+
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 	overflow:hidden;
@@ -278,6 +290,7 @@ header {
 			
 			}
 			md-list-item  {
+				
 				padding:0px;cursor:pointer;
 				> button {
 					padding:0px 0px;
@@ -311,15 +324,16 @@ header {
 		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;}
 		md-list{
 			margin-left:2.5rem;
-			.ratings { font-size:1.56rem;}
+			padding:0px;
+			.ratings { font-size:1.15rem;}
 			md-list-item{
-				padding:0rem 0rem;margin-top:2rem;
+				padding:0rem 0rem;margin-top:1.675rem;
 				img{border-radius:50%;}
-				.md-list-item-image {width:18%;padding-right:2rem;}	
+				.md-list-item-image {padding-right:1.6875rem;img{width:6.0625rem;}}	
 				.md-list-item-text{
 					width:82%;
-					.footer-review {width:100%;margin-top:1.31rem;}
-
+					.footer-review {width:100%;margin-top: 0.5625rem;;}
+					.header-review{width:100%;}
 					
 				}
 		
