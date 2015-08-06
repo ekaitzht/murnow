@@ -50,8 +50,10 @@
 					
 					<div layout="row" layout-align="start center;">	
 						<h2> {{review.user.username}}</h2>
-						<div class="amatic check-mark" ng-hide="review.user.repurchase"> &#x2713 </div>  
-						<div class="amatic check-mark" ng-show="review.user.repurchase"> &#x2717 </div>  
+
+						<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
+					    <md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark " aria-label="Not repurchase"></md-icon>
+
 					</div>
 					<div class="review-body margin-top-rem">
 						<p class="wordwrap">{{review.body}}</p>

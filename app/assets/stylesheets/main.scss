@@ -242,7 +242,7 @@ header {
 
 .not-home-page {
 	md-card {padding:2.5rem;}
-	.check-mark{margin-left:1.625rem;}
+	.check-mark{margin-left: 1.625rem;font-size: 1rem;background-color:$pink-color; width: 1.562rem;height: 1.562rem;border-radius: 50%;padding: 0.625rem;}
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 	overflow:hidden;
