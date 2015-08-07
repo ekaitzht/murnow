@@ -24,7 +24,10 @@ html {font-size:16px;}
 
 //* list products */
 	// Separate stars
-.separate-stars {.ratings .fa-star:not(:first-child){margin-left:0.43rem;}}
+.separate-stars {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.43rem;}}
+.separate-stars-review {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.3125rem;}}
+
+
 .margin-top-rem{margin-top:0.2rem;}
 
 // Row product info
@@ -322,17 +325,20 @@ header {
 		.review-textarea{padding:0rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 		
 		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;}
+		
 		md-list{
 			margin-left:2.5rem;
 			padding:0px;
 			.ratings { font-size:1.15rem;}
 			md-list-item{
-				padding:0rem 0rem;margin-top:1.675rem;
+				padding:0rem 0rem;margin-top:2.125rem;
 				img{border-radius:50%;}
 				.md-list-item-image {padding-right:1.6875rem;img{width:6.0625rem;}}	
 				.md-list-item-text{
 					width:82%;
-					.footer-review {width:100%;margin-top: 0.5625rem;;}
+					.footer-review {width:100%;margin-top: 0.5625rem;
+					@extend .separate-stars-review;	
+					}
 					.header-review{width:100%;}
 					
 				}
