@@ -31,7 +31,7 @@ GEM
       tzinfo (~> 1.1)
     angular-rails-templates (0.1.3)
       railties (>= 3.1)
-      sprockets
+      sprockets (= 2.12.3)
       tilt
     angular_rails_csrf (1.0.3)
       rails (>= 3, < 5)
@@ -92,7 +92,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     minitest (5.5.1)
-    multi_json (1.11.0)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     oauth2 (1.0.0)
@@ -115,7 +115,7 @@ GEM
     pg (0.18.1)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
-    rack (1.5.2)
+    rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.6)
@@ -196,6 +196,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
+  sprockets (= 2.12.3)
   uglifier (>= 1.3.0)
 
 BUNDLED WITH

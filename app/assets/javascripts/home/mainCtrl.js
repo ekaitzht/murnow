@@ -8,8 +8,8 @@ angular.module('murnow')
 'configMurnow',
 function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow){
 	
-  		$scope.cdn = configMurnow.cdn_domain_name;
-  		$scope.enviroment = configMurnow.enviroment;
+  		var cdn = configMurnow.cdn_domain_name;
+  		var enviroment = configMurnow.enviroment;
   		
   		products.getMostPopularReviews().success(function(data){
 		
@@ -17,6 +17,11 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 				
 				if( data[i] === undefined) {
 					data[i].hash_url_image = "/assets/anonymousUser.jpg";	
+					data[i].urlImageUser = "https://"+cdn+"/profile_images_"+enviroment+"/"+data[i].hash_url_image;
+
+				} else {
+				   	data[i].urlImageUser = "https://"+cdn+"/profile_images_"+enviroment+"/"+data[i].hash_url_image;
+
 				}
 			} 
 			$scope.mostPopularReviews = data;

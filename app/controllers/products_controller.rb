@@ -21,10 +21,14 @@ class ProductsController < ApplicationController
   #becareful when we are trying to get the most popular reviews in a product if only we have one review with 0 votes this producdt is not going 
   #to return in the respone. To resolve this we should do like a left join or right join
   def most_popular_reviews_for_the_most_popular_products
-		response = ActiveRecord::Base.connection.execute("SELECT users.username, users.id,
+		response = ActiveRecord::Base.connection.execute("SELECT users.username, users.id AS user_id,
        users.hash_url_image, 
        reviews.body, 
        reviews.stars, 
+	   reviews.repurchase, 
+	   reviews.created_at,
+	   reviews.id,
+	   max_votes_user.number_votes AS votes,
        products.product_name,
        products.brand_name,
        products.id AS product_id
@@ -40,6 +44,7 @@ FROM   (
                        ON ( 
                                                        product_id) product_id, 
                                        user_id, 
+                                       number_votes,
                                        review_id 
                        FROM            ( 
                                               SELECT DISTINCT ON(product_id) product_id, review_id, user_id, number_votes

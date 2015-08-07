@@ -41,6 +41,8 @@ gem 'spring',      group: :development
 # Devise for Angular
 gem 'devise', '~> 3.4.0'
 
+#Sprockets and angular-rails-template are incompatible with Sprockets 3.0 version
+gem 'sprockets', '2.12.3'
 
 #angular templates in rails
 gem 'angular-rails-templates'

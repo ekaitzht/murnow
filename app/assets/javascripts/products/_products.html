@@ -41,12 +41,13 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list>
-			<md-list-item  ng-repeat="review in product.reviews | orderBy:'-upvotes'" layout="row" flex="100" layout-align="start start">
-				<div  class="md-list-item-image"  >
+			<md-list-item  ng-repeat="review in product.reviews | orderBy:'-upvotes'" >
+				<div class="review-item" layout="row" flex="100" layout-align="start start">
+					<div class="md-list-item-image user-review-image"  >
 					<img ng-click="goProfile(review.user_id)" ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
 					<img ng-click="goProfile(review.user_id)" ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.jpg" class="md-avatar not-outline" > 
 				</div>
-				<div class="md-list-item-text" layout="column" layout-align="start start">	
+					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
 					<div class="header-review" layout="row" layout-align="space-between center" flex="100">	
 						<div layout="row" layout-align="start center">
 							<p class="user-name-review-product"> {{review.user.username}}</p>
@@ -73,6 +74,7 @@
 					
 					
 			    </div>
+				</div>
 			</md-list-item>
 		  </md-list>
 	</div>
