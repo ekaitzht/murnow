@@ -25,7 +25,7 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 				}
 				
 				if( data[i].body.length >= 103 ) {
-					data[i].body = data[i].body + '...';
+					data[i].body = data[i].body.substring(1,103) + '...';
 				}
 			} 
 			$scope.mostPopularReviews = data;

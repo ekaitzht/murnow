@@ -196,7 +196,7 @@ header {
 
 .home-page{
 	
-		
+	.border-pink-bottom{border-bottom: 1px solid #FEEBF8;box-shadow: 0 3px 0px -2px #EDC7E2;}
 	@extend .review-item-extend;
 	header {background-color:$monte-carlo;}
 		#search-bar-not-home-page {display:none;}
