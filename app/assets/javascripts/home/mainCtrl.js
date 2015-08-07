@@ -23,6 +23,10 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 				   	data[i].urlImageUser = "https://"+cdn+"/profile_images_"+enviroment+"/"+data[i].hash_url_image;
 
 				}
+				
+				if( data[i].body.length >= 103 ) {
+					data[i].body = data[i].body + '...';
+				}
 			} 
 			$scope.mostPopularReviews = data;
 		});
