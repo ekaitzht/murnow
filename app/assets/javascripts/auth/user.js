@@ -76,7 +76,6 @@ angular.module('murnow')
   		return $http.get('/reviews_by_user/'+id);
 	};
 
-
 	o.fromState = null;
 
 	return o;

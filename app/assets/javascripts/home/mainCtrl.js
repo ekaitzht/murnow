@@ -6,7 +6,8 @@ angular.module('murnow')
 '$mdDialog',
 'products',
 'configMurnow',
-function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow){
+'User',
+function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow, User){
 	
   		var cdn = configMurnow.cdn_domain_name;
   		var enviroment = configMurnow.enviroment;

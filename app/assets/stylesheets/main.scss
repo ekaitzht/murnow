@@ -11,7 +11,7 @@ $subheader-color: #757575;
 
 .invisible {visibility: hidden;}
  
-html {font-size:16px;}
+html {font-size:16px;outline:none !important; *:focus { outline: none; }}
 // ** CONTROLLING REMS **//
 
 
@@ -53,9 +53,10 @@ html {font-size:16px;}
 		.review-item{
 			padding:0rem 0rem;margin-top:2.125rem;
 			img{border-radius:50%;}
-			.user-review-image {padding-right:1.6875rem;img{width:6.0625rem;}}	
+			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{width:6.0625rem;}}	
 			.review-text{
 				width:82%;
+				cursor:pointer;
 				.footer-review {width:100%;margin-top: 0.5625rem;
 				@extend .separate-stars-review;	
 				}
@@ -196,11 +197,18 @@ header {
 
 .home-page{
 	
-	#first-row > div > .review-item{border-bottom: 1px solid #EDC7E2;padding-bottom:32px;}
+	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
+	}
+	
+	md-toolbar {min-height: initial;}
+	    
+  
+    .review-card-wrapper {max-width:434px;}
 	@extend .review-item-extend;
+	//.review-text{    width: 64.5% !important;}
 	header {background-color:$monte-carlo;}
-		#search-bar-not-home-page {display:none;}
-	ui-view {margin-top:50px;padding-left:15%;padding-right:15%;}
+	#search-bar-not-home-page {display:none;}
+	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
 	h1 {margin-top:4rem;font-family:$josefin-sans;}
@@ -209,7 +217,7 @@ header {
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white;font-size:2.5rem; }
 	li {cursor:pointer;}
 	#logo {display:none;  }
-	md-content{ margin-top:3px;}
+	md-content{height: 100%;}
 
 
 	.reviews {
@@ -274,7 +282,6 @@ header {
     border-radius: 50%;
     padding: 0.5rem;}
 	
-
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 	overflow:hidden;
@@ -292,15 +299,10 @@ header {
 			}
 		}	
 	}
-	
-			
-		
 	header {height:60px;}
 	.home a {font-size: 31px; font-weight:600;color:white;}
-	
-	
+
 	// * LIST STYLING */
-	
 	.list_products {  // state name
 		md-card {padding:0px;}
 		.figure-wrapper figure{margin:18px;}
@@ -323,9 +325,6 @@ header {
 			}
 		}	
 	}
-	
-	
-	
 	
 	.products {
 		
@@ -353,7 +352,6 @@ header {
 		}  
 	}
 	
-	
 	.profile {
 		
 		.edit-profile-button {height:68px;width:68px;
@@ -368,7 +366,6 @@ header {
 		}
 		
 	}
-	
 
 }
 

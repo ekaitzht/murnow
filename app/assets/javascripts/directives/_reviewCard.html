@@ -2,7 +2,7 @@
    <div  class="md-list-item-image user-review-image"  >
       <img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="{{review.urlImageUser}}" class="md-avatar not-outline"> 
    </div>
-   <div class="md-list-item-text review-text" layout="column" layout-align="start start">
+   <div class="md-list-item-text review-text" layout="column" layout-align="start start" ng-click="goToProduct(review.product_id)">
       <div class="header-review" layout="row" layout-align="space-between center" flex="100">
          <div layout="row" layout-align="start center">
             <p class="user-name-review-product"> {{review.product_name}}</p>
@@ -25,3 +25,5 @@
       </div>
    </div>
 </div>
+
+

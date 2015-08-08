@@ -67,6 +67,8 @@ angular.module('murnow')
   	return $http.put('/votes/' + review_id + '/users/'+ user_id);
    	 
 	};
+	
+	
 
 	return o;
 }]);

@@ -75,6 +75,7 @@ $lucida-grande: "Lucida Grande";
 	
 	// *** HOME PAGE ***/
 	.home-page{
+		md-content{background-color: $monte-carlo;}
 		ui-view{display:none}
 		background-color:$monte-carlo;
 		form md-autocomplete {width:100%;}

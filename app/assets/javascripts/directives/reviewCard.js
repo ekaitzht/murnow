@@ -1,5 +1,5 @@
 angular.module('reviewCard',[])
-.directive('reviewCard', function(){
+.directive('reviewCard', ['$state', function($state){
 	return {
 		restrict: 'E',
 		scope: {
@@ -8,8 +8,19 @@ angular.module('reviewCard',[])
 		},
 		replace:true,
 		templateUrl:'directives/_reviewCard.html',
+		
 		controller:function($scope){
-			
+			$scope.goProfile = function(user_id_clicked){
+				$state.go('profile', { id: user_id_clicked});
+   			}
+   			
+   			$scope.goToProduct = function(product_id){
+				$state.go('products', { id: product_id});
+   			}
 		}
 	};
-});
+}]);
+
+
+
+
