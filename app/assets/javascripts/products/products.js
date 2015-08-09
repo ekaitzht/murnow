@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('products',[ '$http', function($http){
+.factory('products',[ '$http','$mdDialog','Auth', function($http, $mdDialog, Auth){
     
     var o = {
     	products: [],
@@ -34,7 +34,9 @@ angular.module('murnow')
 	};
 	
 	o.getMostPopularReviews = function(id, review) {
-  		return $http.get('/most_popular_reviews_for_the_most_popular_products');
+  	    return $http.get('/most_popular_reviews_for_the_most_popular_products').success(function(data){
+	  	    angular.copy(data, o.products);
+  	    });
 	};
 
 
@@ -63,13 +65,23 @@ angular.module('murnow')
 	};
   
   
-	o.upvoteReview = function(user_id, review_id) {
-  	return $http.put('/votes/' + review_id + '/users/'+ user_id);
-   	 
+	o.upvoteReview = function(Auth, review_id) {
+		
+		if(Auth._currentUser === null){
+			 $mdDialog.show(
+	          $mdDialog.alert()
+	            .title('')
+	            .content('You need to sign up to vote a comment!')
+	            .ariaLabel('')
+	            .ok('Got it!')
+	        );
+	
+		} else {
+			return $http.put('/votes/' + review_id + '/users/'+ Auth._currentUser.id);
+		}
 	};
 	
 	
-
 	return o;
 }]);
 

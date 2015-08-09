@@ -25,7 +25,12 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/',
       templateUrl: 'home/_reviews.html',
-      controller: 'MainCtrl'
+      controller: 'MainCtrl',
+      resolve: {
+	  		productsPromise: [ 'products', function( products) {
+	        	return products.getMostPopularReviews();
+	        }]
+      }
     })
     .state('list_products', {  // CAMBIAR ESTOOOOOOO
       url: '/list_products/:searchQuery',

@@ -56,11 +56,12 @@ html {font-size:16px;outline:none !important; *:focus { outline: none; }}
 			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{width:6.0625rem;}}	
 			.review-text{
 				width:82%;
-				cursor:pointer;
 				.footer-review {width:100%;margin-top: 0.5625rem;
 				@extend .separate-stars-review;	
 				}
-				.header-review{width:100%;}
+				.review-body{cursor:pointer;}
+				.thumbs-up {cursor:pointer;}
+				.header-review{width:100%;cursor:pointer;}
 				
 			}
 		}	

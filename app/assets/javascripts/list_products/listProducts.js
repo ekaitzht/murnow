@@ -56,7 +56,7 @@ function($scope,$state,$stateParams, $mdDialog, products,configMurnow){
 	$scope.incrementUpvotes = function(review){
 		review.upvotes += 1;
 	}
-	$scope.decrementUpvotes = function(review){
+	$scope.incrementUpvotes = function(review){
 		review.upvotes -= 1;
 	}
 
