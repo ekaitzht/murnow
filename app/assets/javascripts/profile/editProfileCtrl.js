@@ -51,13 +51,14 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		}).error(function(err){
 		
 		});    
-    } else {
-	     Auth.currentUser().then(function(user) {
-		     
-		         $state.go('profile', {id: user.id});
-		    }, function(error) {
-		        // unauthenticated error
-		    });
+    } else { 
+        User.updateUserProfile($scope.user, $scope.skin_problems)
+        Auth.currentUser().then(function(user) {
+	     
+	         $state.go('profile', {id: user.id});
+	    }, function(error) {
+	        // unauthenticated error
+	    });
     }
   };
 
