@@ -2,47 +2,44 @@
 	<div layout="column" >
 		
 		<!-- HEADER PROFILE USER --> 
-		<div layout="row" layout-sm="column"> 
-			<div layout="row"  >
-					
-				<div class="wrapper-image-profile" flex-sm="40" layout="column" >
+		<div layout="row" > 
+				<div class="wrapper-image-profile"  layout="column" >
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 						</div>
 					    <div ng-show="!user.hash_url_image" class="md-tile-left">
-					    	<img ng-src="/assets/anonymousUser.jpg" class="face" alt="{{user.username}}">
+					    	<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 						</div>
 					    
-					</div>  
-				<div layout="column" class="bio-block">
-				    <div class="username">
-				    	 <span class="amatic-h1"> {{user.username}} </span>
-				    </div>
-				    <div class="bio">
-				      <span ng-show="user.bio"> {{user.bio}}</span>
-				      <span ng-hide="user.bio"> Bio </span>
-				    </div>
-				</div> 
-			</div>
-			<div class="profile-user" layout="column">
-					<div  class="amatic-h1">
-					Profile
-					</div>
-					<div layout="column">
-					      <div>Age: <span> {{user.age}} </span></div>
-					      <div> Skin Type: <span> {{user.skin_type}} </span></div>
-					      <div>	Skin Color: <span> {{user.skin_color}} </span> </div>
-					      <div>	Skin Tone: <span> {{user.skin_tone}} </span></div>
-					      <div> Skin Problems: <span ng-if="skin_problem.state == true" ng-repeat="skin_problem in user.skin_problems | filter:{state:true} | orderBy:'name'"> {{skin_problem.name}} <span ng-show=" ! $last ">,</span></span> </div>	      
-					      	
-					</div>
-				</div>
-			<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
-            	<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
-			</md-button>
+				</div>  
+				
+				<div class="info-user-profile" layout="row" layout-align="space-between start">
+					<div layout="column" class="bio-block">
+					    <div class="username">
+					    	 <span class="title"> {{user.username}} </span>
+					    </div>
+					    <div class="bio sub-head">
+					      <span ng-show="user.bio"> {{user.bio}}</span>
+					    </div>
+					    <div class="social-links" layout="row" >
+						
+							<img id="youtube-logo" ng-src="/assets/youtube_logo.png" alt="Youtube Profile">	
+							<img id="instagram-logo" ng-src="/assets/instagram_logo.png" alt="Instagram Profile">
+					    </div>						   					   
+						
+						<div class="user-biometric">
+							<p>		
+								<span> {{biometrics}} </span>
+							</p>
+					    </div>
+					</div> 
+					<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
+						<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
+					</md-button>
+				</div>	
 		</div>	
 		
-		<div  layout="row"  class="amatic-h2" >  Reviews by Ulaize </div>
+		<div class="all-comments count-reviews  title "  layout="row"> Reviews ({{reviews.length}}) </div>
 
 		<!-- LIST OF REVIEWS -->
 		<md-list> 

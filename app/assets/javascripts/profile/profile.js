@@ -18,13 +18,26 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		
     });
         
-        
-        
+
 	$scope._fetchDataUser =  function() {
       User.getSkinProblems().success(function(data, status, headers, config) {
 	    $scope.user.skin_problems =  data.skin_problems; 
+	    $scope.hasSkinProblems = false;
+	    var userInfo = [String($scope.user.age), $scope.user.skin_type, $scope.user.skin_tone, $scope.user.skin_color];
+		
+	
+		if(data.skin_problems[0].state){
+			userInfo.push(data.skin_problems[0].name);
+		}
+		
+		if(data.skin_problems[1].state){
+			userInfo.push(data.skin_problems[1].name);
+		}
+		$scope.biometrics = $.grep(userInfo,function(n){ return(n) }).join(', ');
+		
+		
 	  });
-	  
+
 	 User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
 		  
 	    $scope.reviews =  data.reviews; 
@@ -35,6 +48,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
   	if(Auth.isAuthenticated()) {
 	  if(parseInt($stateParams.id) == User.user_session.id) {
 	  	$scope.user = User.user_session;
+	  	
 	  	$scope.user.isProfileAuthenticated = true;
 	  	$scope._fetchDataUser();
       }  else {
