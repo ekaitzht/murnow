@@ -26,6 +26,12 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 				
 				if( products[i].body.length >= 103 ) {
 					products[i].body = products[i].body.substring(0,103) + '...';
+					
+				}
+				
+				if( products[i].product_name.length >= 18 ) {
+					products[i].product_name = products[i].product_name.substring(0, 18) + '...';
+					
 				}
 			} 
 			$scope.products = products;

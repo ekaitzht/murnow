@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
        users.hash_url_image, 
        reviews.body, 
        reviews.stars, 
-	   reviews.repurchase, 
+	   reviews.repurchase::VARCHAR, 
 	   reviews.created_at,
 	   reviews.id,
 	   max_votes_user.number_votes AS votes,
