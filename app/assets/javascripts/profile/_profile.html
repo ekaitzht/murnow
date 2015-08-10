@@ -3,7 +3,7 @@
 		
 		<!-- HEADER PROFILE USER --> 
 		<div layout="row" > 
-				<div class="wrapper-image-profile"  layout="column" >
+				<div class="wrapper-image-profile"  layout="column" flex-sm="25">
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 						</div>
@@ -29,13 +29,15 @@
 						
 						<div class="user-biometric">
 							<p>		
-								<span> {{biometrics}} </span>
+								{{biometrics}}
 							</p>
 					    </div>
 					</div> 
-					<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
-						<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
-					</md-button>
+					<div>
+						<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
+							<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
+						</md-button>
+					</div>
 				</div>	
 		</div>	
 		
