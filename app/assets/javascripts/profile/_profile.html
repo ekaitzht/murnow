@@ -45,35 +45,34 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list> 
-			<md-list-item class="md-3-line" ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
-				<img ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" alt="{review.product.product_name}" class="md-avatar">
-				<div class="md-list-item-text">
-					<div layout="row" layout-align="space-between start" >
-						<div layout="column">
-							<div class='josefin-h3'> 
-								{{review.product.product_name}} 
-							</div>
-							<div class="product-rating" flex="15" flex-sm="20">
-								<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-							</div>
-						</div>
-						<div class="date-created"> {{review.created_at | fromNow }} </div>
+			<md-list-item ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
+				<div class="review-item" layout="row" flex="100" layout-align="start start">
+					<div class="md-list-item-image user-review-image"  >
+						<img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="md-avatar not-outline"> 
 					</div>
-					
-					
-				    <rating ng-model="review.stars"  readonly="true"  state-on="'glyphicon-star'" state-off="'glyphicon-star-empty'" on-hover="" on-leave="" max="5">
-				    </rating>
-				    
-				    <div layout="row">
-					     <div>
-							{{review.body}}  
+					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
+							<div class="header-review" layout="row" layout-align="space-between center" flex="100">	
+								<div layout="row" layout-align="start center">
+									<p class="user-name-review-product"> {{review.product.product_name}}</p>
+									<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
+									<md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark invisible " aria-label="Repurchase again"></md-icon>
+								</div>
+								<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
+							</div>
+							<div class="review-body margin-top-rem">
+								<p class="wordwrap">{{review.body}}</p>
+							</div>
+							<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
+								<div class="ratings">
+									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+								</div>
+								<div class="thumbs-up" >
+								<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
+								<span> {{review.votes.length}} </span>
+							</div> 
 						</div>
-						<span class="thumbs-up">  
-					    	<span   class="fa fa-thumbs-o-up">  </span>  {{review.votes.length}}
-						</span>
-				    </div>
+			    	</div>
 				</div>
-			
 			</md-list-item>
 		</md-list>	
 	</div>
