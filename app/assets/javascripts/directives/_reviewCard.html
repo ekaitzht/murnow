@@ -4,11 +4,13 @@
    </div>
    <div class="md-list-item-text review-text" layout="column" layout-align="start start" >
       <div class="header-review" layout="row" layout-align="space-between center" flex="100">
-         <div layout="row" layout-align="start center" ng-click="goToProduct(review.product_id)">
+	      <md-button ng-click="goToProduct(review.product_id)">
+         <div layout="row" layout-align="start center" >
             <p class="user-name-review-product" > {{review.product_name}}</p>
             <md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
             <md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark invisible " aria-label="Repurchase again"></md-icon>
          </div>
+	      </md-button>
          <div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
       </div>
       <div id="brand-name" > <h3 class="sub-head" >by {{review.brand_name}} </h3> </div>
