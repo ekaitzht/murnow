@@ -59,7 +59,7 @@ html {font-size:16px;outline:none !important; *:focus { outline: none; }}
 		}
 	}
 
-	.review-product-mixed {  // this represent the style for the product info in product profile, and reviews in landing_page
+	.review-product-mixed {  // this represent the style for the product info in product profile, and reviews in landing_page, and reviews in profile user
 		.review-item{
 			padding:0rem 0rem;margin-top:2.125rem;
 			img{border-radius:50%;}
@@ -372,6 +372,10 @@ header {
 		.count-reviews{font-size:1.7rem;margin-top:2.75rem;}
 		.bio{margin-topo:0.5rem;}
 		.edit-profile-button{padding:0px;margin:0px;}
+		
+		md-list{
+			@extend .review-product-mixed;
+		}
 		
 	}
 	
