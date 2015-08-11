@@ -14,6 +14,7 @@ $lucida-grande: "Lucida Grande";
 		
 	.not-home-page {	
 		.products md-list .ratings {font-size:15px}	
+		.ratings {font-size:15px;}
 		.thumbs-up {font-size:15px;}
 		
 		p{font-size:14px;line-heigth:16px;}
@@ -111,6 +112,14 @@ $lucida-grande: "Lucida Grande";
 			.header-product {
 				@extend .row-product-info;	
 			}
+			md-list{
+				margin-left:0px;
+				 md-list-item .md-no-style  {padding-left:0px ;}
+			}
+		}
+		
+		.profile{
+			 md-list-item .md-no-style {padding-left:0px;}
 		}
 	}
 	
