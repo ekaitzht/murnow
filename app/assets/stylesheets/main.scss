@@ -8,11 +8,12 @@ $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 $subheader-color: #757575;
 $white: white;
+$verdana: 'verdana';
 
 
 .invisible {visibility: hidden;}
  
-html {font-size:16px;outline:none !important; *:focus { outline: none; }}
+html {font-size:16px;outline:none !important; *:focus { outline: none; } font-family:$lucida-grande;}
 // ** CONTROLLING REMS **//
 
 	.margin-top-rem{margin-top:0.2rem;}
@@ -101,14 +102,16 @@ a {text-decoration:none;}
 	line-height: 18px;
 }
 
-
+.md-button.md-primary {color:black;}
 body {
 	font-family: $josefin-sans, sans-serif;	
 	overflow-y:auto !important;
 	
-	.mainNav {position: fixed;    right: 0px;    top: -3px;}
-	#join-button{position: fixed; right: -20px;top: 7px;}
-
+	.mainNav {
+		position: fixed;    right: 0px;   
+		.md-button{font-weight: bold;font-size:20px;}
+	}
+	md-menu {position: fixed;    right: 0px; top:-3px;}
 	
 }
 span.sr-only.ng-binding {display:none;}
@@ -166,6 +169,7 @@ md-dialog {
 	 h2{color:black !important;font-size:2rem !important;}
 	 .md-toolbar-tools{padding-left: 24px;}
 	}
+	.md-button{font-family: $verdana;}
 	&#login-dialog .facebook-login-button img {display: block;text-align: center;margin: 0 auto;position: relative;top: -12px;}
 
 }
