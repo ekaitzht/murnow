@@ -33,6 +33,14 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 					products[i].product_name = products[i].product_name.substring(0, 18) + '...';
 					
 				}
+				
+				if(products[i].repurchase === 'false'){
+					products[i].repurchase = false;
+				} else{
+					products[i].repurchase = true;
+				}
+				
+			
 			} 
 			$scope.products = products;
 		

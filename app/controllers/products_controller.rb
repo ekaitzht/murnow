@@ -31,8 +31,7 @@ class ProductsController < ApplicationController
 	   max_votes_user.number_votes AS votes,
        products.product_name,
        products.brand_name,
-       products.id AS product_id
-       
+       products.id AS product_id       
 FROM   ( 
                 SELECT   Count(*) AS number_reviews, 
                          product_id 
