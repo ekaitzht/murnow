@@ -223,6 +223,8 @@ md-dialog {
 
 .home-page{
 	@extend .check-mark;
+		.sub-head {font-size:1rem;}
+	.review-body p{font-size:15px ;}
 	.check-mark { //overriding check-mark
 	 width: 0.875rem;
 	 height: 0.875rem;
@@ -304,6 +306,7 @@ md-dialog {
 .not-home-page {
 	md-card {padding:2.5rem;}
 	@extend .check-mark;
+
 	
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}

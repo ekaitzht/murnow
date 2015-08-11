@@ -18,16 +18,15 @@ $lucida-grande: "Lucida Grande";
 		.thumbs-up {font-size:15px;}
 		
 		p{font-size:14px;line-heigth:16px;}
-		.hint-text {font-size:10px;}
+		.hint-text {font-size:15px;}
 	}
 	
 	.home-page{
 			
 		.footer-review .ratings {font-size:15px}	
 		.thumbs-up {font-size:15px;}
-		
 		p{font-size:14px;line-heigth:16px;}
-		.hint-text {font-size:10px;}
+		.hint-text {font-size:15px;}
 	}
 	
 	
@@ -142,6 +141,9 @@ $lucida-grande: "Lucida Grande";
 }
 
 
+
+
+
 @media screen and (max-width: 960px) and (min-width: 600px) {
     .not-home-page {
 	    	 .wrapper-rate-approval{width:120px !important; height:120px !important;
@@ -159,3 +161,7 @@ $lucida-grande: "Lucida Grande";
 	}	
 
 }
+
+
+
+
