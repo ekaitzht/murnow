@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog id="login-dialog">
 	<form name="registerForm" ng-submit="login()" layout="column">
 	 <md-toolbar>
 	    <div class="md-toolbar-tools">
@@ -10,11 +10,11 @@
 	    </div>
 	  </md-toolbar>
     <md-dialog-content>
-		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
 		<div>
 			
-		       <md-button class="md-primary"  href='/users/auth/facebook' target="_self">Facebook Login</md-button>
-		        
+				<a class="facebook-login-button" href="/users/auth/facebook" target="_self">		
+						<img   ng-src="/assets/facebook_login.png" > 
+				</a>		        
 		        <md-input-container md-no-float>
 		          <label> Email </label>
 		          <input ng-model="user.email" >

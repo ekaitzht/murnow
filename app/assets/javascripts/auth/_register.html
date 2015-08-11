@@ -1,7 +1,7 @@
 <md-dialog aria-label="Mango (Fruit)"> 
  <md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2>Join our community! </h2>
+		      <h2 class="title">Join our community! </h2>
 		      <span flex></span>
 		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
 		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
@@ -11,7 +11,7 @@
 	<md-dialog-content class="sticky-container">
 		<div>
 		    <form name="registerForm" ng-submit="register()">
-				<div >
+				<div>
 			        <md-input-container>
 			          <label> Email </label>
 			          <input ng-model="user.email" type="email">
@@ -38,8 +38,10 @@
 			        </div>
 			    </div>
 			    <div layout="row" layout-align="space-between center">
-					<md-button class="md-primary" ng-href="/users/auth/facebook" target="_blank">Connect with facebook</md-button>
-					<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>
+					<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>	
+					<a class="facebook-login-button" href="/users/auth/facebook" target="_self">		
+						<img   ng-src="/assets/facebook_login.png" > 
+					</a>
 				</div>		  
 			</form>
 
