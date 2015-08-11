@@ -53,7 +53,7 @@
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
 							<div class="header-review" layout="row" layout-align="space-between center" flex="100">	
 								<div layout="row" layout-align="start center">
-									<p class="user-name-review-product"> {{review.product.product_name}}</p>
+									<p class="user-name-review-product"> {{review.product.product_name | limitLength:22:$root}}</p>
 									<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
 									<md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark invisible " aria-label="Repurchase again"></md-icon>
 								</div>
