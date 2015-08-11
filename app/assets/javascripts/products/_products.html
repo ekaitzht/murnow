@@ -1,18 +1,18 @@
-<md-card> 
-	<div class="product-profile" layout="column" layout-align="center" layout-padding> 
+<md-card itemscope itemtype="http://schema.org/Product"> 
+	<div  class="product-profile" layout="column" layout-align="center" layout-padding> 
 		<div layout= "row" class="header-product" layout-align="space-around center" flex="100">
 	    		<div  id="image-product" flex-sm="16" flex-gt-sm="20">
 	    			<img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}">
 	    		</div>
 		        <div id="product-info" layout="column"   flex-sm="50" flex-gt-sm="50">
-						<div id="name-product" class="wordwrap"><h2 class="title">{{product.product_name  }}</h2></div>
-						<div id="brand-name" ><h3 class="sub-head">by {{product.brand_name}} </h3></div>
+						<div id="name-product" class="wordwrap"><h2 class="title" itemprop="name">{{product.product_name  }}</h2></div>
+						<div id="brand-name" ><h3 class="sub-head" itemprop="brand">by {{product.brand_name}} </h3></div>
 						<div class="ratings">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        		</div>
 				</div>
-		    	<div class="wrapper-rate-approval" layout="column" layout-align="space-around center"  flex-gt-sm="20" >
-				      <div class="repurchase-percent "> {{ repurchase_again_percent | number:0 }} % </div>
+		    	<div class="wrapper-rate-approval" itemprop="aggregateRating"  itemscope itemtype="http://schema.org/Person" layout="column" layout-align="space-around center"  flex-gt-sm="20" >
+				      <div class="repurchase-percent" itemprop="ratingValue"> {{ repurchase_again_percent | number:0 }} % </div>
 					  <div class="approval-rate"> 
 						  APPROVAL RATE
 					  </div>
@@ -41,7 +41,7 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list>
-			<md-list-item  ng-repeat="review in product.reviews | orderBy:'-upvotes'" ng-click="goProfile(review.user_id)" >
+			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-upvotes'" ng-click="goProfile(review.user_id)" >
 				<div class="review-item" layout="row" flex="100" layout-align="start start">
 					<div class="md-list-item-image user-review-image"  >
 					<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
@@ -57,10 +57,10 @@
 							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 						</div>
 						<div class="review-body margin-top-rem">
-									<p class="wordwrap">{{review.body}}</p>
+									<p class="wordwrap" itemprop="reviewBody">{{review.body}}</p>
 						</div>
 						<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
-								<div class="ratings">
+								<div class="ratings" itemprop="reviewRating">
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 								</div>
 								<div class="thumbs-up" >
