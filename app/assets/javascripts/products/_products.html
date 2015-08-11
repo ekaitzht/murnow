@@ -2,7 +2,7 @@
 	<div  class="product-profile" layout="column" layout-align="center" layout-padding> 
 		<div layout= "row" class="header-product" layout-align="space-around center" flex="100">
 	    		<div  id="image-product" flex-sm="16" flex-gt-sm="20">
-	    			<img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}">
+	    			<img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}">
 	    		</div>
 		        <div id="product-info" layout="column"   flex-sm="50" flex-gt-sm="50">
 						<div id="name-product" class="wordwrap"><h2 class="title" itemprop="name">{{product.product_name  }}</h2></div>
