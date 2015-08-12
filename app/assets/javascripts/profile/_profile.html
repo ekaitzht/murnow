@@ -2,7 +2,7 @@
 	<div layout="column" >
 		
 		<!-- HEADER PROFILE USER --> 
-		<div layout="row" > 
+		<div layout="row" itemscope itemtype="http://schema.org/Person" > 
 				<div class="wrapper-image-profile"  layout="column" flex-sm="25">
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
@@ -16,10 +16,10 @@
 				<div class="info-user-profile" layout="row" layout-align="space-between start">
 					<div layout="column" class="bio-block">
 					    <div class="username">
-					    	 <span class="title"> {{user.username}} </span>
+					    	 <span class="title" itemprop="name"> {{user.username}} </span>
 					    </div>
 					    <div class="bio sub-head">
-					      <span ng-show="user.bio"> {{user.bio}}</span>
+					      <span ng-show="user.bio" itemprop="description"> {{user.bio}}</span>
 					    </div>
 					    <div class="social-links" layout="row" >
 						

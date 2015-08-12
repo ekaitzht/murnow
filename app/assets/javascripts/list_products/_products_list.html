@@ -1,20 +1,20 @@
 <md-card>
 	<md-list  class="products-list" layout="column">
-			<md-list-item  ng-repeat="product in products" ng-click="goToProductState('products',product.id)" >
+			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id)" >
 				<div  class="md-list-item-text" layout="row" layout-align="space-around center" flex="100" >
-			        <div  id="image-product" flex-sm="16" flex-gt-sm="20">
-			        	<a ng-href="/products/{{product.id}}"> <img ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
+			        <div   id="image-product" flex-sm="16" flex-gt-sm="20">
+			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
 			        </div>  
 					<div id="product-info" class="md-tile-content" layout="column"  flex-sm="50" flex-gt-sm="50" >
-						<div id="name-product " class="wordwrap"><h2 class="title">{{product.product_name | limitLength:22}}<span></span></h2></div>
-						<div id="brand-name"><h3 class="sub-head">by {{product.brand_name}}</h3></div>
+						<div id="name-product " class="wordwrap"><h2 class="title" itemprop="name">{{product.product_name | limitLength:22}}<span></span></h2></div>
+						<div id="brand-name"><h3 class="sub-head" itemprop="brand">by {{product.brand_name}}</h3></div>
 						<div class="ratings">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        		</div>
 					</div>
-					<div class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center"  flex-gt-sm="20">
+					<div  itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center"  flex-gt-sm="20">
 						      <div class="repurchase-percent "> 
-						      {{ product.rating | number:0 }}  <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
+						      <span itemprop="ratingCount">{{ product.rating | number:0 }} </span> <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
 						      </div>
 							  <div ng-hide="product.buyers ==0 && product.not_buyers ==0" class="approval-rate"> 
 								  APPROVAL RATE
