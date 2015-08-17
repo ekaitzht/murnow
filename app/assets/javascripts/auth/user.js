@@ -34,6 +34,8 @@ angular.module('murnow')
 		o.user_session.skin_type = user.skin_type;
 		o.user_session.skin_tone = user.skin_tone;
 		o.user_session.eye_color = user.eye_color;
+		o.user_session.youtube_channel = user.youtube_channel;
+		o.user_session.instagram_profile = user.instagram_profile;
 
 		o.user_session.bio = user.bio;
 		o.user_session.hash_url_image = user.hash_url_image;
@@ -55,6 +57,8 @@ angular.module('murnow')
 	   	 skin_tone: user.skin_tone,
 	   	 eye_color: user.eye_color,
 	     bio: user.bio,
+	     youtube_channel: user.youtube_channel,
+	     instagram_profile: user.instagram_profile,
 	     hash_url_image: user.hash_url_image,
 	     age: user.age
 

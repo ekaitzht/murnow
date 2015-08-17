@@ -12,10 +12,17 @@
 		<div layout="row" class="info-user-profile" layout-align="space-between start">
 			<div layout="column" class="bio-block">
 			    <div class="username">
-					<input type="text"  value="{{user.username}}" ng-model="user.username"/>
+				 <md-input-container>
+			      <label>Username?</label>
+			      <input ng-model="user.username">
+			    </md-input-container>
 		      	</div>
 		  		<div class="bio">
-		  			<input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
+		  			
+		  			 <md-input-container>
+			      <label>Bio?</label>
+			      <input ng-model="user.bio">
+			    </md-input-container>
 	      		</div>
 			</div>
 			<div>
@@ -83,7 +90,15 @@
 		        
 		        <!-------------- SOCIAL LINKS -------------->
 		        
-		        
+		        <label> Social Links </label>
+		        <md-input-container>
+			      <label>Youtube URL Channel</label>
+			      <input ng-model="user.youtube_channel">
+			    </md-input-container>
+		        <md-input-container>
+			      <label>Instagram Username</label>
+			      <input ng-model="user.instagram_profile">
+			    </md-input-container>
 		        
 		        
 		        
