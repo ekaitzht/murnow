@@ -8,9 +8,84 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.myCroppedImage = '';
 	
 	$scope.fileImage = '';
-	$scope.skin_types = ['Dry','Combination','Oily'];
-	$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
-	$scope.skin_tones = ['Warm', 'Neutral', 'Cool'];
+	//$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
+	$scope.skin_tones = ['ivory', 'peach', 'sand','toast', 'caramel','cocoa','expresso' ];
+	
+
+
+
+	// Values for age for dropwdown
+	var N = 100; 
+	$scope.ages = Array.apply(null, {length: N}).map(Number.call, Number)
+	
+	
+	// Skin avatars 
+	
+	 $scope.avatarData = [{
+        img: "/assets/skin_tones_avatars/ivory.png",
+        title: 'Ivory',
+        value: 'ivory'
+      },{
+        img: "/assets/skin_tones_avatars/peach.png",
+        title: 'Peach',
+        value: 'peach'
+      },{
+        img: "/assets/skin_tones_avatars/sand.png",
+        title: 'Sand',
+        value: 'sand'
+    },{
+        img: "/assets/skin_tones_avatars/toast.png",
+        title: 'Toast',
+        value: 'toast'
+    },{
+        img: "/assets/skin_tones_avatars/caramel.png",
+        title: 'Caramel',
+        value: 'caramel'
+    },{
+        img: "/assets/skin_tones_avatars/cocoa.png",
+        title: 'Cocoa',
+        value: 'cocoa'
+    },{
+        img: "/assets/skin_tones_avatars/expresso.png",
+        title: 'Expresso',
+        value: 'expresso'
+    }];
+    
+    // SKIN TYPES
+   	 $scope.skin_types = [{
+        title: 'Normal',
+        value: 'normal'
+      },{
+        title: 'Dry',
+        value: 'dry'
+      },{
+        title: 'Combination',
+        value: 'combination'
+    },{
+        title: 'Oily',
+        value: 'oily'
+    }];
+    
+      // EYES
+   	 $scope.eye_colors = [{
+        title: 'Brown',
+        value: 'brown'
+      },{
+        title: 'Green',
+        value: 'green'
+      },{
+        title: 'Blue',
+        value: 'blue'
+    },{
+        title: 'Grey',
+        value: 'grey'
+    },{
+        title: 'Hazel',
+        value: 'hazel'
+    }];
+    
+    
+	 
 	$scope.cdn = configMurnow.cdn_domain_name;
 	$scope.enviroment = configMurnow.enviroment;
   

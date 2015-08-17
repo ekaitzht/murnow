@@ -11,10 +11,11 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   	validates :username, presence: true 
-  	validates :skin_type, :inclusion=> { :in => ['Dry','Combination', 'Oily'] }, :allow_nil => true
-  	validates :skin_color, :inclusion=> { :in => ['Porcelain', 'Ivory', 'Beige',
-  	 'Caramel', 'Mocha', 'Dark Chocolate'] }, :allow_nil => true
-  	validates :skin_tone, :inclusion=> { :in => [ 'Warm', 'Neutral', 'Cool'] }, :allow_nil => true
+  	validates :skin_type, :inclusion=> { :in => ['normal','dry','combination', 'oily'] }, :allow_nil => true
+  	validates :eye_color, :inclusion=> { :in => ['brown','green','blue', 'grey','hazel'] }, :allow_nil => true
+  	validates :skin_tone, :inclusion=> { :in =>  ['ivory', 'peach', 'sand','toast', 'caramel','cocoa','expresso' ] }, :allow_nil => true
+  	validates :age, inclusion: { in: 0..100 }
+  	validates :age, numericality: true
   	
 	def self.from_omniauth(auth)
 		

@@ -3,7 +3,7 @@
 		
 		<!-- HEADER PROFILE USER --> 
 		<div layout="row" itemscope itemtype="http://schema.org/Person" > 
-				<div class="wrapper-image-profile"  layout="column" flex-sm="25">
+			<div class="wrapper-image-profile"  layout="column" flex-sm="25">
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 						</div>
@@ -12,9 +12,8 @@
 						</div>
 					    
 				</div>  
-				
-				<div class="info-user-profile" layout="row" layout-align="space-between start">
-					<div layout="column" class="bio-block">
+			<div class="info-user-profile" layout="row" layout-align="space-between start">
+				<div layout="column" class="bio-block">
 					    <div class="username">
 					    	 <span class="title" itemprop="name"> {{user.username}} </span>
 					    </div>
@@ -23,22 +22,21 @@
 					    </div>
 					    <div class="social-links" layout="row" >
 						
-							<img id="youtube-logo" ng-src="/assets/youtube_logo.png" alt="Youtube Profile">	
-							<img id="instagram-logo" ng-src="/assets/instagram_logo.png" alt="Instagram Profile">
-					    </div>						   					   
-						
+							<a ng-show="user.youtube_channel" ng-href="{{user.youtube_channel}}" target="_blank"><img  id="youtube-logo" ng-src="/assets/youtube_logo.png" alt="Youtube Profile"></a>
+							<a ng-show="user.instagram_profile" ng-href="{{user.instagram_profile}}" target="_blank"><img ng-show="user.instagram_profile" id="instagram-logo" ng-src="/assets/instagram_logo.png" alt="Instagram Profile"> </a>
+					    </div>						
 						<div class="user-biometric">
 							<p>		
 								{{biometrics}}
 							</p>
 					    </div>
-					</div> 
-					<div>
-						<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab edit-profile-button" aria-label="Edit Profile">
+				</div> 
+				<div>
+					<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab profile-button" aria-label="Edit Profile">
 							<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
-						</md-button>
-					</div>
-				</div>	
+					</md-button>
+				</div>
+			</div>	
 		</div>	
 		
 		<div class="all-comments count-reviews  title "  layout="row"> Reviews ({{reviews.length}}) </div>

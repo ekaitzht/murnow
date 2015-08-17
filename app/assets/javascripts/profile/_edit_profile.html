@@ -1,69 +1,112 @@
 <md-card>
 	<form name="registerForm" layout="column" >
-	  <div layout="row" layout-sm="column">
-	    <div class="wrapper-image-profile" layout="row">
+	  <div layout="row">
+	    <div class="wrapper-image-profile" layout="row" flex-sm="25">
 	    	<div ng-show="showProfileImage"  ng-file-select ng-model="file" multiple="false">
 	            <img ng-src="{{srcImageProfile}}" class="face" alt="{{user.username}}">
 	    	</div>
 			<div ng-hide="showProfileImage"   ng-file-select ng-model="file" multiple="false"  >
 				<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 			</div>
-					
-						
-						
-			<div layout="column">
-		      <div class="username">
-		      	<input type="text"  value="{{user.username}}" ng-model="user.username"/>
-		      </div>
-		      <div class="bio">
-		        <input type="text"  value="{{user.bio}}" ng-model="user.bio"/>
-		      </div>
-	    	</div> 
-	    </div>
-	   
-	    <div layout="column" class="profile-user" >
-		  <div class="profile-header"s>
+	    </div>				
+		<div layout="row" class="info-user-profile" layout-align="space-between start">
+			<div layout="column" class="bio-block">
+			    <div class="username">
+				 <md-input-container>
+			      <label>Username?</label>
+			      <input ng-model="user.username">
+			    </md-input-container>
+		      	</div>
+		  		<div class="bio">
+		  			
+		  			 <md-input-container>
+			      <label>Bio?</label>
+			      <input ng-model="user.bio">
+			    </md-input-container>
+	      		</div>
+			</div>
+			<div>
+				<md-button  ng-click="updateUser()"  class="md-fab profile-button" aria-label="Edit Profile">
+					<md-icon  md-svg-src="/assets/ic_clear_white_36px.svg"></md-icon>
+				</md-button>
+			</div>
+    	</div> 
+	  </div> 
+	  <div layout="column" class="profile-user" >
+		  <!--<div class="profile-header"s>
 		  	Profile
-		  </div>
+		  </div>-->
 		  <div layout="column" >
 		        <div class="age" layout="row">
-		          <label> Age </label>
-		          <input type="text"  value="{{user.age}}" ng-model="user.age"/>
-		        </div>
-		        <div>
-			        <div>Skin type: </div> 
-			        <md-select placehodler="Choose your skin type" ng-model="user.skin_type">
-			          <md-option ng-repeat="skin_type in skin_types" value="{{skin_type}}">{{skin_type}}</md-option>
+		          <label> Age? </label>
+		       		          
+		           <md-select placehodler="What is your " ng-model="user.age">
+			          <md-option ng-repeat="age in ages" value="{{age}}">{{age}}</md-option>
 			        </md-select>
 		        </div>
 		        
-		        <div>
-			        <div>Skin Color: </div> 
-			        <md-select placehodler="Choose your skin color" ng-model="user.skin_color">
-			          <md-option ng-repeat="skin_color in skin_colors" value="{{skin_color}}">{{skin_color}}</md-option>
-			        </md-select>
-		        </div>
 		        
-				<div>
-			        <div>Skin Color: </div> 
-			        <md-select placehodler="Choose your skin tone" ng-model="user.skin_tone">
-			          <md-option ng-repeat="skin_tone in skin_tones" value="{{skin_tone}}">{{skin_tone}}</md-option>
-			        </md-select>
-		        </div>
-		
-		     
+		        <!-------------- SKIN TONES -------------->
+		        <label> Skin Tone?</label>
+		        <md-radio-group class="skin-tones" ng-model="user.skin_tone" layout="row" layout-wrap>
+			      <md-radio-button ng-repeat="it in avatarData"
+			                       ng-value="it.value"
+			                       aria-label="{{it.title}}" >
+			          <img ng-src="{{it.img}}" class="avatar" alt="{{it.title}}">
+
+			      </md-radio-button>
+			     
+			    </md-radio-group>
+			    
+			    <!-------------- SKIN TYPES -------------->
+				 <label> Skin Type?</label>
+		        <md-radio-group ng-model="user.skin_type" class="md-primary">
+        <md-radio-button ng-repeat="skin_type in skin_types"
+                         ng-value="skin_type.value">
+            {{ skin_type.title }}<br/>
+        
+        </md-radio-button>
+    </md-radio-group>
+		   
+				<!-------------- SKIN PROBLEMS -------------->
+				 
+				<label>Skin Problems?</label>
 		        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
 		          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
 		            {{skin_problem.name}}
 		          </md-checkbox>
 		        </div>
+		        
+		        <!-------------- EYES -------------->
+		        
+		        <label>Eye colors?</label>
+		        <md-radio-group ng-model="user.eye_color" class="md-primary">
+        <md-radio-button ng-repeat="eye_color in eye_colors"
+                         ng-value="eye_color.value">
+            {{ eye_color.title }}<br/>
+        
+        </md-radio-button>
+    </md-radio-group>
+		        
+		        <!-------------- SOCIAL LINKS -------------->
+		        
+		        <label> Social Links </label>
+		        <md-input-container>
+			      <label>Youtube URL Channel</label>
+			      <input ng-model="user.youtube_channel">
+			    </md-input-container>
+		        <md-input-container>
+			      <label>Instagram Username</label>
+			      <input ng-model="user.instagram_profile">
+			    </md-input-container>
+		        
+		        
+		        
+		        
 		  </div>
 		</div>
 
-			<md-button  ng-click="updateUser()"  class="md-fab clear-profile-button" aria-label="Edit Profile">
-            	<md-icon  md-svg-src="/assets/ic_clear_white_36px.svg"></md-icon>
-			</md-button>
-	  </div>
+	  
 	</form>  
 </md-card>
 
