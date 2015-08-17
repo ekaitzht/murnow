@@ -10,7 +10,6 @@ $subheader-color: #757575;
 $white: white;
 $verdana: 'verdana';
 
-
 .invisible {visibility: hidden;}
  
 html {font-size:16px;outline:none !important; *:focus { outline: none; } font-family:$lucida-grande;}
@@ -381,21 +380,28 @@ md-dialog {
 			@extend .review-product-mixed;
 		}  
 	}
-	
-	.profile {
-		
-		.edit-profile-button {height:4.25rem;width:4.25rem;
-			svg {width:2.25rem; height:2.25rem;    position: relative;top: 1rem;left: -0.375rem;}
-		}
-		
+
+
+	.header-profile {  // for edit-profile and profile
 		.wrapper-image-profile {border-right: 1px solid #F2BDE7;padding-right: 1.875rem;}
 		.info-user-profile {padding-left:1.875rem;width:100%;}
+		
+		.profile-button {height:4.25rem;width:4.25rem;
+			svg {width:2.25rem; height:2.25rem;    position: relative;left: -0.375rem;;}
+		}
+		
 		.social-links{
 			margin-top:0.5rem;
 			margin-bottom:3.9375rem;
 			img {width:inherit;}
 			#youtube-logo{margin-right:0.5625rem;}
 		}
+		
+	}
+	
+	.profile {
+		
+		@extend .header-profile;
 		.count-reviews{font-size:1.7rem;margin-top:2.75rem;}
 		.bio{margin-topo:0.5rem;}
 		.edit-profile-button{padding:0px;margin:0px;}
@@ -404,15 +410,15 @@ md-dialog {
 			@extend .review-product-mixed;
 		}
 		
+		.profile-button svg{top: 1rem;}
+		
 	}
 	
 	.edit_profile {
 		.wrapper-image-profile {cursor:pointer;}
-		.clear-profile-button {height:4.25rem;width:4.25rem;
-			svg {width:2.25rem; height:2.25rem;    position: relative;top: -0.25rem;left: -0.375rem;;}
-		}
-		
-		
+		@extend .header-profile;
+		.profile-button svg{top: -0.25rem;}
+		.skin-tones .avatar{max-width:100px;}
 	}
 
 }

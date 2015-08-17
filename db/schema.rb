@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721123452) do
+ActiveRecord::Schema.define(version: 20150817103431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150721123452) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "brand_name"
-    t.string   "category"
+    t.string   "categories"
     t.float    "product_stars",    default: 0.0
     t.integer  "number_reviews",   default: 0
     t.string   "hash_url_image"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150721123452) do
     t.integer  "not_buyers",       default: 0
     t.string   "ref_elastic"
     t.float    "rating"
+    t.string   "tags"
   end
 
   create_table "reviews", force: true do |t|
@@ -86,7 +87,6 @@ ActiveRecord::Schema.define(version: 20150721123452) do
     t.text     "bio"
     t.integer  "age"
     t.string   "skin_type"
-    t.string   "skin_color"
     t.string   "favourite_brand"
     t.string   "skin_tone"
     t.string   "hash_url_image"
