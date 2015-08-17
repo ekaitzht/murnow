@@ -33,6 +33,7 @@ angular.module('murnow')
 		o.user_session.username = user.username;
 		o.user_session.skin_type = user.skin_type;
 		o.user_session.skin_tone = user.skin_tone;
+		o.user_session.eye_color = user.eye_color;
 
 		o.user_session.bio = user.bio;
 		o.user_session.hash_url_image = user.hash_url_image;
@@ -52,6 +53,7 @@ angular.module('murnow')
 	     skin_type: user.skin_type, 
 	     skin_color: user.skin_color,
 	   	 skin_tone: user.skin_tone,
+	   	 eye_color: user.eye_color,
 	     bio: user.bio,
 	     hash_url_image: user.hash_url_image,
 	     age: user.age

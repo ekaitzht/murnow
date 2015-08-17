@@ -8,6 +8,6 @@
 
 
 
- cities = SkinProblem.create([{ name: 'Acne prone' }, { name: 'Sensitive' }])
+ cities = SkinProblem.create([{ name: 'Acne prone' }, { name: 'Sensitive' }, { name: 'Eczema' }])
 
 

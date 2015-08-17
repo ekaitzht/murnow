@@ -26,18 +26,21 @@
     	</div> 
 	  </div> 
 	  <div layout="column" class="profile-user" >
-		  <div class="profile-header"s>
+		  <!--<div class="profile-header"s>
 		  	Profile
-		  </div>
+		  </div>-->
 		  <div layout="column" >
 		        <div class="age" layout="row">
-		          <label> Age </label>
+		          <label> Age? </label>
 		       		          
 		           <md-select placehodler="What is your " ng-model="user.age">
 			          <md-option ng-repeat="age in ages" value="{{age}}">{{age}}</md-option>
 			        </md-select>
 		        </div>
-		        <label> Skin Tone </label>
+		        
+		        
+		        <!-------------- SKIN TONES -------------->
+		        <label> Skin Tone?</label>
 		        <md-radio-group class="skin-tones" ng-model="user.skin_tone" layout="row" layout-wrap>
 			      <md-radio-button ng-repeat="it in avatarData"
 			                       ng-value="it.value"
@@ -48,20 +51,43 @@
 			     
 			    </md-radio-group>
 			    
-			    
-		        <div>
-			        <div>Skin type: </div> 
-			        <md-select placehodler="Choose your skin type" ng-model="user.skin_type">
-			          <md-option ng-repeat="skin_type in skin_types" value="{{skin_type}}">{{skin_type}}</md-option>
-			        </md-select>
-		        </div>
+			    <!-------------- SKIN TYPES -------------->
+				 <label> Skin Type?</label>
+		        <md-radio-group ng-model="user.skin_type" class="md-primary">
+        <md-radio-button ng-repeat="skin_type in skin_types"
+                         ng-value="skin_type.value">
+            {{ skin_type.title }}<br/>
+        
+        </md-radio-button>
+    </md-radio-group>
 		   
-			
+				<!-------------- SKIN PROBLEMS -------------->
+				 
+				<label>Skin Problems?</label>
 		        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
 		          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
 		            {{skin_problem.name}}
 		          </md-checkbox>
 		        </div>
+		        
+		        <!-------------- EYES -------------->
+		        
+		        <label>Eye colors?</label>
+		        <md-radio-group ng-model="user.eye_color" class="md-primary">
+        <md-radio-button ng-repeat="eye_color in eye_colors"
+                         ng-value="eye_color.value">
+            {{ eye_color.title }}<br/>
+        
+        </md-radio-button>
+    </md-radio-group>
+		        
+		        <!-------------- SOCIAL LINKS -------------->
+		        
+		        
+		        
+		        
+		        
+		        
 		  </div>
 		</div>
 

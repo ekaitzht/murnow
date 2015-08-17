@@ -23,7 +23,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
       User.getSkinProblems().success(function(data, status, headers, config) {
 	    $scope.user.skin_problems =  data.skin_problems; 
 	    $scope.hasSkinProblems = false;
-	    var userInfo = [$scope.user.age, $scope.user.skin_type, $scope.user.skin_tone];
+	    var userInfo = [$scope.user.age, $scope.user.skin_type, $scope.user.skin_tone, $scope.user.eye_color + " eye"];
 		
 	
 		if(data.skin_problems[0].state){
@@ -32,6 +32,10 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		
 		if(data.skin_problems[1].state){
 			userInfo.push(data.skin_problems[1].name);
+		}
+		
+		if(data.skin_problems[2].state){
+			userInfo.push(data.skin_problems[2].name);
 		}
 		$scope.biometrics = $.grep(userInfo,function(n){ return(n) }).join(', ');
 		

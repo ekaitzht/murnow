@@ -8,7 +8,6 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	$scope.myCroppedImage = '';
 	
 	$scope.fileImage = '';
-	$scope.skin_types = ['Dry','Combination','Oily'];
 	//$scope.skin_colors = ['Porcelain','Ivory', 'Beige','Caramel','Mocha','Dark Chocolate'];
 	$scope.skin_tones = ['ivory', 'peach', 'sand','toast', 'caramel','cocoa','expresso' ];
 	
@@ -52,6 +51,38 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         value: 'expresso'
     }];
     
+    // SKIN TYPES
+   	 $scope.skin_types = [{
+        title: 'Normal',
+        value: 'normal'
+      },{
+        title: 'Dry',
+        value: 'dry'
+      },{
+        title: 'Combination',
+        value: 'combination'
+    },{
+        title: 'Oily',
+        value: 'oily'
+    }];
+    
+      // EYES
+   	 $scope.eye_colors = [{
+        title: 'Brown',
+        value: 'brown'
+      },{
+        title: 'Green',
+        value: 'green'
+      },{
+        title: 'Blue',
+        value: 'blue'
+    },{
+        title: 'Grey',
+        value: 'grey'
+    },{
+        title: 'Hazel',
+        value: 'hazel'
+    }];
     
     
 	 
