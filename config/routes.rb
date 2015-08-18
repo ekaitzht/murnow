@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   #   resources :products
   root to: 'application#angular'
 
-  #get "*path.html" => "application#angular", :layout => 0  CHECK THIS IF YOU HAVE ERRORS AND TRY IT TO UNCOMMENT
-
+  #get "*" => "application#angular"  #CHECK THIS IF YOU HAVE ERRORS AND TRY IT TO UNCOMMENT
+  #get '(*url)' => 'application#angular'
+   
   resources :products, only: [:create, :index, :show], defaults: { format: 'json' } do
     resources :reviews, only: [:show, :create], defaults: { format: 'json' } do
     

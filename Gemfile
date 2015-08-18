@@ -14,6 +14,10 @@ gem 'heroku_rails_deflate', :group => :production
 gem 'omniauth-facebook'
 gem 'font_assets'
 
+
+#to fix problem with html5mode and pushState
+gem 'rack-rewrite'
+
 #elasticsearch libraries
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'

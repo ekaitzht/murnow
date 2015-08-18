@@ -20,7 +20,7 @@ app.config([
 '$provide',
 function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDialog, $provide) {
 
-
+  $locationProvider.html5Mode(true);
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/',
@@ -87,7 +87,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
   		}
 	});
 
-  $locationProvider.html5Mode(true);
+  
   $urlRouterProvider.otherwise('/');
 
 }]);
