@@ -6,11 +6,11 @@ angular.module('murnow')
     o.user_session = {};
 
     o.forgotPassword = function(email) {
-	    return $http.post('/users/password.json', {user: {email: email} });
+	    return $http.post('/api/users/password.json', {user: {email: email} });
 	};
 
 	o.changePassword = function(newPassword, confirmPassword, resetPasswordToken) {
-	    return $http.put('/users/password.json', {user: 
+	    return $http.put('/api/users/password.json', {user: 
 	    {
 	     password: newPassword,
 	     password_confirmation: confirmPassword, 
@@ -19,7 +19,7 @@ angular.module('murnow')
 	  };
 
 	o.send_confirmation_instructions  = function(email) {
-	    return $http.post('/users/confirmation', {user: 
+	    return $http.post('/api/users/confirmation', {user: 
 	    { email: email }
 	 	});
 	  };
@@ -43,13 +43,13 @@ angular.module('murnow')
 
 		angular.forEach(user.skin_problems, function(value, key) {
 			if (value.state) {
-				$http.put('/users/'+user.id+'/skin_problems/'+value.id);
+				$http.put('/api/users/'+user.id+'/skin_problems/'+value.id);
 			} else {
-				$http.delete('/users/'+user.id+'/skin_problems/'+value.id);
+				$http.delete('/api/users/'+user.id+'/skin_problems/'+value.id);
 			}
 		});
 		
-		return $http.put('/users', {user: 
+		return $http.put('/users/', {user: 
 	    {
 	     username: user.username,
 	     skin_type: user.skin_type, 
@@ -69,16 +69,16 @@ angular.module('murnow')
 
 	o.getSkinProblems  = function(user_id) {
 		var id = user_id || o.user_session.id;
-	    return $http.get('/users/'+id+'/skin_problems');
+	    return $http.get('/api/users/'+id+'/skin_problems');
 	};
 
 
 	o.getPublicUser = function(id) {
- 		return $http.get('/users/' + id);
+ 		return $http.get('/api/users/' + id);
 	};
 
 	o.getReviewsUser = function(id) {
-  		return $http.get('/reviews_by_user/'+id);
+  		return $http.get('/api/reviews_by_user/'+id);
 	};
 
 	o.fromState = null;

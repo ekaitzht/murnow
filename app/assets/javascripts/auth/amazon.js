@@ -9,7 +9,7 @@ angular.module('murnow')
   	o.folder = undefined;
     
 	o.getS3PolicyDocument = function (searchQuery) {
-	     return $http.get('/amazon/policy/');
+	     return $http.get('/api/amazon/policy/');
 	  };
 	 
 	  

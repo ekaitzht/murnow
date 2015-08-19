@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
       indexes :product_name, analyzer: 'english', index_options: 'offsets'
       indexes :brand_name, analyzer: 'english', index_options: 'offsets'
       indexes :rating, analyzer: 'english', index_options: 'offsets'
-      indexes :categories, analyzer: 'english', index_options: 'offsets'
+      indexes :category, analyzer: 'english', index_options: 'offsets'
     end
   end
 

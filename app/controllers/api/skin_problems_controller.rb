@@ -1,4 +1,4 @@
-class SkinProblemsController < ApplicationController
+class Api::SkinProblemsController < ApplicationController
 	before_filter :authenticate_user!, :only => [:destroy,:create]
     
   	def create

@@ -1,4 +1,4 @@
-class AmazonController < ApplicationController
+class Api::AmazonController < ApplicationController
 	before_action :authenticate_user!
 
 	def policy

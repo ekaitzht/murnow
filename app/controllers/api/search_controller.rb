@@ -1,4 +1,4 @@
-class SearchController < ApplicationController
+class Api::SearchController < ApplicationController
 	def autocomplete
 	  if params[:q].nil?
 	    respond_with = []

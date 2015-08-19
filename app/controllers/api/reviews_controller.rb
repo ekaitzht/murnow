@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class Api::ReviewsController < ApplicationController
   before_filter :authenticate_user!, :only => [:create, :upvote]
   
   def create

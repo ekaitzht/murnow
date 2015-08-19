@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817112811) do
+ActiveRecord::Schema.define(version: 20150819103407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20150817112811) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "brand_name"
-    t.string   "categories"
+    t.string   "category"
     t.float    "product_stars",    default: 0.0
     t.integer  "number_reviews",   default: 0
     t.string   "hash_url_image"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150817112811) do
     t.string   "ref_elastic"
     t.float    "rating"
     t.string   "tags"
+    t.string   "subcategory"
   end
 
   create_table "reviews", force: true do |t|

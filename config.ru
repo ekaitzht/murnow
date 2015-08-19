@@ -2,7 +2,7 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 
 use Rack::Rewrite do
-  rewrite %r{^(?!.*(api|\.)).*$}, '/'
+  rewrite %r{^(?!.*(api|users|\.)).*$}, '/'
 end
  
 run Rails.application

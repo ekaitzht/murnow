@@ -11,30 +11,30 @@ angular.module('murnow')
   	var searchToElasticSearch = function(query){
 	  	$("#progress-circular").show();
         
-        return $http.get('/search/?q='+query+'&from='+ o.from).success(function(data){
+        return $http.get('/api/search/?q='+query+'&from='+ o.from).success(function(data){
 	     	angular.copy(data, o.products);
 	     	$.merge( o.accumulateProducts, data.search);
 		 	$("#progress-circular").hide();
 		});
   	}
   o.getAll = function() {
-	    return $http.get('/products.json').success(function(data){
+	    return $http.get('/api/products.json').success(function(data){
 	      angular.copy(data, o.products);
 	    });
 	};
 
 	o.get = function(id) {
- 		return $http.get('/products/' + id).then(function(res){
+ 		return $http.get('/api/products/' + id).then(function(res){
     		return res.data;
   		});
 	};
 
 	o.addReview = function(id, review) {
-  		return $http.post('/products/' + id + '/reviews', review);
+  		return $http.post('/api/products/' + id + '/reviews', review);
 	};
 	
 	o.getMostPopularReviews = function(id, review) {
-  	    return $http.get('/most_popular_reviews_for_the_most_popular_products').success(function(data){
+  	    return $http.get('/api/most_popular_reviews_for_the_most_popular_products').success(function(data){
 	  	    angular.copy(data, o.products);
   	    });
 	};
@@ -51,7 +51,7 @@ angular.module('murnow')
 	
 	o.searchForAutoComplete = function (query) {    
 		
-		return $http.get('/search_autocomplete/?q='+query).then(function(data){
+		return $http.get('/api/search_autocomplete/?q='+query).then(function(data){
 	     	return data.data.search;
 		});
 	 
@@ -77,7 +77,7 @@ angular.module('murnow')
 	        );
 	
 		} else {
-			return $http.put('/votes/' + review_id + '/users/'+ Auth._currentUser.id);
+			return $http.put('/api/votes/' + review_id + '/users/'+ Auth._currentUser.id);
 		}
 	};
 	
