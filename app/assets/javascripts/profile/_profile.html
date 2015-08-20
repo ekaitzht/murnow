@@ -7,7 +7,7 @@
 						<div ng-show="user.hash_url_image" class="md-tile-left">
 					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 						</div>
-					    <div ng-show="!user.hash_url_image" class="md-tile-left">
+					    <div ng-show="!user.hash_url_image" class="anonymous-image md-tile-left">
 					    	<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 						</div>
 					    
@@ -32,7 +32,7 @@
 					    </div>
 				</div> 
 				<div>
-					<md-button  ng-href="/edit_profile" ng-click="getS3PolicyDocument();" ng-show="user.isProfileAuthenticated" class="md-fab profile-button" aria-label="Edit Profile">
+					<md-button  ng-href="/edit_profile"  ng-show="user.isProfileAuthenticated" class="md-fab profile-button" aria-label="Edit Profile">
 							<md-icon  md-svg-src="/assets/ic_edit_white_36px.svg"></md-icon>
 					</md-button>
 				</div>

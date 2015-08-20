@@ -2,10 +2,10 @@ angular.module('murnow')
 .controller('ProductCtrl',
   ['$scope', '$mdDialog','products', 'product', 'Auth','$state','configMurnow',
 function($scope, $mdDialog, products, product, Auth, $state,configMurnow){
-  $scope.Math = window.Math;
-  $scope.product = product.product;
-  $scope.cdn = configMurnow.cdn_domain_name;
-  $scope.enviroment = configMurnow.enviroment;
+  	$scope.Math = window.Math;
+  	$scope.product = product.product;
+    $scope.cdn = configMurnow.cdn_domain_name;
+  	$scope.enviroment = configMurnow.enviroment;
   
   	this.hasReviewUser = function(reviews){
 	    $scope.hasReviewUser = false;

@@ -31,7 +31,7 @@
 	    
 	    
 	    
-		<md-input-container class="review-textarea" md-no-float ng-click="showAddReviewPanel()">
+		<md-input-container ng-hide="hasReviewUser" class="review-textarea" md-no-float ng-click="showAddReviewPanel()">
 	        <textarea   type="text"  placeholder="{{inputReviewPlaceholder}}" disabled> </textarea>
 	    </md-input-container>
 	    
