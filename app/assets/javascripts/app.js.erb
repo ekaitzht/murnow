@@ -137,8 +137,17 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
 	  $rootScope.pageTitle = "Murnow Makeup Reviews now | murnow.com"; // Default title
-
-		//$("md-content").scrollTop(0);
+	  	if(toState.name === "products" && fromState.name === "list_products") {
+		  	$rootScope.scrollProductsPosition = $("md-content").scrollTop();
+		    $("md-content").scrollTop(0);
+	  	} else if (toState.name === "list_products" && fromState.name === "products") {
+		  	$("md-content").scrollTop($rootScope.scrollProductsPosition);
+	  	} else {
+		  	$("md-content").scrollTop(0);
+	  	}
+	  	
+	  
+		
 	    	
 		switch(toState.name) {
 		    case 'home':
