@@ -1,12 +1,13 @@
 angular.module('murnow')
-.controller('ListProducts', ['$scope','$state','$stateParams','$mdDialog','products','configMurnow',
-function($scope,$state,$stateParams, $mdDialog, products,configMurnow){
+.controller('ListProducts', ['$scope','$rootScope','$state','$stateParams','$mdDialog','products','configMurnow',
+function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurnow){
 	$scope.from = 0;
 	$scope.products = products.products.search;
     $scope.paginator = {busy: false, ended: false};
     $scope.cdn = configMurnow.cdn_domain_name;
+    
+	$rootScope.pageTitle = "Results for " + products.searchQuery ;
 
-	
 	if($scope.products.length === 0 ) { 
 		$scope.paginator.ended = true;
 	} else {

@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('products',[ '$http','$mdDialog','Auth', function($http, $mdDialog, Auth){
+.factory('products',[ '$http', '$rootScope','$mdDialog','Auth', function($http, $rootScope, $mdDialog, Auth){
     
     var o = {
     	products: [],
@@ -41,7 +41,7 @@ angular.module('murnow')
 
 
 	o.searchFirstPage = function (searchQuery) {    
-		
+
 		o.searchQuery = searchQuery;     
 		
 		o.from = 0;
@@ -50,7 +50,7 @@ angular.module('murnow')
 	};
 	
 	o.searchForAutoComplete = function (query) {    
-		
+		o.searchQuery = query;
 		return $http.get('/api/search_autocomplete/?q='+query).then(function(data){
 	     	return data.data.search;
 		});

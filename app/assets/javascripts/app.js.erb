@@ -21,7 +21,7 @@ app.config([
 function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDialog, $provide) {
 
 
-   /*************************** DON'T CREATEB ANY STATE WITH 'users' SUBSTRING PLEASE ***************************/
+   /*************************** DON'T CREATE ANY STATE NAME WITH 'users' SUBSTRING!!! ***************************/
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
@@ -136,6 +136,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
     
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
+	  $rootScope.pageTitle = "Murnow Makeup Reviews now | murnow.com"; // Default title
+
 		//$("md-content").scrollTop(0);
 	    	
 		switch(toState.name) {

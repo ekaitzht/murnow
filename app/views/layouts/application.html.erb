@@ -1,12 +1,14 @@
-<html>
+<html ng-app="murnow">
 <head>
   <base href="/">
-  <title>Murnow Makeup Reviews now</title>
+  <!--<title>Murnow Makeup Reviews now | murnow.com </title>-->
+  <title >{{$root.pageTitle}}</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
- <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" ng-app="murnow">
+ <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
 	    <md-toolbar layout="column">
 	        <header   layout="column" layout-padding >
 		    	<div  ng-include="'header/_header.html'"></div>	
