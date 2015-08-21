@@ -2,7 +2,7 @@
 
 var app = angular.module('murnow', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard']);
 
-app.config(function($mdThemingProvider) {
+app.config(['$mdThemingProvider',function($mdThemingProvider) {
 
 
  var pinkMurnow = $mdThemingProvider.extendPalette('pink', {
@@ -19,7 +19,7 @@ app.config(function($mdThemingProvider) {
 app.constant('configMurnow', {
   'enviroment':  "<%= Rails.env %>",
   'cdn_domain_name':"<%= ENV['CDN_DOMAIN_NAME'] %>"
-});
+}]);
 
 
 
