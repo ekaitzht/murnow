@@ -30,11 +30,10 @@
 	    
 	    
 	    
-	    
-		<md-input-container ng-hide="hasReviewUser" class="review-textarea" md-no-float ng-click="showAddReviewPanel()">
-	        <textarea   type="text"  placeholder="{{inputReviewPlaceholder}}" disabled> </textarea>
-	    </md-input-container>
-	    
+	  
+	    <div  ng-hide="hasReviewUser"  class="review-textarea hint-text" type="text"  placeholder="sdafs" disabled  ng-click="showAddReviewPanel()"> `Add here your first review for this product!</div>
+
+
 	    <!-- ALL COMMENTS -->
 	    <div class="all-comments count-reviews "  layout="row" layout-padding> Reviews ({{product.reviews.length}}) </div>
 	  

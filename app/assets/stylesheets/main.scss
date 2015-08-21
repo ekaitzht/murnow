@@ -21,7 +21,7 @@ html {font-size:16px;outline:none !important; *:focus { outline: none; } font-fa
 md-icon {height:1.5rem;width:1.5rem;}
 //**** EXTEND HELPERS ****/
 
-
+#load-more-product {    font-family: "Lucida Grande";letter-spacing: 0.1rem;}
 
 //* list products */
 	// Separate stars
@@ -169,8 +169,10 @@ md-dialog {
 	 .md-toolbar-tools{padding-left: 24px;}
 	}
 	.md-button{font-family: $verdana;}
-	&#login-dialog .facebook-login-button img {display: block;text-align: center;margin: 0 auto;position: relative;top: -12px;}
-
+	&#login-dialog .facebook-login-button {display: block;text-align: center;margin: 0 auto;position: relative;top: -12px; margin-left:2rem;margin-right:2rem;}
+	
+	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;}
+	
 }
 
 	 button.md-raised.md-primary.md-button.md-default-theme {background-color:$pink-color;}
@@ -367,7 +369,7 @@ md-dialog {
 			padding:0px;
 		}
 		
-		.review-textarea{padding:0rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
+		.review-textarea{padding:1rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 		
 		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;}
 		

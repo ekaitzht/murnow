@@ -7,7 +7,7 @@ angular.module('murnow')
 	  $scope.myImage = myImage;
 	  
 	  $scope.saveCroppedImg = function(){
-		  scopeEditProfile.showProfileImage = !scopeEditProfile.showProfileImage;
+		  scopeEditProfile.showProfileImage = true;
 		  scopeEditProfile.srcImageProfile = this.myCroppedImage;
 		  scopeEditProfile.fileImage =  this.myCroppedImage;
 		  $mdDialog.hide();

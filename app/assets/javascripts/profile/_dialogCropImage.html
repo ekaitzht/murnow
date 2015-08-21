@@ -1,17 +1,26 @@
 <md-dialog> 
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+	 	 <h2 class="title">Edit the image! </h2>
+	 	    <span flex></span>
+		      <md-button class="md-icon-button" ng-click="closeCropDialog()" type="button">
+		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+		      </md-button>
+		</div>
+	</md-toolbar>
     <md-dialog-content class="sticky-container">
-		<md-subheader class="md-sticky-no-effect">Login</md-subheader>
-		<div class="cropArea">
-		<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+    	<div>
+			<div class="cropArea">
+				<img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+		   	</div>
+		   	<div layout="row"  layout-align="center center">
+			   	<md-button ng-click="closeCropDialog()" class="md-raised">
+			   			Cancel
+				</md-button> 
+				<md-button ng-click="saveCroppedImg()" class="md-raised md-primary">
+					Finished!
+					</md-button>
+		   	</div>
 	   	</div>
 	</md-dialog-content>      
-	   	
-	<div class="md-actions" layout="row">
-		<md-button ng-click="closeCropDialog()" class="md-primary">
-			Cancel
-		</md-button> 
-		<md-button ng-click="saveCroppedImg()" class="md-primary">
-			Finished!
-			</md-button>
-  	</div>
 </md-dialog>
