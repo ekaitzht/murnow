@@ -12,16 +12,16 @@
 		<div layout="row" class="info-user-profile" layout-align="space-between start">
 			<div layout="column" class="bio-block">
 			    <div class="username">
-				 <md-input-container>
-			      <label>Username?</label>
-			      <input ng-model="user.username">
-			    </md-input-container>
+				 <md-input-container  md-no-float>
+			      <label class="title"></label>
+			      <input ng-model="user.username" placeholder="Username?">
+			    </md-input-container  md-no-float>
 		      	</div>
 		  		<div class="bio">
 		  			
-		  			 <md-input-container>
-			      <label>Bio?</label>
-			      <input ng-model="user.bio">
+		  	    <md-input-container md-no-float>
+			      <label class="title"></label>
+			      <input ng-model="user.bio" placeholder="Bio?">
 			    </md-input-container>
 	      		</div>
 			</div>
@@ -37,8 +37,8 @@
 		  	Profile
 		  </div>-->
 		  <div layout="column" >
-		        <div class="age" layout="row">
-		          <label> Age? </label>
+		        <div class="age" layout="column">
+		          <label class="title"> Age? </label>
 		       		          
 		           <md-select placehodler="What is your " ng-model="user.age">
 			          <md-option ng-repeat="age in ages" value="{{age}}">{{age}}</md-option>
@@ -47,7 +47,7 @@
 		        
 		        
 		        <!-------------- SKIN TONES -------------->
-		        <label> Skin Tone?</label>
+		        <label class="title"> Skin Tone?</label>
 		        <md-radio-group class="skin-tones" ng-model="user.skin_tone" layout="row" layout-wrap>
 			      <md-radio-button ng-repeat="it in avatarData"
 			                       ng-value="it.value"
@@ -59,7 +59,7 @@
 			    </md-radio-group>
 			    
 			    <!-------------- SKIN TYPES -------------->
-				 <label> Skin Type?</label>
+				 <label class="title"> Skin Type?</label>
 		        <md-radio-group ng-model="user.skin_type" class="md-primary">
         <md-radio-button ng-repeat="skin_type in skin_types"
                          ng-value="skin_type.value">
@@ -70,7 +70,7 @@
 		   
 				<!-------------- SKIN PROBLEMS -------------->
 				 
-				<label>Skin Problems?</label>
+				<label class="title">Skin Problems?</label>
 		        <div ng-repeat="skin_problem in user.skin_problems | orderBy:'name'">
 		          <md-checkbox ng-model="skin_problem.state" aria-label="skin_problem.name">
 		            {{skin_problem.name}}
@@ -79,7 +79,7 @@
 		        
 		        <!-------------- EYES -------------->
 		        
-		        <label>Eye colors?</label>
+		        <label class="title">Eye colors?</label>
 		        <md-radio-group ng-model="user.eye_color" class="md-primary">
         <md-radio-button ng-repeat="eye_color in eye_colors"
                          ng-value="eye_color.value">
@@ -90,8 +90,8 @@
 		        
 		        <!-------------- SOCIAL LINKS -------------->
 		        
-		        <label> Social Links </label>
-		        <md-input-container>
+		        <label class="title"> Social Links </label>
+		        <md-input-container class="input-youtube-channel">
 			      <label>Youtube URL Channel</label>
 			      <input ng-model="user.youtube_channel">
 			    </md-input-container>

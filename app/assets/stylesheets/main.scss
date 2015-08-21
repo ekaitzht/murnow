@@ -237,19 +237,19 @@ md-dialog {
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
 	}
 	
-	md-toolbar {min-height: initial;}
-	    
+	md-toolbar {min-height: initial;heigth:1000px;}
+
   
     .review-card-wrapper {max-width:434px;}
 	@extend .review-product-mixed;
 	//.review-text{    width: 64.5% !important;}
-	header {background-color:$monte-carlo;}
+	header {background-color:$monte-carlo;height:400px;}
 	#search-bar-not-home-page {display:none;}
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
 	h1 {margin-top:4rem;font-family:$josefin-sans;}
-	.title-landing-page{height: 100px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;}
+	.title-landing-page{height: 100px;font-size:80px;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white;font-size:2.5rem; }
 	li {cursor:pointer;}
 	#logo {display:none;  }
@@ -311,7 +311,6 @@ md-dialog {
 .not-home-page {
 	md-card {padding:2.5rem;}
 	@extend .check-mark;
-
 	
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
@@ -421,6 +420,9 @@ md-dialog {
 		@extend .header-profile;
 		.profile-button svg{top: -0.25rem;}
 		.skin-tones .avatar{max-width:100px;}
+		.age md-select {max-width:50px;}
+		.profile-user{margin-top:2rem;}
+		.input-youtube-channel{margin-top:0.8rem;}
 	}
 
 }
