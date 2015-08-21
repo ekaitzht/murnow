@@ -13,13 +13,13 @@ app.config(['$mdThemingProvider',function($mdThemingProvider) {
  $mdThemingProvider.theme('default')
     .primaryPalette('pinkmurnow');
 
-});
+}]);
 
 
 app.constant('configMurnow', {
   'enviroment':  "<%= Rails.env %>",
   'cdn_domain_name':"<%= ENV['CDN_DOMAIN_NAME'] %>"
-}]);
+});
 
 
 
