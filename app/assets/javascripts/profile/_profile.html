@@ -44,12 +44,12 @@
 		<!-- LIST OF REVIEWS -->
 		<md-list> 
 			<md-list-item ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
-				<div class="review-item" layout="row" flex="100" layout-align="start start">
+				<div class="review-item" layout="row"  layout-align="start start">
 					<div class="md-list-item-image user-review-image"  >
 						<img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="md-avatar not-outline"> 
 					</div>
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
-							<div class="header-review" layout="row" layout-align="space-between center" flex="100">	
+							<div class="header-review" layout="row" layout-align="space-between center" >	
 								<div layout="row" layout-align="start center">
 									<p class="user-name-review-product"> {{review.product.product_name | limitLength:22:$root}}</p>
 									<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
@@ -60,7 +60,7 @@
 							<div class="review-body margin-top-rem">
 								<p class="wordwrap">{{review.body}}</p>
 							</div>
-							<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" flex="100">
+							<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" >
 								<div class="ratings">
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 								</div>
