@@ -10,6 +10,13 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 960px) {
+	
+	/* GENERAL FONTS */
+	html{
+		font-size:12px;
+	}
+	.hint-text {font-size: 14px;}
+	
 	.home-page #search-bar-home-page md-autocomplete
 	.not-home-page {	
 		.products md-list .ratings {font-size:15px}	
@@ -31,9 +38,7 @@ $lucida-grande: "Lucida Grande";
 	}
 	
 	
-	html{
-		font-size:12px;
-	}
+	
 	
 	
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
@@ -55,7 +60,12 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 600px) {
-		p{font-size:14px;line-height:16px;}	
+	
+	/* GENERAL FONTS*/
+	p{font-size:14px;line-height:16px;}	
+	
+	
+	
 	html{
 		font-size:9px;
 	}

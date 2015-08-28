@@ -1,4 +1,4 @@
-<md-dialog>
+<md-dialog id="add-review-dialog">
 	<form ng-submit="addReview()" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
@@ -19,7 +19,7 @@
 		          <rating ng-model="stars"    state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        </div>
 		
-		    	<div> Would you buy again? </div>
+		    	<div id="would-you-buy-it-again"> Would you buy it again? </div>
 				<md-radio-group ng-model="repurchase">
 		      		<md-radio-button value="true">Yes</md-radio-button>
 		   			<md-radio-button value="false"> No </md-radio-button>
