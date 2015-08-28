@@ -11,13 +11,12 @@ $lucida-grande: "Lucida Grande";
 
 @media screen and (max-width: 960px) {
 	.home-page #search-bar-home-page md-autocomplete
-		
 	.not-home-page {	
 		.products md-list .ratings {font-size:15px}	
 		.ratings {font-size:15px;}
 		.thumbs-up {font-size:15px;}
 		
-		p{font-size:14px;line-heigth:16px;}
+		
 		.hint-text {font-size:15px;}
 	}
 	
@@ -28,7 +27,6 @@ $lucida-grande: "Lucida Grande";
 		#search-bar-home-page{margin-top:50px;}
 		.footer-review .ratings {font-size:15px}	
 		.thumbs-up {font-size:15px;}
-		p{font-size:14px;line-heigth:16px;}
 		.hint-text {font-size:15px;}
 	}
 	
@@ -57,6 +55,7 @@ $lucida-grande: "Lucida Grande";
 
 
 @media screen and (max-width: 600px) {
+		p{font-size:14px;line-height:16px;}	
 
 	// product-info-row
 	.row-product-info {
@@ -87,10 +86,10 @@ $lucida-grande: "Lucida Grande";
 		
 	}
 	
-	
 	//*** NOT HOME PAGE ***/
 	.not-home-page {
-		md-card {margin:0px;}
+		.check-mark {margin-left:5px;}
+		md-card {margin:0px;padding:5px;}
 		md-content {margin-top:0px;}
 		#search-bar-not-home-page {position:relative;left:-30px;}
 		
@@ -119,9 +118,14 @@ $lucida-grande: "Lucida Grande";
 				 md-list-item .md-no-style  {padding-left:0px ;}
 			}
 		}
-		
+
 		.profile{
 			 md-list-item .md-no-style {padding-left:0px;}
+			 md-list {
+				 .review-item{
+					 .user-review-image img{width:45px;height:45px;}
+				 }
+			 }
 		}
 	}
 	
