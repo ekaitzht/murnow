@@ -25,11 +25,11 @@
 			    </md-input-container>
 	      		</div>
 			</div>
-			<div>
+			<!-- <div>
 				<md-button  ng-click="updateUser()"  class="md-fab profile-button" aria-label="Edit Profile">
 					<md-icon  md-svg-src="/assets/ic_done_white_36px.svg"></md-icon>
 				</md-button>
-			</div>
+			</div> -->
     	</div> 
 	  </div> 
 	  <div layout="column" class="profile-user" >
@@ -100,7 +100,9 @@
 			      <input ng-model="user.instagram_profile">
 			    </md-input-container>
 		        
-		        
+		          <div layout="row" class="submit-button">
+						<md-button  ng-click="updateUser()"  class="md-raised md-primary">SUBMIT</md-button>  
+			        </div>
 		        
 		        
 		  </div>

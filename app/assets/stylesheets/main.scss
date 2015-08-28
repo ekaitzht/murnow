@@ -173,8 +173,7 @@ md-dialog {
 	
 	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;}
 	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
-	
-	
+	.submit-button{float:right;}
 }
 
 /* SPECIFIC DIALOGS */
@@ -187,6 +186,11 @@ md-dialog {
 	md-input-container{padding-bottom:15px;}
 	#would-you-buy-it-again {margin-top:10px;}
 }
+#login-dialog{
+	#login-button{ padding-left: 70px; padding-right: 70px; margin: 8px; }
+	.md-actions{    padding-right: 8px;padding-left: 8px;}
+}
+
 
 button.md-raised.md-primary.md-button.md-default-theme {background-color:$pink-color;}
 button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$pink-color;}

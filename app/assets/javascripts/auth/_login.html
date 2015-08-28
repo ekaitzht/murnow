@@ -33,12 +33,13 @@
 		      
 		</div>
 	</md-dialog-content>      
-	<div class="md-actions" layout="row">	
-			<div layout="row" layout-align="space-around start">
-		    	    <md-button  ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>
-					<md-button ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  		
+	<div class="md-actions" layout="column">	
+			<div layout="column" layout-align="space-around center">
+		    	    
+					<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
+					<md-button  ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>		
 	      	</div>
-	      		<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
+	      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
 	 </div>
 	 </form>
 </md-dialog>
