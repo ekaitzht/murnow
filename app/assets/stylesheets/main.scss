@@ -103,7 +103,7 @@ a {text-decoration:none;}
 
 .md-button.md-primary {color:black;}
 body {
-	font-family: $josefin-sans, sans-serif;	
+	
 	overflow-y:auto !important;
 	
 	.mainNav {
@@ -172,6 +172,7 @@ md-dialog {
 	&#login-dialog .facebook-login-button {display: block;text-align: center;margin: 0 auto;position: relative;top: -12px; margin-left:2rem;margin-right:2rem;}
 	
 	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;}
+	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
 	
 }
 
@@ -237,7 +238,7 @@ md-dialog {
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
 	}
 	
-	md-toolbar {min-height: initial;min-height:400px;}
+	body md-toolbar {min-height: initial;min-height:400px;}
 	h1{margin-top:3rem;}
   
     .review-card-wrapper {max-width:434px;}
@@ -248,7 +249,6 @@ md-dialog {
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
-	h1 {font-family:$josefin-sans;}
 	.title-landing-page{text-align:center;height: 100px;font-size:5rem;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;margin-top:4rem;}
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white;font-size:2.5rem; }
 	li {cursor:pointer;}
