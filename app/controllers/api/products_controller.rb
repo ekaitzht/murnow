@@ -21,14 +21,15 @@ class Api::ProductsController < ApplicationController
   #becareful when we are trying to get the most popular reviews in a product if only we have one review with 0 votes this producdt is not going 
   #to return in the respone. To resolve this we should do like a left join or right join
   def most_popular_reviews_for_the_most_popular_products
-		response = ActiveRecord::Base.connection.execute("SELECT users.username, users.id AS user_id,
+		response = ActiveRecord::Base.connection.execute(" SELECT users.username, users.id AS user_id,
        users.hash_url_image, 
-       reviews.body, 
+       reviews.body,
        reviews.stars, 
-	   reviews.repurchase::VARCHAR, 
-	   reviews.created_at,
-	   reviews.id,
-	   max_votes_user.number_votes AS votes,
+   reviews.repurchase::VARCHAR, 
+   reviews.created_at,
+   reviews.id,
+   most_famous_products.number_reviews,
+   max_votes_user.number_votes AS votes,
        products.product_name,
        products.brand_name,
        products.id AS product_id       
@@ -37,7 +38,7 @@ FROM   (
                          product_id 
                 FROM     reviews 
                 GROUP BY product_id 
-                ORDER BY number_reviews DESC limit 4 ) AS most_famous_products, 
+                ORDER BY number_reviews DESC) AS most_famous_products, 
        ( 
                        SELECT DISTINCT 
                        ON ( 
@@ -47,7 +48,7 @@ FROM   (
                                        review_id 
                        FROM            ( 
                                               SELECT DISTINCT ON(product_id) product_id, review_id, user_id, number_votes
-											  FROM    (SELECT   Count(*) number_votes, 
+  FROM    (SELECT   Count(*) number_votes, 
                                                                        r.product_id, 
                                                                        v.review_id, 
                                                                        r.user_id 
@@ -65,6 +66,7 @@ WHERE  most_famous_products.product_id = max_votes_user.product_id
 AND    max_votes_user.user_id = users.id 
 AND    reviews.id = max_votes_user.review_id 
 AND    products.id = reviews.product_id
+ORDER BY  most_famous_products.number_reviews DESC LIMIT 4
 	 "
 	);
 	
