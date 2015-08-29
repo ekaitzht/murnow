@@ -34,7 +34,7 @@ Rails.application.configure do
   config.assets.compile = true
 
   # Generate digests for assets URLs.
-  config.assets.digest = true
+  config.assets.digest = false
   
   #cloudfront assets config fixing problem with heroku origin in cloudfront 
   config.action_controller.asset_host = ENV['APP_URL']
