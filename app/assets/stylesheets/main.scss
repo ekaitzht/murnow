@@ -1,6 +1,6 @@
 
 
-$pink-color: #FDB3E7;
+$pink-color: #FFAABB;
 $amatic-font: 'Amatic SC';
 $josefin-sans: 'Josefin Sans',sans-serif;
 $color-divider: #FDD1F0;
@@ -29,11 +29,12 @@ md-icon {height:1.5rem;width:1.5rem;}
 	.separate-stars-review {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.3125rem;}}
 	.check-mark {
 		.check-mark{    
-			margin-left: 1.25rem;
-		    font-size: 0.3125rem;
-		    background-color: #fdb3e7;
-		    width: 1.5rem;
-		    height: 1.5rem;
+			padding: 0px;
+			position: relative;
+			left: -7px;		    
+			font-size: 0.3125rem;
+		    width: 3rem;
+		    height: 3rem;
 		    border-radius: 50%;
 		    padding: 0.25rem;
 	    }
@@ -52,7 +53,7 @@ md-icon {height:1.5rem;width:1.5rem;}
 		.wrapper-rate-approval{
 			padding:0px;
 			margin-right:45px;
-		    border-radius:50%;padding: 1rem 1rem;@extend .amatic; @extend .weight-700; font-size:2rem;color:white; background-color:#FDB3E7;width:10.75rem; height:10.75rem;
+		    border-radius:50%;padding: 1rem 1rem;@extend .amatic; @extend .weight-700; font-size:2rem;color:white; background-color:$pink-color;width:10.75rem; height:10.75rem;
 			.approval-rate{font-size:1.93rem;}
 			.repurchase-percent{font-size:4rem;position: relative; top: 10px;}
 			
@@ -179,10 +180,12 @@ md-dialog {
 /* SPECIFIC DIALOGS */
 
 #add-review-dialog {
-	.ratings-for-user{  margin-bottom: 10px; 
+	.ratings-for-user{  margin-bottom: 10px; margin-top:10px;
 		.fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.3125rem;}
 		span {cursor:pointer;}
 	}
+	.check-mark {margin-left:10px;position: relative;top: 10px;padding: 0px;}
+	#yes,#no {line-height: 49px;}
 	md-input-container{padding-bottom:15px;}
 	#would-you-buy-it-again {margin-top:10px;}
 }
@@ -248,8 +251,8 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 		.sub-head {font-size:1rem;}
 	.review-body p{font-size:15px ;}
 	.check-mark { //overriding check-mark
-	 width: 0.875rem;
-	 height: 0.875rem;
+	 width: 2.7rem;
+	 height: 2.7rem;
 	}
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
 	}
@@ -269,7 +272,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white;font-size:2.5rem; font-style:italic;}
 	li {cursor:pointer;}
 	#logo {display:none;  }
-	md-content{height: 100%;}
+	#md-content{height: 100%;}
 
 
 	.reviews {

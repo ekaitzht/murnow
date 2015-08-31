@@ -14,7 +14,7 @@
 		    	<div class="wrapper-rate-approval" itemprop="aggregateRating"  itemscope itemtype="http://schema.org/Person" layout="column" layout-align="space-around center"  flex-gt-sm="20" >
 				      <div class="repurchase-percent" > <span itemprop="ratingValue">{{ repurchase_again_percent | number:0 }}</span> <span>% </span></div>
 					  <div class="approval-rate"> 
-						  APPROVAL RATE
+						  REPURCHASE
 					  </div>
 		        </div>   
 	      </div>
@@ -49,9 +49,11 @@
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
 						<div class="header-review" layout="row" layout-align="space-between center">	
 							<div layout="row" layout-align="start center">
+								 <img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
+									<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
+
 								<p class="user-name-review-product"> {{review.user.username}}</p>
-								<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
-								<md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark invisible " aria-label="Repurchase again"></md-icon>
+								
 							</div>
 							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 						</div>

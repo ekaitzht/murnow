@@ -51,9 +51,10 @@
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
 							<div class="header-review" layout="row" layout-align="space-between center" >	
 								<div layout="row" layout-align="start center">
+								    <img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
+									<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
 									<p class="user-name-review-product"> {{review.product.product_name | limitLength:20:$root}}</p>
-									<md-icon md-svg-src="/assets/Tick.svg" ng-show="review.repurchase" class="check-mark " aria-label="Repurchase again"></md-icon>
-									<md-icon md-svg-src="/assets/Tick.svg" ng-show="!review.repurchase" class="check-mark invisible " aria-label="Repurchase again"></md-icon>
+								
 								</div>
 								<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 							</div>
