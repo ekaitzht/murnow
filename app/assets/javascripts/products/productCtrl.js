@@ -46,13 +46,12 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
 
   $scope.showAddReviewPanel= function() {
     if(Auth._currentUser == null){
-      $mdDialog.show(
-          $mdDialog.alert()
-            .title('')
-            .content('You need to sign up to add reviews!')
-            .ariaLabel('')
-            .ok('Got it!')
-        );
+    $mdDialog.show({
+				 controller: 'DialogCtrl', 
+            	templateUrl: 'dialogs_feedback/_not_signup.html',
+            	hasBackdrop: true,
+            	clickOutsideToClose: true
+            });
     } else {
         
       $mdDialog.show({

@@ -19,8 +19,8 @@
          <div class="ratings">
 		 	<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
          </div>
-         <div class="thumbs-up" >
-            <span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,index)">  </span>
+         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id,index)" >
+            <span   class="fa fa-thumbs-o-up">  </span>
             <span> {{review.votes}} </span>
          </div>
       </div>

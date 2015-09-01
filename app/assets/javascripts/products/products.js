@@ -68,14 +68,13 @@ angular.module('murnow')
 	o.upvoteReview = function(Auth, review_id) {
 		
 		if(Auth._currentUser === null){
-			 $mdDialog.show(
-	          $mdDialog.alert()
-	            .title('')
-	            .content('You need to sign up to vote a comment!')
-	            .ariaLabel('')
-	            .ok('Got it!')
-	        );
-	
+			
+			$mdDialog.show({
+				 controller: 'DialogCtrl', 
+            	templateUrl: 'dialogs_feedback/_not_signup.html',
+            	hasBackdrop: true,
+            	clickOutsideToClose: true
+            });
 		} else {
 			return $http.put('/api/votes/' + review_id + '/users/'+ Auth._currentUser.id);
 		}

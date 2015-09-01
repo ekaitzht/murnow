@@ -126,6 +126,10 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
 	    }*/
        
     });
+ 
+    $rootScope.closeDialog = function() {
+            $mdDialog.hide();
+    };
   
     
   if ($location.path() == "/users/sign_in") {
