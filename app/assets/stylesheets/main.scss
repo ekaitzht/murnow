@@ -237,11 +237,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 .glyphicon-thumbs-up {cursor:pointer;}
 /* PUBLIC USER PROFILE */
 
-/* LIST STYLES */
-.products-list {
-  
 
-}
 
 
 
@@ -375,6 +371,13 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	
 			}
 		}	
+		.not-found{
+			img{width:15rem;height: 15rem;}
+			div:first-child{font-size:4rem;}
+			#cupcake{margin-top:30px;margin-bottom: 30px;}
+			#request-products{margin-bottom:30px;}
+			
+		}
 	}
 	
 	.products {
@@ -437,6 +440,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	
 	.edit_profile {
+		 .skin-problem-checkbox{text-transform: capitalize;}
 		.wrapper-image-profile {cursor:pointer;}
 		@extend .header-profile;
 		.profile-button svg{top: -0.25rem;}

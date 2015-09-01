@@ -63,7 +63,9 @@ $lucida-grande: "Lucida Grande";
 	
 	/* GENERAL FONTS*/
 	p{font-size:14px;line-height:16px;}	
-	
+	body {
+		.mainNav .md-button {    font-size: 14px;position: relative;left: 10px;}
+	}
 	
 	
 	html{

@@ -30,6 +30,21 @@
 
 			  <md-button id="load-more-product" ng-hide='paginator.ended' ng-click='paginator.nextPage()' class="md-raised md-primary">Load more products</md-button>
 			  
-			  <div ng-show='paginator.ended' > <p> We don't have more products with this search term do you want to check if have this in our data warehouse </p> </div>
+			  <div class='not-found' ng-show='paginator.ended' layout="column" layout-align="space-between center" > 
+				  <div class="amatic-pink" > 
+					  
+					  YOUR PRODUCT WAS NOT FOUND
+				  </div>
+				  
+				  <div id="cupcake">				      
+				      <img src='/assets/sad_cupcake_with_tear_big.png' alt="No more products in the database">
+				  </div>
+				  
+				  <div id="request-products">
+					  <md-button    class="md-raised md-primary">REQUEST IT</md-button>  
+				  </div>
+				  
+				  
+		     </div>
 			  
 </md-card>
