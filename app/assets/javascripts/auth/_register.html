@@ -14,7 +14,7 @@
 				<div>
 			        <md-input-container>
 			          <label> Email </label>
-			          <input ng-model="user.email" type="email">
+			          <input ng-model="user.email" type="email" name="email" autofocus autocomplete="email" >
 			        </md-input-container>
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
 			          {{errors.errorEmail}}
@@ -22,7 +22,7 @@
 			        
 			        <md-input-container>
 			          <label> Name </label>
-			          <input type="text"  ng-model="user.username"  ng-model-options="{ getterSetter: true }">
+			          <input type="text"  ng-model="user.username"  name="name" autocomplete="name" >
 			        </md-input-container>
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
 			          {{errors.errorName}}
@@ -30,7 +30,7 @@
 			
 			        <md-input-container>
 			          <label> Password </label>
-			          <input ng-model="user.password" type="password" ng-model="user.password" >
+			          <input ng-model="user.password" type="password" name="password" ng-model="user.password" autocomplete="password"  >
 			        </md-input-container>
 			
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
