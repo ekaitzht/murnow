@@ -27,8 +27,7 @@ Rails.application.configure do
   config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   #config.assets.precompile += %w(.svg .eot .woff .ttf)
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :yui
-  config.assets.css_compressor = :yui
+  config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
   #config.static_cache_control = 'public, max-age=31536000'
   # Do not fallback to assets pipeline if a precompiled asset is missed.

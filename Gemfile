@@ -31,8 +31,7 @@ gem 'pg'
 gem 'angular_rails_csrf'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
-gem 'yui-compressor', '~> 0.12.0'# Use Uglifier as compressor for JavaScript assets
-
+# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
