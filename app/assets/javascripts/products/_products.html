@@ -11,8 +11,8 @@
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        		</div>
 				</div>
-		    	<div class="wrapper-rate-approval" itemprop="aggregateRating"  itemscope itemtype="http://schema.org/Person" layout="column" layout-align="space-around center"  flex-gt-sm="20" >
-				      <div class="repurchase-percent" > <span itemprop="ratingValue">{{ repurchase_again_percent | number:0 }}</span> <span>% </span></div>
+		    	<div class="wrapper-rate-approval"   layout="column" layout-align="space-around center"  flex-gt-sm="20" >
+				      <div class="repurchase-percent" > <span itemprop="aggregateRating" >{{ repurchase_again_percent | number:0 }}</span> <span>% </span></div>
 					  <div class="approval-rate"> 
 						  REPURCHASE
 					  </div>
@@ -61,8 +61,9 @@
 									<p class="wordwrap" itemprop="reviewBody">{{review.body}}</p>
 						</div>
 						<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center">
-								<div class="ratings" itemprop="reviewRating">
-									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+								<div class="ratings" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
+									<meta content="review.stars" itemprop="ratingValue">
 								</div>
 								<div class="thumbs-up" >
 									<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>

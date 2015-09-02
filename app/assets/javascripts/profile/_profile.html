@@ -62,8 +62,10 @@
 								<p class="wordwrap">{{review.body}}</p>
 							</div>
 							<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" >
-								<div class="ratings">
-									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
+								<div class="ratings"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>																	
+									<meta content="review.stars" itemprop="ratingValue">
+
 								</div>
 								<div class="thumbs-up" >
 								<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
