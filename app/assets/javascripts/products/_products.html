@@ -9,7 +9,8 @@
 						<div id="brand-name" ><h3 class="sub-head" itemprop="brand">by {{product.brand_name}} </h3></div>
 						<div class="ratings" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-							   <meta content="product.product_stars" itemprop="ratingCount">
+							   <meta itemprop="ratingValue" content="product.product_stars" >
+							   <meta itemprop="ratingcount" content="product.number_reviews" >
 		        		</div>
 				</div>
 		    	<div class="wrapper-rate-approval"   layout="column" layout-align="space-around center"  flex-gt-sm="20" >
@@ -53,7 +54,7 @@
 								 <img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
 									<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
 
-								<p class="user-name-review-product"> {{review.user.username}}</p>
+								<p class="user-name-review-product"  itemprop="author"> {{review.user.username}}</p>
 								
 							</div>
 							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
