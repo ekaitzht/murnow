@@ -147,7 +147,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         $mdDialog.show(
           $mdDialog.alert()
             .title('Photo too big')
-            .content('Size of the photo is too big you need  a file with less than 2MB!')
+            .content('The size of the image chosen is too big. Please upload a file with less than 2MB.')
             .ariaLabel('Password notification')
             .ok('Got it!')
         );

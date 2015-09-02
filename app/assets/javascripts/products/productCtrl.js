@@ -48,7 +48,7 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
     if(Auth._currentUser == null){
     $mdDialog.show({
 				 controller: 'DialogCtrl', 
-            	templateUrl: 'dialogs_feedback/_not_signup.html',
+            	templateUrl: 'dialogs_feedback/_not_signup_add_review.html',
             	hasBackdrop: true,
             	clickOutsideToClose: true
             });
@@ -80,7 +80,7 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
 		    $mdDialog.show(
 	          $mdDialog.alert()
 	            .title('')
-	            .content('You have already voted this review!')
+	            .content('You have already voted for this review.')
 	            .ariaLabel('')
 	            .ok('Got it!')
 	        );
