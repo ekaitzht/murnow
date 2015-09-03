@@ -10,14 +10,14 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.   fontawesome/css/font-awesome
  * require bootstrap/dist/css/bootstrap
- *= require angular-material/angular-material
- *= require ngImgCrop
- *= require animate.css/animate
- *= require_tree .
- *= require_self
  */
+ 
+ @import 'angular-material/angular-material';
+ @import 'ngImgCrop/source/scss/ng-img-crop';
+ @import 'animate.css/animate';
+ @import '*';
  @import url("//fonts.googleapis.com/css?family=Amatic+SC:400,700"); 
-@import url("//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700,100italic,300italic,400italic,600italic");
+ @import url("//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700,100italic,300italic,400italic,600italic");
  @import url("//fonts.googleapis.com/icon?family=Material+Icons");
-  @import url("//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic"); 
+ @import url("//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic"); 
  
