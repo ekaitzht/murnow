@@ -42,14 +42,14 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list>
-			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-upvotes'" ng-click="goProfile(review.user_id)" >
-				<div class="review-item" layout="row"  layout-align="start start" flex="100">
-					<div class="md-list-item-image user-review-image"  >
+			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-upvotes'"  >
+				<div class="review-item" layout="row"  layout-align="start start" flex="100" >
+					<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
 					<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
 					<img  ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.png" class="md-avatar not-outline" > 
 				</div>
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
-						<div class="header-review" layout="row" layout-align="space-between center">	
+						<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
 							<div layout="row" layout-align="start center">
 								 <img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
 									<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
@@ -67,8 +67,8 @@
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
 									<meta content="review.stars" itemprop="ratingValue">
 								</div>
-								<div class="thumbs-up" >
-									<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
+								<div class="thumbs-up" ng-click="incrementUpvotes(review.id,$index)">
+									<span   class="fa fa-thumbs-o-up" >  </span>
 									<span> {{review.votes.length}} </span>
 								</div> 
 						</div>			
