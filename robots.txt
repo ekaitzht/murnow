@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /edit_profile/
-Disallow: /db/
-Disallow: /log/
-Disallow: /config/
-
