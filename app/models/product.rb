@@ -16,12 +16,6 @@ class Product < ActiveRecord::Base
           tokenizer: "standard",
           filter: ["standard", "lowercase", "asciifolding"]
         }
-      },
-      filter:{
-	      english_stemmer: {
-	        type: 'stemmer',
-	        name: 'english'
-	      }
       }
     }
   } do
