@@ -8,13 +8,29 @@ class Product < ActiveRecord::Base
 
 
 
-  settings index: { number_of_shards: 1 } do
+  settings index: { 
+	number_of_shards: 1,
+	analysis: {
+      analyzer: {
+        folding_analyzer: {
+          tokenizer: "standard",
+          filter: ["standard", "lowercase", "asciifolding"]
+        }
+      },
+      filter:{
+	      english_stemmer: {
+	        type: 'stemmer',
+	        name: 'english'
+	      }
+      }
+    }
+  } do
     mappings dynamic: 'false' do
-      indexes :product_name, analyzer: 'english', index_options: 'offsets'
-      indexes :brand_name, analyzer: 'english', index_options: 'offsets'
-      indexes :rating, analyzer: 'english', index_options: 'offsets'
-      indexes :category, analyzer: 'english', index_options: 'offsets'
-      indexes :tags, analyzer: 'english', index_options: 'offsets'
+      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :rating, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :category, analyzer: 'standard', index_options: 'offsets'
+      indexes :tags, analyzer: 'standard', index_options: 'offsets'
 
     end
   end

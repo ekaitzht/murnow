@@ -1,7 +1,19 @@
-User-agent: *
-Disallow: /edit_profile/
-Disallow: /db/
-Disallow: /log/
-Disallow: /config/
+User-agent: Googlebot
+Disallow: /
 
+User-Agent: Slurp
+Disallow: /
+
+
+
+User-agent: Yandex
+Disallow: /
+
+
+User-Agent: msnbot
+Disallow: /
+
+
+User-agent: baiduspider
+Disallow: /
 
