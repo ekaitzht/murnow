@@ -9,7 +9,7 @@ class CustomMailer < ActionMailer::Base
   def request_product(request)
     @request = request;
 
-    mail to: "ekaitz@creative-tweed.com", subject: "New product request from"
+    mail to: "ekaitz@murnow.com", subject: "New product request from"
   end
   
   
