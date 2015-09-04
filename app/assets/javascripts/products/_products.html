@@ -42,7 +42,7 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list>
-			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-upvotes'"  >
+			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
 				<div class="review-item" layout="row"  layout-align="start start" flex="100" >
 					<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
 					<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="md-avatar not-outline"> 
