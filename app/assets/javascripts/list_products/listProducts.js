@@ -53,7 +53,16 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurn
  	} 
 
 
-
+ 	
+ 	$scope.dialogRequestProduct = function(){
+	 	$mdDialog.show({
+	        controller: 'RequestProductCtrl',
+	        templateUrl: 'list_products/_request_product_dialog.html',
+	        hasBackdrop: true
+		});
+ 	}
+ 	
+ 	
 	$scope.incrementUpvotes = function(review){
 		review.upvotes += 1;
 	}

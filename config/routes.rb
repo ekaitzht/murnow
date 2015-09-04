@@ -51,6 +51,9 @@ Rails.application.routes.draw do
 	  
 	  get 'reviews_by_user/:user_id', to: 'reviews#reviews_by_user'
 	  get 'most_popular_reviews_for_the_most_popular_products', to: 'products#most_popular_reviews_for_the_most_popular_products'
+	  
+	  #request product
+	  put 'requests/', to: 'request_product#create'
 	end 
 
   # Example resource route with options:

@@ -1,0 +1,38 @@
+<md-dialog id="add-review-dialog">
+	<form ng-submit="requestProduct()" >
+		 <md-toolbar>
+		    <div class="md-toolbar-tools">
+		      <h2> What product do you want in murnow?</h2>
+		      <span flex></span>
+		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
+		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+		      </md-button>
+		    </div>
+		  </md-toolbar>
+	  	<md-dialog-content >
+				
+		    	<md-input-container  md-no-float>
+			      <label class="title"></label>
+			      <input ng-model="application.product_name" placeholder="Add here product name" required>
+			    </md-input-container  md-no-float>
+				
+				<md-input-container  md-no-float>
+			      <label class="title"></label>
+			      <input ng-model="application.brand_name" placeholder="Add here brand name" required>
+			    </md-input-container  md-no-float>
+		
+				<md-input-container  md-no-float>
+			      <label class="title"></label>
+		    		<textarea type="text" id="request-product-textarea" class="form-control" placeholder="Add any more information here!" ng-model="application.optional_message" ></textarea>
+			    </md-input-container  md-no-float>
+		    	
+		    
+	    </md-dialog-content>
+	    <div class="md-actions" layout="row" layout-align="end center" id="send-review">
+	    	<md-button  type='submit' class="md-raised md-primary">Send request</md-button>  
+	  	</div>
+	</form>
+</md-dialog>
+
+
+  
