@@ -25,7 +25,13 @@ angular.module('reviewCard',[])
 					$scope.review.votes = parseInt($scope.review.votes) + 1;
 					
 			    }).error(function(err){
-				
+					  $mdDialog.show(
+				          $mdDialog.alert()
+				            .title('')
+				            .content('You have already voted for this review.')
+				            .ariaLabel('')
+				            .ok('Got it!')
+				        );
 			    });
 		 		
 		 		 

@@ -1,4 +1,4 @@
-class VotesController < ApplicationController
+class Api::VotesController < ApplicationController
 	before_filter :authenticate_user!
   	def create
   		logger.info params.inspect
