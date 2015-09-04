@@ -73,11 +73,17 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
 
 
   
-  $scope.incrementUpvotes = function(review, $index){
-		products.upvoteReview(Auth, review_id).success(function(data){
+  $scope.incrementUpvotes = function(review){
+		products.upvoteReview(Auth, review.id).success(function(data){
 			review.votes.length += 1;
 	    }).error(function(err){
-		  
+		   $mdDialog.show(
+				          $mdDialog.alert()
+				            .title('')
+				            .content('You have already voted for this review.')
+				            .ariaLabel('')
+				            .ok('Got it!')
+				        );
 	    });
   };
   

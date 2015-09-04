@@ -20,8 +20,8 @@ angular.module('reviewCard',[])
    			}
    			
    			
-   			$scope.incrementUpvotes = function(review_id, index){
-		 		products.upvoteReview(Auth, review_id, $scope, index).success(function(data){
+   			$scope.incrementUpvotes = function(review_id){
+		 		products.upvoteReview(Auth, review_id).success(function(data){
 					$scope.review.votes = parseInt($scope.review.votes) + 1;
 					
 			    }).error(function(err){
