@@ -5,10 +5,9 @@ class Review < ActiveRecord::Base
   has_many :users, :through => :votes
 
   validates_uniqueness_of :user_id, :scope => :product_id
-  validates :body, :length => { :maximum => 1000 }
-  validates :repurchase, :inclusion => { :in => [true, false] }
-  validates :stars ,:numericality => true
- 
+  validates :body, :length => { :maximum => 1000 }, presence: true
+  validates :repurchase, :inclusion => { :in => [true, false] }, presence: true
+  validates :stars ,:numericality => true, presence: true
  
  
 =begin

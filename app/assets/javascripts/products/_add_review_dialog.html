@@ -11,29 +11,39 @@
 		  </md-toolbar>
 	  	<md-dialog-content >
 			
-		    	<md-input-container md-no-float>
-		    		<textarea type="text" id="body-text-review" class="form-control" placeholder="Add your review here!" ng-model="body" required></textarea>
-		    	</md-input-container>
+		    	
 				<div>
-					<label>How good is this product?</label>
+					<label>1. How good is this product?</label>
 				</div>
 				<div class="ratings-for-user">    
 		          <rating ng-model="stars"    state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        </div>
 		
-		    	<div id="would-you-buy-it-again"> Would you buy it again? </div>
+		    	<label id="would-you-buy-it-again"> 2. Would you buy it again? </label>
 				<md-radio-group ng-model="repurchase">
 					<div layout="row" layout-align="start center">
-			      		<md-radio-button value="true"> <span id="yes"> Yes  </span> 								 <img src="/assets/happy_cupcake.png" class="check-mark " alt="Repurchase again">
+			      		<md-radio-button value="true" required> <span id="yes"> Yes  </span> 								 <img src="/assets/happy_cupcake.png" class="check-mark " alt="Repurchase again">
 	
 	</md-radio-button> 
 					</div>
 			   		<div layout="row" layout-align="start center">
-				   		<md-radio-button value="false"> <span id="no"> No </span>   								 <img src="/assets/sad_cupcake.png"  class="check-mark " alt="Repurchase again">
+				   		<md-radio-button value="false" required> <span id="no"> No </span>   								 <img src="/assets/sad_cupcake.png"  class="check-mark " alt="Repurchase again">
 	
 	</md-radio-button> 
 					</div>
 		    	</md-radio-group>
+				<div ng-messages="repurchase.$error">
+				  	<div ng-message="required">This is required.</div>
+			    </div>
+		    	<div>
+					<label>3. Tell us more about your experience</label>
+				</div>
+		    	<md-input-container md-no-float>
+		    		<textarea type="text" id="body-text-review" class="form-control" ng-model="body" required></textarea>
+		    	</md-input-container>
+		    	
+		    	
+		    	
 		    	<div  class="alert alert-danger" role="alert" ng-show="errors.reviewDialog">
 		        	{{errors.reviewDialog}}
 		      	</div>

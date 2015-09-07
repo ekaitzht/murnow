@@ -7,7 +7,9 @@ function($scope, scopeProduct, products, $mdDialog){
 		$scope.errors = {};
 		
 		if($scope.body === '') { return; }
-  		
+  		if($scope.repurchase === undefined){$scope.repurchase = '';}
+  		if($scope.stars === undefined){$scope.stars = '';}
+
   		products.addReview(scopeProduct.product.id, 
       {review:  
         { 
@@ -39,13 +41,17 @@ function($scope, scopeProduct, products, $mdDialog){
     		
     		$mdDialog.hide();
   		}).error(function(error){
-
-		  if (error.error == "You need to sign in or sign up before continuing.") {
+	  		
+	  		if($scope.repurchase=='' || $scope.stars == '') {
+		  		 $scope.errors.reviewDialog = "You didn't complete the form";
+	  		}
+	  		
+	  	
+	  		if (error.error == "You need to sign in or sign up before continuing.") {
 		         
 		          $scope.errors.reviewDialog = "You can't login because your confirmation email has expired, go to your email"
-		        } 
+		    } 
       });
-  		$scope.body = '';
 	};
 	$scope.closeDialog = function() {
     	$mdDialog.hide();
