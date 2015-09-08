@@ -150,7 +150,7 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
     
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
-	  $rootScope.pageTitle = “Makeup Reviews Now"; // Default title
+	  $rootScope.pageTitle = "Makeup Reviews Now"; // Default title
 	  	if(toState.name === "products" && fromState.name === "list_products") {
 		  	$rootScope.scrollProductsPosition = $("md-content").scrollTop();
 		    $("md-content").scrollTop(0);
