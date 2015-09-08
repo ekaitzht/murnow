@@ -8,7 +8,6 @@ angular.module('murnow')
 'configMurnow',
 'User',
 function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow, User){
-		$rootScope.pageTitle = "Murnow Makeup Reviews now | murnow.com";
   		var cdn = configMurnow.cdn_domain_name;
   		var enviroment = configMurnow.enviroment;
   		var products = products.products;
