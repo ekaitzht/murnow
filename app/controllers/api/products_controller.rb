@@ -1,11 +1,14 @@
 class Api::ProductsController < ApplicationController
+  
+=begin
   def index
     respond_with Product.all
   end
-
+  
   def create
     respond_with Product.create(product_params)
   end
+=end
 
   def show
     @product = Product.find(params[:id])
