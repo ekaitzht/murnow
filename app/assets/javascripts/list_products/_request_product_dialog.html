@@ -2,14 +2,15 @@
 	<form ng-submit="requestProduct()" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2> What product do you want in murnow?</h2>
+		      <h2  ng-show="!sentRequest"> What product do you want in murnow?</h2>
+		      <h2  ng-show="sentRequest"> Thanks! We will upload this product soon. </h2>
 		      <span flex></span>
 		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
 		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
 		      </md-button>
 		    </div>
 		  </md-toolbar>
-	  	<md-dialog-content >
+	  	<md-dialog-content ng-show="!sentRequest" >
 				
 		    	<md-input-container  md-no-float>
 			      <label class="title"></label>
@@ -28,7 +29,8 @@
 		    	
 		    
 	    </md-dialog-content>
-	    <div class="md-actions" layout="row" layout-align="end center" id="send-review">
+	
+	    <div ng-show="!sentRequest" class="md-actions" layout="row" layout-align="end center" id="send-review">
 	    	<md-button  type='submit' class="md-raised md-primary">Send request</md-button>  
 	  	</div>
 	</form>

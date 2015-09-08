@@ -3,7 +3,7 @@ class Api::RequestProductController < ApplicationController
 	
 	def create
 	      
-		CustomMailer.request_product(request_params);
+		CustomMailer.request_product(request_params).deliver
 		respond_with(status: 200)
 
 	end

@@ -7,16 +7,23 @@ function($http, $scope, $mdDialog){
 		product_name:null,
 		optional_message:null
 	}
-	
+	$scope.sentRequest = false;
 	 $scope.requestProduct = function(){
 	 	$http.put('/api/requests/', {application: $scope.application} ).success(function(data){
 	 	
-	 	
+	 		$scope.sentRequest = true;
 	 	}).error(function(err){
 		 	
 		 	
 	 	});
  	}
+ 	
+ 	
+ 	$scope.closeDialog = function() {
+	 	$scope.sentRequest = false;
+    	$mdDialog.hide();
+	};
+  
 
 
 }]);
