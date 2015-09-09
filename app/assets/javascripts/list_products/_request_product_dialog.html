@@ -2,7 +2,7 @@
 	<form ng-submit="requestProduct()" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2  ng-show="!sentRequest"> What product do you want in murnow?</h2>
+		      <h2  ng-show="!sentRequest">What product would you like to add to Makeup Reviews Now?</h2>
 		      <h2  ng-show="sentRequest"> Thanks! We will upload this product soon. </h2>
 		      <span flex></span>
 		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
@@ -24,7 +24,7 @@
 		
 				<md-input-container  md-no-float>
 			      <label class="title"></label>
-		    		<textarea type="text" id="request-product-textarea" class="form-control" placeholder="Add any more information here!" ng-model="application.optional_message" ></textarea>
+		    		<textarea type="text" id="request-product-textarea" class="form-control" placeholder="Add here any additional information" ng-model="application.optional_message" ></textarea>
 			    </md-input-container  md-no-float>
 		    	
 		    
