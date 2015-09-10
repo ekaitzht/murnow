@@ -20,7 +20,7 @@ angular.module('murnow')
 	        method: 'POST',
 	        data : {
 	          key: o.folder + o.unique_name_file_hash, // the key to store the file on S3, could be file name or customized
-	          AWSAccessKeyId: 'AKIAI7BVF5NB3PEWGV2Q', 
+	          AWSAccessKeyId: 'AKIAIAYABK6E5BGSZ7JQ', 
 	          acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public 
 	          policy: o.policy, // base64-encoded json policy (see article below)
 	          signature: o.signature, // base64-encoded signature based on policy string (see article below)
