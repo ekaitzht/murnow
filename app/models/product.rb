@@ -22,7 +22,7 @@ class Product < ActiveRecord::Base
     mappings dynamic: 'false' do
       indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets'
       indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets'
-      indexes :rating, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
 
