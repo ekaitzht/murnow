@@ -11,12 +11,23 @@ class Product < ActiveRecord::Base
   settings index: { 
 	number_of_shards: 1,
 	analysis: {
-      analyzer: {
-        folding_analyzer: {
-          tokenizer: "standard",
-          filter: ["standard", "lowercase", "asciifolding"]
-        }
-      }
+      	analyzer: {
+        	folding_analyzer: {
+          	tokenizer: "standard",
+          	filter: ["standard", "lowercase", "asciifolding","my_synonym"]
+        	}
+      	},
+        filter: {
+      		my_synonym: {
+				type: "synonym",
+				expand: true,
+				ignore_case: true,
+				synonyms: [
+					"eye shadow, eyeshadow",
+					"pote, foundation"
+				]
+			}
+	    }		
     }
   } do
     mappings dynamic: 'false' do
