@@ -42,9 +42,9 @@ class Product < ActiveRecord::Base
     __elasticsearch__.search(
 	     _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
      query: { 
-	  	match_phrase_prefix: {
-                    product_name: query
-                }
+	  		match_phrase_prefix: {
+                 product_name: query
+            }
   	  }  )
   end
 
@@ -56,10 +56,10 @@ class Product < ActiveRecord::Base
           multi_match: {
             query: query,
             # Here you can add what search field can be matcheables
-            fields: ['product_name^2','brand_name', 'category','tags'] 
+            fields: ['product_name','brand_name^4', 'category','tags','details'] 
           }
         },
-        sort: [{rating: {order: 'desc'}}],
+        #sort: [{rating: {order: 'desc'}}],
         from: from, size: 20
       }
     )
