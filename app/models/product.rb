@@ -55,8 +55,9 @@ class Product < ActiveRecord::Base
         query: {
           multi_match: {
             query: query,
+            type: 'most_fields',
             # Here you can add what search field can be matcheables
-            fields: ['product_name','brand_name^4', 'category','tags','details'] 
+            fields: ['product_name^2','brand_name^10', 'category','tags'] 
           }
         },
         #sort: [{rating: {order: 'desc'}}],
