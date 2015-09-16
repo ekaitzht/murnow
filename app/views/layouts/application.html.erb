@@ -36,14 +36,14 @@
 						          md-item-text="item.product_name"
 						          md-min-length="100"
 						          md-autofocus="true"
-						          placeholder="Find the best makeup products!">
+						          placeholder="Type a brand or product name...">
 						    <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}" class='md-avatar' alt="{item.product_name}" with="25" height="25">
 						    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.product_name}}</span>
 						</md-autocomplete>
      				</form>
 				</div>
 				<div>
-					<h2 class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> Find the most effective products in seconds.</h2>
+					<h2 class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> Find the most effective makeup in seconds.</h2>
 				</div>
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
