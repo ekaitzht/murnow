@@ -24,7 +24,17 @@ class Product < ActiveRecord::Base
 				ignore_case: true,
 				synonyms: [
 					"eye shadow, eyeshadow",
-					"pote, foundation"
+					"pote, foundation, base, fondation",
+					"pallette, palete, pallete, palette",
+					"mattifying, matte,velvet",
+					"oil-free,oil free",
+					"moisturizing, moisturising,hydrating",
+					"neutral,nude,natural",
+					"SPF,UV,sun screen,sun protection,UVA,UVV",
+					"long lasting,long wear, long-lasting,long-wear",
+					"eye liner,eyeliner",
+					"transparent,translucent"
+					
 				]
 			}
 	    }		
