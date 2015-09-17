@@ -31,9 +31,12 @@ angular.module('murnow')
 
 	o.updateUserProfile = function(user, skin_problems){
 		
-		if (user.instagram_profile.charAt(0) == '@'){
-			user.instagram_profile = user.instagram_profile.substring(1);
+		if(user.instagram_profile !== null){
+			if (user.instagram_profile.charAt(0) == '@'){
+				user.instagram_profile = user.instagram_profile.substring(1);
+			}	
 		}
+		
 		
 		o.user_session.username = user.username;
 		o.user_session.skin_type = user.skin_type;
