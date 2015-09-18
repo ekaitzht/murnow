@@ -1,19 +1,18 @@
 User-agent: Googlebot
-Disallow: /
+Disallow: /api/
 
 User-Agent: Slurp
-Disallow: /
+Disallow: /api/
 
 
 
 User-agent: Yandex
-Disallow: /
+Disallow: /api/
 
 
 User-Agent: msnbot
-Disallow: /
+Disallow: /api/
 
 
 User-agent: baiduspider
-Disallow: /
-
+Disallow: /api/
