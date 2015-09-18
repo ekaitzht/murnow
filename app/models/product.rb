@@ -25,6 +25,8 @@ class Product < ActiveRecord::Base
       indexes :rating, analyzer: 'folding_analyzer', index_options: 'offsets'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
+      indexes :id, type: 'integer' analyzer: 'standard', index_options: 'docs'
+
 
     end
   end
@@ -63,6 +65,11 @@ class Product < ActiveRecord::Base
         from: from, size: 20
       }
     )
+  end
+  
+  
+  def self.searchGeneral(elasticsearchJSON)
+	__elasticsearch.__.search(elasticsearchJSON)  
   end
 end
 

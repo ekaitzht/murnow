@@ -17,6 +17,24 @@ class Api::SearchController < ApplicationController
 	  end
 	end
 	
+	
+	def searchTrendingProducts
+		elasticsearchJSON = {
+
+		 	_source: [ "id","product_name"],
+		 	filter: {
+		                terms: {
+		                    id: [params[:q]]
+		                }
+		            }
+		    }
+		}
+			
+		response = Product.search(elasticsearchJSON)
+		respondSearchData(response)
+      
+	end
+	
 	def respondSearchData(response) 
 		filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
 

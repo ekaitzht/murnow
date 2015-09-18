@@ -45,5 +45,10 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 		
 		
 		
-	
+	 
+
+  		$scope.trendingProductsLipstick = function (listQuery){
+			$state.go('trending_products', { list: listQuery});
+		}
+
 }]);

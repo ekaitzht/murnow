@@ -38,6 +38,16 @@ angular.module('murnow')
 	  	    angular.copy(data, o.products);
   	    });
 	};
+	
+	
+	o.getTrendingProducts = function(query){
+	  	$("#progress-circular").show();
+        
+        return $http.get('/api/search/?q='+query).success(function(data){
+	     	angular.copy(data, o.products);
+		 	$("#progress-circular").hide();
+		});
+  	}
 
 
 	o.searchFirstPage = function (searchQuery) {    
