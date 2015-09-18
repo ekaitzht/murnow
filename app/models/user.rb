@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	def self.from_omniauth(auth)
 		
 		@s3 = Aws::S3::Resource.new()  
-		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) + "_"+ Time.now.to_i.to_s
+		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) + "_"+Digest::SHA256.hexdigest(ENV['APP_URL'])+ "_" + Time.now.to_i.to_s
 		
 		logger.info "hash_url_image: " + hash_url_image
 		

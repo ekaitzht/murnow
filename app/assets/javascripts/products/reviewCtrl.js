@@ -7,14 +7,21 @@ function($scope, scopeProduct, products, $mdDialog){
 		$scope.errors = {};
 		
 		if($scope.body === '') { return; }
-  		if($scope.repurchase === undefined){$scope.repurchase = '';}
+		if($scope.repurchase === undefined){$scope.repurchase = '';
+
+  		} else if ( $scope.repurchase === 'true') {
+  			var repurchaseBoolean = true;
+
+  		} else if( $scope.repurchase === 'false') {
+  			var repurchaseBoolean = false;	
+  		}
   		if($scope.stars === undefined){$scope.stars = '';}
 
   		products.addReview(scopeProduct.product.id, 
       {review:  
         { 
           body: $scope.body,
-          repurchase: $scope.repurchase,
+          repurchase: repurchaseBoolean,
           stars:  parseFloat($scope.stars )
         }
       }

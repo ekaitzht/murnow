@@ -10,19 +10,41 @@ class Product < ActiveRecord::Base
 
   settings index: { 
 	number_of_shards: 1,
+	number_of_replicas: 0,
 	analysis: {
-      analyzer: {
-        folding_analyzer: {
-          tokenizer: "standard",
-          filter: ["standard", "lowercase", "asciifolding"]
-        }
-      }
+      	analyzer: {
+        	folding_analyzer: {
+          	tokenizer: "standard",
+          	filter: ["standard", "lowercase", "asciifolding","my_synonym"]
+        	}
+      	},
+        filter: {
+      		my_synonym: {
+				type: "synonym",
+				expand: true,
+				ignore_case: true,
+				synonyms: [
+					"eye shadow, eyeshadow",
+					"pote, foundation, base, fondation",
+					"pallette, palete, pallete, palette",
+					"mattifying, matte,velvet",
+					"oil-free,oil free",
+					"moisturizing, moisturising,hydrating",
+					"neutral,nude,natural",
+					"SPF,UV,sun screen,sun protection,UVA,UVV",
+					"long lasting,long wear, long-lasting,long-wear",
+					"eye liner,eyeliner",
+					"transparent,translucent"
+					
+				]
+			}
+	    }		
     }
   } do
     mappings dynamic: 'false' do
       indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets'
       indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets'
-      indexes :rating, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
       indexes :id, type: 'integer', analyzer: 'standard', index_options: 'docs'
@@ -44,9 +66,9 @@ class Product < ActiveRecord::Base
     __elasticsearch__.search(
 	     _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
      query: { 
-	  	match_phrase_prefix: {
-                    product_name: query
-                }
+	  		match_phrase_prefix: {
+                 product_name: query
+            }
   	  }  )
   end
 
@@ -57,11 +79,12 @@ class Product < ActiveRecord::Base
         query: {
           multi_match: {
             query: query,
+            type: 'most_fields',
             # Here you can add what search field can be matcheables
-            fields: ['product_name^2','brand_name', 'category','tags'] 
+            fields: ['product_name^2','brand_name^10', 'category','tags'] 
           }
         },
-        sort: [{rating: {order: 'desc'}}],
+        #sort: [{rating: {order: 'desc'}}],
         from: from, size: 20
       }
     )

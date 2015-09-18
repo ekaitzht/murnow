@@ -14,14 +14,17 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 	
 			for (i = 0; i <= 3; i++) {
 				
-				if( products[i] === undefined) {
-					products[i].hash_url_image = "/assets/anonymousUser.jpg";	
-					products[i].urlImageUser = "https://"+cdn+"/profile_images_"+enviroment+"/"+products[i].hash_url_image;
+				if( products[i].hash_url_image === null) {
+					products[i].hash_url_image = "/assets/anonymousUser.png";	
+					products[i].urlImageUser =  "/assets/anonymousUser.png";
 
 				} else {
 				   	products[i].urlImageUser = "https://"+cdn+"/profile_images_"+enviroment+"/"+products[i].hash_url_image;
 
 				}
+				
+				products[i].hash_image_product = "https://"+cdn+"/images_products/"+products[i].hash_image_product + ".jpg";
+				
 				
 				if( products[i].body.length >= 103 ) {
 					products[i].body = products[i].body.substring(0,103) + '...';

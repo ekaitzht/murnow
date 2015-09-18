@@ -44,7 +44,7 @@ class Api::AmazonController < ApplicationController
 		amazon[:policy] = policy
 		amazon[:signature] = signature
 		#This the key name that we will use to upload the image profile to AWS S3, always we will gnerate the same hash for the same id  id1 => hashid1
-		amazon[:unique_name_file_hash] =  Digest::SHA256.hexdigest(current_user.email)  + "_"+ Time.now.to_i.to_s
+		amazon[:unique_name_file_hash] =  Digest::SHA256.hexdigest(current_user.email)  + "_"+ Digest::SHA256.hexdigest(ENV['APP_URL']) + "_"+ Time.now.to_i.to_s
 		amazon[:folder] = options[:folder]
    
 		respond_with amazon

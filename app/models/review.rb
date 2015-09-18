@@ -6,7 +6,7 @@ class Review < ActiveRecord::Base
 
   validates_uniqueness_of :user_id, :scope => :product_id
   validates :body, :length => { :maximum => 1000 }, presence: true
-  validates :repurchase, :inclusion => { :in => [true, false] }, presence: true
+  validates :repurchase,inclusion: { in: [true, false] }
   validates :stars ,:numericality => true, presence: true
  
  
