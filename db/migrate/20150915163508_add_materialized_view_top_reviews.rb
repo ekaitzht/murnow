@@ -11,7 +11,8 @@ def up
    max_votes_user.number_votes AS votes,
        products.product_name,
        products.brand_name,
-       products.id AS product_id       
+       products.id AS product_id,
+       products.hash_url_image AS hash_image_product
 FROM   ( 
                 SELECT   Count(*) AS number_reviews, 
                          product_id 
