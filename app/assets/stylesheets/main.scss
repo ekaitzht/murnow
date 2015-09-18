@@ -366,7 +366,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	.home a {font-size: 31px; font-weight:600;color:white;}
 
 	// * LIST STYLING */
-	.list_products {  // state name
+	.list_products,.trending_products {  // state name
 		md-card {padding:0px;}
 		.figure-wrapper figure{margin:18px;}
 		md-list {

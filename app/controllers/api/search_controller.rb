@@ -18,19 +18,19 @@ class Api::SearchController < ApplicationController
 	end
 	
 	
-	def searchTrendingProducts
+	def trending
 		elasticsearchJSON = {
-
-		 	_source: [ "id","product_name"],
+		 	_source: [ "id","product_name",'brand_name', 'upvotes','hash_url_image','product_stars', 'buyes', 'not_buyers','rating'],
 		 	filter: {
 		                terms: {
-		                    id: [params[:q]]
+		                    id: params[:q].split(',')
 		                }
-		            }
 		    }
 		}
 			
-		response = Product.search(elasticsearchJSON)
+		response = Product.searchGeneral(elasticsearchJSON)
+		
+		print response
 		respondSearchData(response)
       
 	end

@@ -62,7 +62,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
     })
     .state('trending_products', {  // CAMBIAR ESTOOOOOOO
       url: '/trending_products/:list',
-      templateUrl: '/trending_products/_trending_list_products.html',
+      templateUrl: 'trending_products/_trending_list_products.html',
       controller: 'TrendingListProductsCtrl',
       resolve: {
         productsPromise: ['products','$stateParams', function(products, $stateParams){        
@@ -186,5 +186,9 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
     $rootScope.getCurrentNameState = function() {
         return $state.current.name;
     };
+    
+    $rootScope.trendingProductsLipstick = function (listQuery){
+			$state.go('trending_products', { list: listQuery});
+    }
 
 }]);
