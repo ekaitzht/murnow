@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   	validates :age, inclusion: { in: 0..100 }, numericality: true , :allow_nil => true
   	
 	def self.from_omniauth(auth)
-		
+		logger.info "*****************______>>>>>> #{auth.inspect}"
 		@s3 = Aws::S3::Resource.new()  
 		hash_url_image = Digest::SHA256.hexdigest(auth.info.email) + "_"+Digest::SHA256.hexdigest(ENV['APP_URL'])+ "_" + Time.now.to_i.to_s
 		
