@@ -24,7 +24,7 @@ class Api::ProductsController < ApplicationController
   #becareful when we are trying to get the most popular reviews in a product if only we have one review with 0 votes this producdt is not going 
   #to return in the respone. To resolve this we should do like a left join or right join
   def most_popular_reviews_for_the_most_popular_products
-    response = ActiveRecord::Base.connection.execute("SELECT username,user_id ,                                                             hash_url_image , body   ,stars ,repurchase, created_at,id ,number_reviews ,votes ,        product_name  ,brand_name ,product_id  FROM top_reviews;");
+    response = ActiveRecord::Base.connection.execute("SELECT username,user_id ,                                                             hash_url_image , body   ,stars ,repurchase, created_at,id ,number_reviews ,votes ,        product_name  ,brand_name ,product_id, hash_image_product  FROM top_reviews;");
     respond_with response
   end
   

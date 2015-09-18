@@ -23,6 +23,9 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 
 				}
 				
+				products[i].hash_image_product = "https://"+cdn+"/images_products/"+products[i].hash_image_product + ".jpg";
+				
+				
 				if( products[i].body.length >= 103 ) {
 					products[i].body = products[i].body.substring(0,103) + '...';
 					
