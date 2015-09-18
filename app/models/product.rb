@@ -47,6 +47,8 @@ class Product < ActiveRecord::Base
       indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
+      indexes :id, type: 'integer', analyzer: 'standard', index_options: 'docs'
+
 
     end
   end
@@ -86,6 +88,11 @@ class Product < ActiveRecord::Base
         from: from, size: 20
       }
     )
+  end
+  
+  
+  def self.searchGeneral(elasticsearchJSON)
+	__elasticsearch__.search(elasticsearchJSON)  
   end
 end
 

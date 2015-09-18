@@ -17,6 +17,24 @@ class Api::SearchController < ApplicationController
 	  end
 	end
 	
+	
+	def trending
+		elasticsearchJSON = {
+		 	_source: [ "id","product_name",'brand_name', 'upvotes','hash_url_image','product_stars', 'buyes', 'not_buyers','rating'],
+		 	filter: {
+		                terms: {
+		                    id: params[:q].split(',')
+		                }
+		    }
+		}
+			
+		response = Product.searchGeneral(elasticsearchJSON)
+		
+		print response
+		respondSearchData(response)
+      
+	end
+	
 	def respondSearchData(response) 
 		filteringMetaData = Array.new   # We should improve this to retrive directlly _source instead using .results.map
 

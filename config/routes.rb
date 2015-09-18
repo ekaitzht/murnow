@@ -33,6 +33,7 @@ Rails.application.routes.draw do
 	
 	  get 'search_autocomplete', to: 'search#autocomplete'
 	  get 'search', to: 'search#search'
+	  get 'trending', to: 'search#trending'
 	  get 'amazon/policy', to: 'amazon#policy'
 	
 	

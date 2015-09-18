@@ -48,5 +48,8 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMur
 		
 		
 		
-	
+	 
+
+  		
+
 }]);
