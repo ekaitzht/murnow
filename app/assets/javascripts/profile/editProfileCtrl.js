@@ -117,6 +117,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		    User.updateUserProfile($scope.user, $scope.skin_problems);
 		    
 		    Auth.currentUser().then(function(user) {
+			    
+			    	
+		
 		       	 User.setUser(user);
 		         $state.go('profile', {id: user.id});
 		    }, function(error) {
@@ -127,6 +130,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		
 		});    
     } else { 
+	    
         User.updateUserProfile($scope.user, $scope.skin_problems)
         Auth.currentUser().then(function(user) {
 	     

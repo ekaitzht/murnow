@@ -14,7 +14,24 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
     $scope.errors = {};
 
     Auth.login($scope.user).then(function(ev){
-       
+	
+	
+	if( location.hostname == 'www.murnow.com' ) {
+        window.Intercom('boot',  {
+		   app_id: 'ugedhl1s',
+		   email: ev.email,
+		   user_id: ev.id,
+		   created_at: ev.created_at
+		 } );
+	} else {
+		 window.Intercom('boot',  {
+		   app_id: 'xjo9xumi',
+		   email: ev.email,
+		   user_id: ev.id,
+		   created_at: ev.created_at
+		 });
+	}	 
+   
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -78,8 +95,13 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
   $scope.register = function() {
 
     $scope.errors = {};
-    Auth.register($scope.user).then(function(){
-     
+    Auth.register($scope.user).then(function(ev){
+     	 window.Intercom('boot',  {
+		   app_id: 'ugedhl1s',
+		   email: ev.email,
+		   user_id: ev.id,
+		   created_at: ev.created_at
+		   } );
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.

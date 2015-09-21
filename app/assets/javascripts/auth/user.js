@@ -30,14 +30,19 @@ angular.module('murnow')
 
 
 	o.updateUserProfile = function(user, skin_problems){
-		
+		window.Intercom('update',  {
+					 name: user.username,
+					 email: user.email	,
+					 user_id: user.id
+					});
+					
+					
 		if(user.instagram_profile !== null){
 			if (user.instagram_profile.charAt(0) == '@'){
 				user.instagram_profile = user.instagram_profile.substring(1);
 			}	
 		}
-		
-		
+	
 		o.user_session.username = user.username;
 		o.user_session.skin_type = user.skin_type;
 		o.user_session.skin_tone = user.skin_tone;

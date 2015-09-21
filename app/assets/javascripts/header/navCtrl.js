@@ -14,10 +14,51 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
 //.not-home-page .mainNav {display: inline-block !important;float: right !important;}
 
    Auth.currentUser().then(function (user){
+	  	if( location.hostname == 'www.murnow.com' ) {
+        window.Intercom('boot',  {
+		   app_id: 'ugedhl1s',
+		   email: user.email,
+		   user_id: user.id,
+		   created_at: user.created_at
+		 } );
+	} else {
+		 window.Intercom('boot',  {
+		   app_id: 'xjo9xumi',
+		   email: user.email,
+		   user_id: user.id,
+		   created_at: user.created_at
+		 });
+	}	 
+   
+   
+   
+   
     $scope.user = user;
+    
+    
+    
+    
   });
 
   $scope.$on('devise:new-registration', function (e, user){
+	  
+	  	if( location.hostname == 'www.murnow.com' ) {
+        window.Intercom('boot',  {
+		   app_id: 'ugedhl1s',
+		   email: user.email,
+		   user_id: user.id,
+		   name: user.username,
+		   created_at: user.created_at
+		 } );
+	} else {
+		 window.Intercom('boot',  {
+		   app_id: 'xjo9xumi',
+		   email: user.email,
+		   user_id: user.id,
+		   name: user.username,
+		   created_at: user.created_at
+		 });
+	}	 
     $scope.user = user;
      User.setUser(user);
      $mdDialog.hide();
@@ -31,6 +72,7 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
 
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
+    Intercom('shutdown'); 
     $state.go('home');
   });
 
