@@ -235,9 +235,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   
   if Rails.env.production?
-    config.omniauth :facebook, "1907181596174570", "eb975cd0e6f4520fae3d593ae5c50406", secure_image_url: true, image_size: "large"
+    config.omniauth :facebook, "1907181596174570", "eb975cd0e6f4520fae3d593ae5c50406", secure_image_url: true, image_size: "large", info_fields: 'name,email,bio'
   else 
-    config.omniauth :facebook, "486539364821844", "6a4efa1bc6c687afcc293c84a41e450d", secure_image_url: true, image_size: "large"
+    config.omniauth :facebook, "486539364821844", "6a4efa1bc6c687afcc293c84a41e450d", secure_image_url: true, image_size: "large", info_fields: 'name,email,bio'
   end
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
