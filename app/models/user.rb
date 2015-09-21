@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
 
 		  		user.skip_confirmation! 
 				user.email = auth.info.email
+				user.bio = auth.extra.raw_info.bio
 				
 				user.hash_url_image = hash_url_image
 				obj = @s3.bucket('murnow').object('profile_images_' + Rails.env + '/'+hash_url_image)
