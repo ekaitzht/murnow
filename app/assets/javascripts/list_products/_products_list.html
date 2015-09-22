@@ -1,6 +1,6 @@
 <md-card>
 	<md-list  class="products-list" layout="column">
-			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id)" >
+			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id, $index)"  my-post-repeat id="item_{{$index}}" >
 				<div  class="md-list-item-text" layout="row" layout-align="space-around center" flex="100" >
 			        <div   id="image-product" flex-sm="16" flex-gt-sm="20">
 			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>

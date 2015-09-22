@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', '$mdDialog','products', 'product', 'Auth','$state','configMurnow',
-function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMurnow){
+  ['$scope','$rootScope', '$mdDialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams',
+function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMurnow, $stateParams){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;
@@ -9,7 +9,7 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
     $rootScope.pageTitle = "Reviews for " + $scope.product.product_name;
 
     
-    
+    $scope.id = $stateParams.id;
     
   	this.hasReviewUser = function(reviews){
 	    $scope.hasReviewUser = false;
