@@ -27,7 +27,9 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurn
 		$scope.title = '';
 	};
 	
-	$scope.goToProductState = function (state, id){
+	$scope.goToProductState = function (state, id, index){
+		
+		$rootScope.idProductClicked = "item_" + index;
 		$state.go(state, {id: id});
 	}
 	
