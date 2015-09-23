@@ -261,7 +261,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	.thumbnail-product{	border: 1px solid $pink-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 	.thumbnail-user {border: 1px solid $pink-color;}
-	 md-toolbar {height:90%; max-height:400px;}
+	#md-toolbar-header {height:90%; max-height:400px;}
 	h1{margin-top:3rem;}
 	.trading-products {
 		display:none;
