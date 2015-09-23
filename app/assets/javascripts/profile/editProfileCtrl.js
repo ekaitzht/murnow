@@ -82,6 +82,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
     },{
         title: 'Hazel',
         value: 'hazel'
+    },{
+        title: 'Black',
+        value: 'black'
     }];
     
     

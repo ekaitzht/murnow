@@ -38,7 +38,7 @@
 		  </div>-->
 		  <div layout="column" >
 		        <div class="age" layout="column">
-		          <label class="title"> Age? </label>
+		          <label class="title"> Age </label>
 		       		          
 		           <md-select placehodler="What is your " ng-model="user.age">
 			          <md-option ng-repeat="age in ages" value="{{age}}">{{age}}</md-option>
@@ -47,7 +47,7 @@
 		        
 		        
 		        <!-------------- SKIN TONES -------------->
-		        <label class="title"> Skin Tone?</label>
+		        <label class="title"> Skin Tone</label>
 		        <md-radio-group class="skin-tones" ng-model="user.skin_tone" layout="row" layout-wrap>
 			      <md-radio-button ng-repeat="it in avatarData"
 			                       ng-value="it.value"
@@ -59,7 +59,7 @@
 			    </md-radio-group>
 			    
 			    <!-------------- SKIN TYPES -------------->
-				 <label class="title"> Skin Type?</label>
+				 <label class="title"> Skin Type</label>
 		        <md-radio-group ng-model="user.skin_type" class="md-primary">
         <md-radio-button ng-repeat="skin_type in skin_types"
                          ng-value="skin_type.value">
@@ -70,7 +70,7 @@
 		   
 				<!-------------- SKIN PROBLEMS -------------->
 				 
-				<label class="title">Skin Problems?</label>
+				<label class="title">Skin Problems</label>
 				
 				
 		          <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[0].state" aria-label="user.skin_problems[0].name">
@@ -87,7 +87,7 @@
 		          </md-checkbox>
 		        <!-------------- EYES -------------->
 		        
-		        <label class="title">Eye colors?</label>
+		        <label class="title">Eye colors</label>
 		        <md-radio-group ng-model="user.eye_color" class="md-primary">
         <md-radio-button ng-repeat="eye_color in eye_colors"
                          ng-value="eye_color.value">
