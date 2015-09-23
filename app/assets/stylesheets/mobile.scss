@@ -7,8 +7,6 @@ $color-divider: #FDD1F0;
 $monte-carlo:#80CBC4;
 $lucida-grande: "Lucida Grande";
 
-
-
 @media screen and (max-width: 960px) {
 	
 	/* GENERAL FONTS */
@@ -55,9 +53,13 @@ $lucida-grande: "Lucida Grande";
 	
 }
 
-
-
-
+@media (max-height: 600px), handheld and (orientation: landscape) { 
+	.home-page{
+		md-content{background-color: $monte-carlo;}
+		ui-view{display:none}
+		background-color:$monte-carlo;	
+	}	
+}
 
 @media screen and (max-width: 600px) {
 	
