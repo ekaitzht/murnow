@@ -4,6 +4,13 @@
   <title >{{$root.pageTitle}}</title>
   <link href="/assets/favicon.ico" rel="icon" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <!-- FACEBOOK OPEN GRAPH METATAG --> 
+    <meta property="fb:app_id"          content="1907181596174570" /> 
+    <meta property="og:type"            content="website" /> 
+    <meta property="og:url"             content="http://www.murnow.com/" /> 
+    <meta property="og:title"           content="Makeup Reviews Now" /> 
+    <meta property="og:image"           content="http://murnow-staging-app.herokuapp.com/assets/happy_cupcake_big.png" /> 
+    <meta property="og:description"    content="The makeup review haven!" />
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 	  <script>
@@ -21,6 +28,11 @@
 s.src='https://widget.intercom.io/widget/{app_id}';
 var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
 </script>
+
+
+
+
+
 </head>
  <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
 	    <md-toolbar layout="column">
