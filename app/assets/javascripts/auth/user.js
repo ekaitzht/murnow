@@ -36,7 +36,15 @@ angular.module('murnow')
 					 user_id: user.id
 					});
 					
-					
+		var metadata = {
+					created_at: Math.floor(Date.now() / 1000),
+					user_id: user.id, 
+					edited_date: Math.floor(Date.now() / 1000)
+		 }
+    		
+    		window.Intercom('trackEvent','edited-profile',metadata);
+    		
+    						
 		if(user.instagram_profile !== null){
 			if (user.instagram_profile.charAt(0) == '@'){
 				user.instagram_profile = user.instagram_profile.substring(1);

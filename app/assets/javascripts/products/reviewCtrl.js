@@ -47,6 +47,19 @@ function($scope, scopeProduct, products, $mdDialog){
     		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + review.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
     		
     		$mdDialog.hide();
+    			
+			var metadata = {
+					body: review.body,
+					stars: review.stars,
+					repurchase: review.repurchase,
+					created_at: Math.floor(Date.now() / 1000),
+					user_id: review.user_id, 
+					product: document.URL,
+					review_id: review.id,
+					review_date: Math.floor(Date.now() / 1000)
+				}
+    		
+    		window.Intercom('trackEvent','added-review',metadata);
   		}).error(function(error){
 	  		
 	  		if($scope.repurchase=='' || $scope.stars == '') {
