@@ -4,8 +4,12 @@ angular.module('murnow')
 function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
 	
+	if(User.user_session.age === null) {
+		User.user_session.age = null;
+	} else {
+		User.user_session.age = new Date(User.user_session.age);
+	}
 	
-	User.user_session.age = new Date(User.user_session.age);
 	$scope.user = User.user_session;
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
