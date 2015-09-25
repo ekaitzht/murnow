@@ -3,6 +3,9 @@ angular.module('murnow')
 '$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
 function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
+	
+	
+	User.user_session.age = new Date(User.user_session.age);
 	$scope.user = User.user_session;
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
@@ -14,10 +17,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 
 
 
-	// Values for age for dropwdown
-	var N = 100; 
-	$scope.ages = Array.apply(null, {length: N}).map(Number.call, Number)
-	
+
 	
 	// Skin avatars 
 	
@@ -105,6 +105,10 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 
    
   $scope.updateUser = function() {
+	  
+	  
+	  
+	  
     if ($scope.fileImage !== '') {
 		Amazon.uploadUserProfilePhoto($scope.fileImage).progress(function(evt) {
 		
@@ -180,6 +184,13 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
   
     $scope.goToProduct = function(product_id){
 	  $state.go('products', { id: product_id});
+	  
+
   }
+  
+    $scope.validateDate = function(){
+	  
+
+  	}
 
 }]);

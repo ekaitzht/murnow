@@ -1,5 +1,5 @@
 <md-card>
-	<form name="registerForm" layout="column" >
+	<form ng-submit="updateUser()" name="updateForm" layout="column" >
 	  <div layout="row">
 	    <div class="wrapper-image-profile" layout="row" flex-sm="25">
 	    	<div ng-show="showProfileImage"  ng-file-select ng-model="file" multiple="false">
@@ -38,14 +38,18 @@
 		  </div>-->
 		  <div layout="column" >
 		        <div class="age" layout="column">
-		          <label class="title"> Age </label>
-		       		          
-		           <md-select placehodler="What is your " ng-model="user.age">
-			          <md-option ng-repeat="age in ages" value="{{age}}">{{age}}</md-option>
-			        </md-select>
+		          <label class="title"> Date of birth </label>
+				  	<div layout="row">
+					  	<md-input-container md-no-float>
+						      <input type="date" name="dateField" ng-model="user.age"   placeholder="month/day/year">
+						</md-input-container>
+				  		<div ng-if="updateForm.dateField.$invalid">
+					  		 <div>Wrong format birth of date </div>
+				  		</div>
+		        	</div>
 		        </div>
 		        
-		        
+
 		        <!-------------- SKIN TONES -------------->
 		        <label class="title"> Skin Tone</label>
 		        <md-radio-group class="skin-tones" ng-model="user.skin_tone" layout="row" layout-wrap>
@@ -109,7 +113,7 @@
 			    </md-input-container>
 		        
 		          <div layout="row" class="submit-button"  layout-align="end center">
-						<md-button  ng-click="updateUser()"  class="md-raised md-primary">SUBMIT</md-button>  
+						<md-button  type="submit"  ng-disabled="updateForm.$invalid" class="md-raised md-primary">SUBMIT</md-button>  
 			        </div>
 		        
 		        
