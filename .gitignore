@@ -16,3 +16,4 @@
 /tmp
 .env
 !/.gitignore
+/not_deploy

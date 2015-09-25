@@ -24,8 +24,13 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	    $scope.user.skin_problems =  data.skin_problems; 
 	    $scope.hasSkinProblems = false;
 	    
-		
-	    var userInfo = [$scope.user.age, $scope.user.skin_type, $scope.user.skin_tone];
+	    
+		var ageDifMs = Date.now() - Date.parse($scope.user.age);
+		var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    	$scope.user.ageView = Math.abs(ageDate.getUTCFullYear() - 1970);
+    	
+    	
+	    var userInfo = [$scope.user.ageView, $scope.user.skin_type, $scope.user.skin_tone];
 		
 		if ($scope.user.eye_color !== null) { userInfo.push($scope.user.eye_color + " eye")}
 		
@@ -40,6 +45,8 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		if(data.skin_problems[2].state){
 			userInfo.push(data.skin_problems[2].name);
 		}
+		
+		
 		$scope.biometrics = $.grep(userInfo,function(n){ return(n) }).join(', ');
 		
 		
