@@ -174,8 +174,11 @@ md-dialog {
 	 .md-toolbar-tools{padding-left: 24px;}
 	}
 	.md-button{font-family: $verdana;}
-	&#login-dialog .facebook-login-button {display: block;text-align: center;margin: 0 auto;position: relative;top: -12px; margin-left:2rem;margin-right:2rem;}
-	
+	&#login-dialog .facebook-login-button {
+		display: block;text-align: center;margin: 0 auto;position: relative;top: -12px; margin-left:2rem;margin-right:2rem;
+	}
+	&#login-dialog #forgotten-password {margin-right:auto !important;}
+
 	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;}
 	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
 	.submit-button{float:right;}
