@@ -20,8 +20,6 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	
 
 
-
-
 	
 	// Skin avatars 
 	
