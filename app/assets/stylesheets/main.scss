@@ -467,7 +467,14 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 		@extend .header-profile;
 		.profile-button svg{top: -0.25rem;}
 		.skin-tones .avatar{max-width:100px;}
-		.age md-select {max-width:50px;}
+		.age  {margin-top:1rem; margin-bottom:0.5rem;
+			#age-field {
+					margin-right:1rem;
+				    border-top: none;
+					border-left: none;
+					border-right: none;
+			}
+		}
 		.profile-user{margin-top:2rem;}
 		.input-youtube-channel{margin-top:0.8rem;}
 	}

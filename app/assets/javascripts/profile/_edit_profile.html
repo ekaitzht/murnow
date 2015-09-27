@@ -39,10 +39,8 @@
 		  <div layout="column" >
 		        <div class="age" layout="column">
 		          <label class="title"> Date of birth </label>
-				  	<div layout="row">
-					  	<md-input-container md-no-float>
-						      <input type="date" name="dateField" ng-model="user.age"   placeholder="month/day/year">
-						</md-input-container>
+				  	<div layout="row" class="age">
+						<input id="age-field" type="date" name="dateField" ng-model="user.age"   placeholder="month/day/year">
 				  		<div ng-if="updateForm.dateField.$invalid">
 					  		 <div>Wrong format birth of date </div>
 				  		</div>
