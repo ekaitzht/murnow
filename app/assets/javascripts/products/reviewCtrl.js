@@ -7,7 +7,8 @@ function($scope, scopeProduct, products, $mdDialog){
 		$scope.errors = {};
 		
 		if($scope.body === '') { return; }
-		if($scope.repurchase === undefined){$scope.repurchase = '';
+		if($scope.repurchase === undefined){
+			$scope.repurchase = '';
 
   		} else if ( $scope.repurchase === 'true') {
   			var repurchaseBoolean = true;

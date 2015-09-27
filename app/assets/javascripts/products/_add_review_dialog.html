@@ -1,5 +1,5 @@
 <md-dialog id="add-review-dialog">
-	<form ng-submit="addReview()" >
+	<form ng-submit="addReview()" name="addReviewForm" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
 		      <h2>Add your review </h2>
@@ -20,16 +20,19 @@
 		        </div>
 		
 		    	<label id="would-you-buy-it-again"> 2. Would you buy it again? </label>
-				<md-radio-group ng-model="repurchase">
+				<md-radio-group  ng-model="repurchase" >
 					<div layout="row" layout-align="start center">
-			      		<md-radio-button value="true" required> <span id="yes"> Yes  </span> 								 <img src="/assets/happy_cupcake.png" class="check-mark " alt="Repurchase again">
+			      		<md-radio-button name="repurchaseField" value="true"  > 
+			      			<span id="yes"> Yes  </span> 								 
+			      			<img src="/assets/happy_cupcake.png" class="check-mark " alt="Repurchase again">
 	
-	</md-radio-button> 
+				  		</md-radio-button> 
 					</div>
 			   		<div layout="row" layout-align="start center">
-				   		<md-radio-button value="false" required> <span id="no"> No </span>   								 <img src="/assets/sad_cupcake.png"  class="check-mark " alt="Repurchase again">
-	
-	</md-radio-button> 
+				   		<md-radio-button name="repurchaseField" value="false" > 
+				   				<span id="no"> No </span>   								 
+				   				<img src="/assets/sad_cupcake.png"  class="check-mark " alt="Repurchase again">
+				   		</md-radio-button> 
 					</div>
 		    	</md-radio-group>
 				<div ng-messages="repurchase.$error">
