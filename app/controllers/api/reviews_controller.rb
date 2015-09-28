@@ -6,9 +6,7 @@ class Api::ReviewsController < ApplicationController
     
     puts review_params[:stars]
     review_params[:stars] = review_params[:stars].to_f
-    puts 'hola'
-    
-    
+
     
     @review = @product.reviews.create(review_params.merge(user_id: current_user.id))
     if (@review.repurchase == true) then
