@@ -34,7 +34,8 @@ class Product < ActiveRecord::Base
 					"SPF,UV,sun screen,sun protection,UVA,UVV",
 					"long lasting,long wear, long-lasting,long-wear",
 					"eye liner,eyeliner",
-					"transparent,translucent"
+					"transparent,translucent",
+					"loreal,l'oreal"
 					
 				]
 			}
