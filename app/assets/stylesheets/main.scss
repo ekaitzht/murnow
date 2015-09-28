@@ -175,11 +175,10 @@ md-dialog {
 	}
 	.md-button{font-family: $verdana;}
 	&#login-dialog .facebook-login-button {
-		display: block;text-align: center;margin: 0 auto;position: relative;top: -12px; margin-left:2rem;margin-right:2rem;
+		display: block;text-align: center;position: relative;margin-left:2rem;margin-right:2rem;
 	}
-	&#login-dialog #forgotten-password {margin-right:auto !important;}
 
-	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;}
+	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;margin-bottom:10px;}
 	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
 	.submit-button{float:right;}
 }
@@ -250,6 +249,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 
 
 .trading-products * { display:none !important;}
+.trading-products {display:none;}
 
 .home-page{
 	@extend .check-mark;
@@ -460,12 +460,20 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	
 	.edit_profile {
+	
 		 .skin-problem-checkbox{text-transform: capitalize;}
 		.wrapper-image-profile {cursor:pointer;}
 		@extend .header-profile;
 		.profile-button svg{top: -0.25rem;}
 		.skin-tones .avatar{max-width:100px;}
-		.age md-select {max-width:50px;}
+		.age  {margin-top:1rem; margin-bottom:0.5rem;
+			#age-field {
+					margin-right:1rem;
+				    border-top: none;
+					border-left: none;
+					border-right: none;
+			}
+		}
 		.profile-user{margin-top:2rem;}
 		.input-youtube-channel{margin-top:0.8rem;}
 	}

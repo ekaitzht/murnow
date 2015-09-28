@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   	validates :skin_type, :inclusion=> { :in => ['normal','dry','combination', 'oily'] }, :allow_nil => true
   	validates :eye_color, :inclusion=> { :in => ['brown','green','blue', 'grey','hazel','black'] }, :allow_nil => true
   	validates :skin_tone, :inclusion=> { :in =>  ['ivory', 'peach', 'sand','toast', 'caramel','cocoa','expresso' ] }, :allow_nil => true
-  	validates :age, inclusion: { in: 0..100 }, numericality: true , :allow_nil => true
   	
 	def self.from_omniauth(auth)
 		logger.info "*****************______>>>>>> #{auth.inspect}"

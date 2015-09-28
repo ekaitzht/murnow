@@ -1,5 +1,4 @@
-<md-dialog id="login-dialog">
-	<form name="registerForm" ng-submit="login()" layout="column">
+<md-dialog aria-label="Login Dialog" id="login-dialog">
 	 <md-toolbar>
 	    <div class="md-toolbar-tools">
 	      <h2>Login </h2>
@@ -9,38 +8,41 @@
 	      </md-button>
 	    </div>
 	  </md-toolbar>
-    <md-dialog-content>
-		<div>
+    <md-dialog-content class="sticky-container">
+    	<div>
+	    	<form name="registerForm" ng-submit="login()" layout="column">
+				<div>
+				
+					<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button> 
+			        <form name="registerForm" ng-submit="login()" layout="column">
+		
+				        <md-input-container>
+				          <label> Email </label>
+				          <input ng-model="user.email" name="email"  autofocus>
+				        </md-input-container>
+				        <md-input-container ng-hide="sendConfirm" md-no-float>
+				          <label> Password </label>
+				          <input    type="password" name="password" ng-model="user.password">
+				        </md-input-container>
+				        
+				        <!--<md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">Remember Me </md-checkbox>-->
+				        
+					 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
+					 		{{errors.errorPasswordEmail}}
+			      		</div>
 			
-				<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button> 
-	        
-		        <md-input-container md-no-floats
-		          <label> Email </label>
-		          <input ng-model="user.email" name="email"  autofocus>
-		        </md-input-container>
-		        <md-input-container ng-hide="sendConfirm" md-no-float>
-		          <label> Password </label>
-		          <input    type="password" name="password" ng-model="user.password">
-		        </md-input-container>
-		        
-		        <!--<md-checkbox ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">Remember Me </md-checkbox>-->
-		        
-			 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
-			 		{{errors.errorPasswordEmail}}
-	      		</div>
-	      		
-		      
-		      
+				</div>
+				<div layout="column">	
+					<div layout="column" layout-align="space-around center">
+				    	    <md-button   id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>		
+							<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
+			      	</div>
+			      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
+			 	</div>
+			 </form>
 		</div>
 	</md-dialog-content>      
-	<div class="md-actions" layout="column">	
-			<div layout="column" layout-align="space-around center">
-		    	    <md-button  id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>		
-					<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
-	      	</div>
-	      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
-	 </div>
-	 </form>
+
 </md-dialog>
 
   
