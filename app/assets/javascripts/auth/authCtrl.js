@@ -21,6 +21,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 		   app_id: 'ugedhl1s',
 		   email: ev.email,
 		   user_id: ev.id,
+		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
 		   created_at: ev.created_at
 		 } );
 	} else {
@@ -28,6 +29,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 		   app_id: 'xjo9xumi',
 		   email: ev.email,
 		   user_id: ev.id,
+		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
 		   created_at: ev.created_at
 		 });
 	}	 
@@ -100,6 +102,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 		   app_id: 'ugedhl1s',
 		   email: ev.email,
 		   user_id: ev.id,
+		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
 		   created_at: ev.created_at
 		   } );
     }).then(function(response) {
