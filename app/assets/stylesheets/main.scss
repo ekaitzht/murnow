@@ -275,7 +275,13 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 		}
 	}
 	
-
+	#social-icons-home-page{
+		position: fixed;
+		z-index: 50000;
+    	top: 10px;
+    	left: 10px;
+    	#twitter-social{ margin-left:5px;}
+    }
     .review-card-wrapper {max-width:434px;}
 	@extend .review-product-mixed;
 	//.review-text{    width: 64.5% !important;}
