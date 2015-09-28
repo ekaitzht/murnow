@@ -58,7 +58,6 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
 		   app_id: 'xjo9xumi',
 		   email: user.email,
 		   user_id: user.id,
-		   custom_attributes,
 		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
 		   name: user.username,
 		   created_at: user.created_at
