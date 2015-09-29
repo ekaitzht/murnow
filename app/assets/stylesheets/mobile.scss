@@ -38,7 +38,6 @@ $lucida-grande: "Lucida Grande";
 	
 	
 	
-	
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
 	
 	
@@ -99,7 +98,17 @@ $lucida-grande: "Lucida Grande";
 		background-color:$monte-carlo;
 		form md-autocomplete {width:100%;}
 	
-		
+		#social-icons-home-page{
+			position: fixed;
+			z-index: 50000;
+    		bottom: 10px;
+    		top:initial;
+    		left:initial;
+    		width:100%;
+    		text-align:center;
+    		#twitter-social{ margin-left:5px;}
+    	}
+	
 	}
 	
 	//*** NOT HOME PAGE ***/
@@ -164,6 +173,9 @@ $lucida-grande: "Lucida Grande";
 
 
 
+@media screen and (max-width: 1190px) {
+	#social-icons-not-home-page{display:none;}
+}
 
 
 @media screen and (max-width: 960px) and (min-width: 600px) {
