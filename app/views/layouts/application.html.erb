@@ -44,7 +44,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 	 			</div>
 		    	<div  ng-include="'header/_header.html'"></div>	
 		    	
-				<div><h1 layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState ">MAKEUP REVIEWS NOW</h1></div>
+				<div><h1 ng-cloak layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState ">MAKEUP REVIEWS NOW</h1></div>
 				<div>
 					<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" flex-sm="100" ng-controller="SearchCtrl as ctrl" >
 						<md-autocomplete
@@ -77,7 +77,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 					 <span ng-click="trendingProductsLipstick('29202,31243')"> Eye Liners </span> 
 				</div>
 				<div>
-					<h2 class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> Find the most effective makeup in seconds.</h2>
+					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> Find the most effective makeup in seconds.</h2>
 				</div>
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
