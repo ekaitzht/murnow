@@ -38,7 +38,6 @@ $lucida-grande: "Lucida Grande";
 	
 	
 	
-	
     ui-view{padding-left:inherit;padding-right:inherit;width:auto;}
 	
 	
@@ -69,7 +68,6 @@ $lucida-grande: "Lucida Grande";
 		.mainNav .md-button {    font-size: 14px;position: relative;left: 10px;}
 	}
 	
-	
 	html{
 		font-size:9px;
 	}
@@ -99,7 +97,17 @@ $lucida-grande: "Lucida Grande";
 		background-color:$monte-carlo;
 		form md-autocomplete {width:100%;}
 	
-		
+		#social-icons-home-page{
+			position: fixed;
+			z-index: 50000;
+    		bottom: 10px;
+    		top:initial;
+    		left:initial;
+    		width:100%;
+    		text-align:center;
+    		#twitter-social{ margin-left:5px;}
+    	}
+	
 	}
 	
 	//*** NOT HOME PAGE ***/

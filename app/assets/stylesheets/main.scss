@@ -274,7 +274,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 			&:not(:first-child):hover{border-bottom: 1px solid white;}
 		}
 	}
-	
+	#social-icons-not-home-page {display:none;}
 	#social-icons-home-page{
 		position: fixed;
 		z-index: 50000;
@@ -353,6 +353,16 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 .not-home-page {
 	md-card {padding:2.5rem;}
 	@extend .check-mark;
+	#social-icons-home-page {display:none;}
+	
+	#social-icons-not-home-page{
+		position: fixed;
+		z-index: 50000;
+    	top: 10px;
+    	left: 10px;
+    	#twitter-social{ margin-left:5px;}
+    }
+    
 	
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
