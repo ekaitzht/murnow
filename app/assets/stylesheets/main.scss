@@ -24,6 +24,9 @@ md-icon {height:1.5rem;width:1.5rem;}
 md-virtual-repeat-container {display:none !important;}
 #load-more-product {    font-family: "Lucida Grande";letter-spacing: 0.1rem;}
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 //* list products */
 	// Separate stars
 	.separate-stars {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.43rem;}}

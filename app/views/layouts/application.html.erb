@@ -1,7 +1,7 @@
 <html ng-app="murnow">
 <head>
   <base href="/">
-  <title >{{$root.pageTitle}}</title>
+  <title  ng-bind="$root.pageTitle"></title>
   <link href="/assets/favicon.ico" rel="icon" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <!-- FACEBOOK OPEN GRAPH METATAG --> 
@@ -59,8 +59,8 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 						          md-min-length="100"
 						          md-autofocus="true"
 						          placeholder="Type a brand or product name...">
-						    <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}" class='md-avatar' alt="{item.product_name}" with="25" height="25">
-						    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.product_name}}</span>
+						    <img ng-cloak ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}" class='md-avatar' alt="{item.product_name}" with="25" height="25">
+						    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i" ng-cloak>{{item.product_name}}</span>
 						</md-autocomplete>
      				</form>
 				</div>
