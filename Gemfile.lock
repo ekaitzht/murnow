@@ -113,6 +113,9 @@ GEM
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    prerender_rails (1.2.0)
+      activesupport
+      rack
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.5)
@@ -191,6 +194,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   omniauth-facebook
   pg
+  prerender_rails
   puma
   rack-rewrite
   rails (= 4.1.6)

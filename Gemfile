@@ -8,6 +8,7 @@ gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 group :production do
 	gem 'rails_12factor'
+	gem 'prerender_rails'
 end
 gem 'heroku_rails_deflate', :group => :production
 
@@ -24,7 +25,6 @@ gem 'elasticsearch-rails'
 gem 'bonsai-elasticsearch-rails'
 gem 'aws-sdk'
 
-gem 'prerender_rails'
 
 # Serializer gem
 gem 'active_model_serializers'
