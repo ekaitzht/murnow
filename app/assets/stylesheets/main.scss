@@ -356,14 +356,15 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	#social-icons-home-page {display:none;}
 	
 	#social-icons-not-home-page{
-		position: fixed;
 		z-index: 50000;
-    	top: 10px;
-    	left: 10px;
     	#twitter-social{ margin-left:5px;}
+		img {width:initial;}
+		position:fixed;
+		top: 84px;
+		left: 18px;    
     }
     
-	
+
 	//.mainNav {display: inline-block !important;float: right !important;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 
@@ -387,6 +388,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 
 	// * LIST STYLING */
 	.list_products,.trending_products {  // state name
+	
 		md-card {padding:0px;}
 		.figure-wrapper figure{margin:18px;}
 		md-list {

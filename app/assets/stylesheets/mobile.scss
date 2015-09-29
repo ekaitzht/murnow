@@ -172,6 +172,9 @@ $lucida-grande: "Lucida Grande";
 
 
 
+@media screen and (max-width: 1190px) {
+	#social-icons-not-home-page{display:none;}
+}
 
 
 @media screen and (max-width: 960px) and (min-width: 600px) {
