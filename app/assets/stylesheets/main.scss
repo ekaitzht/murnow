@@ -21,7 +21,7 @@ html {font-size:16px;outline:none !important; *:focus { outline: none; } font-fa
 .md-button.md-fab {background-color:$pink-color !important;}
 md-icon {height:1.5rem;width:1.5rem;}
 //**** EXTEND HELPERS ****/
-
+md-virtual-repeat-container {display:none !important;}
 #load-more-product {    font-family: "Lucida Grande";letter-spacing: 0.1rem;}
 
 //* list products */

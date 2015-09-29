@@ -68,7 +68,7 @@ $lucida-grande: "Lucida Grande";
 	body {
 		.mainNav .md-button {    font-size: 14px;position: relative;left: 10px;}
 	}
-	
+	md-toolbar {min-height: 56px !important;}
 	
 	html{
 		font-size:9px;
