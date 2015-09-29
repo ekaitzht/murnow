@@ -21,8 +21,9 @@ class ApplicationController < ActionController::Base
 
   def set_config_email
     if Rails.env.production?
-      ActionMailer::Base.default_url_options = {:host => ENV['APP_URL']}
-      
+	  #ActionMailer::Base.default_url_options[:protocol] = request.protocol
+      #ActionMailer::Base.default_url_options = {:host => ENV['APP_URL']}
+
       if ( ENV['APP_URL'] == 'www.murnow.com') then
       	ActionMailer::Base.delivery_method = :smtp
       else 

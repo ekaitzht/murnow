@@ -13,7 +13,7 @@ module MurnowAngular
     # -- all .rb files in that directory are automatically loaded.
 	  config.font_assets.origin = '*'
 
-
+	config.action_mailer.default_url_options = { :protocol => 'http', :host => ENV['APP_URL'] }
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
