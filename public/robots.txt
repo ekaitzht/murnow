@@ -1,2 +1,10 @@
 User-agent: *
 Disallow: /api/
+
+Sitemap: http://www.murnow.com/sitemap.xml
+
+User-agent: WBSearchBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

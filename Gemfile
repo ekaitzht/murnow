@@ -64,3 +64,5 @@ gem 'angular-rails-templates'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
+
