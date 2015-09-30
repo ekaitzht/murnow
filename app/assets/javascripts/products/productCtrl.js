@@ -28,7 +28,12 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
         
 	
   this.hasReviewUser($scope.product.reviews);
-
+  
+  
+  //angular.element("#meta-stars").attr("content",$scope.product.product_stars);
+  //angular.element("#meta-number-reviews").attr("content", $scope.product.number_reviews);
+  
+  
   var total_buyers = $scope.product.buyers + $scope.product.not_buyers;
   
   if ($scope.product.buyers == 0 && $scope.product.not_buyers == 0) {
