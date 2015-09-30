@@ -1,7 +1,7 @@
 User-agent: *
 Disallow: /db
 Disallow: /env
-Dsallow: /config
+Disallow: /config
 Sitemap: http://www.murnow.com/sitemap.xml
 
 User-agent: WBSearchBot
