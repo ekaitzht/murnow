@@ -26,6 +26,8 @@ gem 'bonsai-elasticsearch-rails'
 gem 'aws-sdk'
 
 
+gem 'friendly_id', '~> 5.1.0' 
+
 # Serializer gem
 gem 'active_model_serializers'
 
