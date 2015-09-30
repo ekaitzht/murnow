@@ -74,6 +74,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     font_assets (0.1.11)
       rack
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     hashie (3.4.0)
     heroku_rails_deflate (1.0.3)
       actionpack (>= 3.2.13)
@@ -192,6 +194,7 @@ DEPENDENCIES
   elasticsearch-model
   elasticsearch-rails
   font_assets
+  friendly_id (~> 5.1.0)
   heroku_rails_deflate
   jbuilder (~> 2.0)
   omniauth-facebook
