@@ -115,7 +115,7 @@ body {
 	overflow-y:auto !important;
 	
 	.mainNav {
-		position: fixed;    right: 0px;   
+		position: absolute;    right: 0px;   
 		.md-button{font-weight: bold;font-size:20px;}
 	}
 	md-menu {position: fixed;    right: 0px; top:-3px;}
