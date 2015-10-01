@@ -161,8 +161,6 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll',function
     
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	   window.Intercom('update');
-	   mouseflow.newPageView();
-	   var mouseflowHtmlDelay = 1000;
 
 	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
 	  $rootScope.pageTitle = "Makeup Reviews Now"; // Default title
