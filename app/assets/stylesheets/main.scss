@@ -348,16 +348,19 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	
 	
 	#autocomplete-not-home-page {display:none;}
-		
 	
 	
+	#promotion-wrapper { 
+		text-align:center;
+		img {height:300px;}
+	}	
 }
 
 .not-home-page {
 	md-card {padding:2.5rem;}
 	@extend .check-mark;
 	#social-icons-home-page {display:none;}
-	
+	#promotion-wrapper {display:none;}
 	#social-icons-not-home-page{
 		z-index: 50000;
     	#twitter-social{ margin-left:5px;}
@@ -497,6 +500,14 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 		}
 		.profile-user{margin-top:2rem;}
 		.input-youtube-channel{margin-top:0.8rem;}
+	}
+	
+	.competition{
+		#most-popular-reviews,#follow-us{text-align:center;max-width:500px;margin-top:2rem;color:black;
+		opacity:1;
+		}
+		a:visited,a{color:#FFA9BA;}
+		
 	}
 
 }

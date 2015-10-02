@@ -81,6 +81,11 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $mdDi
       templateUrl: 'profile/_profile.html',
       controller: 'Profile',
     })
+    .state('competition', {
+      url: '/competition',
+      templateUrl: 'competition/_competition.html',
+      controller: 'CompetitionCtrl'
+    })
     .state('edit_profile', {
       url: '/edit_profile',
       onEnter: function(){

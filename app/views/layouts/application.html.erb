@@ -49,7 +49,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 	 	
 	    <md-toolbar layout="column" id="md-toolbar-header">
 	        <header   layout="column" layout-padding >
-		        <div id="social-icons-home-page" class="social-icons">
+		        <div id="social-icons-home-page" class="social-icons" hide-sm hide-md>
 					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram.png" alt="Smiley face" height="30" width="30"></a>		 			
 					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter.png" alt="Smiley face" height="30" width="30"></a>
 	 			</div>
@@ -90,6 +90,14 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 				<div>
 					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> Find the most effective makeup in seconds.</h2>
 				</div>
+				
+				<div ng-cloak  hide-gt-sm id="promotion-wrapper"> 
+					<a ng-cloak ng-href="/competition"><img src="/assets/competition/palette_green.png"> </a>
+				</div> 
+				<div id="social-icons-home-page" class="social-icons" >
+					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram.png" alt="Smiley face" height="30" width="30"></a>		 			
+					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter.png" alt="Smiley face" height="30" width="30"></a>
+	 			</div>
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
 		</md-toolbar>
@@ -102,17 +110,19 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 	        <input id="search-box-input" class="search-box" type="search" placeholder="Find make up reviews" ng-model="searchFilter.searchQuery">
 	      </form> 
       </div> -->
-		<social-icons> </social-icons>
+
 
       <md-content>
       		<ui-view  autoscroll="false" ng-class="getCurrentNameState()"  layout="row" ></ui-view>        
       </md-content>
            
-
+	  
+	 			
+	 			
       <%= javascript_include_tag 'application' %>
  
     
-    
+       <social-icons> </social-icons>
   </body>
 </html>
  

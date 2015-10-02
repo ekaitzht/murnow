@@ -99,13 +99,14 @@ $lucida-grande: "Lucida Grande";
 		form md-autocomplete {width:100%;}
 	
 		#social-icons-home-page{
-			position: fixed;
 			z-index: 50000;
     		bottom: 10px;
-    		top:initial;
-    		left:initial;
     		width:100%;
     		text-align:center;
+    		bottom:10px;
+    		top: initial;
+    		left: initial;
+    		position:initial;
     		#twitter-social{ margin-left:5px;}
     	}
 	
