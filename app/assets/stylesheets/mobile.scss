@@ -72,6 +72,8 @@ $lucida-grande: "Lucida Grande";
 	html{
 		font-size:9px;
 	}
+	
+	header{position:absolute;}
 	// product-info-row
 	.row-product-info {
 		
@@ -106,7 +108,7 @@ $lucida-grande: "Lucida Grande";
     		bottom:10px;
     		top: initial;
     		left: initial;
-    		position:initial;
+    		position:relative;
     		#twitter-social{ margin-left:5px;}
     	}
     	
