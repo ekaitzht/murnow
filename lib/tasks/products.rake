@@ -4,7 +4,7 @@ namespace :products do
 		
 		
 		def encodeUTF8(string)
-			return string.encode("iso-8859-1").force_encoding("utf-8")
+			return string.encode('utf-8')
 		end
 		
 		def curateBrand(source)
@@ -59,20 +59,24 @@ namespace :products do
 		end
 		
 		def addFileToS3( file_name, file)
-		
 			
-			@s3.put_object(bucket: 'murnow', key:"images_products/"+file_name + ".jpg", body: file, grant_read: "GrantRead")
-			puts file_name 
+			@s3.put_object(bucket: 'murnow', key:"images_products/"+file_name + ".jpg", body: file)
 		end
-		def getHashURLImage(image_url)
+		
+		def processImageUrl(image_url, name, prod_id, url_product)
 			hash_url_image = Digest::SHA256.hexdigest(image_url) 
+
+
+			# I think we can find a more efficient function to find the key object. Perhaps we can get all list of objects and implemen a search functionality locally
+			#object = @s3.get_object(bucket: 'murnow', key: "images_products/"+hash_url_image + ".jpg") 
 			
-			
-			if not @list_objects.include?(hash_url_image)
-				addFileToS3( hash_url_image , open(image_url).read)
+			if not @selectedKeys.include?("images_products/"+hash_url_image + ".jpg")
+				puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
+				
+				#addFileToS3( hash_url_image , open(image_url).read)
 				return image_url
 			else 
-				puts 'Not found key in bucket saving to S3'
+				#puts "Found key: "+hash_url_image
 				return image_url
 			end
 			
@@ -91,8 +95,7 @@ namespace :products do
 	        product.prod_id = source['id']
 		    product.retailer = source['retailer']
 		    product.product_stars = source['summary']['average']
-		    puts source['img']
-		    product.hash_url_image = getHashURLImage(source['img'])
+		    product.hash_url_image = processImageUrl(source['img'],product.product_name,  product.prod_id, source['url'])
 			product.buyers = product.product_stars*10
 			product.ref_elastic = curateRefElastic(source)
 			
@@ -105,15 +108,21 @@ namespace :products do
 		###################### MAIN FUNCTION ######################
 		
         #Launch this task with  heroku local worker  
+        
+        
+        ###########################################################
+        
+        
 		client = Elasticsearch::Client.new url: ENV['ELASTIC_RAW_DATA']
 		
 		@s3 = Aws::S3::Client.new() # CREDENTIALS ARE IN .env file 	
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'sephoraindex,ultaindex', body: 
-				{query: {
+		response = client.search index: 'macindex', body: 
+				{	query: {
 		        		filtered: {
+					
 				            query:{
 				                bool:{
 				                    should: [       
@@ -185,21 +194,37 @@ namespace :products do
 				                    ]
 				                }    
 				            }
-						}
+				        }
 					},
-					
-					size: 10
+					size: 50000
 				}
-
 				
-		puts "Elastisearch Query executed"
+				
+		resourceS3 = Aws::S3::Resource.new
+		bucket = resourceS3.bucket('murnow')
 		
-		@list_objects = @s3.list_objects(bucket: 'murnow', max_keys: 10000).contents
+		
+		@selectedKeys = Array.new
+		bucket.objects.each do |obj|
+			@selectedKeys.push(obj.key)
+		end
+		
+
+		puts "Elastisearch Query executed"
 
 		response['hits']['hits'].each { |document|
-			    product = createProductObject(document['_source'])			
-			    puts product.inspect
+			product = createProductObject(document['_source'])	
 			
+
+			productDB = Product.where("retailer = ? AND prod_id = ?",product.retailer, product.prod_id).limit(1)
+			#puts productDB
+			
+			#if productDB.nil?
+			#	productToUpdate = Product.find_by_id(productDB.id)
+			#	productToUpdate.update()
+			#else 
+			#	product.save
+			#end
 		}
 	end
 end
