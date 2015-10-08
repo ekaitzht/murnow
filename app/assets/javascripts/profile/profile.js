@@ -3,9 +3,10 @@ angular.module('murnow')
 '$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
 function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
+	
+
 	 	 $scope.cdn = configMurnow.cdn_domain_name;
 	 	 $scope.enviroment = configMurnow.enviroment;
-	 	 
 	 	 
  	Auth.currentUser().then(function (user){
 	 	if(parseInt($stateParams.id) === user.id) { // if the user that we are is logged we have to modify profile view 
@@ -60,9 +61,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
     
     
   	if(Auth.isAuthenticated()) {
-	  if(parseInt($stateParams.id) == User.user_session.id) {
-	  	$scope.user = User.user_session;
-	  	
+	  if(parseInt($stateParams.id) == User.getId()) {
+	  	$scope.user = User.getUser();
+	    $scope.user.isProfileAuthenticated = {};
 	  	$scope.user.isProfileAuthenticated = true;
 	  	$scope._fetchDataUser();
       }  else {
@@ -76,6 +77,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 	  	
 	  	User.getPublicUser($stateParams.id).then(function(res) {
 		  	$scope.user = res.data;
+		  	$scope.user.isProfileAuthenticated = {};
 		  	$scope.user.isProfileAuthenticated = false;
 		  	$scope._fetchDataUser();
 	  	});
@@ -104,12 +106,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 
       
     
-    Auth.currentUser().then(function(user) {
-       	 User.setUser(user);
-         $state.go('profile');
-    }, function(error) {
-        // unauthenticated error
-    });
+
 
 
 	$scope.goToProduct = function(product_id){

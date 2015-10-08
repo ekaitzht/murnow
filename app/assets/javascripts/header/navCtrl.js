@@ -64,8 +64,8 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
 		 });
 	}	 
     $scope.user = user;
-     User.setUser(user);
-     $mdDialog.hide();
+    User.setUser(user);
+    $mdDialog.hide();
   });
 
   $scope.$on('devise:login', function (e, user){

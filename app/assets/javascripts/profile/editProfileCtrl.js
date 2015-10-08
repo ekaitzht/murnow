@@ -4,13 +4,13 @@ angular.module('murnow')
 function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
 	
 	
-	if(User.user_session.age === null) {
-		User.user_session.age = null;
+	if(User.getAge() === null) {
+		User.setAge(null) ;
 	} else {
-		User.user_session.age = new Date(User.user_session.age);
+		User.setAge(new Date(User.getAge()));
 	}
 	
-	$scope.user = User.user_session;
+	$scope.user = User.getUser();
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
 	
@@ -52,9 +52,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         title: 'Expresso',
         value: 'expresso'
     }];
-    
+        
     // SKIN TYPES
-   	 $scope.skin_types = [{
+    $scope.skin_types = [{
         title: 'Normal',
         value: 'normal'
       },{
@@ -67,7 +67,8 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         title: 'Oily',
         value: 'oily'
     }];
-    
+
+
       // EYES
    	 $scope.eye_colors = [{
         title: 'Brown',
@@ -125,15 +126,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		    $scope.user.hash_url_image= Amazon.unique_name_file_hash;
 		    User.updateUserProfile($scope.user, $scope.skin_problems);
 		    
-		    Auth.currentUser().then(function(user) {
-			    
-			    	
-		
-		       	 User.setUser(user);
-		         $state.go('profile', {id: user.id});
-		    }, function(error) {
-		        // unauthenticated error
-		    });
+		    Auth.currentUser().then(function(user) {$state.go('profile', {id: user.id});});
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
 		}).error(function(err){
 		
