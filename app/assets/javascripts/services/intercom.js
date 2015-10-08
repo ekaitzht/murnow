@@ -8,6 +8,7 @@ angular.module('murnow')
 			   email: ev.email,
 			   user_id: ev.id,
 			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ ev.id,
+			   name: ev.username,
 			   created_at: ev.created_at
 			 } );
 		} else {
@@ -16,12 +17,16 @@ angular.module('murnow')
 			   email: ev.email,
 			   user_id: ev.id,
 			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ ev.id,
+			   name: ev.username,
+
 			   created_at: ev.created_at
 			 });
 		}	 
 	};
 
-    this.update = function(data) {
+
+
+	this.update = function(data) {
 		window.Intercom('update');
     };
 	
@@ -42,7 +47,7 @@ angular.module('murnow')
 	
 	
 	this.updateProfile = function(user){
-		Intercom.boot('update',  {
+		window.Intercom('update',  {
 			name: user.username,
 			email: user.email	,
 			user_id: user.id
@@ -59,7 +64,7 @@ angular.module('murnow')
 	
 	
 	this.shutdown = function() {
-		Intercom('shutdown'); 	
+		window.Intercom('shutdown'); 	
 	};
 	
 	

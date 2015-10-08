@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('User',[ '$http', function($http){
+.factory('User',[ '$http','Intercom', function($http, Intercom){
     
     // We wrap in object only the user data to have a easy access when we want the attributes of the user
     this.user = {
@@ -37,7 +37,7 @@ angular.module('murnow')
 	
 	
 	this._curateInstagram = function(instagram_profile) {
-		if(instagram_profile !== null){
+		if(instagram_profile !== undefined){
 			if (instagram_profile.charAt(0) == '@'){
 				return instagram_profile.substring(1);
 			} else {
