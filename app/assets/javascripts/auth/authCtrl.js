@@ -8,32 +8,16 @@ angular.module('murnow')
 '$cookies',
 '$mdDialog',
 '$rootScope',
-function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootScope){
+'Intercom',
+function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootScope, Intercom){
   $scope.login = function() {   
   
     $scope.errors = {};
 
     Auth.login($scope.user).then(function(ev){
-	
-	
-	if( location.hostname == 'www.murnow.com' ) {
-        window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		 } );
-	} else {
-		 window.Intercom('boot',  {
-		   app_id: 'xjo9xumi',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		 });
-	}	 
-   
+
+		Intercom.boot(ev);
+		
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -98,13 +82,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 
     $scope.errors = {};
     Auth.register($scope.user).then(function(ev){
-     	 window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		   } );
+     	 Intercom.boot(ev);
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.

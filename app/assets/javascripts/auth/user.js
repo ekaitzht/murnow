@@ -87,20 +87,8 @@ angular.module('murnow')
 	this.updateUserProfile = function(user, skin_problems){
 		this.setUser(user);
 
-		window.Intercom('update',  {
-			name: user.username,
-			email: user.email	,
-			user_id: user.id
-		});
-					
-		var metadata = {
-					created_at: Math.floor(Date.now() / 1000),
-					user_id: user.id, 
-					edited_date: Math.floor(Date.now() / 1000)
-		 }
-    		
-    	window.Intercom('trackEvent','edited-profile',metadata);
-    		 
+
+		Intercom.updateProfile(user);
 		angular.forEach(user.skin_problems, function(value, key) {
 			if (value.state) {
 				$http.put('/api/users/'+user.id+'/skin_problems/'+value.id);
