@@ -3,16 +3,16 @@ angular.module('murnow')
     
     // We wrap in object only the user data to have a easy access when we want the attributes of the user
     this.user = {
-	    id: undefined,
-	    username:undefined,
-	    skin_type: undefined,
-	    skin_color: undefined,
-	    eye_color: undefined,
-	    bio: undefined,
-	    youtube_channel: undefined,
-	    instagram_profile: undefined,
-	    hash_url_image: undefined,
-	    age:undefined
+	    id: null,
+	    username:null,
+	    skin_type: null,
+	    skin_color: null,
+	    eye_color: null,
+	    bio: null,
+	    youtube_channel: null,
+	    instagram_profile: null,
+	    hash_url_image: null,
+	    age:null
     }; 	
 
     this.forgotPassword = function(email) {
@@ -37,7 +37,7 @@ angular.module('murnow')
 	
 	
 	this._curateInstagram = function(instagram_profile) {
-		if(instagram_profile !== undefined){
+		if(instagram_profile !== null){
 			if (instagram_profile.charAt(0) == '@'){
 				return instagram_profile.substring(1);
 			} else {
