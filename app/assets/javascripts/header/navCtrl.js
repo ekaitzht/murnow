@@ -29,6 +29,7 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow,Intercom){
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
     User.setUser(user);
+    Intercom.boot(user); 
     $mdDialog.hide();
   });
 
