@@ -7,7 +7,7 @@ angular.module('murnow')
 			   app_id: 'ugedhl1s',
 			   email: ev.email,
 			   user_id: ev.id,
-			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
+			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ ev.id,
 			   created_at: ev.created_at
 			 } );
 		} else {
@@ -15,7 +15,7 @@ angular.module('murnow')
 			   app_id: 'xjo9xumi',
 			   email: ev.email,
 			   user_id: ev.id,
-			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
+			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ ev.id,
 			   created_at: ev.created_at
 			 });
 		}	 
@@ -38,7 +38,7 @@ angular.module('murnow')
 		}
 	    		
 	    window.Intercom('trackEvent','added-review',metadata);
-	}
+	};
 	
 	
 	this.updateProfile = function(user){
@@ -55,12 +55,12 @@ angular.module('murnow')
 		 }
     		
     	window.Intercom('trackEvent','edited-profile',metadata);	
-	});
+	};
 	
 	
 	this.shutdown = function() {
 		Intercom('shutdown'); 	
-	});
+	};
 	
 	
 	return this;
