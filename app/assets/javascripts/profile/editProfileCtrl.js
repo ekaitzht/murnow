@@ -150,13 +150,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
       } 
 
       if ( ($scope.file[0].size/1024) >= 2048 ) { // if the file is bigger than  2048 KB
-        $mdDialog.show(
-          $mdDialog.alert()
-            .title('Photo too big')
-            .content('The size of the image chosen is too big. Please upload a file with less than 2MB.')
-            .ariaLabel('Password notification')
-            .ok('Got it!')
-        );
+        Dialog.photoTooBig();
         return;      
       } 
       var file = $scope.file[0];
@@ -164,14 +158,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
       var reader = new FileReader();
       reader.onload = function (evt) {
         $scope.$apply(function($scope){
-	       $mdDialog.show({
-            controller: 'CropImageCtrl',
-            templateUrl: 'profile/_dialogCropImage.html',
-            hasBackdrop: true,
-            clickOutsideToClose: false,
-            locals: {myImage: evt.target.result, scopeEditProfile: $scope}
-          });
-
+	       Dialog.cropImage(evt, $scope);
         });
       };
       reader.readAsDataURL(file);

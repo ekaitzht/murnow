@@ -3,11 +3,11 @@ angular.module('murnow')
 '$scope',
 '$state',
 'Auth',
-'$mdDialog',
+'Dialog',
 'User',
 'configMurnow',
 'Intercom',
-function($scope,$state, Auth, $mdDialog, User, configMurnow,Intercom){
+function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
   $scope.cdn = configMurnow.cdn_domain_name;
@@ -23,14 +23,14 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow,Intercom){
 	Intercom.boot(user);	 
     $scope.user = user;
     User.setUser(user);
-    $mdDialog.hide();
+    Dialog.hide();
   });
 
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
     User.setUser(user);
     Intercom.boot(user); 
-    $mdDialog.hide();
+    Dialog.hide();
   });
 
   $scope.$on('devise:logout', function (e, user){
@@ -41,36 +41,21 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow,Intercom){
 
   $scope.showDialogRegisterOptions= function() {
   
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_panel_signup_options.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+     Dialog.signupOptions();
   };
 
   $scope.showDialogLogin= function() {
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_login.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+    	 Dialog.login();
   };
 
   $scope.showDialogRegister = function() {
    
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_register.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+     	Dialog.register();
   };
   
   $scope.goToProfile = function(profile_id){
 	  $state.go('profile', { id: profile_id});
-  	}
+  }
   	
   
 
