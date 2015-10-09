@@ -37,7 +37,7 @@ angular.module('murnow')
 	
 	
 	this._curateInstagram = function(instagram_profile) {
-		if(instagram_profile !== null){
+		if(instagram_profile !== null && instagram_profile !== undefined){
 			if (instagram_profile.charAt(0) == '@'){
 				return instagram_profile.substring(1);
 			} else {
