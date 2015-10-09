@@ -107,7 +107,7 @@ namespace :products do
 				
 		###################### MAIN FUNCTION ######################
 		
-        #Launch this task with  heroku local worker  
+        #Launch this task with  'heroku local worker', this tasks emulates in locally the heroku server using .env file for config vars.
         
         
         ###########################################################
