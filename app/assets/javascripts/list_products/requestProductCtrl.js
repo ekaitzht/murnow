@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('RequestProductCtrl',
-  ['$http','$scope', '$mdDialog',
-function($http, $scope, $mdDialog){
+  ['$http','$scope', 'Dialog',
+function($http, $scope, Dialog){
 	$scope.application = {
 		brand_name: null,
 		product_name:null,
@@ -21,7 +21,7 @@ function($http, $scope, $mdDialog){
  	
  	$scope.closeDialog = function() {
 	 	$scope.sentRequest = false;
-    	$mdDialog.hide();
+    	Dialog.hide();
 	};
   
 

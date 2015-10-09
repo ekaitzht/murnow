@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ReviewCtrl',
-  ['$scope', 'scopeProduct','products', '$mdDialog','Intercom',
-function($scope, scopeProduct, products, $mdDialog, Intercom){
+  ['$scope', 'scopeProduct','products', 'Dialog','Intercom',
+function($scope, scopeProduct, products, Dialog, Intercom){
 	$scope.repurchaseError = false;
 	$scope.addReview = function(){
 		$scope.errors = {};
@@ -48,7 +48,7 @@ function($scope, scopeProduct, products, $mdDialog, Intercom){
 	    			    		
 	    		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + review.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
 	    		
-	    		$mdDialog.hide();
+	    		Dialog.hide();
 	    			
 				Intercom.addReview(review)
 	  		}).error(function(error){
@@ -74,7 +74,7 @@ function($scope, scopeProduct, products, $mdDialog, Intercom){
 	
 	
 	$scope.closeDialog = function() {
-    	$mdDialog.hide();
+    	Dialog.hide();
 	};
 	
 

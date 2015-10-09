@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('Profile', [
-'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
-function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
+'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','Dialog','$http', 'configMurnow',
+function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow){
 	
 	
 

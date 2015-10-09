@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', '$mdDialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams',
-function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMurnow, $stateParams){
+  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams',
+function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;

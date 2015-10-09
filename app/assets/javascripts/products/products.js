@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('products',[ '$http', '$rootScope','$mdDialog','Auth', function($http, $rootScope, $mdDialog, Auth){
+.factory('products',[ '$http', '$rootScope','Dialog','Auth', function($http, $rootScope, Dialog, Auth){
     
     var o = {
     	products: [],

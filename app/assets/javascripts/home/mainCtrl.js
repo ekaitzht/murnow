@@ -2,12 +2,11 @@ angular.module('murnow')
 .controller('MainCtrl', 
 ['$scope','$rootScope',
 '$state',
-'$stateParams',
-'$mdDialog',
+'$stateParams'
 'products',
 'configMurnow',
 'User',
-function($scope, $rootScope, $state,$stateParams, $mdDialog, products, configMurnow, User){
+function($scope, $rootScope, $state,$stateParams, products, configMurnow, User){
   		var cdn = configMurnow.cdn_domain_name;
   		var enviroment = configMurnow.enviroment;
   		var products = products.products;
