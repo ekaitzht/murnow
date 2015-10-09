@@ -1,6 +1,6 @@
 angular.module('murnow')
-.controller('TrendingListProductsCtrl', ['$scope','$rootScope','$state','$stateParams','$mdDialog','products','configMurnow',
-function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurnow){
+.controller('TrendingListProductsCtrl', ['$scope','$rootScope','$state','$stateParams','products','configMurnow',
+function($scope, $rootScope, $state,$stateParams, products,configMurnow){
 	$scope.products = products.products.search;
     $scope.cdn = configMurnow.cdn_domain_name;
     

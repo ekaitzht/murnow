@@ -1,6 +1,6 @@
 angular.module('murnow')
-.controller('ListProducts', ['$scope','$rootScope','$state','$stateParams','$mdDialog','products','configMurnow',
-function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurnow){
+.controller('ListProducts', ['$scope','$rootScope','$state','$stateParams','Dialog','products','configMurnow',
+function($scope, $rootScope, $state,$stateParams, Dialog, products,configMurnow){
 	$scope.from = 0;
 	$scope.products = products.products.search;
     $scope.paginator = {busy: false, ended: false};
@@ -57,11 +57,7 @@ function($scope, $rootScope, $state,$stateParams, $mdDialog, products,configMurn
 
  	
  	$scope.dialogRequestProduct = function(){
-	 	$mdDialog.show({
-	        controller: 'RequestProductCtrl',
-	        templateUrl: 'list_products/_request_product_dialog.html',
-	        hasBackdrop: true
-		});
+	 	Dialog.requestProduct();
  	}
  	
  	

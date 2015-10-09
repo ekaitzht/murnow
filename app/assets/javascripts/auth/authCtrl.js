@@ -6,34 +6,18 @@ angular.module('murnow')
 'User',
 '$stateParams',
 '$cookies',
-'$mdDialog',
+'Dialog',
 '$rootScope',
-function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootScope){
+'Intercom',
+function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom){
   $scope.login = function() {   
   
     $scope.errors = {};
 
     Auth.login($scope.user).then(function(ev){
-	
-	
-	if( location.hostname == 'www.murnow.com' ) {
-        window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		 } );
-	} else {
-		 window.Intercom('boot',  {
-		   app_id: 'xjo9xumi',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		 });
-	}	 
-   
+
+		Intercom.boot(ev);
+		
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -50,13 +34,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
   };
 
   $scope.sendConfirmationInstructions = function(email){
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('Email sent!')
-        .content('We have sent you the confirmation instructions to your email address.')
-        .ariaLabel('Password notification')
-        .ok('Got it!')
-    );
+    Dialog.alertSentConfirmation();
     User.send_confirmation_instructions(email);
   }
 
@@ -98,13 +76,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 
     $scope.errors = {};
     Auth.register($scope.user).then(function(ev){
-     	 window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: ev.email,
-		   user_id: ev.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: ev.created_at
-		   } );
+     	 Intercom.boot(ev);
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -133,34 +105,19 @@ function($scope, $state, Auth, User, $stateParams, $cookies, $mdDialog, $rootSco
 
   $scope.showDialogForgotPassword = function() {
     
-    $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_forgotpassword.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+   		Dialog.forgotPassword();
   };
 
-  $scope.showDialogRegister= function() {
-  
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_register.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
-  };
+  	$scope.showDialogRegister= function() {
+ 
+  		Dialog.register();
+  	};
   
     $scope.showDialogLogin= function() {
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_login.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
-  };
+     	Dialog.login();
+   };
 	$scope.closeDialog = function() {
-    	$mdDialog.hide();
+    	Dialog.hide();
 	};
   
 }]);

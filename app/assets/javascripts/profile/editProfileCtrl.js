@@ -1,16 +1,16 @@
 angular.module('murnow')
 .controller('EditProfileCtrl', [
-'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','$mdDialog','$http', 'configMurnow',
-function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $http, configMurnow){
+'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','Dialog','$http', 'configMurnow',
+function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow){
 	
 	
-	if(User.user_session.age === null) {
-		User.user_session.age = null;
+	if(User.getAge() === null) {
+		User.setAge(null) ;
 	} else {
-		User.user_session.age = new Date(User.user_session.age);
+		User.setAge(new Date(User.getAge()));
 	}
 	
-	$scope.user = User.user_session;
+	$scope.user = User.getUser();
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
 	
@@ -52,9 +52,9 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         title: 'Expresso',
         value: 'expresso'
     }];
-    
+        
     // SKIN TYPES
-   	 $scope.skin_types = [{
+    $scope.skin_types = [{
         title: 'Normal',
         value: 'normal'
       },{
@@ -67,7 +67,8 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
         title: 'Oily',
         value: 'oily'
     }];
-    
+
+
       // EYES
    	 $scope.eye_colors = [{
         title: 'Brown',
@@ -125,15 +126,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
 		    $scope.user.hash_url_image= Amazon.unique_name_file_hash;
 		    User.updateUserProfile($scope.user, $scope.skin_problems);
 		    
-		    Auth.currentUser().then(function(user) {
-			    
-			    	
-		
-		       	 User.setUser(user);
-		         $state.go('profile', {id: user.id});
-		    }, function(error) {
-		        // unauthenticated error
-		    });
+		    Auth.currentUser().then(function(user) {$state.go('profile', {id: user.id});});
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
 		}).error(function(err){
 		
@@ -157,13 +150,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
       } 
 
       if ( ($scope.file[0].size/1024) >= 2048 ) { // if the file is bigger than  2048 KB
-        $mdDialog.show(
-          $mdDialog.alert()
-            .title('Photo too big')
-            .content('The size of the image chosen is too big. Please upload a file with less than 2MB.')
-            .ariaLabel('Password notification')
-            .ok('Got it!')
-        );
+        Dialog.photoTooBig();
         return;      
       } 
       var file = $scope.file[0];
@@ -171,14 +158,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, $mdDialog, $
       var reader = new FileReader();
       reader.onload = function (evt) {
         $scope.$apply(function($scope){
-	       $mdDialog.show({
-            controller: 'CropImageCtrl',
-            templateUrl: 'profile/_dialogCropImage.html',
-            hasBackdrop: true,
-            clickOutsideToClose: false,
-            locals: {myImage: evt.target.result, scopeEditProfile: $scope}
-          });
-
+	       Dialog.cropImage(evt, $scope);
         });
       };
       reader.readAsDataURL(file);

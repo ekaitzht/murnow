@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('products',[ '$http', '$rootScope','$mdDialog','Auth', function($http, $rootScope, $mdDialog, Auth){
+.factory('products',[ '$http', '$rootScope','Dialog','Auth', function($http, $rootScope, Dialog, Auth){
     
     var o = {
     	products: [],
@@ -79,12 +79,7 @@ angular.module('murnow')
 		
 		if(Auth._currentUser === null){
 			
-			$mdDialog.show({
-				 controller: 'DialogCtrl', 
-            	templateUrl: 'dialogs_feedback/_not_signup.html',
-            	hasBackdrop: true,
-            	clickOutsideToClose: true
-            });
+			Dialog.notSignUpUpvoteReview()
 		} else {
 			return $http.put('/api/votes/' + review_id + '/users/'+ Auth._currentUser.id);
 		}
