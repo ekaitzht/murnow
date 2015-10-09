@@ -2,7 +2,7 @@ angular.module('murnow')
 .controller('MainCtrl', 
 ['$scope','$rootScope',
 '$state',
-'$stateParams'
+'$stateParams',
 'products',
 'configMurnow',
 'User',
