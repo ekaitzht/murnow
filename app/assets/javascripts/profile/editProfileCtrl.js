@@ -124,7 +124,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 		  
 		    var random = (new Date()).toString();
 		    $scope.user.hash_url_image= Amazon.unique_name_file_hash;
-		    User.updateUserProfile($scope.user, $scope.skin_problems);
+		    User.updateUserProfile($scope.user, $scope.user.skin_problems);
 		    
 		    Auth.currentUser().then(function(user) {$state.go('profile', {id: user.id});});
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
@@ -133,7 +133,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 		});    
     } else { 
 	    
-        User.updateUserProfile($scope.user, $scope.skin_problems)
+        User.updateUserProfile($scope.user, $scope.user.skin_problems)
         Auth.currentUser().then(function(user) {
 	     
 	         $state.go('profile', {id: user.id});
