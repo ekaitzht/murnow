@@ -15,8 +15,8 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
 //.not-home-page .mainNav {display: inline-block !important;float: right !important;}
 
    Auth.currentUser().then(function (user){
-	  Intercom.boot(user); 
-      $scope.user = user;
+	  Intercom.boot(User.getUser()); 
+      $scope.user = User.getUser();
   });
 
   $scope.$on('devise:new-registration', function (e, user){
