@@ -62,7 +62,17 @@ angular.module('murnow')
     	window.Intercom('trackEvent','edited-profile',metadata);	
 	};
 	
-	
+	this.likeReview = function(review, user_id){
+		
+		var metadata = {
+			user_id: user_id, 
+			receiver_upvote:  location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ review.user_id,
+			review_id: review.id,
+			product_url: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/products/"+ review.product_id
+		}
+	    		
+	    window.Intercom('trackEvent','added-upvote',metadata);
+	}
 	this.shutdown = function() {
 		window.Intercom('shutdown'); 	
 	};
