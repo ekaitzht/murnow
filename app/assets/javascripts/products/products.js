@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('products',[ '$http', '$rootScope','Dialog','Auth', function($http, $rootScope, Dialog, Auth){
+.factory('products',[ '$http', '$rootScope','Dialog', 'Intercom', 'Auth', function($http, $rootScope, Dialog, Auth, Intercom){
     
     var o = {
     	products: [],
@@ -81,6 +81,7 @@ angular.module('murnow')
 			
 			Dialog.notSignUpUpvoteReview()
 		} else {
+			
 			return $http.put('/api/votes/' + review_id + '/users/'+ Auth._currentUser.id);
 		}
 	};
