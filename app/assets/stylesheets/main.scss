@@ -112,7 +112,6 @@ a {text-decoration:none;}
 .md-button.md-primary {color:black;}
 body {
 	
-	overflow-y:auto !important;
 	
 	.mainNav {
 		position: absolute;    right: 0px;   
@@ -255,8 +254,10 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 .trading-products {display:none;}
 
 .home-page{
+	display:block;overflow:auto;
+	md-content{overflow:hidden;}
 	@extend .check-mark;
-		.sub-head {font-size:1rem;}
+	.sub-head {font-size:1rem;}
 	.review-body p{font-size:15px ;}
 	.check-mark { //overriding check-mark
 	 width: 2.7rem;
