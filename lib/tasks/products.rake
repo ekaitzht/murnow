@@ -71,13 +71,13 @@ namespace :products do
 			#object = @s3.get_object(bucket: 'murnow', key: "images_products/"+hash_url_image + ".jpg") 
 			
 			if not @selectedKeys.include?("images_products/"+hash_url_image + ".jpg")
-				puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
+				#puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
 				
-				#addFileToS3( hash_url_image , open(image_url).read)
-				return image_url
+				addFileToS3( hash_url_image , open(image_url).read)
+				return hash_url_image
 			else 
 				#puts "Found key: "+hash_url_image
-				return image_url
+				return hash_url_image
 			end
 			
 			
@@ -85,22 +85,23 @@ namespace :products do
 		
 		def createProductObject(source)
 			
-			product = Product.new
-			product.brand_name = curateBrand(source)
-			product.product_name = curateNameProduct(source)
-		    product.long_description = curateDetails(source)
-		    product.sku = curateSKU(source)
-		    product.category = curateCategories(source)
-			product.tags = curateTags(source)
-	        product.prod_id = source['id']
-		    product.retailer = source['retailer']
-		    product.product_stars = source['summary']['average']
-		    product.hash_url_image = processImageUrl(source['img'],product.product_name,  product.prod_id, source['url'])
-			product.buyers = product.product_stars*10
-			product.ref_elastic = curateRefElastic(source)
+			product = Hash.new
+			product['brand_name'] = curateBrand(source)
+			product['product_name'] = curateNameProduct(source)
+		    product['long_description'] = curateDetails(source)
+		    product['sku'] = curateSKU(source)
+		    product['category'] = curateCategories(source)
+			product['tags'] = curateTags(source)
+	        product['prod_id'] = source['id']
+		    product['retailer'] = source['retailer']
+		    product['product_stars'] = source['summary']['average']
+		    product['hash_url_image'] = processImageUrl(source['img'], product['brand_name'],  product['prod_id'], source['url'])
+			product['buyers'] = product['product_stars']*10
+			product['ref_elastic'] = curateRefElastic(source)
 			
-            product.not_buyers = 50 - product.buyers
-            product.rating = (product.buyers/(product.buyers + product.not_buyers))*100
+            product['not_buyers'] = 50 - product['buyers']
+            product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
+			product['original_url'] = source['url']
 
 			return product
 		end
@@ -119,7 +120,7 @@ namespace :products do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'macindex', body: 
+		response = client.search index: 'macindex,sephoraindex,ultaindex', body: 
 				{	query: {
 		        		filtered: {
 					
@@ -196,7 +197,7 @@ namespace :products do
 				            }
 				        }
 					},
-					size: 50000
+					size: 10000
 				}
 				
 				
@@ -211,21 +212,29 @@ namespace :products do
 		
 
 		puts "Elastisearch Query executed"
-
+		updates = 0
+		inserts = 0
 		response['hits']['hits'].each { |document|
-			product = createProductObject(document['_source'])	
+			productHash = createProductObject(document['_source'])	
 			
+			# this returns array of objects each object represents and row in the database
+			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
 
-			productDB = Product.where("retailer = ? AND prod_id = ?",product.retailer, product.prod_id).limit(1)
-			#puts productDB
+			if response.empty?
+				#puts "saving prod_id: "+ productHash['prod_id'].to_s
+				Product.new(productHash).save
+				inserts = inserts + 1
+			else 
+				productDB = response.first
+				productHash['updated_at'] = DateTime.now  
+				productDB.update_attributes(productHash)
+				#puts "updated prod_id: "+productDB.prod_id.to_s
+				updates = updates + 1
+			end
 			
-			#if productDB.nil?
-			#	productToUpdate = Product.find_by_id(productDB.id)
-			#	productToUpdate.update()
-			#else 
-			#	product.save
-			#end
+			
 		}
+		puts "Inserts: "+ inserts.to_s
+		puts "Updates: "+ updates.to_s
 	end
 end
-
