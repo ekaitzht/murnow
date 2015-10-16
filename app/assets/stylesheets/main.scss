@@ -1,34 +1,10 @@
+@import 'base/colors';
+@import 'base/typography';
+@import 'base/reset';
 
 
-$pink-color: #FFAABB;
-$amatic-font: 'Amatic SC';
-$josefin-sans: 'Josefin Sans',sans-serif;
-$color-divider: #FDD1F0;
-$monte-carlo:#80CBC4;
-$lucida-grande: "Lucida Grande";
-$subheader-color: #757575;
-$white: white;
-$verdana: 'verdana';
-$josefin-sans-light: 'Josefin Sans Light', sans-serif;
 
-.invisible {visibility: hidden;}
- 
-html {font-size:16px;outline:none !important; *:focus { outline: none; } font-family:$lucida-grande;}
-// ** CONTROLLING REMS **//
-
-	.margin-top-rem{margin-top:0.2rem;}
-
-.md-button.md-fab {background-color:$pink-color !important;}
-md-icon {height:1.5rem;width:1.5rem;}
-//**** EXTEND HELPERS ****/
-md-virtual-repeat-container {display:none !important;}
-#load-more-product {    font-family: "Lucida Grande";letter-spacing: 0.1rem;}
-
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-//* list products */
-	// Separate stars
+// ********** MIXINS ********** //
 	.separate-stars {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.43rem;}}
 	.separate-stars-review {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.3125rem;}}
 	.check-mark {
@@ -53,11 +29,18 @@ md-virtual-repeat-container {display:none !important;}
 		.ratings{font-size:1.56rem; position: relative;top: 5px;margin-top:0.5rem;}
 		#brand-name{margin-top:0.5rem;}
 		@extend .separate-stars;
-		md-divider {border-top-color:$color-divider;width:871px;    border-width: 2px; margin-left:42px;}
+		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
 		.wrapper-rate-approval{
 			padding:0px;
 			margin-right:45px;
-		    border-radius:50%;padding: 1rem 1rem;@extend .amatic; @extend .weight-700; font-size:2rem;color:white; background-color:$pink-color;width:10.75rem; height:10.75rem;
+		    border-radius:50%;
+		    padding: 1rem 1rem;
+		    font-family: $brand-font;
+		    font-weight:700;
+		    font-size:2rem;
+		    color:white; 
+		    background-color:$accent-color;
+		    width:10.75rem; height:10.75rem;
 			.approval-rate{font-size:1.93rem;}
 			.repurchase-percent{font-size:4rem;position: relative; top: 10px;}
 			
@@ -81,68 +64,15 @@ md-virtual-repeat-container {display:none !important;}
 		}	
 	}
 	
-	
-.headline {font-size:2.5rem;font-weight: 400; }
-.title{opacity:0.87; font-size:1.875rem ;color:black;line-height:2rem;margin:0rem; font-family:$lucida-grande;font-weight: 400;} // Name product
-.sub-head {opacity:0.54 ; font-size:1.45rem;color:black;line-height:2rem;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // subitulo
-.hint-text {opacity:0.38;font-size:1.125rem; color:black;line-height:21px;margin:0rem;font-family:$josefin-sans;font-weight: 400;line-height:1.375rem} //hint text
-p {opacity:0.54 ; font-size:18px;color:black;line-height:21px;margin:0rem;font-family:$lucida-grande;font-weight: 400;} // review text (paragraph) 
-.user-name-review-product {font-weight:bold;opacity:1;}
 
-
-md-dialog[role="alertdialog"] button span:first-child{
-	color:$pink-color;font-weight:bold;
-}
-
-
-h1 {margin:0px;}
-a {text-decoration:none;}
-.wordwrap {  
-   white-space: pre-wrap;      /* Webkit */    
-   white-space: -moz-pre-wrap; /* Firefox */     
-   white-space: -pre-wrap;     /* Opera <7 */    
-   white-space: -o-pre-wrap;   /* Opera 7 */     
-   word-wrap: break-word;      /* IE */ 
-}
-
-.line-height {
-	line-height: 18px;
-}
-
-.md-button.md-primary {color:black;}
-body {
-	
-	
-	.mainNav {
-		position: absolute;    right: 0px;   
-		.md-button{font-weight: bold;font-size:20px;}
-	}
-	md-menu {position: fixed;    right: 0px; top:-3px;}
-	
-}
 span.sr-only.ng-binding {display:none;}
-.left {float:left;}
-md-toolbar{background-color:$monte-carlo !important;}
-
-img {max-width:100%}
-.fa {color:$pink-color;}
-ui-view {width:100%;overflow-x:hidden;}
-
-.amatic {font-family:$amatic-font;}
-.amatic-pink{font-family: $amatic-font ; font-weight:700;color: $pink-color;}
-.josefin-pink {font-family: $josefin-sans ; font-weight:400;color: $pink-color;}
-
-ui-view > * {width:100%;}
+.fa {color:$accent-color;}
 
 .not-outline:focus {
 	outline:none !important;
 }
 .fa-thumbs-o-up,fa-thumbs-up  {color:black;}
 
-.weight-100 {font-weight:100;}
-.weight-200 {font-weight:200;}
-.weight-400 {font-weight:400;}
-.weight-700 {font-weight: 700;}
 
 
 .justify-text {text-align:center;}
@@ -150,9 +80,15 @@ ui-view > * {width:100%;}
 
 /* GENERAL ELEMENTS RELATED WITH THE CLASSES */
 #search-box-input {-webkit-box-sizing: border-box;box-sizing: border-box;}
-#progress-circular{display:none; z-index:1001;position:fixed;  left: 0;
+#progress-circular{
+  display:none; 
+  z-index:1001;
+  position:fixed;  
+  left: 0;
   right: 0;
-  margin: 0 auto;top:250px;}
+  margin: 0 auto;
+  top:250px;
+ }
 
 header {
 	.face {
@@ -206,10 +142,6 @@ md-dialog {
 }
 
 
-button.md-raised.md-primary.md-button.md-default-theme {background-color:$pink-color;}
-button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$pink-color;}
-
-
 
 #menu {cursor:pointer !important;#image-thumbnail-menu:focus{outline:none;}
 
@@ -222,13 +154,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	
 }
 
-
-
-.amatic-h1{font-size:35px; @extend .amatic-pink}
-.amatic-h2 {font-size:28px; @extend .amatic-pink}
-
-.josefin-h3 {font-size:15px;@extend .josefin-pink}
-
+.not-home-page
 
 /* USER PROFILE */
 
@@ -243,17 +169,13 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
   height:350px;
 }
 
-.product-profile {background-color:white; }
-
-.glyphicon-thumbs-up {cursor:pointer;}
-/* PUBLIC USER PROFILE */
-
 
 
 .trading-products * { display:none !important;}
 .trading-products {display:none;}
 
 .home-page{
+	.user-name-review-product {font-weight:bold;opacity:1;}
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
 	@extend .check-mark;
@@ -265,13 +187,19 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
 	}
-	.thumbnail-product{	border: 1px solid $pink-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
-	.thumbnail-user {border: 1px solid $pink-color;}
+	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
+	.thumbnail-user {border: 1px solid $accent-color;}
 	#md-toolbar-header {height:90%; max-height:400px;}
 	h1{margin-top:3rem;}
 	.trading-products {
 		display:none;
-		font-family: $josefin-sans; font-weight:300; font-style:italic; font-size:1.3rem; text-align:center;     position: relative; top: -5px;
+		font-family: $josefin-sans; 
+		font-weight:300;
+	    font-style:italic; 
+	    font-size:1.3rem; 
+	    text-align:center;    
+	    position: relative;
+	     top: -5px;
 		span {
 			cursor:pointer;
 			&:not(:first-child){margin-right: 3px;padding-left: 2px;}
@@ -289,13 +217,25 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
     .review-card-wrapper {max-width:434px;}
 	@extend .review-product-mixed;
 	//.review-text{    width: 64.5% !important;}
-	header {background-color:$monte-carlo;}
+	header {background-color:$brand-color;}
 	#search-bar-not-home-page {display:none;}
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
-	.title-landing-page{text-align:center;height: 100px;font-size:5rem;font-family: $amatic-font;font-style: normal;font-weight: 700;color:white;z-index:1000;width: 70% ;margin:auto;margin-top:4rem;}
-	.twitter-pitch-home{font-family: $josefin-sans;font-weight:300;color:white;font-size:2.5rem;}
+	.title-landing-page{
+		text-align:center;
+		height: 100px;
+		font-size:5rem;
+		font-family: $brand-font;
+		font-style: normal;
+		font-weight: 700;
+		color:white;
+		z-index:1000;
+		width: 70% ;
+		margin:auto;
+		margin-top:4rem;
+	}
+	.twitter-pitch-home{@include subheader;}
 	li {cursor:pointer;}
 	#logo {display:none;  }
 	#md-content{height: 100%;}
@@ -358,6 +298,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 }
 
 .not-home-page {
+	
 	md-card {padding:2.5rem;}
 	@extend .check-mark;
 	#social-icons-home-page {display:none;}
@@ -377,7 +318,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 
 	overflow:hidden;
 	md-card{max-width:960px;margin:auto;margin-top:1.25rem;margin-bottom:5px;}
-	#logo {position: relative;left:10px;top:5px;}
+	#logo {position: relative;left:10px;top:5px;font-family:$brand-font}
 	.form-wrapper-search {
 		margin:auto;
 		form  {
@@ -418,7 +359,7 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 		}	
 		.not-found{
 			img{width:15rem;height: 15rem;}
-			div:first-child{font-size:4rem;}
+			div:first-child{font-size:4rem;font-family: $brand-font; font-weight:700;color: $accent-color;}
 			#cupcake{margin-top:30px;margin-bottom: 30px;}
 			#request-products{margin-bottom:30px;}
 			
@@ -426,7 +367,8 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	
 	.products {
-		
+		.user-name-review-product {font-weight:bold;opacity:1;}
+
 		.header-product {
 			
 			@extend .row-product-info;	
@@ -470,7 +412,8 @@ button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$
 	}
 	
 	.profile {
-		
+		.user-name-review-product {font-weight:bold;opacity:1;}
+		background-color:white;
 		@extend .header-profile;
 		.count-reviews{font-size:1.7rem;margin-top:2.75rem;}
 		.bio{margin-topo:0.5rem;}
