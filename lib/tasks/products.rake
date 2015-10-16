@@ -71,12 +71,12 @@ namespace :products do
 			#object = @s3.get_object(bucket: 'murnow', key: "images_products/"+hash_url_image + ".jpg") 
 			
 			if not @selectedKeys.include?("images_products/"+hash_url_image + ".jpg")
-				#puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
+				puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
 				
 				addFileToS3( hash_url_image , open(image_url).read)
 				return hash_url_image
 			else 
-				#puts "Found key: "+hash_url_image
+				puts "Found key: "+hash_url_image
 				return hash_url_image
 			end
 			
@@ -120,7 +120,7 @@ namespace :products do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'sephoraindex,ultaindex', body: 
+		response = client.search index: 'macindex', body: 
 				{	query: {
 		        		filtered: {
 					
@@ -197,21 +197,21 @@ namespace :products do
 				            }
 				        }
 					},
-					size: 1000
+					size: 5000
 				}
 				
-				
+		puts "Elastisearch Query executed."
+
 		resourceS3 = Aws::S3::Resource.new
 		bucket = resourceS3.bucket('murnow')
 		
-		
+		puts "Creating keys."
 		@selectedKeys = Array.new
 		bucket.objects.each do |obj|
 			@selectedKeys.push(obj.key)
 		end
 		
-
-		puts "Elastisearch Query executed"
+		puts "Keys created."
 		updates = 0
 		inserts = 0
 		response['hits']['hits'].each { |document|
@@ -234,7 +234,7 @@ namespace :products do
 			
 			
 		}
-		puts "Inserts: "+ inserts.to_s
 		puts "Updates: "+ updates.to_s
+		puts "Inserts: "+ inserts.to_s
 	end
 end
