@@ -120,7 +120,7 @@ namespace :products do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'macindex,sephoraindex,ultaindex', body: 
+		response = client.search index: 'sephoraindex,ultaindex', body: 
 				{	query: {
 		        		filtered: {
 					
@@ -197,7 +197,7 @@ namespace :products do
 				            }
 				        }
 					},
-					size: 10000
+					size: 1000
 				}
 				
 				
@@ -221,14 +221,14 @@ namespace :products do
 			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
 
 			if response.empty?
-				#puts "saving prod_id: "+ productHash['prod_id'].to_s
+				puts "saving prod_id: "+ productHash['prod_id'].to_s
 				Product.new(productHash).save
 				inserts = inserts + 1
 			else 
 				productDB = response.first
 				productHash['updated_at'] = DateTime.now  
 				productDB.update_attributes(productHash)
-				#puts "updated prod_id: "+productDB.prod_id.to_s
+				puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
 			
