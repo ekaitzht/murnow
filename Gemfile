@@ -28,7 +28,7 @@ gem 'aws-sdk'
 gem 'sitemap_generator'
 
 
-gem 'friendly_id', '~> 5.1.0' 
+#gem 'friendly_id', '~> 5.1.0' 
 
 # Serializer gem
 gem 'active_model_serializers'
