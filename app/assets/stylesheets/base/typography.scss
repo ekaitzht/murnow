@@ -20,19 +20,18 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-weight: 400;
 } 
 
-.sub-head {  // subitulo
+@mixin sub-head{  // subitulo
 	@include secondary-color;
 	font-size:1.45rem;
 	line-height:2rem;
 	margin:0rem;
 	font-family:$base-font;
 	font-weight: 400;
-	}
+}
 	
 .hint-text {
 	@include hint-color;
 	font-size:1.125rem; 
-	line-height:21px;
 	margin:0rem;
 	font-family:$josefin-sans;
 	font-weight: 400;
@@ -45,4 +44,5 @@ p {
 	line-height:21px;
 	margin:0rem;
 	font-family:$base-font;
-	font-weight: 400;} // review text (paragraph) 
+	font-weight: 400;
+} // review text (paragraph) 

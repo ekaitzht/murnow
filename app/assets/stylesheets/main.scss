@@ -23,11 +23,14 @@
 
 	// Row product info
 	.row-product-info {   // style for products_list
-					
+
 		#image-product {margin-left:2.5rem; margin-right:2.5rem;}
 		#product-info{padding:0px;padding-right:2.8rem;position: relative;}
 		.ratings{font-size:1.56rem; position: relative;top: 5px;margin-top:0.5rem;}
-		#brand-name{margin-top:0.5rem;}
+		#brand-name{
+			margin-top:0.5rem;
+			h3 {@include sub-head;}
+		}
 		@extend .separate-stars;
 		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
 		.wrapper-rate-approval{
@@ -179,7 +182,7 @@ md-dialog {
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
 	@extend .check-mark;
-	.sub-head {font-size:1rem;}
+	
 	.review-body p{font-size:15px ;}
 	.check-mark { //overriding check-mark
 	 width: 2.7rem;
@@ -214,7 +217,11 @@ md-dialog {
     	left: 10px;
     	#twitter-social{ margin-left:5px;}
     }
-    .review-card-wrapper {max-width:434px;}
+    .review-card-wrapper {
+	    max-width:434px;
+	    h3 {@include sub-head;font-size:1rem;}
+	    
+    }
 	@extend .review-product-mixed;
 	//.review-text{    width: 64.5% !important;}
 	header {background-color:$brand-color;}
@@ -245,33 +252,7 @@ md-dialog {
 		.face{border-radius:100px;width:100px;height:100px;}
 	}
 	
-		.bubble 
-	{
-	position: relative;
-	width: 250px;
-	height: 120px;
-	padding: 0px;
-	background: #FFFFFF;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 10px 10px 10px 10px;
-  margin-left: 15px;
-	}
 	
-	.bubble:after 
-	{
-	content: '';
-	position: absolute;
-	border-style: solid;
-	border-width: 15px 15px 15px 0;
-	border-color: transparent #FFFFFF;
-	display: block;
-	width: 0;
-	z-index: 1;
-	left: -15px;
-	top: 20px;
-	}
 	#search-bar-home-page {
 		text-align:center;
 		md-autocomplete {
@@ -364,6 +345,10 @@ md-dialog {
 			#request-products{margin-bottom:30px;}
 			
 		}
+		
+		.product-info {
+			#brand-name h3 {@include sub-head;}
+		}	
 	}
 	
 	.products {
@@ -372,8 +357,8 @@ md-dialog {
 		.header-product {
 			
 			@extend .row-product-info;	
-			
 			padding:0px;
+			
 		}
 		.product-profile{
 			padding:0px;
@@ -416,7 +401,7 @@ md-dialog {
 		background-color:white;
 		@extend .header-profile;
 		.count-reviews{font-size:1.7rem;margin-top:2.75rem;}
-		.bio{margin-topo:0.5rem;}
+		.bio{margin-topo:0.5rem;@include sub-head;}
 		.edit-profile-button{padding:0px;margin:0px;}
 		
 		md-list{
@@ -447,10 +432,15 @@ md-dialog {
 	}
 	
 	.competition{
-		#most-popular-reviews,#follow-us{text-align:center;max-width:500px;margin-top:2rem;color:black;
-		opacity:1;
+		#bullet-points { @include sub-head;}
+		#most-popular-reviews,#follow-us{
+			text-align:center;
+			max-width:500px;
+			margin-top:2rem;
+			color:black;
+			opacity:1;
 		}
-		a:visited,a{color:#FFA9BA;}
+		a:visited,a{color:$accent-color;}
 		
 	}
 
