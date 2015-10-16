@@ -29,8 +29,10 @@
 		.ratings{font-size:1.56rem; position: relative;top: 5px;margin-top:0.5rem;}
 		#brand-name{
 			margin-top:0.5rem;
-			h3 {@include sub-head;}
+			
 		}
+		h3 {@include sub-head;}
+		h2 {@include title;}
 		@extend .separate-stars;
 		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
 		.wrapper-rate-approval{
@@ -57,11 +59,21 @@
 			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{max-width:6.0625rem;width:6.0625rem;}}	
 			.review-text{
 				width:82%;
-				.footer-review {width:100%;margin-top: 0.5625rem;
-				@extend .separate-stars-review;	
+				.review-body p {@include body;}
+				
+				.footer-review {
+					width:100%;
+					margin-top: 0.5625rem;
+					@extend .separate-stars-review;	
 				}
-				.thumbs-up {cursor:pointer;}
-				.header-review{width:100%;cursor:pointer;}
+				.thumbs-up {
+					cursor:pointer;
+				}
+				.header-review{
+					width:100%;
+					cursor:pointer;
+					.date-review {@include hint-text;}
+				}
 				
 			}
 		}	
@@ -111,7 +123,7 @@ md-dialog {
 	font-size:initial;
 	md-toolbar{
 	 background-color:white !important;
-	 h2{color:black !important;font-size:2rem !important;}
+	 h2{@include title; font-size:2rem !important;}
 	 .md-toolbar-tools{padding-left: 24px;}
 	}
 	.md-button{font-family: $verdana;}
@@ -220,6 +232,8 @@ md-dialog {
     .review-card-wrapper {
 	    max-width:434px;
 	    h3 {@include sub-head;font-size:1rem;}
+	    .date-review {@include hint-text;}
+
 	    
     }
 	@extend .review-product-mixed;
@@ -346,8 +360,9 @@ md-dialog {
 			
 		}
 		
-		.product-info {
+		#product-info {
 			#brand-name h3 {@include sub-head;}
+			h2{@include title;}
 		}	
 	}
 	
@@ -364,7 +379,7 @@ md-dialog {
 			padding:0px;
 		}
 		
-		.review-textarea{padding:1rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
+		.review-textarea{@include hint-text;padding:1rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 		
 		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;font-family: $josefin-sans;font-style: italic;}
 		
@@ -381,7 +396,10 @@ md-dialog {
 
 	.header-profile {  // for edit-profile and profile
 		.wrapper-image-profile {border-right: 1px solid #F2BDE7;padding-right: 1.875rem;}
-		.info-user-profile {padding-left:1.875rem;width:100%;}
+		.info-user-profile {
+			padding-left:1.875rem;width:100%;
+			.username {@include title;}
+		}
 		
 		.profile-button {height:4.25rem;width:4.25rem;
 			svg {width:2.25rem; height:2.25rem;    position: relative;left: -0.375rem;;}
@@ -400,14 +418,14 @@ md-dialog {
 		.user-name-review-product {font-weight:bold;opacity:1;}
 		background-color:white;
 		@extend .header-profile;
-		.count-reviews{font-size:1.7rem;margin-top:2.75rem;}
+		.count-reviews{@include title;font-size:1.7rem;margin-top:2.75rem;}
 		.bio{margin-topo:0.5rem;@include sub-head;}
 		.edit-profile-button{padding:0px;margin:0px;}
 		
 		md-list{
 			@extend .review-product-mixed;
 		}
-		
+		p {@include body;}
 		.profile-button svg{top: 1rem;}
 		.anonymous-image .profile-button {display:initial !important;}
 	}
@@ -417,9 +435,12 @@ md-dialog {
 		 .skin-problem-checkbox{text-transform: capitalize;}
 		.wrapper-image-profile {cursor:pointer;}
 		@extend .header-profile;
+		
 		.profile-button svg{top: -0.25rem;}
 		.skin-tones .avatar{max-width:100px;}
-		.age  {margin-top:1rem; margin-bottom:0.5rem;
+		.age  {
+			
+			margin-top:1rem; margin-bottom:0.5rem;
 			#age-field {
 					margin-right:1rem;
 				    border-top: none;
@@ -427,6 +448,8 @@ md-dialog {
 					border-right: none;
 			}
 		}
+		.biometrics label {@include title;}
+		
 		.profile-user{margin-top:2rem;}
 		.input-youtube-channel{margin-top:0.8rem;}
 	}

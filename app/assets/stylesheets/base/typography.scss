@@ -11,7 +11,7 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 
 .headline {font-size:2.5rem;font-weight: 400; }
 
-.title{ // Name product
+@mixin title{ // Name product
 	@include main-color; 
 	font-size:1.875rem ;
 	line-height:2rem;
@@ -29,7 +29,7 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-weight: 400;
 }
 	
-.hint-text {
+@mixin hint-text {
 	@include hint-color;
 	font-size:1.125rem; 
 	margin:0rem;
@@ -38,7 +38,7 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	line-height:1.375rem
 } 
 
-p {
+@mixin body {
 	@include secondary-color; 
 	font-size:18px;
 	line-height:21px;
