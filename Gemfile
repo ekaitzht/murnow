@@ -11,6 +11,7 @@ group :production do
 	gem 'prerender_rails'
 end
 gem 'heroku_rails_deflate', :group => :production
+gem 'typhoeus', require: 'typhoeus/adapters/faraday'
 
 gem 'omniauth-facebook'
 gem 'font_assets'
