@@ -313,9 +313,6 @@ md-dialog {
 	}
 
 
-	.header-profile {  // for edit-profile and profile
-		@include header-profile;		
-	}
 	
 	.profile {
 		.user-name-review-product {font-weight:bold;opacity:1;}
