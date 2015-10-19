@@ -1,0 +1,95 @@
+// ********** MIXINS ********** //
+	@mixin separate-stars {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.43rem;}}
+	@mixin separate-stars-review {.ratings .fa-star:not(:first-child),.fa-star-o:not(:first-child){margin-left:0.3125rem;}}
+	@mixin check-mark {
+		.check-mark{    
+			padding: 0px;
+			position: relative;
+			left: -7px;		    
+			font-size: 0.3125rem;
+		    width: 3rem;
+		    height: 3rem;
+		    border-radius: 50%;
+		    padding: 0.25rem;
+	    }
+	}
+
+
+	// Row product info
+	@mixin row-product-info {   // style for products_list
+
+		#image-product {margin-left:2.5rem; margin-right:2.5rem;}
+		#product-info{padding:0px;padding-right:2.8rem;position: relative;}
+		.ratings{font-size:1.56rem; position: relative;top: 5px;margin-top:0.5rem;}
+		#brand-name{
+			margin-top:0.5rem;
+			
+		}
+		h3 {@include sub-head;}
+		h2 {@include title;}
+		@include separate-stars;
+		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
+		.wrapper-rate-approval{
+			padding:0px;
+			margin-right:45px;
+		    border-radius:50%;
+		    padding: 1rem 1rem;
+		    font-family: $brand-font;
+		    font-weight:700;
+		    font-size:2rem;
+		    color:white; 
+		    background-color:$accent-color;
+		    width:10.75rem; height:10.75rem;
+			.approval-rate{font-size:1.93rem;}
+			.repurchase-percent{font-size:4rem;position: relative; top: 10px;}
+			
+		}
+	}
+
+	@mixin review-product-mixed {  // this represent the style for the product info in product profile, and reviews in landing_page, and reviews in profile user
+		.review-item{
+			padding:0rem 0rem;margin-top:2.125rem;
+			img{border-radius:50%;}
+			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{max-width:6.0625rem;width:6.0625rem;}}	
+			.review-text{
+				width:82%;
+				.review-body p {@include body;}
+				
+				.footer-review {
+					width:100%;
+					margin-top: 0.5625rem;
+					@include separate-stars-review;	
+				}
+				.thumbs-up {
+					cursor:pointer;
+				}
+				.header-review{
+					.user-name-review-product {@include title; font-size:18px;}
+					width:100%;
+					cursor:pointer;
+					.date-review {@include hint-text;}
+				}
+				
+			}
+		}	
+	}
+	
+	@mixin header-profile {
+		.wrapper-image-profile {border-right: 1px solid #F2BDE7;padding-right: 1.875rem;}
+		.info-user-profile {
+			padding-left:1.875rem;width:100%;
+			.username {@include title;}
+		}
+		
+		.profile-button {height:4.25rem;width:4.25rem;
+			svg {width:2.25rem; height:2.25rem;    position: relative;left: -0.375rem;;}
+		}
+		
+		.social-links{
+			margin-top:0.5rem;
+			margin-bottom:3.9375rem;
+			img {width:inherit;}
+			#youtube-logo{margin-right:0.5625rem;}
+		}
+
+	}

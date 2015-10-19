@@ -1,11 +1,6 @@
+@import 'base/colors';
+@import 'base/typography';
 
-$monte-carlo:#80CBC4;
-$pink-color: #FFAABB;
-$amatic-font: 'Amatic SC';
-$josefin-sans: 'Josefin Sans',sans-serif;
-$color-divider: #FDD1F0;
-$monte-carlo:#80CBC4;
-$lucida-grande: "Lucida Grande";
 
 @media screen and (max-width: 960px) {
 	
@@ -54,9 +49,9 @@ $lucida-grande: "Lucida Grande";
 
 @media (max-height: 600px), handheld and (orientation: landscape) { 
 	.home-page{
-		md-content{background-color: $monte-carlo;}
+		md-content{background-color: $brand-color;}
 		ui-view{display:none}
-		background-color:$monte-carlo;	
+		background-color:$brand-color;	
 	}	
 }
 
@@ -96,9 +91,9 @@ $lucida-grande: "Lucida Grande";
 	// *** HOME PAGE ***/
 	.home-page{
 		header{position:absolute;}
-		md-content{background-color: $monte-carlo;}
+		md-content{background-color: $brand-color;}
 		ui-view{display:none}
-		background-color:$monte-carlo;
+		background-color:$brand-color;
 		form md-autocomplete {width:100%;}
 	
 		#social-icons-home-page{
@@ -170,7 +165,7 @@ $lucida-grande: "Lucida Grande";
 	
 	.products-list {
   
-		#product-info {position: relative;top:auto; left:auto;font-family: $lucida-grande;line-height: 18px;}
+		#product-info {position: relative;top:auto; left:auto;font-family: $base-font;line-height: 18px;}
 		#image-product {margin-bottom:auto;margin-top:auto;margin-right: 20px;}
 		 
 	}
