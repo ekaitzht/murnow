@@ -9,11 +9,11 @@
 # testing heroku 
 
 default: &default
-  url: postgres://nvzwjcdosoctkd:UmvXf7DBPOgwGismSGiBExPTX3@ec2-107-21-105-116.compute-1.amazonaws.com:5432/d3pprfouib09s
+  url: postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
 
 development:
   <<: *default
-  database:  postgres://nvzwjcdosoctkd:UmvXf7DBPOgwGismSGiBExPTX3@ec2-107-21-105-116.compute-1.amazonaws.com:5432/d3pprfouib09s
+  database: postgresql://ekaitz:P.*mur11235@localhost:5432/local_murnow
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

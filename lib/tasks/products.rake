@@ -261,7 +261,7 @@ namespace :load do
 		
 		puts 'Manual upload product'
 		product = Hash.new
-		image_url = 'http://www.inglotcosmeticos.es/145-large_default/duraline.jpg'
+		image_url = 'https://www.inglotusa.com/Files/Products/4708_1_36_Thumb.png'
 		product['brand_name'] = 'inglot'
 		product['product_name'] = 'DURALINE'
 	    product['long_description'] = 'Waterless clear liquid that can intensify the color of any powder and transform it into an easy to apply, water resistant liquid.
