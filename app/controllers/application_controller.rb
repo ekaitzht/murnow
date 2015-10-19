@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
   def angular
     render 'layouts/application'
   end
-
+  
+  def launch
+  	render 'layouts/launch'
+  end
     private
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
