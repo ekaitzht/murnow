@@ -93,7 +93,6 @@ md-dialog {
 	
 }
 
-.not-home-page
 
 /* USER PROFILE */
 
@@ -117,7 +116,7 @@ md-dialog {
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
 	
-	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: EDC7E2;height:1px;border: 0;
+	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: $accent-color;height:1px;border: 0;
 	}
 	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 	.thumbnail-user {border: 1px solid $accent-color;}
@@ -160,7 +159,6 @@ md-dialog {
 	header {background-color:$brand-color;}
 	#search-bar-not-home-page {display:none;}
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
-	h1, h2 {color:white;}
 	//background-image: image-url('girly-wallpaper.jpg');
 	.title-landing-page{
 		text-align:center;
@@ -175,7 +173,7 @@ md-dialog {
 		margin:auto;
 		margin-top:4rem;
 	}
-	.twitter-pitch-home{@include subheader;}
+	.twitter-pitch-home{@include subheader;color:white;}
 	li {cursor:pointer;}
 	#logo {display:none;  }
 	#md-content{height: 100%;}

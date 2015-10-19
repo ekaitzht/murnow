@@ -28,7 +28,7 @@
 		h3 {@include sub-head;}
 		h2 {@include title;}
 		@include separate-stars;
-		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
+		md-divider {border-top-color:$accent-color;opacity:0.5;width:871px;    border-width: 2px; margin-left:42px;}
 		.wrapper-rate-approval{
 			padding:0px;
 			margin-right:45px;
