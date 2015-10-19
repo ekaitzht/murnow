@@ -1,8 +1,7 @@
 
-namespace :products do
-	task :load => :environment do
-		
-		
+namespace :load do
+	
+	
 		def encodeUTF8(string)
 			return string.encode('utf-8')
 		end
@@ -106,9 +105,14 @@ namespace :products do
 			return product
 		end
 				
+				
+	task :products => :environment do
+		
+		
+		
 		###################### MAIN FUNCTION ######################
 		
-        #Launch this task with  'heroku local worker', this tasks emulates in locally the heroku server using .env file for config vars.
+        #Launch this task with  'heroku local load_products', this tasks emulates in locally the heroku server using .env file for config vars.
         
         
         ###########################################################
@@ -197,7 +201,7 @@ namespace :products do
 				            }
 				        }
 					},
-					size: 5000
+					size: 5
 				}
 				
 		puts "Elastisearch Query executed."
@@ -237,4 +241,49 @@ namespace :products do
 		puts "Updates: "+ updates.to_s
 		puts "Inserts: "+ inserts.to_s
 	end
+	
+	
+	
+	
+
+
+
+	task :product => :environment do
+		
+		
+		###################### MAIN FUNCTION ######################
+		
+        #Launch this task with  'heroku local load_product', this tasks emulates in locally the heroku server using .env file for config vars.
+        #The direct call to rake is in Procfile
+        
+        ###########################################################
+        @s3 = Aws::S3::Client.new()
+		
+		puts 'Manual upload product'
+		product = Hash.new
+		image_url = 'http://www.inglotcosmeticos.es/145-large_default/duraline.jpg'
+		product['brand_name'] = 'inglot'
+		product['product_name'] = 'DURALINE'
+	    product['long_description'] = 'Waterless clear liquid that can intensify the color of any powder and transform it into an easy to apply, water resistant liquid.
+Hypoallergenic.' 
+	    product['sku'] = nil
+	    product['category'] = nil
+		product['tags'] = nil
+        product['prod_id'] = 1144
+	    product['retailer'] = 'inglotspain'
+	    product['product_stars'] = 4
+	    hash_url_image =  Digest::SHA256.hexdigest(image_url) 
+	    addFileToS3( hash_url_image , open(image_url).read)
+	    product['hash_url_image'] = hash_url_image
+		product['buyers'] = product['product_stars']*10
+		product['ref_elastic'] = nil
+		
+        product['not_buyers'] = 50 - product['buyers']
+        product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
+		product['original_url'] = image_url
+
+		
+		Product.new(product).save
+	end
+	
 end
