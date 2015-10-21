@@ -44,6 +44,11 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 	        }]
       }
     })
+    .state('launch', {
+      url: '/',
+      controller: 'LaunchCtrl',
+      templateUrl: 'launch/_launch.html'
+    })
     .state('list_products', {  // CAMBIAR ESTOOOOOOO
       url: '/list_products/:searchQuery',
       templateUrl: 'list_products/_products_list.html',
