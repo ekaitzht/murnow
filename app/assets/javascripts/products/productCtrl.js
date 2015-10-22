@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', '$mdDialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams',
-function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMurnow, $stateParams){
+  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom',
+function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;
@@ -51,44 +51,21 @@ function($scope,$rootScope, $mdDialog, products, product, Auth, $state,configMur
 
   $scope.showAddReviewPanel= function() {
     if(Auth._currentUser == null){
-    $mdDialog.show({
-				 controller: 'DialogCtrl', 
-            	templateUrl: 'dialogs_feedback/_not_signup_add_review.html',
-            	hasBackdrop: true,
-            	clickOutsideToClose: true
-            });
+    	Dialog.notSignupAddReview();
     } else {
-        
-      $mdDialog.show({
-        controller: 'ReviewCtrl',
-        templateUrl: 'products/_add_review_dialog.html',
-        hasBackdrop: true,
-        clickOutsideToClose: true,
-        bindToController: true,
-        onComplete:function(){
-           
-           $('#body-text-review').focus();
-        },
-        locals: {scopeProduct: $scope}
-      });
-     
+      Dialog.addReview($scope);
     }
-     
   };
 
 
   
   $scope.incrementUpvotes = function(review){
+	  	
 		products.upvoteReview(Auth, review.id).success(function(data){
 			review.votes.length += 1;
+			Intercom.likeReview(review, Auth._currentUser.id);
 	    }).error(function(err){
-		   $mdDialog.show(
-				          $mdDialog.alert()
-				            .title('')
-				            .content('You have already voted for this review.')
-				            .ariaLabel('')
-				            .ok('Got it!')
-				        );
+		   	Dialog.youAlreadyVotedThisReview();		
 	    });
   };
   

@@ -1,8 +1,8 @@
 require 'elasticsearch/model'
 
 class Product < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :product_name, use: :slugged
+  #extend FriendlyId
+  #friendly_id :product_name, use: :slugged
   has_many :reviews
 
   include Elasticsearch::Model

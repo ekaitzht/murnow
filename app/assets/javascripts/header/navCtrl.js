@@ -3,10 +3,11 @@ angular.module('murnow')
 '$scope',
 '$state',
 'Auth',
-'$mdDialog',
+'Dialog',
 'User',
 'configMurnow',
-function($scope,$state, Auth, $mdDialog, User, configMurnow){
+'Intercom',
+function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
   $scope.signedIn = Auth.isAuthenticated;
   $scope.logout = Auth.logout;
   $scope.cdn = configMurnow.cdn_domain_name;
@@ -14,104 +15,47 @@ function($scope,$state, Auth, $mdDialog, User, configMurnow){
 //.not-home-page .mainNav {display: inline-block !important;float: right !important;}
 
    Auth.currentUser().then(function (user){
-	  	if( location.hostname == 'www.murnow.com' ) {
-        window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: user.email,
-		   user_id: user.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: user.created_at
-		 } );
-	} else {
-		 window.Intercom('boot',  {
-		   app_id: 'xjo9xumi',
-		   email: user.email,
-		   user_id: user.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   created_at: user.created_at
-		 });
-	}	 
-   
-   
-   
-   
-    $scope.user = user;
-    
-    
-    
-    
+	  Intercom.boot(User.getUser()); 
+      $scope.user = User.getUser();
   });
 
   $scope.$on('devise:new-registration', function (e, user){
-	  
-	  	if( location.hostname == 'www.murnow.com' ) {
-        window.Intercom('boot',  {
-		   app_id: 'ugedhl1s',
-		   email: user.email,
-		   user_id: user.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   name: user.username,
-		   created_at: user.created_at
-		 } );
-	} else {
-		 window.Intercom('boot',  {
-		   app_id: 'xjo9xumi',
-		   email: user.email,
-		   user_id: user.id,
-		   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ user.id,
-		   name: user.username,
-		   created_at: user.created_at
-		 });
-	}	 
+	Intercom.boot(user);	 
     $scope.user = user;
-     User.setUser(user);
-     $mdDialog.hide();
+    User.setUser(user);
+    Dialog.hide();
   });
 
   $scope.$on('devise:login', function (e, user){
     $scope.user = user;
-     User.setUser(user);
-    $mdDialog.hide();
+    User.setUser(user);
+    Intercom.boot(user); 
+    Dialog.hide();
   });
 
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
-    Intercom('shutdown'); 
+	Intercom.shutdown();
     $state.go('home');
   });
 
   $scope.showDialogRegisterOptions= function() {
   
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_panel_signup_options.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+     Dialog.signupOptions();
   };
 
   $scope.showDialogLogin= function() {
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_login.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+    	 Dialog.login();
   };
 
   $scope.showDialogRegister = function() {
    
-     $mdDialog.show({
-            controller: 'AuthCtrl',
-            templateUrl: 'auth/_register.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
-          });
+     	Dialog.register();
   };
   
   $scope.goToProfile = function(profile_id){
 	  $state.go('profile', { id: profile_id});
-  	}
+  }
   	
   
 

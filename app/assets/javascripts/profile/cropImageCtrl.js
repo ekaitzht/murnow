@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('CropImageCtrl',
-  ['$scope', 'myImage', 'scopeEditProfile', '$mdDialog',
-  function($scope, myImage, scopeEditProfile,$mdDialog){
+  ['$scope', 'myImage', 'scopeEditProfile', 'Dialog',
+  function($scope, myImage, scopeEditProfile, Dialog){
 	  
 	  $scope.myCroppedImage='';	
 	  $scope.myImage = myImage;
@@ -10,10 +10,10 @@ angular.module('murnow')
 		  scopeEditProfile.showProfileImage = true;
 		  scopeEditProfile.srcImageProfile = this.myCroppedImage;
 		  scopeEditProfile.fileImage =  this.myCroppedImage;
-		  $mdDialog.hide();
+		  Dialog.hide();
 	  }
 	  
 	  $scope.closeCropDialog = function(){
-			$mdDialog.hide();
+			Dialog.hide();
 	  }
 }]);
