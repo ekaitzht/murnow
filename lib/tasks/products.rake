@@ -82,6 +82,16 @@ namespace :load do
 			
 		end
 		
+		
+		def isDuplicatedByWeight(size,brand,name)
+			
+			
+		end
+
+
+
+
+
 		def createProductObject(source)
 			
 			product = Hash.new
@@ -125,27 +135,20 @@ namespace :load do
 		print "Excuting elastisearch query... wait please."
 		
 		response = client.search index: 'macindex', body: 
-				{	query: {
-		        		filtered: {
-					
-				            query:{
-				                bool:{
+				{	
+				    filter:{
+				                bool: {
+				                    must: [
+				                         {exists: {field:"img"}}, 
+				                         {exists: {field:"summary.average"}}
+				                    ],
+				                    
 				                    should: [       
 				                      {bool: {
 				                           	must_not:
-				                                [
-				                                  {terms: {brand: [ 'lit','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'amazing','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'bareminerals' ]}},
-				                                  {terms: {brand: [ 'benefit','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'butter','london' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'clarins' ]}},
-				                                  {terms: {brand: [ 'lancôme' ]}},
-				                                  {terms: {brand: [ 'tweezerman' ]}},
-				                                  {terms: {brand: [ 'urban','decay' ],minimum_should_match: 2}}
-				        
-				        
-				                                ],
+				                                  {terms: {brand.raw: ["Lit Cosemetics", "Amazing Cosmetics",
+                                 "BareMinerals","Benefinit Cosmetics", "Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}}
+				                                ,
 				                            must:{
 				                                term: {retailer: "sephora"}    
 				                            }
@@ -153,54 +156,30 @@ namespace :load do
 				                      },
 				                      {bool: {
 				                            must_not:
-				                               [
-				                                 {terms: {brand: [ 'smashbox' ]}},
-				                                 {terms: {brand: [ 'algenist' ]}},
-				                                 {terms: {brand: [ 'anastasia','beverly','hills' ],minimum_should_match: 3}},
-				                                 {terms: {brand: [ 'becca' ]}},
-				                                 {terms: {brand: [ 'bliss' ]}},
-				                                 {terms: {brand: [ 'dr','brandt' ],minimum_should_match: 2}},
-				                                 {terms: {brand: [ 'eyeko' ]}},
-				                                 {terms: {brand: [ 'murad' ]}},
-				                                 {terms: {brand: [ 'stila' ]}},
-				                                 {terms: {brand: [ 'tarte' ]}},                                 
-				                                 {terms: {brand: [ 'too','faced' ],minimum_should_match: 2}}
+				                               
+				                                  {terms: {brand.raw: ["Smashbox", "Algenist",
+                                 "Anastasia Beverly Hills","BECCA", "Bliss","Butter London",
+                                 "Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}}
 				        
-				                                ],
+				                                ,
 				                            must:{
 				                                term: {retailer: "ulta"}    
 				                            }
 				                         }
 				                      },
 				                      {bool: {
-				                            must_not: [
-				        
-				                                 {terms: {levels: [ 'brushes','tools' ],minimum_should_match: 2}},
-				                                 {terms: {levels: [ 'fragrance' ],minimum_should_match: 1}},
-				                                                                          
-				                                                                          {terms: {levels: [ 'removers' ],minimum_should_match: 1}},
-				                                                                          {terms: {levels: [ 'moisturizers' ],minimum_should_match: 1}}
-				        
-				        
-				                                ],
+				                            must_not: 
+				                                  {terms: {brand.raw: ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}}
+								 			,
 				                            must:{
 				                                term: {retailer: "mac"}    
 				                            }
 				                         }
 				                      }        
 				                    ]
-				                 }
-				            },
-				            filter:{
-				                bool: {
-				                    must: [
-				                         {exists: {field:"img"}}, 
-				                         {exists: {field:"summary.average"}}
-				                    ]
 				                }    
-				            }
-				        }
-					},
+				            } 
+					,
 					size: 5
 				}
 				
@@ -220,6 +199,10 @@ namespace :load do
 		inserts = 0
 		response['hits']['hits'].each { |document|
 			productHash = createProductObject(document['_source'])	
+			
+			
+			#next if isDuplicatedByWeight(productHash['size'], productHash['brand'], productHash['name'])
+			
 			
 			# this returns array of objects each object represents and row in the database
 			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
