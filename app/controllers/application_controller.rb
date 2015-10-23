@@ -6,7 +6,28 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_config_email
+  
+  #ADING CORS TO ULAIZE REMOVE THIS
+  before_filter :cors_preflight_check
+  after_filter :cors_set_access_control_headers
 
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = 'https://makeup-review-video-nazioarteko.c9.io'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+
+  def cors_preflight_check
+    if request.method == 'OPTIONS'
+      headers['Access-Control-Allow-Origin'] = 'https://makeup-review-video-nazioarteko.c9.io'
+      headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+      headers['Access-Control-Max-Age'] = '1728000'
+index.html
+      render :text => '', :content_type => 'text/plain'
+    end
+  end
   def angular
     render 'layouts/application'
   end
