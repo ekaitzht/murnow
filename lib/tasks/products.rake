@@ -83,9 +83,24 @@ namespace :load do
 		end
 		
 		
-		def isDuplicatedByWeight(size,brand,name)
+		def removeDuplicatedByWeight(products, size, brand, name)
+			puts 'Remove duplicated'
+			count = 0
+			products.each { |product|
+				if (products['name.raw'] == name and products['brand.raw'] and (products['size.raw'] !=  size) )
+					count = count + 1
+				end
+			}
 			
-			
+			if count == 2
+				puts 'Delete product'
+				puts product.inspect
+				products.delete(product)
+				return true
+			else 
+				puts 'Not delete product'
+				return false
+			end
 		end
 
 
@@ -145,10 +160,10 @@ namespace :load do
 				                    
 				                    should: [       
 				                      {bool: {
-				                           	must_not:
-				                                  {terms: {brand.raw: ["Lit Cosemetics", "Amazing Cosmetics",
-                                 "BareMinerals","Benefinit Cosmetics", "Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}}
-				                                ,
+				                           	must_not: {
+					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics", 
+					                               "Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
+					                        },
 				                            must:{
 				                                term: {retailer: "sephora"}    
 				                            }
@@ -156,11 +171,8 @@ namespace :load do
 				                      },
 				                      {bool: {
 				                            must_not:
-				                               
-				                                  {terms: {brand.raw: ["Smashbox", "Algenist",
-                                 "Anastasia Beverly Hills","BECCA", "Bliss","Butter London",
-                                 "Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}}
-				        
+				                                  {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", 
+					                                  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}}
 				                                ,
 				                            must:{
 				                                term: {retailer: "ulta"}    
@@ -169,7 +181,7 @@ namespace :load do
 				                      },
 				                      {bool: {
 				                            must_not: 
-				                                  {terms: {brand.raw: ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}}
+				                                  {terms: {"brand.raw": ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}}
 								 			,
 				                            must:{
 				                                term: {retailer: "mac"}    
@@ -190,9 +202,9 @@ namespace :load do
 		
 		puts "Creating keys."
 		@selectedKeys = Array.new
-		bucket.objects.each do |obj|
+		bucket.objects.each { |obj|
 			@selectedKeys.push(obj.key)
-		end
+		}
 		
 		puts "Keys created."
 		updates = 0
@@ -200,8 +212,9 @@ namespace :load do
 		response['hits']['hits'].each { |document|
 			productHash = createProductObject(document['_source'])	
 			
-			
-			#next if isDuplicatedByWeight(productHash['size'], productHash['brand'], productHash['name'])
+			removeDuplicatedByWeight(response['hits']['hits'],productHash['size'], productHash['brand'], productHash['name'])
+				
+				
 			
 			
 			# this returns array of objects each object represents and row in the database
