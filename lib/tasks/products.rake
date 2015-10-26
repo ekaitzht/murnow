@@ -51,7 +51,7 @@ namespace :load do
                 #If we don't ahve $oid we assume that this is a wrong document
                 
             
-				puts 'Not available $oid next iteration()'
+				#puts 'Not available $oid next iteration()'
 				raise 'exception next iteration'                
             end    
                	
@@ -70,12 +70,12 @@ namespace :load do
 			#object = @s3.get_object(bucket: 'murnow', key: "images_products/"+hash_url_image + ".jpg") 
 			
 			if not @selectedKeys.include?("images_products/"+hash_url_image + ".jpg")
-				puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
+				#puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
 				
-				addFileToS3( hash_url_image , open(image_url).read)
+				#addFileToS3( hash_url_image , open(image_url).read)
 				return hash_url_image
 			else 
-				puts "Found key: "+hash_url_image
+				#puts "Found key: "+hash_url_image
 				return hash_url_image
 			end
 			
@@ -83,24 +83,28 @@ namespace :load do
 		end
 		
 		
-		def removeDuplicatedByWeight(products, size, brand, name)
-			puts 'Remove duplicated'
+		def removeDuplicated(  brand, name)
 			count = 0
-			products.each { |product|
-				if (products['name.raw'] == name and products['brand.raw'] and (products['size.raw'] !=  size) )
+			pos = Array.new
+			@response['hits']['hits'].each { |product|
+				
+				
+				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand'].to_s == brand.to_s )						
+					pos  << @response['hits']['hits'].index(product)
 					count = count + 1
+					
 				end
 			}
 			
-			if count == 2
-				puts 'Delete product'
-				puts product.inspect
-				products.delete(product)
-				return true
-			else 
-				puts 'Not delete product'
-				return false
+			if count >= 2
+				print pos
+				
+				for i in 1..(pos.length-1) #We remove here all duplicated products but we keep the first
+				
+					@response['hits']['hits'].delete_at(pos[i])
+				end
 			end
+		
 		end
 
 
@@ -149,7 +153,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'macindex', body: 
+		@response = client.search index: 'sephoraindex', body: 
 				{	
 				    filter:{
 				                bool: {
@@ -160,29 +164,27 @@ namespace :load do
 				                    
 				                    should: [       
 				                      {bool: {
-				                           	must_not: {
-					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics", 
-					                               "Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
-					                        },
+				                           	must_not: [
+					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics","Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
+					                        ],
 				                            must:{
 				                                term: {retailer: "sephora"}    
 				                            }
 				                         }
 				                      },
 				                      {bool: {
-				                            must_not:
-				                                  {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", 
-					                                  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}}
-				                                ,
+				                            must_not:[
+				                                  terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA",  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}
+					                        ],
 				                            must:{
 				                                term: {retailer: "ulta"}    
 				                            }
 				                         }
 				                      },
 				                      {bool: {
-				                            must_not: 
-				                                  {terms: {"brand.raw": ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}}
-								 			,
+				                            must_not:[
+				                            	terms: {"levels.raw": ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}     
+								 			],
 				                            must:{
 				                                term: {retailer: "mac"}    
 				                            }
@@ -190,9 +192,8 @@ namespace :load do
 				                      }        
 				                    ]
 				                }    
-				            } 
-					,
-					size: 5
+				    },
+					size: 6000
 				}
 				
 		puts "Elastisearch Query executed."
@@ -202,18 +203,20 @@ namespace :load do
 		
 		puts "Creating keys."
 		@selectedKeys = Array.new
-		bucket.objects.each { |obj|
+		bucket.objects.each do |obj|
 			@selectedKeys.push(obj.key)
-		}
+		end
 		
 		puts "Keys created."
 		updates = 0
 		inserts = 0
-		response['hits']['hits'].each { |document|
-			productHash = createProductObject(document['_source'])	
+		@response['hits']['hits'].each { |document|
 			
-			removeDuplicatedByWeight(response['hits']['hits'],productHash['size'], productHash['brand'], productHash['name'])
-				
+			if(['mac', 'sephora', 'ulta'].include? document['_source']['retailer'])
+				removeDuplicated(document['_source']['brand'], document['_source']['name'])
+			end
+			productHash = createProductObject(document['_source'])	
+
 				
 			
 			
@@ -221,14 +224,14 @@ namespace :load do
 			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
 
 			if response.empty?
-				puts "saving prod_id: "+ productHash['prod_id'].to_s
+				#puts "saving prod_id: "+ productHash['prod_id'].to_s
 				Product.new(productHash).save
 				inserts = inserts + 1
 			else 
 				productDB = response.first
 				productHash['updated_at'] = DateTime.now  
 				productDB.update_attributes(productHash)
-				puts "updated prod_id: "+productDB.prod_id.to_s
+				#puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
 			
@@ -255,7 +258,7 @@ namespace :load do
         ###########################################################
         @s3 = Aws::S3::Client.new()
 		
-		puts 'Manual upload product'
+		#puts 'Manual upload product'
 		product = Hash.new
 		image_url = 'https://www.inglotusa.com/Files/Products/4708_1_36_Thumb.png'
 		product['brand_name'] = 'inglot'
