@@ -89,11 +89,17 @@ namespace :load do
 			@response['hits']['hits'].each { |product|
 				
 				
-				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand'].to_s == brand.to_s )						
+				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand'].to_s == brand.to_s and ['mac', 'sephora', 'ulta'].include?(product['_source']['retailer']))						
 					pos  << @response['hits']['hits'].index(product)
 					count = count + 1
 					
 				end
+				
+					
+					
+				
+				
+				
 			}
 			
 			if count >= 2
@@ -153,7 +159,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		@response = client.search index: 'sephoraindex', body: 
+		@response = client.search index: 'macindex', body: 
 				{	
 				    filter:{
 				                bool: {
@@ -193,8 +199,8 @@ namespace :load do
 				                    ]
 				                }    
 				    },
-					size: 6000
-				}
+					size: 1000
+		}
 				
 		puts "Elastisearch Query executed."
 
@@ -210,14 +216,25 @@ namespace :load do
 		puts "Keys created."
 		updates = 0
 		inserts = 0
+		count = 0 
 		@response['hits']['hits'].each { |document|
+			removeDuplicated(document['_source']['brand'], document['_source']['name'])
 			
-			if(['mac', 'sephora', 'ulta'].include? document['_source']['retailer'])
-				removeDuplicated(document['_source']['brand'], document['_source']['name'])
-			end
+			
+			unless /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'
+				if count > 0 
+					@response['hits']['hits'].delete_at(@response['hits']['hits'].index(document)) 
+					puts 'here'
+				end
+				puts document['_source']['name']
+				puts @response['hits']['hits'].index(document)
+		
+				count = count + 1
+			end	
+			
+			
 			productHash = createProductObject(document['_source'])	
 
-				
 			
 			
 			# this returns array of objects each object represents and row in the database
