@@ -223,12 +223,8 @@ namespace :load do
 			
 			unless /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'
 				if count > 0 
-					@response['hits']['hits'].delete_at(@response['hits']['hits'].index(document)) 
-					puts 'here'
+					next
 				end
-				puts document['_source']['name']
-				puts @response['hits']['hits'].index(document)
-		
 				count = count + 1
 			end	
 			
