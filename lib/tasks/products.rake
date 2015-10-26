@@ -173,33 +173,38 @@ namespace :load do
 				                           	must_not: [
 					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics","Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
 					                        ],
-				                            must:{
-				                                term: {retailer: "sephora"}    
-				                            }
+				                            must:[
+				                                {term: {retailer: "sephora"}},
+				                                {term: {"levels.raw": "Makeup "}}    
+				                            ]
 				                         }
 				                      },
 				                      {bool: {
 				                            must_not:[
-				                                  terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA",  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}
+				                               {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA",  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}},
+				                               {term: {"levels.raw": "Bags & Cases"}},
+					                           {term: {"levels.raw": "Travel"}},
+					                           {term: {"levels.raw": "Makeup Gifts"}}
 					                        ],
-				                            must:{
-				                                term: {retailer: "ulta"}    
-				                            }
+				                           must:[
+				                                {term: {retailer: "ulta"}},
+				                                {term: {"levels.raw": "Makeup"}}    
+				                            ]
 				                         }
 				                      },
-				                      {bool: {
-				                            must_not:[
-				                            	terms: {"levels.raw": ["Brushes-Tools", "Fragrance","Removers","Moisturizers"]}     
-								 			],
-				                            must:{
-				                                term: {retailer: "mac"}    
-				                            }
+				                       {bool: {
+				                           	must_not: [
+					                           	terms: {"levels.raw": ["Fragance"]}
+					                        ],
+				                            must:[
+				                                {term: {retailer: "mac"}}
+				                            ]
 				                         }
-				                      }        
+				                      } 
 				                    ]
 				                }    
 				    },
-					size: 1000
+					size: 5000
 		}
 				
 		puts "Elastisearch Query executed."
@@ -221,13 +226,14 @@ namespace :load do
 			removeDuplicated(document['_source']['brand'], document['_source']['name'])
 			
 			
-			unless /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'
+			if not /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'	
+				puts 'hola'
 				if count > 0 
 					next
 				end
 				count = count + 1
-			end	
-			
+				
+			end
 			
 			productHash = createProductObject(document['_source'])	
 
