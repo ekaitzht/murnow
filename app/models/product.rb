@@ -45,8 +45,8 @@ class Product < ActiveRecord::Base
     }
   } do
     mappings dynamic: 'false' do
-      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: { enabled: false }
-      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: { enabled: false }
+      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'docs', norms: { enabled: false }
+      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'docs', norms: { enabled: false }
       indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
@@ -80,7 +80,6 @@ class Product < ActiveRecord::Base
 	    {
 	    	query: {
 			    function_score:{
-					_source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
 			        query: {
 			          multi_match: {
 			            query: query,
@@ -90,17 +89,22 @@ class Product < ActiveRecord::Base
 			          }
 			        },
 			        #sort: [{rating: {order: 'desc'}}],
-			        from: from, size: 20,
-			        functions: {
-			          gauss: {
-			            rating: {
-			              origin: "100",
-			              scale: "100"
-			            }
-			          }
-					}
+			        functions:[
+				        {
+					        gauss: {
+					            rating: {
+					              origin: "100",
+					              scale: "100",
+					              decay: 0.3
+					            }
+							}
+				        }
+				    ],
+				    "boost_mode": "sum"
 			    }
-	    	}
+	    	},
+	    	from: from, size: 20
+
 	    }
        
     )

@@ -167,7 +167,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		@response = client.search index: 'macindex', body: 
+		@response = client.search index: 'ultaindex', body: 
 				{	
 				    filter:{
 				                bool: {
@@ -212,7 +212,7 @@ namespace :load do
 				                    ]
 				                }    
 				    },
-					size: 5000
+					size: 6000
 		}
 				
 		puts "Elastisearch Query executed."
