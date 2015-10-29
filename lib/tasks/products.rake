@@ -144,6 +144,8 @@ namespace :load do
             product['not_buyers'] = 50 - product['buyers']
             product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
 			product['original_url'] = source['url']
+			product['levels'] =  source['levels'].join(",")
+			product['bit_to_remove'] = false;
 
 			return product
 		end
@@ -266,6 +268,8 @@ namespace :load do
 			
 			
 		}
+		
+		#User.where(bit_to_remove: true).destroy_all
 		puts "Updates: "+ updates.to_s
 		puts "Inserts: "+ inserts.to_s
 	end
@@ -309,6 +313,8 @@ Hypoallergenic.'
         product['not_buyers'] = 50 - product['buyers']
         product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
 		product['original_url'] = image_url
+		product['levels'] =  'makeup, clear, liquid'
+		product['bit_to_remove'] = false;
 
 		
 		Product.new(product).save
