@@ -70,20 +70,28 @@ namespace :load do
 			#object = @s3.get_object(bucket: 'murnow', key: "images_products/"+hash_url_image + ".jpg") 
 			
 			if not @selectedKeys.include?("images_products/"+hash_url_image + ".jpg")
-				#puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
+				puts 'Not found key: '+hash_url_image+ ', prod_id:'+ prod_id +', name: '+ name +', url_product: '+ url_product
 				
-				#addFileToS3( hash_url_image , open(image_url).read)
+				addFileToS3( hash_url_image , open(image_url).read)
 				return hash_url_image
 			else 
-				#puts "Found key: "+hash_url_image
+				puts "Found key: "+hash_url_image
 				return hash_url_image
 			end
 			
 			
 		end
 		
+	    def removeDuplicatesMac(name)
+		    duplicates = ['Chromacake','Extended Play Gigablack Lash','Eye Shadow x 9: Burgundy Times Nine','Eye Shadow x 9: Navy Times Nine','Eye Shadow x 9: Purple Times Nine','Eye Shadow x15: Warm Neutral','Haute & Naughty Too Black Lash','In Extreme Dimension','Lipglass / VIVA GLAM Miley Cyrus','Lipmix / Satin','Lipstick / Brooke Candy','Lipstick / Giambattista Valli','Lipstick / VIVA GLAM Miley Cyrus','Liquid Eye Liner / Brooke Candy','Look In A Box Face Kit/Sophisticate','Look In A Box Lip Kit/Fashion Lover','Look In a Box Lip Kit/Pretty Natural','Mixing Medium Eyeliner','Mixing Medium Gel','Mixing Medium Lash','M·A·CNIFICENT ME! Eye Shadow x 9','PRO Lip Palette / 6 Editorial Oranges','PRO Lip Palette / 6 Editorial Reds','PRO Lip Palette / 6 Preferred Pinks','PRO Lip Palette / 6 Select Plums']
+		   
+		  
+			if /(M·A·C Guo Pei)|(Pro Palette)|(Wash & Dry)|(Sized to Go)|(M·A·C Studio Conceal and Correct Palette)|(Veluxe Pearlfusion Shadow:)/.match(name) or  duplicates.include?(name)
+				return true
+			end
+		end
 		
-		def removeDuplicated(  brand, name)
+		def removeGeneralDuplicated(  brand, name)
 			count = 0
 			pos = Array.new
 			@response['hits']['hits'].each { |product|
@@ -223,13 +231,15 @@ namespace :load do
 		inserts = 0
 		count = 0 
 		@response['hits']['hits'].each { |document|
-			removeDuplicated(document['_source']['brand'], document['_source']['name'])
+			removeGeneralDuplicated(document['_source']['brand'], document['_source']['name'])
 			
-			
+			if document['_source']['retailer'] ==  'mac' 
+				next if removeDuplicatesMac( document['_source']['name'])
+			end
 			if not /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'	
 				puts 'hola'
 				if count > 0 
-					next
+					next 
 				end
 				count = count + 1
 				
