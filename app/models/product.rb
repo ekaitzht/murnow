@@ -78,7 +78,7 @@ class Product < ActiveRecord::Base
   def self.search(query, from)
     __elasticsearch__.search(
 	    {
-		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
+		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating','original_url'],
 	    	query: {
 			    function_score:{
 			        query: {
