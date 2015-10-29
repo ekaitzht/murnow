@@ -90,18 +90,17 @@ class Product < ActiveRecord::Base
 			          }
 			        },
 			        #sort: [{rating: {order: 'desc'}}],
-			        functions:[
-				        {
-					        gauss: {
-					            rating: {
-					              origin: "100",
-					              scale: "100",
-					              decay: 0.3
-					            }
-							}
-				        }
-				    ],
-				    "boost_mode": "sum"
+			        #functions:[
+				    #    {
+					#        linear: {
+					#            rating: {
+					#              origin: "100",
+					#              scale: "100",
+					#              decay: 0.5
+					#            }
+					#		}
+				    #    }
+				    #]
 			    }
 	    	},
 	    	from: from, size: 20
