@@ -51,7 +51,7 @@ namespace :load do
                 #If we don't ahve $oid we assume that this is a wrong document
                 
             
-				puts 'Not available $oid next iteration()'
+				#puts 'Not available $oid next iteration()'
 				raise 'exception next iteration'                
             end    
                	
@@ -82,6 +82,49 @@ namespace :load do
 			
 		end
 		
+	    def removeDuplicatesMac(name)
+		    duplicates = ['Chromacake','Extended Play Gigablack Lash','Eye Shadow x 9: Burgundy Times Nine','Eye Shadow x 9: Navy Times Nine','Eye Shadow x 9: Purple Times Nine','Eye Shadow x15: Warm Neutral','Haute & Naughty Too Black Lash','In Extreme Dimension','Lipglass / VIVA GLAM Miley Cyrus','Lipmix / Satin','Lipstick / Brooke Candy','Lipstick / Giambattista Valli','Lipstick / VIVA GLAM Miley Cyrus','Liquid Eye Liner / Brooke Candy','Look In A Box Face Kit/Sophisticate','Look In A Box Lip Kit/Fashion Lover','Look In a Box Lip Kit/Pretty Natural','Mixing Medium Eyeliner','Mixing Medium Gel','Mixing Medium Lash','M·A·CNIFICENT ME! Eye Shadow x 9','PRO Lip Palette / 6 Editorial Oranges','PRO Lip Palette / 6 Editorial Reds','PRO Lip Palette / 6 Preferred Pinks','PRO Lip Palette / 6 Select Plums']
+		   
+		  
+			if /(M·A·C Guo Pei)|(Pro Palette)|(Wash & Dry)|(Sized to Go)|(M·A·C Studio Conceal and Correct Palette)|(Veluxe Pearlfusion Shadow:)/.match(name) or  duplicates.include?(name)
+				return true
+			end
+		end
+		
+		def removeGeneralDuplicated(  brand, name)
+			count = 0
+			pos = Array.new
+			@response['hits']['hits'].each { |product|
+				
+				
+				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand'].to_s == brand.to_s and ['mac', 'sephora', 'ulta'].include?(product['_source']['retailer']))						
+					pos  << @response['hits']['hits'].index(product)
+					count = count + 1
+					
+				end
+				
+					
+					
+				
+				
+				
+			}
+			
+			if count >= 2
+				print pos
+				
+				for i in 1..(pos.length-1) #We remove here all duplicated products but we keep the first
+				
+					@response['hits']['hits'].delete_at(pos[i])
+				end
+			end
+		
+		end
+
+
+
+
+
 		def createProductObject(source)
 			
 			product = Hash.new
@@ -101,6 +144,8 @@ namespace :load do
             product['not_buyers'] = 50 - product['buyers']
             product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
 			product['original_url'] = source['url']
+			product['levels'] =  source['levels'].join(",")
+			product['bit_to_remove'] = false;
 
 			return product
 		end
@@ -124,85 +169,53 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		response = client.search index: 'macindex', body: 
-				{	query: {
-		        		filtered: {
-					
-				            query:{
-				                bool:{
-				                    should: [       
-				                      {bool: {
-				                           	must_not:
-				                                [
-				                                  {terms: {brand: [ 'lit','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'amazing','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'bareminerals' ]}},
-				                                  {terms: {brand: [ 'benefit','cosmetics' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'butter','london' ],minimum_should_match: 2}},
-				                                  {terms: {brand: [ 'clarins' ]}},
-				                                  {terms: {brand: [ 'lancôme' ]}},
-				                                  {terms: {brand: [ 'tweezerman' ]}},
-				                                  {terms: {brand: [ 'urban','decay' ],minimum_should_match: 2}}
-				        
-				        
-				                                ],
-				                            must:{
-				                                term: {retailer: "sephora"}    
-				                            }
-				                         }
-				                      },
-				                      {bool: {
-				                            must_not:
-				                               [
-				                                 {terms: {brand: [ 'smashbox' ]}},
-				                                 {terms: {brand: [ 'algenist' ]}},
-				                                 {terms: {brand: [ 'anastasia','beverly','hills' ],minimum_should_match: 3}},
-				                                 {terms: {brand: [ 'becca' ]}},
-				                                 {terms: {brand: [ 'bliss' ]}},
-				                                 {terms: {brand: [ 'dr','brandt' ],minimum_should_match: 2}},
-				                                 {terms: {brand: [ 'eyeko' ]}},
-				                                 {terms: {brand: [ 'murad' ]}},
-				                                 {terms: {brand: [ 'stila' ]}},
-				                                 {terms: {brand: [ 'tarte' ]}},                                 
-				                                 {terms: {brand: [ 'too','faced' ],minimum_should_match: 2}}
-				        
-				                                ],
-				                            must:{
-				                                term: {retailer: "ulta"}    
-				                            }
-				                         }
-				                      },
-				                      {bool: {
-				                            must_not: [
-				        
-				                                 {terms: {levels: [ 'brushes','tools' ],minimum_should_match: 2}},
-				                                 {terms: {levels: [ 'fragrance' ],minimum_should_match: 1}},
-				                                                                          
-				                                                                          {terms: {levels: [ 'removers' ],minimum_should_match: 1}},
-				                                                                          {terms: {levels: [ 'moisturizers' ],minimum_should_match: 1}}
-				        
-				        
-				                                ],
-				                            must:{
-				                                term: {retailer: "mac"}    
-				                            }
-				                         }
-				                      }        
-				                    ]
-				                 }
-				            },
-				            filter:{
+		@response = client.search index: 'ultaindex', body: 
+				{	
+				    filter:{
 				                bool: {
 				                    must: [
 				                         {exists: {field:"img"}}, 
 				                         {exists: {field:"summary.average"}}
+				                    ],
+				                    
+				                    should: [       
+				                      {bool: {
+				                           	must_not: [
+					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics","Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
+					                        ],
+				                            must:[
+				                                {term: {retailer: "sephora"}},
+				                                {term: {"levels.raw": "Makeup "}}    
+				                            ]
+				                         }
+				                      },
+				                      {bool: {
+				                            must_not:[
+				                               {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA",  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}},
+				                               {term: {"levels.raw": "Bags & Cases"}},
+					                           {term: {"levels.raw": "Travel"}},
+					                           {term: {"levels.raw": "Makeup Gifts"}}
+					                        ],
+				                           must:[
+				                                {term: {retailer: "ulta"}},
+				                                {term: {"levels.raw": "Makeup"}}    
+				                            ]
+				                         }
+				                      },
+				                       {bool: {
+				                           	must_not: [
+					                           	terms: {"levels.raw": ["Fragance"]}
+					                        ],
+				                            must:[
+				                                {term: {retailer: "mac"}}
+				                            ]
+				                         }
+				                      } 
 				                    ]
 				                }    
-				            }
-				        }
-					},
-					size: 5
-				}
+				    },
+					size: 6000
+		}
 				
 		puts "Elastisearch Query executed."
 
@@ -218,26 +231,45 @@ namespace :load do
 		puts "Keys created."
 		updates = 0
 		inserts = 0
-		response['hits']['hits'].each { |document|
+		count = 0 
+		@response['hits']['hits'].each { |document|
+			removeGeneralDuplicated(document['_source']['brand'], document['_source']['name'])
+			
+			if document['_source']['retailer'] ==  'mac' 
+				next if removeDuplicatesMac( document['_source']['name'])
+			end
+			if not /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'	
+				puts 'hola'
+				if count > 0 
+					next 
+				end
+				count = count + 1
+				
+			end
+			
 			productHash = createProductObject(document['_source'])	
+
+			
 			
 			# this returns array of objects each object represents and row in the database
 			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
 
 			if response.empty?
-				puts "saving prod_id: "+ productHash['prod_id'].to_s
+				#puts "saving prod_id: "+ productHash['prod_id'].to_s
 				Product.new(productHash).save
 				inserts = inserts + 1
 			else 
 				productDB = response.first
 				productHash['updated_at'] = DateTime.now  
 				productDB.update_attributes(productHash)
-				puts "updated prod_id: "+productDB.prod_id.to_s
+				#puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
 			
 			
 		}
+		
+		#User.where(bit_to_remove: true).destroy_all
 		puts "Updates: "+ updates.to_s
 		puts "Inserts: "+ inserts.to_s
 	end
@@ -259,7 +291,7 @@ namespace :load do
         ###########################################################
         @s3 = Aws::S3::Client.new()
 		
-		puts 'Manual upload product'
+		#puts 'Manual upload product'
 		product = Hash.new
 		image_url = 'https://www.inglotusa.com/Files/Products/4708_1_36_Thumb.png'
 		product['brand_name'] = 'inglot'
@@ -281,6 +313,8 @@ Hypoallergenic.'
         product['not_buyers'] = 50 - product['buyers']
         product['rating'] = (product['buyers']/(product['buyers'] + product['not_buyers']))*100
 		product['original_url'] = image_url
+		product['levels'] =  'makeup, clear, liquid'
+		product['bit_to_remove'] = false;
 
 		
 		Product.new(product).save

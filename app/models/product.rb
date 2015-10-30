@@ -47,7 +47,7 @@ class Product < ActiveRecord::Base
     mappings dynamic: 'false' do
       indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets'
       indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets'
-      indexes :rating, index: 'not_analyzed', type: 'integer'
+            indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
       indexes :id, type: 'integer', analyzer: 'standard', index_options: 'docs'
@@ -76,7 +76,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.search(query, from)
-    __elasticsearch__.search(
+       __elasticsearch__.search(
       {
         _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
         query: {
@@ -84,7 +84,7 @@ class Product < ActiveRecord::Base
             query: query,
             type: 'most_fields',
             # Here you can add what search field can be matcheables
-            fields: ['product_name^2','brand_name^10', 'category','tags'] 
+            fields: ['product_name^2','brand_name^3', 'category','tags'] 
           }
         },
         #sort: [{rating: {order: 'desc'}}],
