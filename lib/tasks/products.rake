@@ -146,7 +146,7 @@ namespace :load do
 			product['original_url'] = source['url']
 			product['levels'] =  source['levels'].join(",")
 			product['bit_to_remove'] = false;
-
+			product['orginal_number_reviews'] = source['summary']['reviews']
 			return product
 		end
 				
@@ -169,7 +169,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		@response = client.search index: 'ultaindex', body: 
+		@response = client.search index: 'macindex', body: 
 				{	
 				    filter:{
 				                bool: {
