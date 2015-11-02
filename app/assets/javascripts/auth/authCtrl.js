@@ -13,7 +13,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
   $scope.login = function() {   
   
     $scope.errors = {};
-
+	$scope.user.remember_me =  true; 
     Auth.login($scope.user).then(function(ev){
 
 		Intercom.boot(ev);
