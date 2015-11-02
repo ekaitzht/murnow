@@ -46,4 +46,7 @@ Rails.application.configure do
   #config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+    config.middleware.use Rack::Prerender, prerender_token: 'NcNwNHjAptTzhQmWAKZz'
+
 end
