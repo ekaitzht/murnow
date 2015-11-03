@@ -1,5 +1,5 @@
 <md-dialog id="add-review-dialog">
-	<form ng-submit="requestProduct()" >
+	<form ng-submit="requestProduct()"  name="requestProductForm" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
 		      <h2  ng-show="!sentRequest">What product would you like to add to Makeup Reviews Now?</h2>
@@ -12,6 +12,11 @@
 		  </md-toolbar>
 	  	<md-dialog-content ng-show="!sentRequest" >
 				
+				<md-input-container  md-no-float>
+			      <label></label>
+			      <input id="email" type="email" ng-show="!isAuth" ng-model="application.email" placeholder="Email" required>
+			    </md-input-container  md-no-float>
+		
 		    	<md-input-container  md-no-float>
 			      <label></label>
 			      <input ng-model="application.product_name" placeholder="Add here product name" required>
@@ -21,7 +26,10 @@
 			      <label></label>
 			      <input ng-model="application.brand_name" placeholder="Add here brand name" required>
 			    </md-input-container  md-no-float>
-		
+			    
+			     </md-input-container  md-no-float>
+				
+			
 				<md-input-container  md-no-float>
 			      <label></label>
 		    		<textarea type="text" id="request-product-textarea" class="form-control" placeholder="Add here any additional information" ng-model="application.optional_message" ></textarea>

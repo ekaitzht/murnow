@@ -1,5 +1,5 @@
 class Api::RequestProductController < ApplicationController
-	before_action :authenticate_user!,:only => [:create]
+	
 	
 	def create
 	      
@@ -11,7 +11,7 @@ class Api::RequestProductController < ApplicationController
 	
 	private
 	def request_params
-    	params.require(:application).permit(:product_name, :brand_name, :optional_message)
+    	params.require(:application).permit(:product_name, :brand_name, :optional_message,:email)
   	end
 end
 
