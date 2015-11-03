@@ -37,6 +37,7 @@ img {max-width:100%}
 ui-view {width:100%;overflow-x:hidden;}
 ui-view > * {width:100%;}
 md-radio-button.md-checked .md-off {border-color:$accent-color !important;}
+md-checkbox.md-checked .md-icon  {background-color:$accent-color !important;}
 md-radio-button .md-on {background-color:$accent-color !important;}
 md-toolbar{background-color:$brand-color !important;}
 button.md-raised.md-primary.md-button.md-default-theme {background-color:$accent-color;}
