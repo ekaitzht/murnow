@@ -12,7 +12,7 @@
 						          md-selected-item-change="ctrl.selectedItemChange(item)"
 						          md-items="item in ctrl.querySearch(ctrl.searchText)"
 						          md-item-text="item.product_name"
-						          md-min-length="100"
+						          md-min-length="100"=
 						          md-autofocus="true"
 						          placeholder="Type a brand or product name...">
 						            <img ng-src="https://d1sngtnp6jnqhe.cloudfront.net/{{item.hash_url_image}}" class='md-avatar' alt="{item.product_name}" with="25" height="25">
@@ -22,7 +22,7 @@
 	  <!-- Nav when you are not authenticated --> 
 	  <div class="mainNav" ng-show="!signedIn()">
 		    <md-button hide id="login-button" ng-click="showDialogLogin()" >Log In</md-button>
-		    <md-button id="join-button" ng-click="showDialogRegister()">Join</md-button>
+		    <!--<md-button id="join-button" ng-click="showDialogRegister()">Join</md-button>-->
 		    
 	  </div>
 	  

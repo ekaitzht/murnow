@@ -35,7 +35,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
-      url: '/home',
+      url: '/',
       templateUrl: 'home/_reviews.html',
       controller: 'MainCtrl',
       resolve: {
@@ -43,11 +43,6 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 	        	return products.getMostPopularReviews();
 	        }]
       }
-    })
-    .state('launch', {
-      url: '/',
-      controller: 'LaunchCtrl',
-      templateUrl: 'launch/_launch.html'
     })
     .state('list_products', {  // CAMBIAR ESTOOOOOOO
       url: '/list_products/:searchQuery',
@@ -133,12 +128,21 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
             
         });
 
-app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Intercom', 'Dialog',function($rootScope,$location, $mdDialog, $state, $anchorScroll, Intercom, Dialog) {
+app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Intercom', 'Dialog','Auth',function($rootScope,$location, $mdDialog, $state, $anchorScroll, Intercom, Dialog, Auth) {
 	   var lock = false;
 	
   	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	
        
+    });
+    
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	    
+        Auth.currentUser().then(function (user){
+		   
+		}, function(error) {
+			Dialog.loginPrivate();
+        });
     });
  
     $rootScope.closeDialog = function() {

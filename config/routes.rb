@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  	root to: 'application#launch'
+  	root to: 'application#angular'
   	
   	namespace :api, defaults: {format: :json} do
 

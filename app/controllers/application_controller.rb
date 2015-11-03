@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  layout "launch"
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -12,13 +11,9 @@ class ApplicationController < ActionController::Base
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
-  #def angular
-  #  render 'layouts/application'
- # end
-  
-  def launch
-  	render 'layouts/launch'
-  end
+  #def launch
+  #	render 'layouts/launch',  layout: "launch"
+  #end
   
   def angular
     render 'layouts/application'

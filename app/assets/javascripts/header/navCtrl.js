@@ -36,7 +36,8 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
   $scope.$on('devise:logout', function (e, user){
     $scope.user = {};
 	Intercom.shutdown();
-    $state.go('home');
+	Dialog.loginPrivate();
+    //$state.go('home');
   });
 
   $scope.showDialogRegisterOptions= function() {

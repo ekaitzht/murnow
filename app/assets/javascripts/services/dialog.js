@@ -51,6 +51,14 @@ angular.module('murnow')
         });
 	}
 	
+    this.loginPrivate = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login_private.html',
+            hasBackdrop: true
+        });
+	}
+
 	this.alertSentConfirmation = function() {
 		$mdDialog.show(
 	      $mdDialog.alert()

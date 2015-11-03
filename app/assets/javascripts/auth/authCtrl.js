@@ -17,7 +17,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     Auth.login($scope.user).then(function(ev){
 
 		Intercom.boot(ev);
-		
+		$state.go('home');
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -108,15 +108,16 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
    		Dialog.forgotPassword();
   };
 
-  	$scope.showDialogRegister= function() {
+  $scope.showDialogRegister= function() {
  
   		Dialog.register();
   	};
   
-    $scope.showDialogLogin= function() {
+  $scope.showDialogLogin= function() {
      	Dialog.login();
    };
-	$scope.closeDialog = function() {
+
+  $scope.closeDialog = function() {
     	Dialog.hide();
 	};
   
