@@ -30,8 +30,8 @@
   	  <!-- Nav when you are authentificated --> 
   	  	<md-menu class="mainNav" id="menu" md-offset="-20 50" ng-show="signedIn()" >
              <md-button  class="my-icon-button" md-menu-origin  ng-click="$mdOpenMenu()" >
-		    	<img ng-show="user.hash_url_image"  ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">	
-		    	<img ng-show="!user.hash_url_image"  ng-src="/assets/anonymousUser.png" class="face no-face" alt="Anonymous user">
+		    	<img ng-show="user.hash_url_image"  ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face not-anonymous" alt="{{user.username}}">	
+		    	<img ng-show="!user.hash_url_image"  ng-src="/assets/anonymousUser.png" class="face anonymous" alt="Anonymous user">
 		    	<img ng-src="/assets/arrow-down.svg"   class="svg18 arrow" ></md-icon>
 			 </md-button>
 			<md-menu-content width="2">
