@@ -5,7 +5,7 @@
 		<div layout="row" itemscope itemtype="http://schema.org/Person" > 
 			<div class="wrapper-image-profile"  layout="column" flex-sm="25">
 						<div ng-show="user.hash_url_image" class="md-tile-left">
-					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
+					    	<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face not-anonymous-image" alt="{{user.username}}">
 						</div>
 					    <div ng-show="!user.hash_url_image" class="anonymous-image md-tile-left">
 					    	<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
