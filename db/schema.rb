@@ -11,25 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001094204) do
+ActiveRecord::Schema.define(version: 20151102154715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "products", force: true do |t|
     t.string   "product_name"
-    t.string   "upvotes",          default: "0"
+    t.string   "upvotes",                 default: "0"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "brand_name"
     t.string   "category"
-    t.float    "product_stars",    default: 0.0
-    t.integer  "number_reviews",   default: 0
+    t.float    "product_stars",           default: 0.0
+    t.integer  "number_reviews",          default: 0
     t.string   "hash_url_image"
     t.text     "long_description"
     t.string   "sku_price"
-    t.integer  "buyers",           default: 0
-    t.integer  "not_buyers",       default: 0
+    t.integer  "buyers",                  default: 0
+    t.integer  "not_buyers",              default: 0
     t.string   "ref_elastic"
     t.float    "rating"
     t.string   "tags"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20151001094204) do
     t.string   "sku"
     t.string   "prod_id"
     t.string   "retailer"
+    t.string   "original_url"
+    t.boolean  "bit_to_remove",           default: true
+    t.string   "levels"
+    t.integer  "original_number_reviews"
   end
 
   add_index "products", ["prod_id", "retailer"], name: "index_products_on_prod_id_and_retailer", unique: true, using: :btree

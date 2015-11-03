@@ -28,7 +28,7 @@
 		h3 {@include sub-head;}
 		h2 {@include title;}
 		@include separate-stars;
-		md-divider {border-top-color:$accent-color;width:871px;    border-width: 2px; margin-left:42px;}
+		md-divider {border-top-color:$accent-color;opacity:0.5;width:871px;    border-width: 2px; margin-left:42px;}
 		.wrapper-rate-approval{
 			padding:0px;
 			margin-right:45px;
@@ -75,7 +75,11 @@
 	}
 	
 	@mixin header-profile {
-		.wrapper-image-profile {border-right: 1px solid #F2BDE7;padding-right: 1.875rem;}
+		.wrapper-image-profile {
+			border-right: 1px solid $accent-color;padding-right: 1.875rem;
+			img{border:1px solid $accent-color;}
+			> div {padding-right:2px;}
+		}
 		.info-user-profile {
 			padding-left:1.875rem;width:100%;
 			.username {@include title;}

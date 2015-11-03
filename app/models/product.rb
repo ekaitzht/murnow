@@ -45,8 +45,9 @@ class Product < ActiveRecord::Base
     }
   } do
     mappings dynamic: 'false' do
-      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets'
-      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets'
+      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
+      indexes :levels, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
+      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
       indexes :rating, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
@@ -76,20 +77,25 @@ class Product < ActiveRecord::Base
   end
 
   def self.search(query, from)
-    __elasticsearch__.search(
-      {
-        _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating'],
-        query: {
-          multi_match: {
-            query: query,
-            type: 'most_fields',
-            # Here you can add what search field can be matcheables
-            fields: ['product_name^2','brand_name^10', 'category','tags'] 
-          }
-        },
-        #sort: [{rating: {order: 'desc'}}],
-        from: from, size: 20
-      }
+ __elasticsearch__.search(
+	    {
+		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating','original_url'],
+	    	query: {
+			    function_score:{
+			        query: {
+			          multi_match: {
+			            query: query,
+			            type: 'cross_fields',
+			            # Here you can add what search field can be matcheables
+			            fields: ['product_name','brand_name^5', 'levels^20'] 
+			          }
+			        }
+			    }
+	    	},
+	    	from: from, size: 20
+
+	    }
+       
     )
   end
   

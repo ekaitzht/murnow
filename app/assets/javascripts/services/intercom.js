@@ -73,8 +73,23 @@ angular.module('murnow')
 	    		
 	    window.Intercom('trackEvent','added-upvote',metadata);
 	}
+	
 	this.shutdown = function() {
 		window.Intercom('shutdown'); 	
+	};
+	
+	this.requestProduct = function(request){
+		var metadata = {
+			brand_name: request.brand_name,
+			product_name: request.product_name,
+			optional_message: request.optional_message,
+			request_date: Math.floor(Date.now() / 1000),
+			user_id: request.user_id,
+			user_profile:location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ request.user_id
+		}
+		
+	    window.Intercom('trackEvent','requested-product',metadata);
+
 	};
 	
 	

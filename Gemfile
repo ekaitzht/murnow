@@ -8,9 +8,11 @@ gem 'rails', '4.1.6'
 # Use sqlite3 as the database for Active Record
 group :production do
 	gem 'rails_12factor'
-	gem 'prerender_rails'
+	
 end
+gem 'prerender_rails'
 gem 'heroku_rails_deflate', :group => :production
+gem 'typhoeus', require: 'typhoeus/adapters/faraday'
 
 gem 'omniauth-facebook'
 gem 'font_assets'

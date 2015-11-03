@@ -36,6 +36,8 @@ img {max-width:100%}
 // Overriding general angular components
 ui-view {width:100%;overflow-x:hidden;}
 ui-view > * {width:100%;}
+md-radio-button.md-checked .md-off {border-color:$accent-color !important;}
+md-radio-button .md-on {background-color:$accent-color !important;}
 md-toolbar{background-color:$brand-color !important;}
 button.md-raised.md-primary.md-button.md-default-theme {background-color:$accent-color;}
 button.md-raised.md-primary.md-button.md-default-theme:hover {background-color:$accent-color;}

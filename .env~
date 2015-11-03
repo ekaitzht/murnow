@@ -1,0 +1,10 @@
+APP_URL=http://localhost:5000
+ASSET_HOST=http://localhost:5000
+AWS_ACCESS_KEY_ID=AKIAIAYABK6E5BGSZ7JQ
+AWS_REGION=us-east-1
+AWS_SECRET_ACCESS_KEY=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
+CDN_DOMAIN_NAME=d3gm19tlfubzts.cloudfront.net
+S3_BUCKET=murnow
+DELIVERY_METHOD=smtp
+GOOGLE_SITE_VERIFICATION=02EMWfCa3GX19w3stankvYOon4f47KGPMindVZ5zjBw
+ELASTIC_RAW_DATA =https://gjrxed8i:d90vjo077yc16uhq@fir-2971314.eu-west-1.bonsai.io

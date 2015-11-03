@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_config_email
+  
+  #ADING CORS TO ULAIZE REMOVE THIS
+  before_filter :cors_preflight_check
+  after_filter :cors_set_access_control_headers
 
   #def angular
   #  render 'layouts/application'
@@ -15,6 +19,31 @@ class ApplicationController < ActionController::Base
   def launch
   	render 'layouts/launch'
   end
+  
+  def angular
+    render 'layouts/application'
+  end
+  
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = 'http://makeup-review-video-nazioarteko.c9.io'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+
+  def cors_preflight_check
+    if request.method == 'OPTIONS'
+      headers['Access-Control-Allow-Origin'] = 'http://makeup-review-video-nazioarteko.c9.io'
+      headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+      headers['Access-Control-Max-Age'] = '1728000'
+index.html
+      render :text => '', :content_type => 'text/plain'
+    end
+  end
+  
+
+  
     private
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username
