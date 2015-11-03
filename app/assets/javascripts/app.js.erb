@@ -8,11 +8,11 @@ app.config(['$mdThemingProvider',function($mdThemingProvider) {
  var pinkMurnow = $mdThemingProvider.extendPalette('pink', {
     '500': 'FFAABB'
   });
+  
   $mdThemingProvider.definePalette('pinkmurnow', pinkMurnow);
 
  $mdThemingProvider.theme('default')
     .primaryPalette('pinkmurnow');
-
 }]);
 
 
