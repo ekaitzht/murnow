@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103151129) do
+ActiveRecord::Schema.define(version: 20151103212606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "invitations", force: true do |t|
-    t.integer  "sender_id"
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "spoiled"
   end
 
   create_table "products", force: true do |t|
@@ -113,8 +113,6 @@ ActiveRecord::Schema.define(version: 20151103151129) do
     t.string   "instagram_profile"
     t.string   "youtube_channel"
     t.datetime "age"
-    t.integer  "invitation_id"
-    t.integer  "invitation_limit",       default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

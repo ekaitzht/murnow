@@ -1,14 +1,22 @@
 angular.module('murnow')
 .controller('Profile', [
-'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','Dialog','$http', 'configMurnow',
-function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow){
+'$scope','User','$state', '$stateParams','$upload', 'Auth', 'Amazon','Dialog','$http', 'configMurnow', 'Invitations',
+function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow, Invitations){
 	
 	
 
 	 	 $scope.cdn = configMurnow.cdn_domain_name;
 	 	 $scope.enviroment = configMurnow.enviroment;
+	 	 $scope.invitationLink = '';
 	 	 
  	Auth.currentUser().then(function (user){
+	 	
+	 	if(user.id === 75){ // This id has to be the user that has the power to generate invitations
+		 	$scope.isUlaize = true;
+	 	} else {
+		 	$scope.isUlaize = false;
+	 	}
+	 	
 	 	if(parseInt($stateParams.id) === user.id) { // if the user that we are is logged we have to modify profile view 
 		 	$scope.publicProfile = false;
 	 	} else {
@@ -94,6 +102,14 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
          
     	});
   	};
+  	
+  	$scope.generateInvitation = function() {
+		Invitations.generateInvitation().success(function(data){
+			$scope.invitationLink = data.invitation_url;
+		}).error(function(error){
+         
+    	});
+	}
  
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';
