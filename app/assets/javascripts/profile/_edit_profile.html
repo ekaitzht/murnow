@@ -2,10 +2,10 @@
 	<form ng-submit="updateUser()" name="updateForm" layout="column" >
 	  <div layout="row">
 	    <div class="wrapper-image-profile" layout="row" flex-sm="25">
-	    	<div ng-show="showProfileImage"  ng-file-select ng-model="file" multiple="false">
+	    	<div ng-show="showProfileImage"  ng-file-select ng-model="file" multiple="false" class="not-anonymous-image">
 	            <img ng-src="{{srcImageProfile}}" class="face" alt="{{user.username}}">
 	    	</div>
-			<div ng-hide="showProfileImage"   ng-file-select ng-model="file" multiple="false"  >
+			<div ng-hide="showProfileImage"   ng-file-select ng-model="file" multiple="false"  class="anonymous-image">
 				<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 			</div>
 	    </div>				
