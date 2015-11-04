@@ -26,8 +26,7 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_forgotpassword.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
+            hasBackdrop: true
         });
 	}
 
