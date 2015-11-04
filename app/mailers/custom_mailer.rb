@@ -9,6 +9,12 @@ class CustomMailer < ActionMailer::Base
   def request_product(request)
     @request = request;
     
-    mail to: "ulaize@murnow.com", subject: "New product request from"
+    mail to: "ulaize@murnow.com", subject: "New product request from."
+  end
+  
+  def request_invitation(request)
+    @request = request;
+    
+    mail to: "ulaize@murnow.com", subject: "New invitation request."
   end
 end

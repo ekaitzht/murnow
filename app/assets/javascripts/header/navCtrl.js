@@ -37,6 +37,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     $scope.user = {};
 	Intercom.shutdown();
 	$state.go('home');
+	Dialog.loginPrivate();
     
   });
 

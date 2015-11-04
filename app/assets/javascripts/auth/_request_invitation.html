@@ -7,30 +7,28 @@
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
 		<div>
-		    <form name="requestInvitation" ng-submit="requestInvitation()">
+		    <form name="requestInvitationForm" ng-submit="sendRequestInvitation()">
 				<div>
 			        <md-input-container>
 			          <label> Email </label>
-			          <input ng-model="user.email" type="email" name="email" autofocus autocomplete="email" >
+			          <input ng-model="requestInvitation.email" type="email"  autofocus required>
 			        </md-input-container>
 			    
 			        
 			        <md-input-container>
 			          <label> Name </label>
-			          <input type="text"  ng-model="user.username"  name="name" autocomplete="name" >
+			          <input type="text"  ng-model="requestInvitation.name"    required>
 			        </md-input-container>
 
 			    </div>
 			    <div layout="row" layout-align="center center">
-					<md-button type="submit" class="md-raised md-primary">REQUEST INVITATION</md-button>	
-				</div>		  
+					<md-button type="submit" class="md-raised md-primary" ng-hide="sentRequest">REQUEST INVITATION</md-button>	
+				    <div ng-show="sentRequest">Thank you! You will have soon your invitation.</md-button>	
+
+				</div>		   
 			</form>
 
 						
 		</div>
 		</md-dialog-content> 
 </md-dialog>
-
-
-
-

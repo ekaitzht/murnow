@@ -9,7 +9,8 @@ angular.module('murnow')
 'Dialog',
 '$rootScope',
 'Intercom',
-function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom){
+'$http',
+function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom, $http){
   $scope.login = function() {   
   
     $scope.errors = {};
@@ -121,8 +122,20 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     	Dialog.hide();
   };
   
-  $scope.requestInvitation = function() {
-    	Dialog.requestInvitation();
+  $scope.showRequestInvitationDialog = function() {
+	 
+		Dialog.requestInvitation();
+
+  };
+  
+  $scope.sendRequestInvitation = function(){
+	$http.post('/api/request_invitation/', {request: $scope.requestInvitation} ).success(function(data){
+	 	$scope.sentRequest = true;
+ 			
+	}).error(function(err){
+		 	
+		 	
+	});
   };
 
   

@@ -5,7 +5,6 @@ class Api::RequestProductController < ApplicationController
 	      
 		CustomMailer.request_product(request_params).deliver
 		respond_with(status: 200)
-
 	end
 	
 	
