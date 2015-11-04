@@ -76,26 +76,35 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
   $scope.register = function() {
 
     $scope.errors = {};
-    Auth.register($scope.user).then(function(ev){
-     	 Intercom.boot(ev);
-    }).then(function(response) {
-        // Successfully recovered from unauthorized error.
-        // Resolve the original request's promise.
-     
-    }, function(error) {
-        // There was an error logging in.
-        // Reject the original request's promise.
-        errors = error.data.errors;
-        if ( errors.hasOwnProperty("email") ) {
-          $scope.errors.errorEmail = "Your email "+ errors.email[0];
-        }  
-        if ( errors.hasOwnProperty("password") ) {
-          $scope.errors.errorPassword = "Password "+ errors.password[0];
-        }
-        if ( errors.hasOwnProperty("username") ) {
-          $scope.errors.errorName = "Name " + errors.username[0];
-        }
+    
+    $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
+	    Auth.register($scope.user).then(function(ev){
+	     	 Intercom.boot(ev);
+	    }).then(function(response) {
+	        // Successfully recovered from unauthorized error.
+	        // Resolve the original request's promise.
+	     
+	    }, function(error) {
+	        // There was an error logging in.
+	        // Reject the original request's promise.
+	        errors = error.data.errors;
+	        if ( errors.hasOwnProperty("email") ) {
+	          $scope.errors.errorEmail = "Your email "+ errors.email[0];
+	        }  
+	        if ( errors.hasOwnProperty("password") ) {
+	          $scope.errors.errorPassword = "Password "+ errors.password[0];
+	        }
+	        if ( errors.hasOwnProperty("username") ) {
+	          $scope.errors.errorName = "Name " + errors.username[0];
+	        }
+	    });    
+    }).error(function(err, statusCode){
+	    if ( statusCode == 401) {
+		     $scope.errors.invitationUsed = "Invitation has been used.";
+		     $scope.hideJoin = true;
+	    }
     });
+    
   };
   
   $scope.$on('$stateChangeSuccess', 

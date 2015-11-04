@@ -4,5 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 		  logger.info params.inspect
 		resource.update_without_password(params)
   	end
+  	
+
 end
 

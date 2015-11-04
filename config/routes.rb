@@ -52,7 +52,8 @@ Rails.application.routes.draw do
 	  #generate invitation,request invitation 
 	  post 'generateinvitation/', to: 'invitations#create'
 	  post 'request_invitation', to: 'invitations#request_invitation'
-	  
+	  get 'check_register_token/:token', to: 'invitations#check_register_token'
+
 	  #request product
 	  put 'requests/', to: 'request_product#create'
 	  

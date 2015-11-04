@@ -44,8 +44,10 @@
 					
 						
 						<!--<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>-->
-						<md-button type="submit" class="md-raised md-primary">JOIN</md-button>	
-
+						<md-button type="submit" class="md-raised md-primary" ng-hide="hideJoin">JOIN</md-button>	
+						<div class="alert alert-danger" role="alert" ng-show="errors.invitationUsed">
+							{{errors.invitationUsed}}
+			        	</div>
 				</div>		  
 			</form>
 
