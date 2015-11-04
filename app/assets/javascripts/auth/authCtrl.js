@@ -119,6 +119,11 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 
   $scope.closeDialog = function() {
     	Dialog.hide();
-	};
+  };
+  
+  $scope.requestInvitation = function() {
+    	Dialog.requestInvitation();
+  };
+
   
 }]);

@@ -3,16 +3,16 @@
 		    <div class="md-toolbar-tools">
 		      <h2>Join our community! </h2>
 		      <span flex></span>
-		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
+		      <!--<md-button class="md-icon-button" ng-click="closeDialog()" type="button">
 		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
-		      </md-button>
+		      </md-button>-->
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
 		<div>
-			<div layout="row" layout-align="center center">
+			<!--<div layout="row" layout-align="center center">
 			 	<md-button class="md-primary"  ng-click="showDialogLogin()">I already have an account</md-button>
-			</div>
+			</div>-->
 		    <form name="registerForm" ng-submit="register()">
 				<div>
 			        <md-input-container>
@@ -40,11 +40,11 @@
 			          {{errors.errorPassword}}
 			        </div>
 			    </div>
-			    <div layout="row" layout-align="space-between center">
+			    <div layout="row" layout-align="center center">
 					
 						
-						<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>
-						<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>	
+						<!--<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>-->
+						<md-button type="submit" class="md-raised md-primary">JOIN</md-button>	
 
 				</div>		  
 			</form>

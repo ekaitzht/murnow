@@ -6,8 +6,7 @@ angular.module('murnow')
 	    $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_register.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
+            hasBackdrop: true
         });
 	 
 	};
@@ -55,6 +54,14 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login_private.html',
+            hasBackdrop: true
+        });
+	}
+	
+	this.requestInvitation = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_request_invitation.html',
             hasBackdrop: true
         });
 	}
