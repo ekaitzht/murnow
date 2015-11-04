@@ -4,7 +4,7 @@ class Api::InvitationsController < ApplicationController
 	def create
 		if current_user.email = 'ekaitz7@gmail.com'
 			@invitation = Invitation.create(token: Digest::SHA1.hexdigest([Time.now, rand].join), spoiled: false) 
-			url = ENV['APP_URL'] +'/register/'+@invitation.token
+			url = ENV['APP_URL'] +'/join'+@invitation.token
 			
 			render json: {invitation_url: url}
 		end
