@@ -31,10 +31,10 @@
 				</div>
 				<div layout="column">	
 					<div layout="column" layout-align="space-around center">
-				    	    <md-button   id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>		
+				    	    <md-button  class="button-not-raised" id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten password?</md-button>		
 							<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
 			      	</div>
-				  	<md-button class="button-not-raised" ng-click="showRequestInvitationDialog()" >REQUEST INVITATION</md-button>
+				  	<md-button class="button-not-raised" ng-click="showRequestInvitationDialog()" >Request invitation</md-button>
 			      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
 			 	</div>
 			 </form>

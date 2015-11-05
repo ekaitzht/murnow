@@ -1,7 +1,8 @@
 .button-not-raised{
 	font-family:$base-font;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight:400;
 	color:black;
-	@include secondary-color;
+	text-transform: none;
+	@include main-color;
 }
