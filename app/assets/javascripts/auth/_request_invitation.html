@@ -1,12 +1,24 @@
-<md-dialog aria-label="Sign Up Dialog"> 
+<md-dialog aria-label="Request Invitation Dialog"  class="beta-dialog"> 
  	<md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2>Request a Invitation for Murnow </h2>
-		      <span flex></span>
+		        <span flex></span>
+		        <md-button class="md-icon-button" ng-click="goToLoginPrivateDialog()" type="button">
+					<md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
-		<div>
+		<div layout="column" layout-align="center center">
+			
+			<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Heaven
+	    	</div>
+	    	<div class="explanation">
+				Please provide us with your email and name and we will reach out with an invitation as soon as these are available.
+	    	</div>
 		    <form name="requestInvitationForm" ng-submit="sendRequestInvitation()">
 				<div>
 			        <md-input-container>

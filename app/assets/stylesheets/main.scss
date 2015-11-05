@@ -2,6 +2,7 @@
 @import 'base/typography';
 @import 'base/reset';
 @import 'base/mixins';
+@import 'base/components';
 
 
 span.sr-only.ng-binding {display:none;}
@@ -59,6 +60,17 @@ md-dialog {
 	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;margin-bottom:10px;}
 	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
 	.submit-button{float:right;}
+}
+
+.beta-dialog{
+	.title{@include brand-font($accent-color);}
+	.pitch{font-family: $josefin-sans;color:$accent-color;font-size:1.5rem;margin-top:1.5rem;font-style:italic;}
+	.explanation{@include body;margin-top:1.5rem;text-align: center;}
+	.login{@include title; margin-top:1.5rem;}
+	md-toolbar {min-height: initial; height:20px;}
+	padding:1rem;
+	max-width:960px;
+	
 }
 
 /* SPECIFIC DIALOGS */

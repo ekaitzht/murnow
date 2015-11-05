@@ -46,3 +46,10 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-family:$base-font;
 	font-weight: 400;
 } // review text (paragraph) 
+
+
+@mixin brand-font($color) {
+	color:$color;
+	font-family: $brand-font;
+	font-size:5rem;
+}

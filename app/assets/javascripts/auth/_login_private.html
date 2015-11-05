@@ -1,12 +1,16 @@
-<md-dialog aria-label="Login Dialog" id="login-dialog">
-	 <md-toolbar>
-	    <div class="md-toolbar-tools">
-	      <h2>Login </h2>
-	      <span flex></span>
-	    </div>
-	  </md-toolbar>
+<md-dialog aria-label="Login Dialog" class="beta-dialog">
     <md-dialog-content class="sticky-container">
-    	<div>
+    	<div layout="column" layout-align="center center">
+	    	<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Heaven
+	    	</div>
+	    	<div class="explanation">
+				Makeup Reviews Now is now only available for those who got invitations from us. If you have already registered, you can now log in. You can request an invitation by clicking <label ng-click="showRequestInvitationDialog">here</label>.
+	    	</div>
+	    	<label class="login"> Login </label>
 	    	<form name="registerForm" ng-submit="login()" layout="column">
 				<div>
 				
@@ -30,7 +34,7 @@
 				    	    <md-button   id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten pasword?</md-button>		
 							<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
 			      	</div>
-				  	<md-button ng-click="showRequestInvitationDialog()" >REQUEST INVITATION</md-button>
+				  	<md-button class="button-not-raised" ng-click="showRequestInvitationDialog()" >REQUEST INVITATION</md-button>
 			      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
 			 	</div>
 			 </form>

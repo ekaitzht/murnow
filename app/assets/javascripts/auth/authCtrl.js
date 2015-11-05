@@ -118,10 +118,10 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
    		Dialog.forgotPassword();
   };
 
-  $scope.showDialogRegister= function() {
+  $scope.goToLoginPrivateDialog = function() {
  
-  		Dialog.register();
-  	};
+  		Dialog.loginPrivate();
+  };
   
   $scope.showDialogLogin= function() {
      	Dialog.login();
@@ -131,6 +131,9 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     	Dialog.hide();
   };
   
+  $scope.closeDialog = function() {
+    	Dialog.hide();
+  };
   $scope.showRequestInvitationDialog = function() {
 	 
 		Dialog.requestInvitation();
