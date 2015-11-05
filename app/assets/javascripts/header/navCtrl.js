@@ -37,6 +37,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     $scope.user = {};
 	Intercom.shutdown();
 	$state.go('home',{}, {reload: true});
+	$('#cupcake-backdrop').show();
   });
 
   $scope.showDialogRegisterOptions= function() {

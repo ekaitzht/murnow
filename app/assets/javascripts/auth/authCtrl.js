@@ -16,13 +16,12 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $scope.errors = {};
 	$scope.user.remember_me =  true; 
     Auth.login($scope.user).then(function(ev){
-
 		Intercom.boot(ev);
 		$state.go('home');
+		$('#cupcake-backdrop').hide();
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
-
     }, function(error) {
         if (error.data.error == "You have to confirm your email address before continuing.") {
           $scope.sendConfirm = true;
@@ -80,6 +79,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
 	    Auth.register($scope.user).then(function(ev){
 	     	 Intercom.boot(ev);
+	     	 $('#cupcake-backdrop').hide();
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.

@@ -6,7 +6,7 @@ angular.module('murnow')
 	    $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_register.html',
-            hasBackdrop: true
+            hasBackdrop: false
         });
 	 
 	};
@@ -26,7 +26,7 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_forgotpassword.html',
-            hasBackdrop: true
+            hasBackdrop: false
         });
 	}
 
@@ -53,7 +53,7 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_login_private.html',
-            hasBackdrop: true
+            hasBackdrop: false
         });
 	}
 	
@@ -61,7 +61,7 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_request_invitation.html',
-            hasBackdrop: true
+            hasBackdrop: false
         });
 	}
 
