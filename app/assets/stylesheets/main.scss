@@ -169,7 +169,7 @@ md-dialog {
 	.review-body p{font-size:15px !important ;}
 
 	//.review-text{    width: 64.5% !important;}
-	header {background-color:$brand-color;}
+	header {background-color:$brand-color; width:100%;}
 	#search-bar-not-home-page {display:none;}
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	//background-image: image-url('girly-wallpaper.jpg');
