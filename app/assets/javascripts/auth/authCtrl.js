@@ -98,8 +98,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 	    });    
     }).error(function(err, statusCode){
 	    if ( statusCode == 401) {
-		     $scope.errors.invitationUsed = "Invitation has been used.";
-		     $scope.hideJoin = true;
+		     $scope.invitationUsed = true;
 	    }
     });
     

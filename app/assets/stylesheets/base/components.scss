@@ -6,3 +6,11 @@
 	text-transform: none;
 	@include main-color;
 }
+
+.cursor{
+	cursor:pointer;
+}
+
+.body {
+	@include body;
+}

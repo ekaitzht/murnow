@@ -9,10 +9,7 @@
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
-		<div>
-			<!--<div layout="row" layout-align="center center">
-			 	<md-button class="md-primary"  ng-click="showDialogLogin()">I already have an account</md-button>
-			</div>-->
+	
 		    <form name="registerForm" ng-submit="register()">
 				<div>
 			        <md-input-container>
@@ -44,10 +41,10 @@
 					
 						
 						<!--<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>-->
-						<md-button type="submit" class="md-raised md-primary" ng-hide="hideJoin">JOIN</md-button>	
-						<div class="alert alert-danger" role="alert" ng-show="errors.invitationUsed">
-							{{errors.invitationUsed}}
-			        	</div>
+						<md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
+						<div ng-show="invitationUsed" class="body">
+							This invitation has already been used. You can request a new invitation <span class="cursor" ng-click="showRequestInvitationDialog()"> here </span>.		        	
+ 						</div>
 				</div>		  
 			</form>
 
