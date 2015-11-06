@@ -24,6 +24,9 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     $scope.user = user;
     User.setUser(user);
     Dialog.hide();
+    $('#cupcake-backdrop').hide();
+	$('.block-page').show();
+
     		
   });
 
