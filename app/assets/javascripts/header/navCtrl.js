@@ -31,6 +31,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     User.setUser(user);
     Intercom.boot(user); 
     Dialog.hide();
+    $('#cupcake-backdrop').hide();
   });
 
   $scope.$on('devise:logout', function (e, user){

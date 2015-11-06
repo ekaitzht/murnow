@@ -18,7 +18,6 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     Auth.login($scope.user).then(function(ev){
 		Intercom.boot(ev);
 		$state.go('home');
-		$('#cupcake-backdrop').hide();
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
@@ -79,7 +78,6 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
 	    Auth.register($scope.user).then(function(ev){
 	     	 Intercom.boot(ev);
-	     	 $('#cupcake-backdrop').hide();
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.
