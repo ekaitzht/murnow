@@ -137,13 +137,23 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 
   };
   
+  $scope.facebookRegister = function(){
+    $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
+	    
+	    
+	});
+  }
+  
+  
   $scope.sendRequestInvitation = function(){
 	$http.post('/api/request_invitation/', {request: $scope.requestInvitation} ).success(function(data){
 	 	$scope.sentRequest = true;
  			
 	}).error(function(err){
-		 	
-		 	
+	    if ( statusCode == 401) {
+		     $scope.invitationUsed = true;
+	    }
+
 	});
   };
 

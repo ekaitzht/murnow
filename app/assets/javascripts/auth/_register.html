@@ -51,8 +51,11 @@
 			    <div layout="row" layout-align="center center">
 					
 						
-						<!--<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>-->
-						<md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
+						<div layout="row">
+							<md-button class="md-raised md-primary facebook-login-button" ng-click="facebookRegister()" target="_self" ng-hide="invitationUsed">Connect with Facebook</md-button>
+						    <md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
+						</div>
+
 						<div ng-show="invitationUsed" class="body">
 							This invitation has already been used. You can request a new invitation <span class="cursor" ng-click="showRequestInvitationDialog()"> here </span>.		        	
  						</div>
