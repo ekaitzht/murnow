@@ -1,11 +1,12 @@
 <md-dialog aria-label="Login Dialog" class="beta-dialog">
-    <md-dialog-content class="sticky-container">
-    	
-    	<div layout="column" layout-align="center center">
 	    	<div id="social-icons-home-page" class="social-icons">
 				<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram.png" alt="Smiley face" height="30" width="30"></a>		 			
 				<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter.png" alt="Smiley face" height="30" width="30"></a>
 	 		</div>
+    <md-dialog-content class="sticky-container">
+    	
+    	<div layout="column" layout-align="center center">
+
 	    	<div class="title"> 
 		    	MAKEUP REVIEWS NOW
 	    	</div>
@@ -13,7 +14,7 @@
 		    	The Makeup Review Haven
 	    	</div>
 	    	<div class="explanation">
-				Makeup Reviews Now is now only available for those who got invitations from us. If you have already registered, you can now log in. You can request an invitation by clicking <label ng-click="showRequestInvitationDialog">here</label>.
+				Makeup Reviews Now is now only available for those who got invitations from us. If you have already registered, you can now log in. You can request an invitation by clicking <span ng-click="showRequestInvitationDialog()" class="cursor">here</span>.
 	    	</div>
 	    	<label class="login"> Login </label>
 	    	<form name="registerForm" ng-submit="login()" layout="column">
