@@ -128,7 +128,7 @@ md-dialog {
 .home-page{
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
-	#cupcake-backdrop{width:100%; height: 100%;}
+	#cupcake-backdrop{width:100%; }
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: $accent-color;height:1px;border: 0;
 	}
 	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}

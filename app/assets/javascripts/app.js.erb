@@ -140,6 +140,8 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 
 app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Intercom', 'Dialog','Auth',function($rootScope,$location, $mdDialog, $state, $anchorScroll, Intercom, Dialog, Auth) {
 	   var lock = false;
+	   
+     
 	
   	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	
@@ -148,7 +150,11 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
     
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
-      
+		 	Auth.currentUser().then(function (user){
+   			$('.block-page').show();
+		}, function(error) { // User is not registered
+			 $('.block-page').hide();
+        });
     });
  
     $rootScope.closeDialog = function() {

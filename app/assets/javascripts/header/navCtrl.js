@@ -24,6 +24,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     $scope.user = user;
     User.setUser(user);
     Dialog.hide();
+    		
   });
 
   $scope.$on('devise:login', function (e, user){
@@ -32,6 +33,9 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Intercom.boot(user); 
     Dialog.hide();
     $('#cupcake-backdrop').hide();
+   	$('.block-page').show();
+
+
   });
 
   $scope.$on('devise:logout', function (e, user){
@@ -39,6 +43,9 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
 	Intercom.shutdown();
 	$state.go('home',{}, {reload: true});
 	$('#cupcake-backdrop').show();
+	$('.block-page').hide();
+		
+
   });
 
   $scope.showDialogRegisterOptions= function() {
