@@ -187,7 +187,7 @@ md-dialog {
 		margin:auto;
 		margin-top:4rem;
 	}
-	.twitter-pitch-home{@include subheader;color:white;}
+	.twitter-pitch-home{@include subheader;color:white;font-size:2rem;}
 	li {cursor:pointer;}
 	#logo {display:none;  }
 	#md-content{height: 100%;}

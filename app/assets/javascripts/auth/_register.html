@@ -1,16 +1,29 @@
-<md-dialog aria-label="Sign Up Dialog"> 
+<md-dialog aria-label="Sign Up Dialog"  class="beta-dialog"> 
  	<md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2>Join our community! </h2>
 		      <span flex></span>
-		      <!--<md-button class="md-icon-button" ng-click="closeDialog()" type="button">
-		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
-		      </md-button>-->
+		       <md-button class="md-icon-button" ng-click="goToLoginPrivateDialog()" type="button">
+					<md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
-	
-		    <form name="registerForm" ng-submit="register()">
+		<div id="social-icons-home-page" class="social-icons">
+			<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram.png" alt="Smiley face" height="30" width="30"></a>		 			
+			<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter.png" alt="Smiley face" height="30" width="30"></a>
+		</div>
+		
+		<div layout="column" layout-align="center center">				
+			<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Haven
+	    	</div>
+	    	<div class="explanation">
+		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
+	    	</div>
+		    <form name="registerForm" ng-submit="register()" layout="column">
 				<div>
 			        <md-input-container>
 			          <label> Email </label>
@@ -52,7 +65,6 @@
 		</div>
 		</md-dialog-content> 
 </md-dialog>
-
 
 
 
