@@ -93,17 +93,17 @@
 		#product-info{padding-right:inherit;}
 		md-divider{width:100%;margin-left:0px;}		
 	}
-
+ max-height:400px;
 							
 	
 	// *** HOME PAGE ***/
 	.home-page{
-		header{position:absolute;}
 		md-content{background-color: $brand-color;}
 		ui-view{display:none}
 		background-color:$brand-color;
 		form md-autocomplete {width:100%;}
-	
+		#md-toolbar-header { max-height:none;height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
+
 		#social-icons-home-page{
 			z-index: 50000;
     		bottom: 10px;

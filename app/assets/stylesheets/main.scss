@@ -125,7 +125,7 @@ md-dialog {
 
 .trading-products * { display:none !important;}
 .trading-products {display:none;}
-
+//   
 .home-page{
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
@@ -134,7 +134,7 @@ md-dialog {
 	}
 	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 	.thumbnail-user {border: 1px solid $accent-color;}
-	#md-toolbar-header {height:90%; max-height:400px;}
+	#md-toolbar-header {height:90%; max-height:400px; background-image:url('/assets/backdrops/backdrop_desktop.jpg');background-size:100%;}
 	h1{margin-top:3rem;}
 	.trading-products {
 		display:none;
@@ -170,7 +170,6 @@ md-dialog {
 	.review-body p{font-size:15px !important ;}
 
 	//.review-text{    width: 64.5% !important;}
-	header {background-color:$brand-color; width:100%;}
 	#search-bar-not-home-page {display:none;}
 	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
 	//background-image: image-url('girly-wallpaper.jpg');
@@ -186,8 +185,9 @@ md-dialog {
 		width: 70% ;
 		margin:auto;
 		margin-top:4rem;
+		text-shadow: 2px 2px 2px rgba(58, 58, 58, 0.22);
 	}
-	.twitter-pitch-home{@include subheader;color:white;}
+	.twitter-pitch-home{@include subheader;color:white; text-shadow: 2px 2px 2px rgba(58, 58, 58, 0.22);}
 	li {cursor:pointer;}
 	#logo {display:none;  }
 	#md-content{height: 100%;}
