@@ -1,0 +1,60 @@
+<md-dialog aria-label="Login Dialog" class="beta-dialog">
+	    
+    <md-dialog-content class="sticky-container">
+    	
+    	<div layout="column" layout-align="center center">
+	<div id="social-icons-home-page" class="social-icons">
+				<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram.png" alt="Smiley face" height="30" width="30"></a>		 			
+				<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter.png" alt="Smiley face" height="30" width="30"></a>
+	 		</div>
+	 			<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
+
+	    	<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Haven
+	    	</div>
+	    	<div class="explanation" hide-sm hide-md>
+				Makeup Reviews Now is now only available for those who got invitations from us. If you have already registered, you can now log in. You can request an invitation by clicking <span ng-click="showRequestInvitationDialog()" class="cursor">here</span>.
+	    	</div>
+	    	<label class="login" > Login </label>
+	    	<form name="registerForm" ng-submit="login()" layout="column">
+				<div>
+				
+
+				        <md-input-container>
+				          <label> Email </label>
+				          <input ng-model="user.email" name="email"  autofocus>
+				        </md-input-container>
+				        <md-input-container ng-hide="sendConfirm" md-no-float>
+				          <label> Password </label>
+				          <input    type="password" name="password" ng-model="user.password">
+				        </md-input-container>
+				        
+					 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
+					 		{{errors.errorPasswordEmail}}
+			      		</div>
+			
+				</div>
+				<div layout="column">	
+					<div layout="column" layout-align="space-around center">
+				    	    <md-button  class="button-not-raised" id="forgotten-password" ng-hide="sendConfirm"  type="button" ng-click="showDialogForgotPassword()"  >Forgotten password?</md-button>		
+							<md-button id="login-button" ng-hide="sendConfirm"  type="submit" class="md-raised md-primary">Log In</md-button>  
+			      	</div>
+				  	<md-button class="button-not-raised" ng-click="showRequestInvitationDialog()" >Request invitation</md-button>
+			      	<md-button ng-click="sendConfirmationInstructions(user.email)" ng-show="sendConfirm"  class="md-raised md-primary">Resend email confirmation</md-button>
+			 	</div>
+			 	<div class="explanation margin" show-md  hide-gt-sm>
+				Makeup Reviews Now is now only available for those who got invitations from us. If you have already registered, you can now log in. You can request an invitation by clicking <span ng-click="showRequestInvitationDialog()" class="cursor">here</span>.
+	    	</div>
+			 </form>
+		</div>
+	</md-dialog-content>      
+
+</md-dialog>
+
+  
+
+
+

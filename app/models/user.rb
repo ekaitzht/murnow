@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 	has_many :votes
 	has_many :reviews
 	
+	has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+	belongs_to :invitation
+	
   	devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]

@@ -1,0 +1,16 @@
+.button-not-raised{
+	font-family:$base-font;
+	font-size: 16px;
+	font-weight:400;
+	color:black;
+	text-transform: none;
+	color:  rgba(0, 0, 0, 0.54);
+}
+
+.cursor{
+	cursor:pointer;
+}
+
+.body {
+	@include body;
+}

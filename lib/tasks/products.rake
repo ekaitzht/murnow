@@ -178,7 +178,6 @@ namespace :load do
 				                         {exists: {field:"summary.average"}},
 				                         {exists: {field:"summary.reviews"}}
 				                    ],
-				                 SELECT product_name, original_number_reviews FROM products ORDER BY original_number_reviews DESC;  
 				                    should: [       
 				                      {bool: {
 				                           	must_not: [

@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
+  #def launch
+  #	render 'layouts/launch',  layout: "launch"
+  #end
+  
+  def angular
+    render 'layouts/application'
+  end
+  
   def cors_set_access_control_headers
     headers['Access-Control-Allow-Origin'] = 'http://makeup-review-video-nazioarteko.c9.io'
     headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
@@ -29,10 +37,8 @@ index.html
     end
   end
   
-  def angular
-    render 'layouts/application'
-  end
 
+  
     private
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :username

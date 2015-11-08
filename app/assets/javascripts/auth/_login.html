@@ -14,7 +14,6 @@
 				<div>
 				
 					<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button> 
-			        <form name="registerForm" ng-submit="login()" layout="column">
 		
 				        <md-input-container>
 				          <label> Email </label>
@@ -24,8 +23,6 @@
 				          <label> Password </label>
 				          <input    type="password" name="password" ng-model="user.password">
 				        </md-input-container>
-				        
-				       <!-- <md-checkbox type="hidden" ng-hide="sendConfirm"  ng-model="user.remember_me" ng-model-options="{ getterSetter: true }" aria-label="Checkbox 1">Remember Me </md-checkbox> -->
 				        
 					 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
 					 		{{errors.errorPasswordEmail}}

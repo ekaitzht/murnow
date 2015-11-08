@@ -1,19 +1,27 @@
-<md-dialog aria-label="Sign Up Dialog"> 
+<md-dialog aria-label="Sign Up Dialog"  class="beta-dialog"> 
  	<md-toolbar>
+ 	
 		    <div class="md-toolbar-tools">
-		      <h2>Join our community! </h2>
 		      <span flex></span>
-		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
-		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
-		      </md-button>
+		       <md-button class="md-icon-button" ng-click="goToLoginPrivateDialog()" type="button">
+					<md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
-		<div>
-			<div layout="row" layout-align="center center">
-			 	<md-button class="md-primary"  ng-click="showDialogLogin()">I already have an account</md-button>
-			</div>
-		    <form name="registerForm" ng-submit="register()">
+	
+		<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
+		<div layout="column" layout-align="center center">				
+			<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Haven
+	    	</div>
+	    	<div class="explanation" hide-sm hide-md>
+		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
+	    	</div>
+		    <form name="registerForm" ng-submit="register()" layout="column">
 				<div>
 			        <md-input-container>
 			          <label> Email </label>
@@ -40,20 +48,27 @@
 			          {{errors.errorPassword}}
 			        </div>
 			    </div>
-			    <div layout="row" layout-align="space-between center">
+			    <div layout="row" layout-align="center center">
 					
 						
-						<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>
-						<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>	
+							<!--<md-button class="md-raised md-primary facebook-login-button" ng-click="facebookRegister()"  >Connect with Facebook</md-button>-->
+						    <md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
 
-				</div>		  
+						<div ng-show="invitationUsed" class="body">
+							This invitation has already been used. You can request a new invitation <span class="cursor" ng-click="showRequestInvitationDialog()"> here </span>.		        	
+ 						</div>
+				</div>	
+			    <div class="explanation margin" show-md  hide-gt-sm>
+		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
+	    	</div>	  
+	    	
+	    	
 			</form>
-
+			
 						
 		</div>
 		</md-dialog-content> 
 </md-dialog>
-
 
 
 

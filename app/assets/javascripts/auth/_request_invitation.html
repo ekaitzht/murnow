@@ -1,0 +1,50 @@
+<md-dialog aria-label="Request Invitation Dialog"  class="beta-dialog"> 
+	
+ 	<md-toolbar>
+		    <div class="md-toolbar-tools">
+		        <span flex></span>
+		        <md-button class="md-icon-button" ng-click="goToLoginPrivateDialog()" type="button">
+					<md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
+		    </div>
+	</md-toolbar>
+	<md-dialog-content class="sticky-container">
+
+		<div layout="column" layout-align="center center">
+			<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
+			<div class="title"> 
+		    	MAKEUP REVIEWS NOW
+	    	</div>
+	    	<div class="pitch">
+		    	The Makeup Review Haven
+	    	</div>
+	    	<div class="explanation"  hide-sm hide-md>
+				Please provide us with your email and name and we will reach out with an invitation as soon as these are available.
+	    	</div>
+		    <form name="requestInvitationForm" ng-submit="sendRequestInvitation()" layout="column" layout-align="center center">
+				<div>
+			        <md-input-container>
+			          <label> Email </label>
+			          <input ng-model="requestInvitation.email" type="email"  autofocus required>
+			        </md-input-container>
+			    
+			        
+			        <md-input-container>
+			          <label> Name </label>
+			          <input type="text"  ng-model="requestInvitation.name"    required>
+			        </md-input-container>
+
+			    </div>
+			    <div layout="row" layout-align="center center">
+					<md-button type="submit" class="md-raised md-primary" ng-hide="sentRequest">Request invitation</md-button>	
+				    <div ng-show="sentRequest" class="body">Thank you. We will be in touch very soon!</div>	
+
+				</div>	
+				<div class="explanation margin"  show-md  hide-gt-sm >
+					Please provide us with your email and name and we will reach out with an invitation as soon as these are available.
+	    		</div>	   
+			</form>
+						
+		</div>
+		</md-dialog-content> 
+</md-dialog>

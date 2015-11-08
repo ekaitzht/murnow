@@ -9,19 +9,18 @@ angular.module('murnow')
 'Dialog',
 '$rootScope',
 'Intercom',
-function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom){
+'$http',
+function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom, $http){
   $scope.login = function() {   
   
     $scope.errors = {};
 	$scope.user.remember_me =  true; 
     Auth.login($scope.user).then(function(ev){
-
 		Intercom.boot(ev);
-		
+		$state.go('home');
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
-
     }, function(error) {
         if (error.data.error == "You have to confirm your email address before continuing.") {
           $scope.sendConfirm = true;
@@ -75,26 +74,34 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
   $scope.register = function() {
 
     $scope.errors = {};
-    Auth.register($scope.user).then(function(ev){
-     	 Intercom.boot(ev);
-    }).then(function(response) {
-        // Successfully recovered from unauthorized error.
-        // Resolve the original request's promise.
-     
-    }, function(error) {
-        // There was an error logging in.
-        // Reject the original request's promise.
-        errors = error.data.errors;
-        if ( errors.hasOwnProperty("email") ) {
-          $scope.errors.errorEmail = "Your email "+ errors.email[0];
-        }  
-        if ( errors.hasOwnProperty("password") ) {
-          $scope.errors.errorPassword = "Password "+ errors.password[0];
-        }
-        if ( errors.hasOwnProperty("username") ) {
-          $scope.errors.errorName = "Name " + errors.username[0];
-        }
+    
+    $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
+	    Auth.register($scope.user).then(function(ev){
+	     	 Intercom.boot(ev);
+	    }).then(function(response) {
+	        // Successfully recovered from unauthorized error.
+	        // Resolve the original request's promise.
+	     
+	    }, function(error) {
+	        // There was an error logging in.
+	        // Reject the original request's promise.
+	        errors = error.data.errors;
+	        if ( errors.hasOwnProperty("email") ) {
+	          $scope.errors.errorEmail = "Your email "+ errors.email[0];
+	        }  
+	        if ( errors.hasOwnProperty("password") ) {
+	          $scope.errors.errorPassword = "Password "+ errors.password[0];
+	        }
+	        if ( errors.hasOwnProperty("username") ) {
+	          $scope.errors.errorName = "Name " + errors.username[0];
+	        }
+	    });    
+    }).error(function(err, statusCode){
+	    if ( statusCode == 401) {
+		     $scope.invitationUsed = true;
+	    }
     });
+    
   };
   
   $scope.$on('$stateChangeSuccess', 
@@ -108,16 +115,49 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
    		Dialog.forgotPassword();
   };
 
-  	$scope.showDialogRegister= function() {
+  $scope.goToLoginPrivateDialog = function() {
  
-  		Dialog.register();
-  	};
+  		Dialog.loginPrivate();
+  };
   
-    $scope.showDialogLogin= function() {
+  $scope.showDialogLogin= function() {
      	Dialog.login();
    };
-	$scope.closeDialog = function() {
+
+  $scope.closeDialog = function() {
     	Dialog.hide();
-	};
+  };
+  
+  $scope.closeDialog = function() {
+    	Dialog.hide();
+  };
+  $scope.showRequestInvitationDialog = function() {
+	 
+		Dialog.requestInvitation();
+
+  };
+  
+  $scope.facebookRegister = function(){
+    $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
+	    
+	     document.location.href = '/users/auth/facebook';
+	     
+	}).error(function(err, statusCode){
+	    if ( statusCode == 401) {
+		     $scope.invitationUsed = true;
+	    }
+    });
+  }
+  
+  
+  $scope.sendRequestInvitation = function(){
+	$http.post('/api/request_invitation/', {request: $scope.requestInvitation} ).success(function(data){
+	 	$scope.sentRequest = true;
+ 			
+	}).error(function(err){
+
+	});
+  };
+
   
 }]);

@@ -36,7 +36,6 @@ Rails.application.routes.draw do
 	  get 'trending', to: 'search#trending'
 	  get 'amazon/policy', to: 'amazon#policy'
 	
-	
 	  # Association model between User and SkinProblem    User <=== UserSkinProblem ===> SkinProblem
 	  put 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#create'
 	  delete 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#destroy'
@@ -45,16 +44,22 @@ Rails.application.routes.draw do
 	  # Association model between User and Reviews for who is voting what review    User <=== Vote ===> Review
 	  put 'votes/:review_id/users/:user_id', to: 'votes#create'
 	  
-	  
-	  
 	  #Get a specific user this only should use for public_profile
 	  get 'users/:id/', to: 'users#show'	  
-	  
 	  get 'reviews_by_user/:user_id', to: 'reviews#reviews_by_user'
 	  get 'most_popular_reviews_for_the_most_popular_products', to: 'products#most_popular_reviews_for_the_most_popular_products'
 	  
+	  #generate invitation,request invitation 
+	  post 'generateinvitation/', to: 'invitations#create'
+	  post 'request_invitation', to: 'invitations#request_invitation'
+	  get 'check_register_token/:token', to: 'invitations#check_register_token'
+
 	  #request product
 	  put 'requests/', to: 'request_product#create'
+	  
+	  
+	  
+	  		
 	end 
 
   # Example resource route with options:

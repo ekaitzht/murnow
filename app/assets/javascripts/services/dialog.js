@@ -6,8 +6,7 @@ angular.module('murnow')
 	    $mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_register.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
+            hasBackdrop: false
         });
 	 
 	};
@@ -27,8 +26,7 @@ angular.module('murnow')
 		$mdDialog.show({
             controller: 'AuthCtrl',
             templateUrl: 'auth/_forgotpassword.html',
-            hasBackdrop: true,
-            clickOutsideToClose: true
+            hasBackdrop: false
         });
 	}
 
@@ -51,6 +49,22 @@ angular.module('murnow')
         });
 	}
 	
+    this.loginPrivate = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_login_private.html',
+            hasBackdrop: false
+        });
+	}
+	
+	this.requestInvitation = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_request_invitation.html',
+            hasBackdrop: false
+        });
+	}
+
 	this.alertSentConfirmation = function() {
 		$mdDialog.show(
 	      $mdDialog.alert()
