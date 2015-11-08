@@ -26,7 +26,6 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Dialog.hide();
     $('#cupcake-backdrop').hide();
 	$('.block-page').show();
-
     		
   });
 
@@ -39,6 +38,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
    	$('.block-page').show();
 
 
+
   });
 
   $scope.$on('devise:logout', function (e, user){
@@ -47,6 +47,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
 	$state.go('home',{}, {reload: true});
 	$('#cupcake-backdrop').show();
 	$('.block-page').hide();
+
 		
 
   });
