@@ -10,7 +10,7 @@
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
 	
-		
+		<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
 		<div layout="column" layout-align="center center">				
 			<div class="title"> 
 		    	MAKEUP REVIEWS NOW
@@ -18,7 +18,7 @@
 	    	<div class="pitch">
 		    	The Makeup Review Haven
 	    	</div>
-	    	<div class="explanation">
+	    	<div class="explanation" hide-sm hide-md>
 		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
 	    	</div>
 		    <form name="registerForm" ng-submit="register()" layout="column">
@@ -51,17 +51,20 @@
 			    <div layout="row" layout-align="center center">
 					
 						
-						<div layout="row">
-							<md-button class="md-raised md-primary facebook-login-button" ng-click="facebookRegister()" target="_self" ng-hide="invitationUsed">Connect with Facebook</md-button>
+							<!--<md-button class="md-raised md-primary facebook-login-button" ng-click="facebookRegister()"  >Connect with Facebook</md-button>-->
 						    <md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
-						</div>
 
 						<div ng-show="invitationUsed" class="body">
 							This invitation has already been used. You can request a new invitation <span class="cursor" ng-click="showRequestInvitationDialog()"> here </span>.		        	
  						</div>
-				</div>		  
+				</div>	
+			    <div class="explanation" show-md  hide-gt-sm>
+		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
+	    	</div>	  
+	    	
+	    	
 			</form>
-
+			
 						
 		</div>
 		</md-dialog-content> 

@@ -140,8 +140,13 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
   $scope.facebookRegister = function(){
     $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
 	    
-	    
-	});
+	     document.location.href = '/users/auth/facebook';
+	     
+	}).error(function(err, statusCode){
+	    if ( statusCode == 401) {
+		     $scope.invitationUsed = true;
+	    }
+    });
   }
   
   
@@ -150,9 +155,6 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 	 	$scope.sentRequest = true;
  			
 	}).error(function(err){
-	    if ( statusCode == 401) {
-		     $scope.invitationUsed = true;
-	    }
 
 	});
   };

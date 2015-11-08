@@ -2,9 +2,9 @@ class Api::InvitationsController < ApplicationController
    	before_filter :authenticate_user!, :only => [:create]
    	
 	def create
-		if current_user.email = 'ulaize@murnow.com'
+		if current_user.email = 'ekaitz7@gmail.com'
 			@invitation = Invitation.create(token: 'join'+Digest::SHA1.hexdigest([Time.now, rand].join), spoiled: false) 
-			url = 'http://' + ENV['APP_URL'] + '/'+@invitation.token
+			url = ENV['APP_URL'] + '/'+@invitation.token
 			render json: {invitation_url: url}
 		end
 
