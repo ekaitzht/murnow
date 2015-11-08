@@ -1,10 +1,11 @@
-Hi <%= @user.username %>,
+<p>You got in! Awesome!!😍</p>
 
-<p>Thank you for signing up. Please confirm your email address here:</p>
+<p >Now all you gotta do is confirm your email and review.</p>
+<div><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token),:style=>'color:#FFAABB;'  %></div>
+<br>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)  %></p>
+<div><img style="border-radius:5px;" src= "http://<%= ActionMailer::Base.default_url_options[:host] %>/assets/hello.gif" alt="Hello!" height="220" width="410"></div>
 
-<img src= "http://<%= ActionMailer::Base.default_url_options[:host] %>/assets/hello.gif" alt="Hello!" height="220" width="410">
 
 
 

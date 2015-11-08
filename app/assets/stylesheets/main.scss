@@ -6,7 +6,7 @@
 
 
 
-body {    background-image: url('/assets/backdrops/backdrop_desktop.jpg');    background-size: cover;}
+.backdrop-active {background-image: url('/assets/backdrops/backdrop_desktop.jpg');    background-size: cover;}
 span.sr-only.ng-binding {display:none;}
 .fa {color:$accent-color;}
 
@@ -68,7 +68,8 @@ md-dialog {
    #happy-cupcake{ z-index: 0;position: fixed;opacity: 0.7;@include rotate(-20deg);left: 45%;top: 250px;}
 	.title{@include brand-font($accent-color);}
 	.pitch{font-family: $josefin-sans;color:$accent-color;font-size:1.5em; margin-top:1.5rem;font-style:italic;}
-	.explanation{@include body;margin-top:1.5rem;text-align: center;margin-top: 5.5rem;}
+	.explanation{@include body;margin-top:1.5rem;text-align: center;}
+	.margin{margin-top: 5.5rem;}
 	.login{@include title; margin-top:1.5rem;opacity:0.7;}
 	md-toolbar {min-height: initial; height:20px;}
 	.md-primary {height: 0px;}

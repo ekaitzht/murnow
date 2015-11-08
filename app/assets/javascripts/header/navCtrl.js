@@ -26,6 +26,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Dialog.hide();
     $('#cupcake-backdrop').hide();
 	$('.block-page').show();
+	$('body').removeClass('backdrop-active');
     		
   });
 
@@ -36,6 +37,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Dialog.hide();
     $('#cupcake-backdrop').hide();
    	$('.block-page').show();
+   	$('body').removeClass('backdrop-active');
 
 
 
@@ -47,6 +49,7 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
 	$state.go('home',{}, {reload: true});
 	$('#cupcake-backdrop').show();
 	$('.block-page').hide();
+	$('body').addClass('backdrop-active');
 
 		
 

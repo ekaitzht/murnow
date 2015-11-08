@@ -150,10 +150,12 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
     
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
-		 	Auth.currentUser().then(function (user){
+		 Auth.currentUser().then(function (user){
    			$('.block-page').show();
+   			$('body').removeClass('backdrop-active');
 		}, function(error) { // User is not registered
 			 $('.block-page').hide();
+			 $('body').addClass('backdrop-active');
         });
     });
  
