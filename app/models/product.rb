@@ -48,7 +48,7 @@ class Product < ActiveRecord::Base
       indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
       indexes :levels, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
       indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
-      indexes :rating, index: 'not_analyzed', type: 'integer'
+      indexes :original_number_reviews, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
       indexes :id, type: 'integer', analyzer: 'standard', index_options: 'docs'
@@ -79,7 +79,7 @@ class Product < ActiveRecord::Base
   def self.search(query, from)
  __elasticsearch__.search(
 	    {
-		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating','original_url'],
+		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating','original_url','original_number_reviews'],
 	    	query: {
 			    function_score:{
 			        query: {
@@ -87,9 +87,20 @@ class Product < ActiveRecord::Base
 			            query: query,
 			            type: 'cross_fields',
 			            # Here you can add what search field can be matcheables
-			            fields: ['product_name','brand_name^5', 'levels^20'] 
+			            fields: ['product_name','brand_name^2', 'levels^3'] 
 			          }
-			        }
+			        },
+			        functions:[
+				        {
+					        linear: {
+					           original_number_reviews: {
+					             origin: "200000",
+					              scale: "200000",
+					              decay: 0.5
+					            }
+							}
+				        }
+				    ]
 			    }
 	    	},
 	    	from: from, size: 20
