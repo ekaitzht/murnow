@@ -43,7 +43,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 
       User.forgotPassword($scope.resetPasswordForm.email
       ).success(function(data) {
-         $scope.successfulMessage = "Please check your inbox email to change your password.";
+         $scope.successfulMessage = "Please check your email to change your password.";
       }).error(function(error){
           if ( error.errors.hasOwnProperty("email") ) { $scope.errors.emailNotFoundReset = "We can not find the email"; }  
       });
