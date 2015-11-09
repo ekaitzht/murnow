@@ -1,7 +1,7 @@
-<p>You got in! Awesome!!😍</p>
+<p>You got in! Awesome!! 😍</p>
 
-<p >Now all you gotta do is confirm your email and review.</p>
-<div><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token),:style=>'color:#FFAABB;'  %></div>
+<p>Now all you have to do is confirm your email and review.</p>
+<div><%= link_to 'Confirm email and review now!', confirmation_url(@resource, confirmation_token: @token),:style=>'color:#FFAABB;'  %></div>
 <br>
 
 <div><img style="border-radius:5px;" src= "http://<%= ActionMailer::Base.default_url_options[:host] %>/assets/hello.gif" alt="Hello!" height="220" width="410"></div>

@@ -35,7 +35,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
   $locationProvider.html5Mode(true);
   $stateProvider
     .state('home', {  // CAMBIAR ESTOOOOOOO
-      url: '/:token', //join4e8f3fc53562062257b81cd13d7decb86727c623
+      url: '/{token:join.*| *}', //join4e8f3fc53562062257b81cd13d7decb86727c623
       templateUrl: 'home/_reviews.html',
       controller: 'MainCtrl',
       resolve: {
@@ -167,7 +167,11 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
   if ($location.path() == "/users/sign_in") {
     $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
-        Dialog.login();
+	 	Auth.currentUser().then(function (user){
+   			
+		}, function(error) { // README COMMENT: when we remove the invation system we have to activate this line
+			//Dialog.loginPrivate();
+        });        
         $rootScope.deregistration_login_after_confirmation();
         delete $rootScope.deregistration_login_after_confirmation;
     });
