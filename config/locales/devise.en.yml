@@ -20,7 +20,7 @@ en:
       confirmation_instructions:
         subject: "Welcome to Makeup Reviews Now 💄😍"
       reset_password_instructions:
-        subject: "Reset password instructions"
+        subject: "Reset Password"
       unlock_instructions:
         subject: "Unlock instructions"
     omniauth_callbacks:
