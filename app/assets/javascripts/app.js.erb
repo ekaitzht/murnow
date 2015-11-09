@@ -169,8 +169,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 	    
 	 	Auth.currentUser().then(function (user){
    			
-		}, function(error) { // User is not registered
-			Dialog.loginPrivate();
+		}, function(error) { // README COMMENT: when we remove the invation system we have to activate this line
+			//Dialog.loginPrivate();
         });        
         $rootScope.deregistration_login_after_confirmation();
         delete $rootScope.deregistration_login_after_confirmation;
