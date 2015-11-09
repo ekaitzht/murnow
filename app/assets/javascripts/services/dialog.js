@@ -31,6 +31,14 @@ angular.module('murnow')
 	}
 
 
+	this.resetPassword = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_resetpassword.html',
+            hasBackdrop: false
+        });
+	}
+
 	this.signupOptions = function(){
 		$mdDialog.show({
             controller: 'AuthCtrl',

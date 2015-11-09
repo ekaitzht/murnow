@@ -107,8 +107,9 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
     })
     .state('resetpassword', {
       url: '/resetpassword?resetToken',
-      templateUrl: 'auth/_resetpassword.html',
-      controller: 'AuthCtrl'
+	  onEnter: ['Dialog',function(Dialog){
+	  		Dialog.resetPassword();
+  	  }]   
     })
     .state('products', {
   		url: '/products/{id}',
