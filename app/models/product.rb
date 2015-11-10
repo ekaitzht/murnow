@@ -45,9 +45,9 @@ class Product < ActiveRecord::Base
     }
   } do
     mappings dynamic: 'false' do
-      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
-      indexes :levels, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
-      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {disabled: true}
+      indexes :product_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {enabled: false}
+      indexes :levels, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {enabled: false}
+      indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {enabled: false}, fields: { raw: { type:'string', index:'not_analyzed'} }
       indexes :original_number_reviews, index: 'not_analyzed', type: 'integer'
       indexes :category, analyzer: 'standard', index_options: 'offsets'
       indexes :tags, analyzer: 'standard', index_options: 'offsets'
@@ -57,7 +57,6 @@ class Product < ActiveRecord::Base
     end
   end
 
-  
 =begin
   def as_json(options = {})
    super(options.merge(include: {reviews:
@@ -77,6 +76,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.search(query, from)
+	  
  __elasticsearch__.search(
 	    {
 		    _source:  ['id','product_name', 'brand_name', 'upvotes','hash_url_image','product_stars','buyers','not_buyers','rating','original_url','original_number_reviews'],
@@ -99,6 +99,10 @@ class Product < ActiveRecord::Base
 					              decay: 0.5
 					            }
 							}
+				        },
+				        {
+				          filter: { term: { "brand_name.raw": "Z Palette" }}, 
+				          weight: 0
 				        }
 				    ]
 			    }
