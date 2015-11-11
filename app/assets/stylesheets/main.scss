@@ -53,6 +53,7 @@ header {
 		top: -10px;
 	}
 	
+	
 }
 md-dialog {
 	font-size:initial;
@@ -254,7 +255,7 @@ md-dialog {
 
 	overflow:hidden;
 	md-card{max-width:960px;margin:auto;margin-top:1.25rem;margin-bottom:5px;}
-	#logo {position: relative;left:10px;top:5px;font-family:$brand-font}
+	#logo {position: relative;left:10px;width:48px;font-family:$brand-font}
 	.form-wrapper-search {
 		margin:auto;
 		form  {
