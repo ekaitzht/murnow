@@ -25,7 +25,10 @@ class Api::SearchController < ApplicationController
 		                terms: {
 		                    id: params[:q].split(',')
 		                }
-		    }
+		    },
+		    sort: [
+		      {rating: "desc"}
+			]
 		}
 			
 		response = Product.searchGeneral(elasticsearchJSON)

@@ -104,3 +104,39 @@
     -webkit-transform: rotate($deg); /* Chrome, Safari, Opera */
     transform: rotate($deg);
 }
+
+
+@mixin list-products {
+	md-card {padding:0px;}
+		.figure-wrapper figure{margin:18px;}
+		md-list {
+			padding-top:0px;
+			#product-info {
+			
+			}
+			md-list-item  {
+				
+				padding:0px;cursor:pointer;
+				> button {
+					padding:0px 0px;
+					.md-list-item-inner{
+						padding:2.5rem;	
+						@include row-product-info;
+					}
+				}	
+	
+			}
+		}	
+		.not-found{
+			img{width:15rem;height: 15rem;}
+			div:first-child{font-size:4rem;font-family: $brand-font; font-weight:700;color: $accent-color;}
+			#cupcake{margin-top:30px;margin-bottom: 30px;}
+			#request-products{margin-bottom:30px;}
+			
+		}
+		
+		#product-info {
+			#brand-name h3 {@include sub-head;}
+			h2{@include title;}
+		}
+}

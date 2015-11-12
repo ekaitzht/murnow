@@ -49,9 +49,8 @@ class Product < ActiveRecord::Base
       indexes :levels, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {enabled: false}
       indexes :brand_name, analyzer: 'folding_analyzer', index_options: 'offsets', norms: {enabled: false}, fields: { raw: { type:'string', index:'not_analyzed'} }
       indexes :original_number_reviews, index: 'not_analyzed', type: 'integer'
-      indexes :category, analyzer: 'standard', index_options: 'offsets'
-      indexes :tags, analyzer: 'standard', index_options: 'offsets'
       indexes :id, type: 'integer', analyzer: 'standard', index_options: 'docs'
+	  indexes :rating, type: 'integer', index: 'not_analyzed'
 
 
     end
