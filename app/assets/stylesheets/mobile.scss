@@ -143,7 +143,10 @@
 			}
 		}
 		
-		
+		.trending_products{
+			md-card {margin-top:6rem;}
+		}
+	
 		.products{
 			.header-product {
 				@extend .row-product-info;	

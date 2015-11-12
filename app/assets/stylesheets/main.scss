@@ -135,9 +135,8 @@ md-dialog {
 
 
 
-.trading-products * { display:none !important;}
-.trading-products {display:none;}
-//   
+
+
 .home-page{
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
@@ -148,7 +147,6 @@ md-dialog {
 	#md-toolbar-header {height:90%; max-height:400px; background-image:url('/assets/backdrops/backdrop_desktop.jpg');background-size:100%;}
 	h1{margin-top:3rem;}
 	.trading-products {
-		display:none;
 		font-family: $josefin-sans; 
 		font-weight:300;
 	    font-style:italic; 
@@ -235,7 +233,8 @@ md-dialog {
 }
 
 .not-home-page {
-	
+	.trading-products * { display:none !important;}
+	.trading-products {display:none;}
 	md-card {padding:2.5rem;}
 	@include check-mark;
 	#social-icons-home-page {display:none;}
@@ -270,42 +269,16 @@ md-dialog {
 	}
 	header {height:60px;}
 	.home a {font-size: 31px; font-weight:600;color:white;}
+		
 
 	// * LIST STYLING */
-	.list_products,.trending_products {  // state name
-	
-		md-card {padding:0px;}
-		.figure-wrapper figure{margin:18px;}
-		md-list {
-			padding-top:0px;
-			#product-info {
-			
-			}
-			md-list-item  {
-				
-				padding:0px;cursor:pointer;
-				> button {
-					padding:0px 0px;
-					.md-list-item-inner{
-						padding:2.5rem;	
-						@include row-product-info;
-					}
-				}	
-	
-			}
-		}	
-		.not-found{
-			img{width:15rem;height: 15rem;}
-			div:first-child{font-size:4rem;font-family: $brand-font; font-weight:700;color: $accent-color;}
-			#cupcake{margin-top:30px;margin-bottom: 30px;}
-			#request-products{margin-bottom:30px;}
-			
-		}
-		
-		#product-info {
-			#brand-name h3 {@include sub-head;}
-			h2{@include title;}
-		}	
+	.list_products {  // state name
+		@include list-products;	
+	}
+	.trending_products{
+		@include list-products;	
+		md-card {margin-top:5rem;}
+		.list-tranding-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;@include title;max-width: 960px;}
 	}
 	
 	.products {
