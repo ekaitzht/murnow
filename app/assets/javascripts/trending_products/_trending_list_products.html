@@ -1,6 +1,6 @@
 <md-card>
 	<md-list  class="products-list" layout="column">
-			<div class="list-tranding-title"> Hi How are you? </div>	
+			<div class="list-tranding-title"> Top 10 {{listName}} </div>	
 
 			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id)">
 				<div  class="md-list-item-text" layout="row" layout-align="space-around center" flex="100" >

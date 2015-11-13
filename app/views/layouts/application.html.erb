@@ -71,17 +71,17 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 						</md-autocomplete>
      				</form>
 				</div>
-				<div class="trading-products" > 
-					 <span> Top 10:</span> 
-					 <span ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248')"> Lipstick </span> 
-					 | 
-					 <span ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015')"> Foundation </span> 
-					 |
-					 <span ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166')"> Palettes </span>
-					 |  
-					 <span ng-click="trendingProductsLipstick('31939,31939,35784,30131,32304,31210,31225,31273,32346,30326')"> Mascara </span> 
-					 |  
-					 <span ng-click="trendingProductsLipstick('33437,30213,32410,32414,30072,35277,30073,29406,32375,29254')"> Eye Liners </span> 
+				<div ng-cloak class="trending-products-list" > 
+					 <span class="element"> Top 10:</span> 
+					 <span class="element" ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')" > Lipsticks </span> 
+					 <span class="trending-separator">|</span>
+					 <span class="element" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"> Foundations </span> 
+					 <span class="trending-separator">|</span>
+					 <span class="element" ng-click="trendingProductsLipstick('33437,30213,32410,32414,30072,35277,30073,29406,32375,29254','Palettes')"> Palettes </span>
+					 <span class="trending-separator">|</span>  
+					 <span class="element" ng-click="trendingProductsLipstick('31939,31939,35784,30131,32304,31210,31225,31273,32346,30326','Mascaras')"> Mascaras </span> 
+					 <span class="trending-separator">|</span> 
+					 <span class="element" ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"> Eye Liners </span> 
 
 				</div>
 				<div>
@@ -91,7 +91,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 				<!--<div ng-cloak  hide-gt-sm id="promotion-wrapper"> 
 					<a ng-cloak ng-href="/competition"><img src="/assets/competition/palette_green.png"> </a>
 				</div> -->
-				<div id="social-icons-home-page" class="social-icons" >
+				<div ng-cloak id="social-icons-home-page" class="social-icons" >
 					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram_shadow.png" alt="Smiley face" height="30" width="30"></a>		 			
 					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter_shadow.png" alt="Smiley face" height="30" width="30"></a>
 	 			</div>
