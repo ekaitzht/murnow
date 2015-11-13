@@ -47,7 +47,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 					if( $stateParams.token.match(/join.*/) !== null){  // If it has a token structure we open the register dialog
 			  			Dialog.register();
 		  			} else {
-			  			Dialog.loginPrivate();
+			  			
 		  			}
 		        });
 	        	return products.getMostPopularReviews();
@@ -157,6 +157,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 		}, function(error) { // User is not registered
 			 $('.block-page').hide();
 			 $('body').addClass('backdrop-active');
+			 Dialog.loginPrivate();
+
         });
     });
  
@@ -171,7 +173,6 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 	 	Auth.currentUser().then(function (user){
    			
 		}, function(error) { // README COMMENT: when we remove the invation system we have to activate this line
-			//Dialog.loginPrivate();
         });        
         $rootScope.deregistration_login_after_confirmation();
         delete $rootScope.deregistration_login_after_confirmation;
