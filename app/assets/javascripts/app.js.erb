@@ -71,12 +71,12 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       }
     })
     .state('trending_products', {  // CAMBIAR ESTOOOOOOO
-      url: '/trending_products/:list',
+      url: '/trending_products?list&list_name',
       templateUrl: 'trending_products/_trending_list_products.html',
       controller: 'TrendingListProductsCtrl',
       resolve: {
         productsPromise: ['products','$stateParams', function(products, $stateParams){        
-		    return products.getTrendingProducts($stateParams.list);
+		    return products.getTrendingProducts($stateParams.list, $stateParams.list_name);
 	            
         }]
       }
@@ -215,8 +215,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
         return $state.current.name;
     };
     
-    $rootScope.trendingProductsLipstick = function (listQuery){
-			$state.go('trending_products', { list: listQuery});
+    $rootScope.trendingProductsLipstick = function (listQuery, listName){
+			$state.go('trending_products', { list: listQuery, list_name:listName});
     }
 
 }]);

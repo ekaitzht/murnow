@@ -146,14 +146,14 @@ md-dialog {
 	.thumbnail-user {border: 1px solid $accent-color;}
 	#md-toolbar-header {height:90%; max-height:400px; background-image:url('/assets/backdrops/backdrop_desktop.jpg');background-size:100%;}
 	h1{margin-top:3rem;}
-	.trading-products {
+	.trending-products-list {
 		font-family: $josefin-sans; 
-		font-weight:300;
+		font-weight:400;
 	    font-style:italic; 
-	    font-size:1.3rem; 
+	    font-size:22px; 
 	    text-align:center;    
 	    position: relative;
-	     top: -5px;
+	     top: 5px;
 		span {
 			cursor:pointer;
 			&:not(:first-child){margin-right: 3px;padding-left: 2px;}
@@ -233,8 +233,8 @@ md-dialog {
 }
 
 .not-home-page {
-	.trading-products * { display:none !important;}
-	.trading-products {display:none;}
+	.trending-products-list  * { display:none !important;}
+	.trending-products-list  {display:none;}
 	md-card {padding:2.5rem;}
 	@include check-mark;
 	#social-icons-home-page {display:none;}
@@ -277,8 +277,8 @@ md-dialog {
 	}
 	.trending_products{
 		@include list-products;	
-		md-card {margin-top:5rem;}
-		.list-tranding-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;@include title;max-width: 960px;}
+		md-card {margin-top:10rem;}
+		.list-tranding-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;max-width: 960px;@include list-title-typography;}
 	}
 	
 	.products {

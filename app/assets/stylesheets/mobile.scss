@@ -118,7 +118,7 @@
     	}
     	
     	#promotion-wrapper img{height:auto;}
-	
+
 	}
 	
 	//*** NOT HOME PAGE ***/
@@ -142,9 +142,13 @@
 				
 			}
 		}
-		
+	
 		.trending_products{
-			md-card {margin-top:6rem;}
+			md-card {margin-top:10rem;}
+			
+			.list-tranding-title{font-size:32px;}
+			
+			md-list-item:first-child{border-top:rgba(255, 170, 187, 0.5);}
 		}
 	
 		.products{

@@ -4,8 +4,8 @@ function($scope, $rootScope, $state,$stateParams, products,configMurnow){
 	$scope.products = products.products.search;
     $scope.cdn = configMurnow.cdn_domain_name;
     
-	$rootScope.pageTitle = "Results for " + products.searchQuery;
-
+	$rootScope.pageTitle = "Top " + $stateParams.list_name;
+	$scope.listName = $stateParams.list_name;
 	$scope.percentFilter = function(product) {
 		return  (product.buyers/(product.buyers + product.not_buyers))*100;
 	};

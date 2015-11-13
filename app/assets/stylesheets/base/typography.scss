@@ -53,3 +53,8 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-family: $brand-font;
 	font-size:5rem;
 }
+
+
+@mixin list-title-typography{
+	font-family: 'Sue Ellen Francisco', $brand-font, cursive;font-size:4em;color:$accent-color;
+}
