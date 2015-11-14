@@ -282,6 +282,12 @@ md-dialog {
 		@include list-products;	
 		md-card {margin-top:10rem;}
 		.list-tranding-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;max-width: 960px;@include list-title-typography;}
+		
+	
+		md-list-item:nth-child(2) {
+		    border-top: rgba(255, 170, 187, 0.49) 2px solid;
+		}
+
 	}
 	
 	.products {
