@@ -47,7 +47,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 					if( $stateParams.token.match(/join.*/) !== null){  // If it has a token structure we open the register dialog
 			  			Dialog.register();
 		  			} else {
-			  			
+			  			Dialog.loginPrivate();
 		  			}
 		        });
 	        	return products.getMostPopularReviews();
@@ -121,9 +121,14 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 	        	$state.go('profile');
 	        }]
       	},
-      	onEnter: function(){
-	  		
-  		}
+
+  		 onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
 	});
 
   
@@ -157,7 +162,6 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 		}, function(error) { // User is not registered
 			 $('.block-page').hide();
 			 $('body').addClass('backdrop-active');
-			 Dialog.loginPrivate();
 
         });
     });
