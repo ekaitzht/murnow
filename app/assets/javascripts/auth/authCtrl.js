@@ -11,10 +11,12 @@ angular.module('murnow')
 'Intercom',
 '$http',
 function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope, Intercom, $http){
-  $scope.login = function() {   
+  $scope.login = function(fromResetToken) {   
   
     $scope.errors = {};
-	$scope.user.remember_me =  true; 
+    if( fromResetToken !== true){
+	    	$scope.user.remember_me =  true; 
+    }
     Auth.login($scope.user).then(function(ev){
 		Intercom.boot(ev);
 		$state.go('home');
@@ -57,7 +59,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $scope.errors = {};
     User.changePassword(changePassword.newPassword, changePassword.confirmPassword, $stateParams.resetToken).
       success(function(data) {
-        $scope.login();
+        $scope.login(true);
         $state.go('home');
         
       }).error(function(error){
