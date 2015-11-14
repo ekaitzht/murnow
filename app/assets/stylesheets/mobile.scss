@@ -148,7 +148,9 @@
 			
 			.list-tranding-title{font-size:32px;}
 			
-			md-list-item:first-child{border-top:rgba(255, 170, 187, 0.5);}
+					md-list-item:nth-child(2) {
+		    border-top: rgba(255, 170, 187, 0.49) 2px solid;
+			}
 		}
 	
 		.products{
