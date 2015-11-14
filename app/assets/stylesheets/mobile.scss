@@ -24,7 +24,7 @@
 		header{padding:0px;}
 		#search-bar-home-page md-autocomplete{width:100%;}
 		.title-landing-page{margin-top:80px;}
-		#search-bar-home-page{margin-top:50px;}
+		#search-bar-home-page{margin-top:2.5rem;}
 		.footer-review .ratings {font-size:15px}	
 		.thumbs-up {font-size:15px;}
 		.hint-text {font-size:15px;}
@@ -60,7 +60,7 @@
 	#logo{width: 43px;}
 
 	.beta-dialog{
-		    #social-icons-home-page { left: -10px !important;top:10px !important;margin-bottom:2rem;}
+		    #social-icons-home-page { left: -10px !important;top:10px !important;margin-bottom:2rem ;}
 
 			.pitch{font-size:1.2em;}
 			.explanation{font-size:1em;}
@@ -107,7 +107,7 @@
 
 		#social-icons-home-page{
 			z-index: 50000;
-    		bottom: 10px;
+    		bottom: -30px !important;
     		width:100%;
     		text-align:center;
     		bottom:10px;
@@ -200,7 +200,13 @@
 	}
 }
 
+
+	
 @media screen and (max-width: 960px) and (min-width: 600px) {
+	
+	.home-page{
+		#md-toolbar-header{max-height: 430px;}
+	}
     .not-home-page {
 	    	 .wrapper-rate-approval{width:120px !important; height:120px !important;
 		    	 .approval-rate{font-size:20px !important;}

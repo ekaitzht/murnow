@@ -51,7 +51,12 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 		      
 		    	<div  ng-include="'header/_header.html'"></div>	
 		    	
-				<div><h1 ng-cloak layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState ">MAKEUP REVIEWS NOW</h1></div>
+				<div>
+					<h1 ng-cloak layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState ">MAKEUP REVIEWS NOW</h1>
+				</div>
+				<div  show-md  hide-gt-sm>
+					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The Makeup Review Haven</h2>
+				</div>
 				<div>
 					<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" flex-sm="100" ng-controller="SearchCtrl as ctrl" >
 						<md-autocomplete
@@ -71,7 +76,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 						</md-autocomplete>
      				</form>
 				</div>
-				<div ng-cloak class="trending-products-list" > 
+				<div ng-cloak class="trending-products-list"  > 
 					 <span class="element"> Top 10:</span> 
 					 <span class="element" ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')" > Lipsticks </span> 
 					 <span class="trending-separator">|</span>
@@ -84,7 +89,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 					 <span class="element" ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"> Eye Liners </span> 
 
 				</div>
-				<div>
+				<div hide-sm hide-md>
 					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The Makeup Review Haven</h2>
 				</div>
 				
@@ -98,7 +103,6 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
 		</md-toolbar>
-
 
 
 
