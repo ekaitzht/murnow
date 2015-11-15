@@ -55,8 +55,16 @@ header {
 	
 	
 }
+
+.md-dialog-container{
+	align-items:flex-start;
+	overflow:auto;
+}
+
 md-dialog {
 	font-size:initial;
+	margin-top:50px;
+
 	md-toolbar{
 	 background-color:white !important;
 	 h2{@include title; font-size:2rem !important;}
@@ -72,6 +80,10 @@ md-dialog {
 	.submit-button{float:right;}
 }
 
+#register-dialog{min-height:583px;}
+#login-private-dialog{min-height:630px;}
+#request-inviation-dialog{min-height:510px;}
+
 .beta-dialog{
    #happy-cupcake{ z-index: 0;position: fixed;opacity: 0.7;@include rotate(-20deg);left: 45%;top: 250px;}
 	.title{@include brand-font($accent-color);}
@@ -82,9 +94,12 @@ md-dialog {
 	md-toolbar {min-height: initial; height:20px;}
 	.md-primary {height: 0px;}
 	padding:1rem;
-	max-width:960px;
-	
+	max-width:960px;	
 }
+
+
+
+
 
 /* SPECIFIC DIALOGS */
 
