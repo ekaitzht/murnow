@@ -155,6 +155,7 @@ md-dialog {
 .home-page{
 	display:block;overflow:auto;
 	md-content{overflow:hidden;}
+	.header3{font-size:3rem;}
 	hr{width:19rem;    position: relative;margin-top: 2rem;  background-color: $accent-color;height:1px;border: 0;
 	}
 	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
@@ -168,7 +169,7 @@ md-dialog {
 	    font-size:22px; 
 	    text-align:center;    
 	    position: relative;
-	     top: 5px;
+	    top: 5px;
 		span {
 			cursor:pointer;
 			&:not(:first-child){margin-right: 3px;padding-left: 2px;}
