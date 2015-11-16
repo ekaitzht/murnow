@@ -177,6 +177,14 @@ md-dialog {
 			&:not(:first-child):hover{border-bottom: 1px solid white;}
 		}
 	}
+	
+	
+	.trending-products-images{
+		text-align:center;
+		.caption{margin-bottom:2rem; margin-top:2rem;@include title;font-size:18px;}
+		.list-thumbnail img {height:80px;}
+		.list-thumbnail {cursor:pointer;}
+	}
 	#social-icons-not-home-page {display:none;}
 	#social-icons-home-page{
 		position: fixed;

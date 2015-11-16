@@ -99,11 +99,9 @@
 	
 	// *** HOME PAGE ***/
 	.home-page{
-		md-content{background-color: $brand-color;}
-		ui-view{display:none}
 		background-color:$brand-color;
 		form md-autocomplete {width:100%;}
-		#md-toolbar-header { max-height:none;height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
+		#md-toolbar-header { height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
 
 		#social-icons-home-page{
 			z-index: 50000;
@@ -118,6 +116,11 @@
     	}
     	
     	#promotion-wrapper img{height:auto;}
+    	
+    	.trending-products-images{
+			> .layout-row  {width: 90%;}
+		}
+    	
 
 	}
 	
@@ -208,6 +211,10 @@
 	
 	.home-page{
 		#md-toolbar-header{max-height: 430px;}
+		
+		.trending-products-images{
+			> .layout-row  {width: 60%;}
+		}
 	}
     .not-home-page {
 	    	 .wrapper-rate-approval{width:120px !important; height:120px !important;

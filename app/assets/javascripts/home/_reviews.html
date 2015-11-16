@@ -3,26 +3,57 @@
 	<!-- <div hide-sm id="promotion-wrapper"> 
 		<a href="/competition"><img src="/assets/competition/palette_white.png"> </a>
 	</div>  -->
+		<div layout="column" layout-align="center center" class="header3">
+				Top  10		
+		</div>
+		<div  layout="row"  class="trending-products-images" layout-align="space-between start" hide-md hide-sm>
+		    <div class="list-thumbnail" ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"><img src="/assets/category_products/eye_liners.jpg" alt="Eye Liners" /><div class="caption"> Eye Liners </div> </div>
+		    <div class="list-thumbnail" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"><img src="/assets/category_products/foundations.jpg" alt="Foundations"  /><div class="caption"> Foundations </div></div>
+		    <div class="list-thumbnail"  ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')"><img  src="/assets/category_products/lipsticks.jpg" alt="Lipsticks"  /><div class="caption"> Lipsticks </div></div>
+		    <div class="list-thumbnail" ng-click="trendingProductsLipstick('31939,31939,35784,30131,32304,31210,31225,31273,32346,30326','Mascaras')"><img src="/assets/category_products/mascaras.jpg" alt="Mascaras"  /><div class="caption"> Mascaras </div></div>
+			<div class="list-thumbnail" ng-click="trendingProductsLipstick('33437,30213,32410,32414,30072,35277,30073,29406,32375,29254','Palettes')"><img src="/assets/category_products/palettes.jpg" alt="Palettes"  /><div class="caption"> Palettes </div></div>
+			<div class="list-thumbnail"><img src="/assets/category_products/palettes.jpg" alt="Palettes"  /><div class="caption"> Palettes </div></div>
+
+
+		</div>
+		
+	    <div  layout="column"  class="trending-products-images" layout-align="center center" hide-gt-md>
+		    <div layout="row" layout-align="space-between center" >
+			    <div class="list-thumbnail"  ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"><img src="/assets/category_products/eye_liners.jpg" alt="Eye Liners" /><div class="caption"> Eye Liners </div> </div>
+				<div class="list-thumbnail" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"><img src="/assets/category_products/foundations.jpg" alt="Foundations"  /><div class="caption"> Foundations </div></div>
+				<div class="list-thumbnail"  ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')"><img src="/assets/category_products/lipsticks.jpg" alt="Lipsticks"  /><div class="caption"> Lipsticks </div></div>
+		    </div>
+		    
+		    <div layout="row" layout-align="space-between center" >
+			    <div class="list-thumbnail" ng-click="trendingProductsLipstick('31939,31939,35784,30131,32304,31210,31225,31273,32346,30326','Mascaras')"><img src="/assets/category_products/mascaras.jpg" alt="Mascaras"  /><div class="caption"> Mascaras </div></div>
+				<div class="list-thumbnail"  ng-click="trendingProductsLipstick('33437,30213,32410,32414,30072,35277,30073,29406,32375,29254','Palettes')"> <img src="/assets/category_products/palettes.jpg" alt="Palettes"  /><div class="caption"> Palettes </div></div>
+				<div class="list-thumbnail"><img src="/assets/category_products/palettes.jpg" alt="Palettes"  /><div class="caption"> Palettes </div></div>
+		    </div>
+		    
+		    
+
+		</div>
+
 	
 	<div layout="row" layout-align="center center" class="header3">
 		Top Reviews
 	</div>
-	<div align="center center" class="reviews" layout="column" layout-padding>
-		<div layout="row" id="first-row" layout-sm="column"  layout-align="space-between start">
-			<div class="review-card-wrapper" flex="50">
+	<div layout="column" layout-align="center center" class="reviews"  layout-padding>
+		<div  layout="row" id="first-row" layout-sm="column"  layout-align="space-between start" layout-sm="column" layout-align-sm="space-around center">
+			<div class="review-card-wrapper" >
 				<review-card review="products[0]" index="0"> </review-card>
 				<hr>
 			</div>
-			<div class="review-card-wrapper" flex="50">
+			<div class="review-card-wrapper" >
 				<review-card review="products[1]" index="1" > </review-card>	
 				<hr>
 			</div>
 		</div>
-		<div layout="row"  layout-sm="column" layout-align="space-between start" >
-			<div class="review-card-wrapper" flex="50" layout="row">
+		<div  layout="row"  layout-sm="column" layout-align="space-between start" layout-sm="column" layout-align-sm="space-around center">
+			<div class="review-card-wrapper"  layout="row">
 				<review-card review="products[2]" index="2" > </review-card>		
 			</div>
-			<div class="review-card-wrapper" flex="50" layout="row">
+			<div class="review-card-wrapper"  layout="row">
 				<review-card review="products[3]" index="3" > </review-card>
 			</div>		
 		</div>
