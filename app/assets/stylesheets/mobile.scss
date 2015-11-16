@@ -48,11 +48,7 @@
 }
 
 @media (max-height: 600px), handheld and (orientation: landscape) { 
-	.home-page{
-		md-content{background-color: $brand-color;}
-		ui-view{display:none}
-		background-color:$brand-color;	
-	}	
+	
 }
 
 @media screen and (max-width: 600px) {
@@ -122,7 +118,6 @@
 		}
 		
 		.review-card-wrapper{
-			max-height: none;
 			max-width: none;
 		}
     	
