@@ -68,7 +68,15 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 		       return products.searchFirstPage($stateParams.searchQuery);
 	       }     
         }]
-      }
+      },
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+      
     })
     .state('trending_products', {  // CAMBIAR ESTOOOOOOO
       url: '/trending_products?list&list_name',
@@ -79,7 +87,14 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 		    return products.getTrendingProducts($stateParams.list, $stateParams.list_name);
 	            
         }]
-      }
+      },
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
     })
     .state('forgotpassword', {
       url: '/forgotpassword',
@@ -90,6 +105,13 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       url: '/profile/{id}',
       templateUrl: 'profile/_profile.html',
       controller: 'Profile',
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
     })
     .state('competition', {
       url: '/competition',
@@ -103,7 +125,14 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
        //event.stopPropagation();
   	  },
       templateUrl: 'profile/_edit_profile.html',
-      controller: 'EditProfileCtrl'
+      controller: 'EditProfileCtrl',
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
     })
     .state('resetpassword', {
       url: '/resetpassword?resetToken',
