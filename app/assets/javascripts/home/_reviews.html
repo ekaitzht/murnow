@@ -39,26 +39,27 @@
 	<div layout="row" layout-align="center center" class="header3">
 		Top Reviews
 	</div>
-	<div layout="column" layout-align="center center" class="reviews"  layout-padding>
-		<div  layout="row" id="first-row" layout-sm="column"  layout-align="space-between start" layout-sm="column" layout-align-sm="space-around center">
-			<div class="review-card-wrapper" >
-				<review-card review="products[0]" index="0"> </review-card>
+	
+	<div layout="row" layout-align="space-between center" class="reviews"  layout-padding layout-wrap>
+			<div class="review-card-wrapper" flex="50" flex-sm="100">
+				<review-card review="products[0]" index="0" > </review-card>
 				<hr hide-sm>
 			</div>
-			<div class="review-card-wrapper" >
-				<review-card review="products[1]" index="1" > </review-card>	
-				<hr hide-sm>
+			<div class="review-card-wrapper" flex="50" flex-sm="100">
+				<review-card review="products[1]" index="1" > </review-card>
+				<hr hide-sm>	
 			</div>
-		</div>
-		<div  layout="row"  layout-sm="column" layout-align="space-between start" layout-sm="column" layout-align-sm="space-around center">
-			<div class="review-card-wrapper"  layout="row">
+			<div class="review-card-wrapper"  flex="50" flex-sm="100">
 				<review-card review="products[2]" index="2" > </review-card>		
 			</div>
-			<div class="review-card-wrapper"  layout="row">
+			<div class="review-card-wrapper"  flex="50" flex-sm="100">
 				<review-card review="products[3]" index="3" > </review-card>
 			</div>		
-		</div>
 	</div>
+	
+	
+	
+
 </div>
   
 
