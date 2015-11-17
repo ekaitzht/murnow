@@ -45,7 +45,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 
 
 </head>
- <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
+ <body layout="column" class="thin-font backdrop-active" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
 	    <md-toolbar layout="column" id="md-toolbar-header" class="block-page">  
 	        <header   layout="column" layout-padding >
 		      
@@ -101,7 +101,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
       <md-content class="block-page">
       		<ui-view  autoscroll="false" ng-class="getCurrentNameState()"  layout="row" ></ui-view>        
       </md-content>
-        	<div ng-cloak id="social-icons-home-page" class="social-icons" >
+        	<div ng-cloak id="social-icons-home-page-login" class="social-icons" >
 					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram_shadow.png" alt="Smiley face" height="30" width="30"></a>		 			
 					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter_shadow.png" alt="Smiley face" height="30" width="30"></a>
 	 			</div>   

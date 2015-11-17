@@ -158,7 +158,8 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 	    
 		 Auth.currentUser().then(function (user){
    			$('.block-page').show();
-   			$('body').removeClass('backdrop-active');
+   			$('body').removeClass('backdrop-deactivate');
+
 		}, function(error) { // User is not registered
 			 $('.block-page').hide();
 			 $('body').addClass('backdrop-active');

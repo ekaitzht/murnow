@@ -189,13 +189,21 @@ md-dialog {
 	}
 	
 	#social-icons-not-home-page {display:none;}
-	#social-icons-home-page{
-		position: absolute;
-		z-index: 50000;
-    	top: 10px;
-    	left: 10px;
-    	#twitter-social{ margin-left:5px;}
-    }
+	
+	&.backdrop-deactivate{
+		#social-icons-home-page-login{
+			position: absolute;
+			z-index: 50000;
+	    	top: 10px;
+	    	left: 10px;
+	    	#twitter-social{ margin-left:5px;}
+		}	
+	}
+    
+    &.backdrop-active{ // this class is added in body when user ins not authenticated.
+		#social-icons-home-page-login {display:none !important;}
+    } 
+    
     .review-card-wrapper {
 	    max-width:434px;
 	    h3 {@include sub-head;font-size:1rem;}
