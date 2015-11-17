@@ -99,7 +99,7 @@
 		form md-autocomplete {width:100%;}
 		#md-toolbar-header { height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
 
-		#social-icons-home-page{
+		/*#social-icons-home-page{ legacy code to move social icons to the bottom in mobile.
 			z-index: 50000;
     		bottom: -30px !important;
     		width:100%;
@@ -109,7 +109,7 @@
     		left: initial;
     		position:relative;
     		#twitter-social{ margin-left:5px;}
-    	}
+    	}*/
     	
     	#promotion-wrapper img{height:auto;}
     	
