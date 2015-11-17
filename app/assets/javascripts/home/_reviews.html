@@ -40,14 +40,14 @@
 		Top Reviews
 	</div>
 	
-	<div layout="row" layout-align="space-between center" class="reviews"  layout-padding layout-wrap>
-			<div class="review-card-wrapper" flex="50" flex-sm="100">
-				<review-card review="products[0]" index="0" > </review-card>
-				<hr hide-sm>
+	<div layout="row" layout-align="space-between start" class="reviews"  layout-padding layout-wrap>
+			<div class="review-card-wrapper" flex="50" flex-sm="100" layout="column" layout-align="space-between start">
+				<div><review-card review="products[0]" index="0" > </review-card></div>
+				<div><hr hide-sm></div>
 			</div>
-			<div class="review-card-wrapper" flex="50" flex-sm="100">
-				<review-card review="products[1]" index="1" > </review-card>
-				<hr hide-sm>	
+			<div class="review-card-wrapper" flex="50" flex-sm="100" layout="column" layout-align="space-between start">
+				<div><review-card review="products[1]" index="1" > </review-card></div>
+				<div><hr hide-sm></div>	
 			</div>
 			<div class="review-card-wrapper"  flex="50" flex-sm="100">
 				<review-card review="products[2]" index="2" > </review-card>		

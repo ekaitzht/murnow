@@ -274,8 +274,9 @@ md-dialog {
 	.trending-products-list  {display:none;}
 	md-card {padding:2.5rem;}
 	@include check-mark;
-	#social-icons-home-page {display:none;}
 	#promotion-wrapper {display:none;}
+	
+	#social-icons-home-page-login {display:none;}
 	#social-icons-not-home-page{
 		z-index: 50000;
     	#twitter-social{ margin-left:5px;}
