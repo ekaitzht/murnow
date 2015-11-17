@@ -120,7 +120,11 @@
 		
 		.review-card-wrapper{
 			max-width: none;
+			
+			.md-list-item-text{padding-left:1rem;}
+			h3 {font-size:1.1em}
 		}
+		.review-item .review-text .header-review .user-name-review-product {font-size:16px;}
     	
 
 	}
@@ -194,7 +198,11 @@
   
 }
 
+@media screen and (max-width: 320px) { //iphones 4 and iphones 5
+	.home-page .review-item .user-review-image img {max-width:60px; width:60px;}
+	.home-page .thumbnail-product {left:40px;}
 
+}
 
 @media screen and (max-width: 1190px) {
 	#social-icons-not-home-page{display:none;}
