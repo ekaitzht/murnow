@@ -49,7 +49,7 @@
 	@mixin review-product-mixed {  // this represent the style for the product info in product profile, and reviews in landing_page, and reviews in profile user
 		.review-item{
 			padding:0rem 0rem;margin-top:2.125rem;
-			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{max-width:6.0625rem;width:6.0625rem;}}	
+			.user-review-image {padding-right:1.6875rem;cursor:pointer;img{max-width:97px;width:97px;}}	
 			.review-text{
 				width:82%;
 				.review-body p {@include body;}

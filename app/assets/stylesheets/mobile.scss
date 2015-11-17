@@ -98,6 +98,7 @@
 		background-color:$brand-color;
 		form md-autocomplete {width:100%;}
 		#md-toolbar-header { height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
+		.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 
 		/*#social-icons-home-page{ legacy code to move social icons to the bottom in mobile.
 			z-index: 50000;
