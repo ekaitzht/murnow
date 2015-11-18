@@ -45,7 +45,7 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 
 
 </head>
- <body layout="column" class="thin-font" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
+ <body layout="column" class="thin-font backdrop-active" ng-class="{'home-page':isHomePage,'not-home-page':!isHomePage}" >
 	    <md-toolbar layout="column" id="md-toolbar-header" class="block-page">  
 	        <header   layout="column" layout-padding >
 		      
@@ -54,9 +54,9 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 				<div>
 					<h1 ng-cloak layout="column" class="title-landing-page" layout-align="center center" ng-show=" 'home'  | isState ">MAKEUP REVIEWS NOW</h1>
 				</div>
-				<div  show-md  hide-gt-sm>
+				<!--<div  show-md  hide-gt-sm>
 					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The Makeup Review Haven</h2>
-				</div>
+				</div>-->
 				<div>
 					<form id="search-bar-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" flex-sm="100" ng-controller="SearchCtrl as ctrl" >
 						<md-autocomplete
@@ -76,30 +76,15 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
 						</md-autocomplete>
      				</form>
 				</div>
-				<div ng-cloak class="trending-products-list"  > 
-					 <span class="element"> Top 10:</span> 
-					 <span class="element" ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')" > Lipsticks </span> 
-					 <span class="trending-separator">|</span>
-					 <span class="element" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"> Foundations </span> 
-					 <span class="trending-separator">|</span>
-					 <span class="element" ng-click="trendingProductsLipstick('33437,30213,32410,32414,30072,35277,30073,29406,32375,29254','Palettes')"> Palettes </span>
-					 <span class="trending-separator">|</span>  
-					 <span class="element" ng-click="trendingProductsLipstick('31939,31939,35784,30131,32304,31210,31225,31273,32346,30326','Mascaras')"> Mascaras </span> 
-					 <span class="trending-separator">|</span> 
-					 <span class="element" ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"> Eye Liners </span> 
-
-				</div>
-				<div hide-sm hide-md>
+			
+				<div>
 					<h2 ng-cloak class="twitter-pitch-home md-display-1 justify-text" layout-align="center center" ng-show=" 'home'  | isState "> The Makeup Review Haven</h2>
 				</div>
 				
 				<!--<div ng-cloak  hide-gt-sm id="promotion-wrapper"> 
 					<a ng-cloak ng-href="/competition"><img src="/assets/competition/palette_green.png"> </a>
 				</div> -->
-				<div ng-cloak id="social-icons-home-page" class="social-icons" >
-					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram_shadow.png" alt="Smiley face" height="30" width="30"></a>		 			
-					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter_shadow.png" alt="Smiley face" height="30" width="30"></a>
-	 			</div>
+			
 		       <md-progress-circular id="progress-circular" md-mode="indeterminate"  ></md-progress-circular>
 	        </header>
 		</md-toolbar>
@@ -116,7 +101,10 @@ var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.a
       <md-content class="block-page">
       		<ui-view  autoscroll="false" ng-class="getCurrentNameState()"  layout="row" ></ui-view>        
       </md-content>
-           
+        	<div ng-cloak id="social-icons-home-page-login" class="social-icons" >
+					<a href="http://instagram.com/_u/murnow/"><img id="instagram-social" src="/assets/social_icons/instagram_shadow.png" alt="Smiley face" height="30" width="30"></a>		 			
+					<a href="https://twitter.com/murnow_reviews"> <img id="twitter-social" src="/assets/social_icons/twitter_shadow.png" alt="Smiley face" height="30" width="30"></a>
+	 			</div>   
 	  
 	 			
 	 			

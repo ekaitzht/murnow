@@ -26,8 +26,10 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Dialog.hide();
     $('#cupcake-backdrop').hide();
 	$('.block-page').show();
-	$('body').removeClass('backdrop-active');
-    		
+	//$('body').removeClass('backdrop-active');
+	if ($('body').hasClass('backdrop-active')){
+	   	$('body').toggleClass("backdrop-active backdrop-deactivate");
+   	}		
   });
 
   $scope.$on('devise:login', function (e, user){
@@ -37,8 +39,10 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
     Dialog.hide();
     $('#cupcake-backdrop').hide();
    	$('.block-page').show();
-   	$('body').removeClass('backdrop-active');
-
+   	//$('body').removeClass('backdrop-active');
+   	if ($('body').hasClass('backdrop-active')){
+	   	$('body').toggleClass("backdrop-active backdrop-deactivate");
+   	}
 
 
   });
@@ -49,8 +53,10 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
 	$state.go('home',{}, {reload: true});
 	$('#cupcake-backdrop').show();
 	$('.block-page').hide();
-	$('body').addClass('backdrop-active');
-
+	//$('body').addClass('backdrop-active');
+	if ($('body').hasClass('backdrop-deactivate')){
+		$('body').toggleClass("backdrop-active backdrop-deactivate");
+	}
 		
 
   });

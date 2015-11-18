@@ -177,14 +177,33 @@ md-dialog {
 			&:not(:first-child):hover{border-bottom: 1px solid white;}
 		}
 	}
+	
+	.header3:first-child{margin-bottom:3rem;margin-top:3rem;}
+	.trending-products-images{
+		text-align:center;
+		.caption{margin-bottom:2rem; margin-top:2rem;@include title;font-size:18px;}
+		.list-thumbnail img {height:80px;margin-bottom:0.8em;}
+		.list-thumbnail {cursor:pointer;margin-bottom:1em;}
+		margin-bottom:3rem;
+		
+	}
+	
 	#social-icons-not-home-page {display:none;}
-	#social-icons-home-page{
-		position: fixed;
-		z-index: 50000;
-    	top: 10px;
-    	left: 10px;
-    	#twitter-social{ margin-left:5px;}
-    }
+	
+	&.backdrop-deactivate{
+		#social-icons-home-page-login{
+			position: absolute;
+			z-index: 50000;
+	    	top: 10px;
+	    	left: 10px;
+	    	#twitter-social{ margin-left:5px;}
+		}	
+	}
+    
+    &.backdrop-active{ // this class is added in body when user ins not authenticated.
+		#social-icons-home-page-login {display:none !important;}
+    } 
+    
     .review-card-wrapper {
 	    max-width:434px;
 	    h3 {@include sub-head;font-size:1rem;}
@@ -197,7 +216,7 @@ md-dialog {
 
 	//.review-text{    width: 64.5% !important;}
 	#search-bar-not-home-page {display:none;}
-	ui-view {max-width: 960px;margin: auto;margin-top:40px;}
+	ui-view {max-width: 960px;margin: auto;}
 	//background-image: image-url('girly-wallpaper.jpg');
 	.title-landing-page{
 		text-align:center;
@@ -255,8 +274,9 @@ md-dialog {
 	.trending-products-list  {display:none;}
 	md-card {padding:2.5rem;}
 	@include check-mark;
-	#social-icons-home-page {display:none;}
 	#promotion-wrapper {display:none;}
+	
+	#social-icons-home-page-login {display:none;}
 	#social-icons-not-home-page{
 		z-index: 50000;
     	#twitter-social{ margin-left:5px;}

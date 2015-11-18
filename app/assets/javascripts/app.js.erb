@@ -187,11 +187,16 @@ app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Interco
 	    
 		 Auth.currentUser().then(function (user){
    			$('.block-page').show();
-   			$('body').removeClass('backdrop-active');
+   			$('backdrop-active').removeClass('backdrop-active').addClass('backdrop-deactivate');
+   			
+   			if ($('body').hasClass('backdrop-active')){
+	   			$('body').toggleClass("backdrop-active backdrop-deactivate");
+   			}
 		}, function(error) { // User is not registered
-			 $('.block-page').hide();
-			 $('body').addClass('backdrop-active');
-
+			$('.block-page').hide();
+			if ($('body').hasClass('backdrop-deactivate')){
+	   			$('body').toggleClass("backdrop-active backdrop-deactivate");
+   			}
         });
     });
  

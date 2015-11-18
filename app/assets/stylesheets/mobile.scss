@@ -48,11 +48,7 @@
 }
 
 @media (max-height: 600px), handheld and (orientation: landscape) { 
-	.home-page{
-		md-content{background-color: $brand-color;}
-		ui-view{display:none}
-		background-color:$brand-color;	
-	}	
+	
 }
 
 @media screen and (max-width: 600px) {
@@ -99,13 +95,12 @@
 	
 	// *** HOME PAGE ***/
 	.home-page{
-		md-content{background-color: $brand-color;}
-		ui-view{display:none}
 		background-color:$brand-color;
 		form md-autocomplete {width:100%;}
-		#md-toolbar-header { max-height:none;height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
+		#md-toolbar-header { height:100%; background-image:url('/assets/backdrops/backdrop_mobile.png'); background-size:120%;}
+		.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 
-		#social-icons-home-page{
+		/*#social-icons-home-page{ legacy code to move social icons to the bottom in mobile.
 			z-index: 50000;
     		bottom: -30px !important;
     		width:100%;
@@ -115,9 +110,22 @@
     		left: initial;
     		position:relative;
     		#twitter-social{ margin-left:5px;}
-    	}
+    	}*/
     	
     	#promotion-wrapper img{height:auto;}
+    	
+    	.trending-products-images{
+			> .layout-row  {width: 90%;}
+		}
+		
+		.review-card-wrapper{
+			max-width: none;
+			
+			.md-list-item-text{padding-left:1rem;}
+			h3 {font-size:1.1em}
+		}
+		.review-item .review-text .header-review .user-name-review-product {font-size:16px;}
+    	
 
 	}
 	
@@ -190,7 +198,11 @@
   
 }
 
+@media screen and (max-width: 320px) { //iphones 4 and iphones 5
+	.home-page .review-item .user-review-image img {max-width:60px; width:60px;}
+	.home-page .thumbnail-product {left:40px;}
 
+}
 
 @media screen and (max-width: 1190px) {
 	#social-icons-not-home-page{display:none;}
@@ -208,6 +220,10 @@
 	
 	.home-page{
 		#md-toolbar-header{max-height: 430px;}
+		
+		.trending-products-images{
+			> .layout-row  {width: 60%;}
+		}
 	}
     .not-home-page {
 	    	 .wrapper-rate-approval{width:120px !important; height:120px !important;
