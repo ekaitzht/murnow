@@ -36,12 +36,12 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
   
   var total_buyers = $scope.product.buyers + $scope.product.not_buyers;
   
-  if ($scope.product.buyers == 0 && $scope.product.not_buyers == 0) {
-    $scope.repurchase_again_percent = 0;
-    $scope.zero_reviews = true;
+  if ($scope.product.reviews.length == 0 ) { // This if controls the future products that don't have reviews we have user zero_reviews, etc.
+    //$scope.repurchase_again_percent = 0;
+    //$scope.zero_reviews = true;
     $scope.inputReviewPlaceholder = "Be the first to review this product!"
-  } else {
-	$scope.inputReviewPlaceholder = "Let us know what you think!"
+  } else if($scope.product.reviews.length > 0 )  {
+	$scope.inputReviewPlaceholder = "Review now and let us know what you think!"
     $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   }
   
