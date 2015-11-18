@@ -1,24 +1,28 @@
-<div class="review-item" layout="row" layout-align="start start">
-   <div  class="md-list-item-image user-review-image"  >
-      <img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="{{review.urlImageUser}}" class="md-avatar not-outline thumbnail-user border-radius-50" > 
-      <img ng-click="goToProduct(review.product_id)" ng-src={{review.hash_image_product}} class="thumbnail-product border-radius-50">
+<div class="review-item" layout="row" layout-align="start start" layout-align-sm="space-between start">
+   <div  class="md-list-item-image user-review-image"  flex-sm="33" >
+      <div><img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="{{review.urlImageUser}}" class="md-avatar not-outline thumbnail-user border-radius-50" ></div> 
+      <div><img ng-click="goToProduct(review.product_id)" ng-src={{review.hash_image_product}} class="thumbnail-product border-radius-50"></div>
    </div>
-   <div class="md-list-item-text review-text" layout="column" layout-align="start start" >
+   <div class="md-list-item-text review-text" layout="column" layout-align="start start" flex-sm="66" >
       <div class="header-review" layout="row" layout-align="space-between center" >
          <div layout="row" layout-align="start center" ng-click="goToProduct(review.product_id)">
 	               <p class="user-name-review-product" > {{review.product_name | limitLength:18}}</p>
                      </div>
-         <div class="date-review"> {{review.created_at | fromNow}}</div>
+         <div class="date-review" hide-sm> {{review.created_at | fromNow}}</div>
+        <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-gt-sm>
+            <span   class="fa fa-thumbs-o-up">  </span>
+            <span> {{review.votes}} </span>
+         </div>
       </div>
       <div id="brand-name" > <h3>by {{review.brand_name}} </h3> </div>
-      <div class="review-body margin-top-rem" ng-click="goToProduct(review.product_id)">
+      <div class="review-body margin-top-rem" ng-click="goToProduct(review.product_id)" >
          <p class="wordwrap">{{review.body | limitLength:103}}</p>
       </div>
       <div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" >
          <div class="ratings"  >
 		 	<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
          </div>
-         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" >
+         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-sm>
             <span   class="fa fa-thumbs-o-up">  </span>
             <span> {{review.votes}} </span>
          </div>
