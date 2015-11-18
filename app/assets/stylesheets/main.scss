@@ -182,8 +182,8 @@ md-dialog {
 	.trending-products-images{
 		text-align:center;
 		.caption{margin-bottom:2rem; margin-top:2rem;@include title;font-size:18px;}
-		.list-thumbnail img {height:80px;}
-		.list-thumbnail {cursor:pointer;}
+		.list-thumbnail img {height:80px;margin-bottom:0.8em;}
+		.list-thumbnail {cursor:pointer;margin-bottom:1em;}
 		margin-bottom:3rem;
 		
 	}
