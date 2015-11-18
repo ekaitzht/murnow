@@ -42,8 +42,10 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
     $scope.inputReviewPlaceholder = "Be the first to review this product!"
   } else if($scope.product.reviews.length > 0 )  {
 	$scope.inputReviewPlaceholder = "Review now and let us know what you think!"
-    $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
+   
   }
+  
+  $scope.repurchase_again_percent = ($scope.product.buyers/total_buyers)*100;
   
   $scope.goProfile = function(user_id_clicked){
 	 	   $state.go('profile', { id: user_id_clicked});
