@@ -346,6 +346,7 @@ md-dialog {
 		p {@include body;}
 		.profile-button svg{top: 1rem;}
 		.anonymous-image .profile-button {display:initial !important;}
+		.social-links img{max-width:27px;}
 	}
 	
 	.edit_profile {
