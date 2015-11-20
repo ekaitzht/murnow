@@ -10,12 +10,14 @@
 					    <div ng-show="!user.hash_url_image" class="md-tile-left anonymous-image">
 					    	<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 						</div>
-					    
 				</div>  
 			<div class="info-user-profile" layout="row" layout-align="space-between start">
 				<div layout="column" class="bio-block">
 					    <div class="username">
 					    	 <span itemprop="name"> {{user.username}} </span>
+					    </div>
+					    <div>
+							<md-button>Follow</md-button>
 					    </div>
 					    <div class="bio">
 					      <span ng-show="user.bio" itemprop="description"> {{user.bio}}</span>

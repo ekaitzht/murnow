@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 20151120160228) do
     t.string   "instagram_profile"
     t.string   "youtube_channel"
     t.datetime "age"
-    t.integer  "followers",              default: 0
-    t.integer  "following",              default: 0
+    t.integer  "followers_count",        default: 0
+    t.integer  "following_count",        default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
