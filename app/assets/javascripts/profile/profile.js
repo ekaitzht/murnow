@@ -112,7 +112,11 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 	}
 	
 	$scope.followUser = function(followed_id){
-		alert(followed_id)
+	 	User.followUser(followed_id).success(function(data){
+		 	$scope.user.followers_count +=1;
+	 	}).error(function(error){
+		 	
+	 	});
 	}
  
 	$scope.myImage= '';

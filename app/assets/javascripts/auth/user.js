@@ -116,9 +116,8 @@ angular.module('murnow')
 	};
 	
 	
-	this.follow = function(followed_id){
-		
-		
+	this.followUser = function(followed_id){
+		return $http.post('/api/relationships/',{followed_id:followed_id});
 	}
 
 	this.fromState = null;
