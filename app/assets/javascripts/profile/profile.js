@@ -110,6 +110,10 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
          
     	});
 	}
+	
+	$scope.followUser = function(followed_id){
+		alert(followed_id)
+	}
  
 	$scope.myImage= '';
 	$scope.myCroppedImage = '';

@@ -114,6 +114,12 @@ angular.module('murnow')
 	this.getReviewsUser = function(id) {
   		return $http.get('/api/reviews_by_user/'+id);
 	};
+	
+	
+	this.follow = function(followed_id){
+		
+		
+	}
 
 	this.fromState = null;
 

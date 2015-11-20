@@ -17,7 +17,7 @@
 					    	 <span itemprop="name"> {{user.username}} </span>
 					    </div>
 					    <div>
-							<md-button>Follow</md-button>
+							<md-button ng-click="followUser(user.id)">Follow</md-button>
 					    </div>
 					    <div class="bio">
 					      <span ng-show="user.bio" itemprop="description"> {{user.bio}}</span>
