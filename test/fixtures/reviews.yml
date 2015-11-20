@@ -2,10 +2,13 @@
 
 one:
   body: MyString
-  upvotes: 1
   product_id: 
+  repurchase: true
+  stars: 5
 
 two:
   body: MyString
-  upvotes: 1
+  repurchase: true
+  repurchase: false
   product_id: 
+  stars: 0
