@@ -58,6 +58,10 @@ Rails.application.routes.draw do
 	  put 'requests/', to: 'request_product#create'
 	  
 	  
+	  #relationships
+	  resources :relationships, only: [:create, :destroy]
+
+	  
 	  
 	  		
 	end 
