@@ -1,8 +1,14 @@
 class PublicUserSerializer < ActiveModel::Serializer
 	self.root = false
-	  attributes  :id,:age,:eye_color, :bio, :favourite_brand, :hash_url_image, :skin_tone, :skin_type, :username
+	attributes  :id,:age,:eye_color, :bio, :favourite_brand, :hash_url_image, :skin_tone, :skin_type, :username,:following
 	  
-	  has_many :reviews,  serializer: ReviewSerializer
+	  
+	def following
+	    collection = object.active_relationships.to_a
+	    { count: collection_length }
+	end
+	
+	
 end
 
 
