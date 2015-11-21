@@ -17,7 +17,7 @@
 					    	 <span itemprop="name"> {{user.username}} </span>
 					    </div>
 					    <div>
-							<md-button ng-click="followUser(user.id)">Follow</md-button>
+							<md-button ng-click="followUser(user.id)" ng-show="publicProfile">Follow</md-button>
 					    </div>
 					    <label>Followers {{user.followers_count}}</label>
 					    <label>Following {{user.following_count}}</label>

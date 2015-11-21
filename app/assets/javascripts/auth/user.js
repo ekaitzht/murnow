@@ -58,6 +58,8 @@ angular.module('murnow')
 		this.user.instagram_profile = this._curateInstagram(user.instagram_profile);
 		this.user.hash_url_image = user.hash_url_image;
 		this.user.age = user.age;
+		this.user.following_count = user.following_count;
+		this.user.followers_count = user.followers_count;
 	};
 	
 	
