@@ -37,6 +37,7 @@ class Product < ActiveRecord::Base
 					"long lasting,long wear, long-lasting,long-wear",
 					"eye liner,eyeliner",
 					"transparent,translucent",
+					"stilla,sitla",
 					"loreal,l'oreal"
 					
 				]
