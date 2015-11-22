@@ -25,11 +25,11 @@
 
 				        <md-input-container>
 				          <label> Email </label>
-				          <input ng-model="user.email" name="email"  autofocus>
+				          <input ng-model="user.email" name="email"  autofocus required> 
 				        </md-input-container>
 				        <md-input-container ng-hide="sendConfirm" md-no-float>
 				          <label> Password </label>
-				          <input    type="password" name="password" ng-model="user.password">
+				          <input    type="password" name="password" ng-model="user.password" required>
 				        </md-input-container>
 				        
 					 	<div  class="alert alert-danger" role="alert" ng-show="errors.errorPasswordEmail">
