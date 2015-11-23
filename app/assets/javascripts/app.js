@@ -17,7 +17,7 @@ app.config(['$mdThemingProvider',function($mdThemingProvider) {
 
 
 app.constant('configMurnow', {
-  'enviroment':  "<%= Rails.env %>",
+  'enviroment':  "development",
   'cdn_domain_name':"d3gm19tlfubzts.cloudfront.net"
 });
 
