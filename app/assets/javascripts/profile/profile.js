@@ -11,7 +11,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 	 	 
  	Auth.currentUser().then(function (user){
 	 	
-	 	if(user.id === 75){ // This id has to be the user that has the power to generate invitations
+	 	if(user.id === 70){ // This id has to be the user that has the power to generate invitations
 		 	$scope.isUlaize = true;
 	 	} else {
 		 	$scope.isUlaize = false;
