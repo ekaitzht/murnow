@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.11.1
+ * v1.0.0-rc4
  */
 goog.provide('ng.material.components.select');
 goog.require('ng.material.components.backdrop');
@@ -50,11 +50,12 @@ angular.module('material.components.select', [
  *
  * @param {expression} ng-model The model!
  * @param {boolean=} multiple Whether it's multiple.
- * @param {expression=} md-on-close expression to be evaluated when the select is closed
+ * @param {expression=} md-on-close Expression to be evaluated when the select is closed.
  * @param {string=} placeholder Placeholder hint text.
  * @param {string=} aria-label Optional label for accessibility. Only necessary if no placeholder or
- * @param {string=} md-container-class class list to get applied to the .md-select-menu-container element (for custom styling)
  * explicit label is present.
+ * @param {string=} md-container-class Class list to get applied to the `.md-select-menu-container`
+ * element (for custom styling).
  *
  * @usage
  * With a placeholder (label and aria-label are added dynamically)
@@ -77,6 +78,52 @@ angular.module('material.components.select', [
  *       <md-option ng-value="opt" ng-repeat="opt in neighborhoods2">{{ opt }}</md-option>
  *     </md-select>
  *   </md-input-container>
+ * </hljs>
+ *
+ * ## Selects and object equality
+ * When using a `md-select` to pick from a list of objects, it is important to realize how javascript handles
+ * equality. Consider the following example:
+ * <hljs lang="js">
+ * angular.controller('MyCtrl', function($scope) {
+ *   $scope.users = [
+ *     { id: 1, name: 'Bob' },
+ *     { id: 2, name: 'Alice' },
+ *     { id: 3, name: 'Steve' }
+ *   ];
+ *   $scope.selectedUser = { id: 1, name: 'Bob' };
+ * });
+ * </hljs>
+ * <hljs lang="html">
+ * <div ng-controller="MyCtrl">
+ *   <md-select ng-model="selectedUser">
+ *     <md-option ng-value="user" ng-repeat="user in users">{{ user.name }}</md-option>
+ *   </md-select>
+ * </div>
+ * </hljs>
+ *
+ * At first one might expect that the select should be populated with "Bob" as the selected user. However,
+ * this is not true. To determine whether something is selected, 
+ * `ngModelController` is looking at whether `$scope.selectedUser == (any user in $scope.users);`;
+ * 
+ * Javascript's `==` operator does not check for deep equality (ie. that all properties
+ * on the object are the same), but instead whether the objects are *the same object in memory*.
+ * In this case, we have two instances of identical objects, but they exist in memory as unique
+ * entities. Because of this, the select will have no value populated for a selected user.
+ *
+ * To get around this, `ngModelController` provides a `track by` option that allows us to specify a different
+ * expression which will be used for the equality operator. As such, we can update our `html` to
+ * make use of this by specifying the `ng-model-options="{trackBy: '$value.id'}"` on the `md-select`
+ * element. This converts our equality expression to be 
+ * `$scope.selectedUser.id == (any id in $scope.users.map(function(u) { return u.id; }));`
+ * which results in Bob being selected as desired.
+ *
+ * Working HTML:
+ * <hljs lang="html">
+ * <div ng-controller="MyCtrl">
+ *   <md-select ng-model="selectedUser" ng-model-options="{trackBy: '$value.id'}">
+ *     <md-option ng-value="user" ng-repeat="user in users">{{ user.name }}</md-option>
+ *   </md-select>
+ * </div>
  * </hljs>
  */
 function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $parse) {
@@ -155,6 +202,8 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
     return function postLink(scope, element, attr, ctrls) {
       var isDisabled;
 
+      var firstOpen = true;
+
       var containerCtrl = ctrls[0];
       var mdSelectCtrl = ctrls[1];
       var ngModelCtrl = ctrls[2];
@@ -187,10 +236,12 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
 
       if (attr.name && formCtrl) {
         var selectEl = element.parent()[0].querySelector('select[name=".' + attr.name + '"]');
-        var controller = angular.element(selectEl).controller();
-        if (controller) {
-          formCtrl.$removeControl(controller);
-        }
+        $mdUtil.nextTick(function() {
+          var controller = angular.element(selectEl).controller('ngModel');
+          if (controller) {
+            formCtrl.$removeControl(controller);
+          }
+        });
       }
 
       if (formCtrl) {
@@ -206,6 +257,9 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
         inputCheckValue();
       };
 
+      attr.$observe('placeholder', ngModelCtrl.$render);
+
+
       mdSelectCtrl.setLabelText = function(text) {
         mdSelectCtrl.setIsPlaceholder(!text);
         // Use placeholder attribute, otherwise fallback to the md-input-container label
@@ -219,7 +273,7 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
         if (isPlaceholder) {
           valueEl.addClass('md-select-placeholder');
           if (containerCtrl && containerCtrl.label) {
-            containerCtrl.label.addClass('md-placeholder md-static');
+            containerCtrl.label.addClass('md-placeholder');
           }
         } else {
           valueEl.removeClass('md-select-placeholder');
@@ -287,8 +341,8 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
             ngModelCtrl.$render = function() {
               originalRender();
               syncLabelText();
+              inputCheckValue();
             };
-            selectMenuCtrl.refreshViewValue();
             ngModelCtrl.$render();
           }
         });
@@ -319,6 +373,7 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
         element.on('click', openSelect);
         element.on('keydown', handleKeypress);
       }
+
 
       var ariaAttrs = {
         role: 'combobox',
@@ -386,13 +441,16 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
             }
             selectMenuCtrl.select(optionCtrl.hashKey, optionCtrl.value);
             selectMenuCtrl.refreshViewValue();
-            ngModelCtrl.$render();
           }
         }
       }
 
       function openSelect() {
         selectScope.isOpen = true;
+        if (firstOpen) {
+          element.on('blur', setUntouched);
+          firstOpen = false;
+        }
 
         $mdSelect.show({
           scope: selectScope,
@@ -402,9 +460,15 @@ function SelectDirective($mdSelect, $mdUtil, $mdTheming, $mdAria, $compile, $par
           target: element[0],
           hasBackdrop: true,
           loadingAsync: attr.mdOnOpen ? scope.$eval(attr.mdOnOpen) || true : false
-        }).then(function() {
+        }).finally(function() {
           selectScope.isOpen = false;
+          ngModelCtrl.$setTouched();
         });
+
+        function setUntouched() {
+          ngModelCtrl.$setUntouched();
+          element.off('blur', setUntouched);
+        }
       }
     };
   }
@@ -486,15 +550,18 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
     // and values matching every option's controller.
     self.options = {};
 
-    $scope.$watch(function() {
+    $scope.$watchCollection(function() {
       return self.options;
     }, function() {
       self.ngModel.$render();
-    }, true);
+    });
 
     var deregisterCollectionWatch;
+    var defaultIsEmpty;
     self.setMultiple = function(isMultiple) {
       var ngModel = self.ngModel;
+      defaultIsEmpty = defaultIsEmpty || ngModel.$isEmpty;
+
       self.isMultiple = isMultiple;
       if (deregisterCollectionWatch) deregisterCollectionWatch();
 
@@ -508,6 +575,10 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
           if (validateArray(value)) renderMultiple(value);
           self.ngModel.$setPristine();
         });
+
+        ngModel.$isEmpty = function(value) {
+          return !value || value.length === 0;
+        };
       } else {
         delete ngModel.$validators['md-multiple'];
         ngModel.$render = renderSingular;
@@ -629,7 +700,15 @@ function SelectMenuDirective($parse, $mdUtil, $mdTheming) {
           values.push(self.selected[hashKey]);
         }
       }
-      self.ngModel.$setViewValue(self.isMultiple ? values : values[0]);
+      var usingTrackBy = self.ngModel.$options && self.ngModel.$options.trackBy;
+
+      var newVal = self.isMultiple ? values : values[0];
+      var prevVal = self.ngModel.$modelValue;
+
+      if (usingTrackBy ? !angular.equals(prevVal, newVal) : prevVal != newVal) {
+        self.ngModel.$setViewValue(newVal);
+        self.ngModel.$render();
+      }
     };
 
     function renderMultiple() {
@@ -684,7 +763,7 @@ function OptionDirective($mdButtonInkRipple, $mdUtil) {
     if (angular.isDefined(attr.ngValue)) {
       scope.$watch(attr.ngValue, setOptionValue);
     } else if (angular.isDefined(attr.value)) {
-      setOptionValue(isNaN(attr.value) ? attr.value : Number(attr.value));
+      setOptionValue(attr.value);
     } else {
       scope.$watch(function() {
         return element.text();
@@ -712,7 +791,6 @@ function OptionDirective($mdButtonInkRipple, $mdUtil) {
           selectCtrl.deselect(optionCtrl.hashKey);
         }
         selectCtrl.refreshViewValue();
-        selectCtrl.ngModel.$render();
       });
     });
 
@@ -1091,6 +1169,7 @@ function SelectProvider($$interimElementProvider) {
               break;
             case keyCodes.TAB:
             case keyCodes.ESCAPE:
+              ev.stopPropagation();
               ev.preventDefault();
               opts.restoreFocus = true;
               $mdUtil.nextTick($mdSelect.hide, true);
@@ -1138,14 +1217,16 @@ function SelectProvider($$interimElementProvider) {
           if (ev && ( ev.type == 'mouseup') && (ev.currentTarget != dropDown[0])) return;
           if ( mouseOnScrollbar() ) return;
 
-          if (!selectCtrl.isMultiple) {
-            opts.restoreFocus = true;
+          var option = $mdUtil.getClosest(ev.target, 'md-option');
+          if (option && option.hasAttribute && !option.hasAttribute('disabled')) {
+            if (!selectCtrl.isMultiple) {
+              opts.restoreFocus = true;
 
-            $mdUtil.nextTick(function() {
-              $mdSelect.hide(selectCtrl.ngModel.$viewValue);
-            }, true);
+              $mdUtil.nextTick(function () {
+                $mdSelect.hide(selectCtrl.ngModel.$viewValue);
+              }, true);
+            }
           }
-
           /**
            * check if the mouseup event was on a scrollbar
            */

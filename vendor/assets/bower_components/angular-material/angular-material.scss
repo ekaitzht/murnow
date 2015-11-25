@@ -73,11 +73,11 @@ $whiteframe-shadow-24dp: 0px 11px 15px -7px rgba(0, 0, 0, $shadow-key-umbra-opac
 // Z-indexes
 //--------------------------------------------
 
+$z-index-toast: 105 !default;
 $z-index-tooltip: 100 !default;
-$z-index-menu: 99 !default;
-$z-index-select: 99 !default;
+$z-index-menu: 95 !default;
+$z-index-select: 90 !default;
 $z-index-dialog: 80 !default;
-$z-index-toast: 90 !default;
 $z-index-bottom-sheet: 70 !default;
 $z-index-scroll-mask: 65 !default;
 $z-index-sidenav: 60 !default;
@@ -98,6 +98,10 @@ $swift-ease-in: all $swift-ease-in-duration $swift-ease-in-timing-function !defa
 $swift-ease-in-out-duration: 0.5s !default;
 $swift-ease-in-out-timing-function: cubic-bezier(0.35, 0, 0.25, 1) !default;
 $swift-ease-in-out: all $swift-ease-in-out-duration $swift-ease-in-out-timing-function !default;
+
+$swift-linear-duration: 0.08s !default;
+$swift-linear-timing-function: linear !default;
+$swift-linear: all $swift-linear-duration $swift-linear-timing-function !default;
 
 // Fab Buttons (shared between buttons.scss and fab*.scss)
 // -------------------------------------------
@@ -527,8 +531,10 @@ input {
 *  References:
 *  1) https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties#flex
 *  2) https://css-tricks.com/almanac/properties/f/flex/
-*  3) https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-*  4) http://godban.com.ua/projects/flexgrid
+*  3) https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+*  4) https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+*  5) http://godban.com.ua/projects/flexgrid
+*
 *
 */
 
@@ -542,180 +548,149 @@ input {
 }
 
 
+@mixin flex-order-for-name($sizes:null) {
+  @if $sizes == null {
+    $sizes : '';
 
-@mixin flex-order-for-name() {
-  $sizes : '', sm, gt-sm, md, gt-md, lg, gt-lg;
+    .flex-order {
+     order : 0;
+    }
+  }
 
-  //  .flex-order--1, .flex-order-sm--1, .flex-order-gt-sm--1, .flex-order-md--1, .flex-order-gt-md--1, .flex-order-lg--1, .flex-order-gt-lg--1 {
-  //    order: -1;
-  //  }
-  //
-  //  .flex-order-0, .flex-order-sm-0, .flex-order-gt-sm-0, .flex-order-md-0, .flex-order-gt-md-0, .flex-order-lg-0, .flex-order-gt-lg-0 {
-  //    order: 0;
-  //  }
-  //
-  //  .flex-order-1, .flex-order-sm-1, .flex-order-gt-sm-1, .flex-order-md-1, .flex-order-gt-md-1, .flex-order-lg-1, .flex-order-gt-lg-1 {
-  //    order: 1;
-  //  }
-  //
-  $offsets : '.flex-order, ';
-  @for $i from -9 through 9 {
+  @for $i from 0 through 19 {
+    $order : '';
+    $suffix : '';
+
     @each $s in $sizes {
-      @if $s != '' {
-        $s : '#{$s}-#{$i}';
-      } @else {
-        $s : '#{$i}';
-      }
-      $offsets : $offsets + '.flex-order-#{$s}, ';
+      @if $s != '' { $suffix : '#{$s}-#{$i}'; }
+      @else        { $suffix : '#{$i}';       }
 
-      $s : '';
+      $order : '.flex-order-#{$suffix}';
+    }
+
+    #{$order} {
+      order: #{$i};
+    }
+  }
+}
+@mixin offset-for-name($sizes:null) {
+  @if $sizes == null { $sizes : ''; }
+
+  @for $i from 0 through 19 {
+    $offsets : '';
+    $suffix : '';
+
+    @each $s in $sizes {
+      @if $s != '' { $suffix : '#{$s}-#{$i * 5}'; }
+      @else        { $suffix : '#{$i * 5}';       }
+
+      $offsets : '.offset-#{$suffix}, .flex-offset-#{$suffix}';
     }
 
     #{$offsets} {
-      order: #{$i};
+      margin-left: #{$i * 5 + '%'};
+    }
+  }
+
+  @each $i in 33 {
+    $offsets : '';
+    $suffix : '';
+
+    @each $s in $sizes {
+      @if $s != '' {  $suffix : '#{$s}-#{$i}';   }
+      @else        {  $suffix : '#{$i}';         }
+
+      $offsets : '.offset-#{$suffix}, .flex-offset-#{$suffix} ';
     }
 
+    #{$offsets} {
+      margin-left: calc(100% / 3);
+    }
+  }
+
+  @each $i in 66 {
     $offsets : '';
+    $suffix : '';
+
+    @each $s in $sizes {
+      @if $s != '' {  $suffix : '#{$s}-#{$i}';   }
+      @else        {  $suffix : '#{$i}';         }
+
+      $offsets : '.offset-#{$suffix}, .flex-offset-#{$suffix} ';
+    }
+
+    #{$offsets} {
+      margin-left: calc(200% / 3);
+    }
   }
 }
 
 @mixin layout-for-name($name: null) {
-  @if $name == null {
-    .layout {
-      box-sizing: border-box;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -moz-flex;
-      display: -ms-flexbox;
-      display: flex;
-    }
+  @if $name == null { $name : '';          }
+  @if $name != ''   { $name : '-#{$name}'; }
 
-    .layout-column {
-      flex-direction: column;
-      -webkit-flex-direction: column;
-    }
-
-    .layout-row {
-      flex-direction: row;
-      -webkit-flex-direction: row;
-    }
+  .layout#{$name}, .layout#{$name}-column, .layout#{$name}-row {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
   }
-
-  @if $name != null {
-    .layout-#{$name} {
-      box-sizing: border-box;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-    }
-    .layout-#{$name}-column,
-    .md-css-only [layout-#{$name}=column] {
-      flex-direction: column;
-    }
-    .layout-#{$name}-row,
-    .md-css-only [layout-#{$name}=row] {
-      flex-direction: row;
-      flex-wrap: wrap;
-    }
-  }
-}
-
-@mixin offset-for-name($name: null) {
-  $offsetName: 'offset';
-  @if $name != null {
-    $offsetName: 'offset-#{$name}';
-  }
-  @for $i from 1 through 19 {
-    .#{$offsetName}-#{$i * 5},
-    .md-css-only [#{$offsetName}="#{$i * 5}"]
-    {
-      margin-left: #{$i * 5 + '%'};
-    }
-  }
-  .#{$offsetName}-33, .#{$offsetName}-34 {
-    margin-left: 34%;
-  }
-  .#{$offsetName}-66, .#{$offsetName}-67 {
-    margin-left: 66%;
-  }
+  .layout#{$name}-column {  flex-direction: column;  }
+  .layout#{$name}-row    {  flex-direction: row;     }
 }
 
 @mixin flex-properties-for-name($name: null) {
   $flexName: 'flex';
   @if $name != null {
     $flexName: 'flex-#{$name}';
+    $name : '-#{$name}';
+  } @else {
+    $name : '';
   }
 
-  .#{$flexName} {
-    box-sizing: border-box;
-    flex: 1;
-  }
-  
-  @if ( $name == 'flex' ) {
-    .flex, .flex-initial {
-      box-sizing: border-box;
-      flex: 0 1 auto;
-    }
-
-
-    .flex-1 {
-      box-sizing: border-box;
-      flex: 1 1 0%;
-    }
-  
-    .flex-auto {
-      box-sizing: border-box;
-      flex: 1 1 auto;
-    }
-  }
+  .#{$flexName}             { flex: 1;         box-sizing: border-box; }  // === flex: 1 1 0%;
+  .#{$flexName}-grow        { flex: 1 1 100%;  box-sizing: border-box; }
+  .#{$flexName}-initial     { flex: 0 1 auto;  box-sizing: border-box; }
+  .#{$flexName}-auto        { flex: 1 1 auto;  box-sizing: border-box; }
+  .#{$flexName}-none        { flex: 0 0 auto;  box-sizing: border-box; }
 
   // (1-20) * 5 = 0-100%
-  @for $i from 1 through 20 {
-    .#{$flexName}-#{$i * 5},
-    .md-css-only [#{$flexName}="#{$i * 5}"]
-    {
-      flex: 0 0 #{$i * 5 + '%'};
-    }
-    .layout-#{$name}-row > .#{$flexName}-#{$i * 5},
-    .md-css-only [layout="row"] > .md-css-only [#{$flexName}="#{$i * 5}"]
-    {
-      max-width: #{$i * 5 + '%'};
+  @for $i from 0 through 20 {
+    $value : #{$i * 5 + '%'};
+
+    .#{$flexName}-#{$i * 5} {
+      flex: 1 1 #{$value};
+      max-width: #{$value};
       max-height: 100%;
+      box-sizing: border-box;
     }
 
-    .layout-#{$name}-column > .#{$flexName}-#{$i * 5},
-    .md-css-only [layout="column"] > .md-css-only [#{$flexName}="#{$i * 5}"]
-    {
-      max-height: #{$i * 5 + '%'};
+    .layout-row > .#{$flexName}-#{$i * 5},
+    .layout#{$name}-row > .#{$flexName}-#{$i * 5} {
+      flex: 1 1 #{$value};
+      max-width: #{$value};
+      max-height: 100%;
+      box-sizing: border-box;
+    }
+
+    .layout-column > .#{$flexName}-#{$i * 5},
+    .layout#{$name}-column > .#{$flexName}-#{$i * 5} {
+      flex: 1 1 #{$value};
       max-width: 100%;
+      max-height: #{$value};
+      box-sizing: border-box;
     }
   }
 
-  .#{$flexName}-33, .#{$flexName}-34
-  {
-    flex: 0 0 33%;
-    max-width: 33%;
-    max-height: 100%;
+  .layout-row, .layout#{$name}-row {
+    > .#{$flexName}-33   , > .#{$flexName}-33     {  flex: 1 1 33%;  max-width: calc(100% / 3);  max-height: 100%; box-sizing: border-box; }
+    > .#{$flexName}-66   , > .#{$flexName}-66     {  flex: 1 1 66%;  max-width: calc(200% / 3);  max-height: 100%; box-sizing: border-box; }
   }
-
-  .#{$flexName}-66, .#{$flexName}-67
-  {
-    flex: 0 0 67%;
-    max-width: 67%;
-    max-height: 100%;
-
-  }
-
-  .layout-#{$name}-row {
-    > .#{$flexName}-33, > .#{$flexName}-34 { max-width: 33%; max-height: 100%;}
-    > .#{$flexName}-66, > .#{$flexName}-67 { max-width: 67%; max-height: 100%;  }
-  }
-  .layout-#{$name}-column {
-    > .#{$flexName}-33, > .#{$flexName}-34 { max-height: 33%; max-width: 100%; }
-    > .#{$flexName}-66, > .#{$flexName}-67 { max-height: 67%; max-width: 100%;}
+  .layout-column, .layout#{$name}-column {
+    > .#{$flexName}-33   , > .#{$flexName}-33     {  flex: 1 1 33%;  max-width: 100%;  max-height: calc(100% / 3); box-sizing: border-box; }
+    > .#{$flexName}-66   , > .#{$flexName}-66     {  flex: 1 1 66%;  max-width: 100%;  max-height: calc(200% / 3); box-sizing: border-box; }
   }
 }
 
@@ -736,11 +711,7 @@ input {
   .#{$name}-center,           //stretch
   .#{$name}-center-center,
   .#{$name}-center-start,
-  .#{$name}-center-end,
-  .md-css-only [#{$name}="center"],
-  .md-css-only [#{$name}="center center"],
-  .md-css-only [#{$name}="center start"],
-  .md-css-only [#{$name}="center end"]
+  .#{$name}-center-end
   {
     justify-content: center;
   }
@@ -749,11 +720,7 @@ input {
   .#{$name}-end, //stretch
   .#{$name}-end-center,
   .#{$name}-end-start,
-  .#{$name}-end-end,
-  .md-css-only [#{$name}="end"], //stretch
-  .md-css-only [#{$name}="end center"],
-  .md-css-only [#{$name}="end start"],
-  .md-css-only [#{$name}="end end"]
+  .#{$name}-end-end
   {
     justify-content: flex-end;
   }
@@ -762,11 +729,7 @@ input {
   .#{$name}-space-around, //stretch
   .#{$name}-space-around-center,
   .#{$name}-space-around-start,
-  .#{$name}-space-around-end,
-  .md-css-only [#{$name}="space-around"], //stretch
-  .md-css-only [#{$name}="space-around center"],
-  .md-css-only [#{$name}="space-around start"],
-  .md-css-only [#{$name}="space-around end"]
+  .#{$name}-space-around-end
   {
     justify-content: space-around;
   }
@@ -775,11 +738,7 @@ input {
   .#{$name}-space-between, //stretch
   .#{$name}-space-between-center,
   .#{$name}-space-between-start,
-  .#{$name}-space-between-end,
-  .md-css-only [#{$name}="space-between"], //stretch
-  .md-css-only [#{$name}="space-between center"],
-  .md-css-only [#{$name}="space-between start"],
-  .md-css-only [#{$name}="space-between end"]
+  .#{$name}-space-between-end
   {
     justify-content: space-between;
   }
@@ -795,12 +754,7 @@ input {
   .#{$name}-start-start,
   .#{$name}-end-start,
   .#{$name}-space-between-start,
-  .#{$name}-space-around-start,
-  .md-css-only [#{$name}="center start"],
-  .md-css-only [#{$name}="start start"],
-  .md-css-only [#{$name}="end start"],
-  .md-css-only [#{$name}="space-between start"],
-  .md-css-only [#{$name}="space-around start"]
+  .#{$name}-space-around-start
   {
     align-items: flex-start;
   }
@@ -810,16 +764,21 @@ input {
   .#{$name}-start-center,
   .#{$name}-end-center,
   .#{$name}-space-between-center,
-  .#{$name}-space-around-center,
-  .md-css-only [#{$name}="center center"],
-  .md-css-only [#{$name}="start center"],
-  .md-css-only [#{$name}="end center"],
-  .md-css-only [#{$name}="space-between center"],
-  .md-css-only [#{$name}="space-around center"]
+  .#{$name}-space-around-center
   {
     align-items: center;
     max-width: 100%;
+  }
 
+  // Cross Axis Center IE overflow fix
+  .#{$name}-center-center > *,
+  .#{$name}-start-center > *,
+  .#{$name}-end-center > *,
+  .#{$name}-space-between-center > *,
+  .#{$name}-space-around-center > *
+  {
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   // Cross Axis End
@@ -827,81 +786,92 @@ input {
   .#{$name}-start-end,
   .#{$name}-end-end,
   .#{$name}-space-between-end,
-  .#{$name}-space-around-end,
-  .md-css-only [#{$name}="center end"],
-  .md-css-only [#{$name}="start end"],
-  .md-css-only [#{$name}="end end"],
-  .md-css-only [#{$name}="space-between end"],
-  .md-css-only [#{$name}="space-around end"]
+  .#{$name}-space-around-end
   {
     align-items: flex-end;
   }
-
 }
 
 @mixin layout-padding-margin() {
 
-  .layout-padding > .flex-sm,
-  .layout-padding > .flex-lt-md,
-  .md-css-only [layout-padding] > [flex-sm],
-  .md-css-only [layout-padding] > [flex-lt-md]
+  // NOTE: these`> *` selectors should only be applied for layout="row" or layout="column" children !!
+  .layout-padding-sm > *,
+  .layout-padding    > .flex-sm
   {
     padding: $layout-gutter-width / 4;
   }
 
   .layout-padding,
-  .layout-padding > .flex,
-  .layout-padding > .flex-gt-sm,
-  .layout-padding > .flex-md,
-  .layout-padding > .flex-lt-lg,
-  .md-css-only [layout-padding],
-  .md-css-only [layout-padding] > .md-css-only [flex],
-  .md-css-only [layout-padding] > .md-css-only [flex-gt-sm],
-  .md-css-only [layout-padding] > .md-css-only [flex-md],
-  .md-css-only [layout-padding] > .md-css-only [flex-lt-lg]
+  .layout-padding-gt-sm,
+  .layout-padding-md,
+
+  // NOTE: these`> *` selectors should only be applied for layout="row" or layout="column" children !!
+  .layout-padding        > *,
+  .layout-padding-gt-sm  > *,
+  .layout-padding-md     > *,
+
+  .layout-padding        > .flex,
+  .layout-padding        > .flex-gt-sm,
+  .layout-padding        > .flex-md
   {
     padding: $layout-gutter-width / 2;
   }
-  .layout-padding > .flex-gt-md,
-  .layout-padding > .flex-lg,
-  .md-css-only [layout-padding] > .md-css-only [flex-gt-md],
-  .md-css-only [layout-padding] > .md-css-only [flex-lg]
+
+  // NOTE: these`> *` selectors should only be applied for layout="row" or layout="column" children !!
+  .layout-padding-gt-md  > *,
+  .layout-padding-lg     > *,
+  .layout-padding-gt-lg  > *,
+
+  .layout-padding        > .flex-gt-md,
+  .layout-padding        > .flex-lg,
+  .layout-padding        > .flex-lg,
+  .layout-padding        > .flex-gt-lg
   {
     padding: $layout-gutter-width / 1;
   }
 
-  .layout-margin > .flex-sm,
-  .layout-margin > .flex-lt-md,
-  .md-css-only [layout-margin] >  .md-css-only [flex-sm],
-  .md-css-only [layout-margin] >  .md-css-only [flex-lt-md]
+  // Margin enhancements
+
+  .layout-margin-sm      > *,
+  .layout-margin         > .flex-sm
   {
     margin: $layout-gutter-width / 4;
   }
 
   .layout-margin,
-  .layout-margin > .flex,
-  .layout-margin > .flex-gt-sm,
-  .layout-margin > .flex-md,
-  .layout-margin > .flex-lt-lg,
-  .md-css-only [layout-margin],
-  .md-css-only [layout-margin] >  .md-css-only [flex],
-  .md-css-only [layout-margin] >  .md-css-only [flex-gt-sm],
-  .md-css-only [layout-margin] >  .md-css-only [flex-md],
-  .md-css-only [layout-margin] >  .md-css-only [flex-lt-lg]
+  .layout-margin-gt-sm,
+  .layout-margin-md,
+
+  // NOTE: these`> *` selectors should only be applied for layout="row" or layout="column" children !!
+  .layout-margin         > *,
+  .layout-margin-gt-sm   > *,
+  .layout-margin-md      > *,
+
+  .layout-margin         > .flex,
+  .layout-margin         > .flex-gt-sm,
+  .layout-margin         > .flex-md
   {
     margin: $layout-gutter-width / 2;
   }
 
-  .layout-margin > .flex-gt-md,
-  .layout-margin > .flex-lg,
-  .md-css-only [layout-margin] >  .md-css-only [flex-gt-md],
-  .md-css-only [layout-margin] >  .md-css-only [flex-lg]
+  // NOTE: these`> *` selectors should only be applied for layout="row" or layout="column" children !!
+  .layout-margin-gt-md  > *,
+  .layout-margin-lg     > *,
+  .layout-margin-gt-lg  > *,
+
+  .layout-margin        > .flex-gt-md,
+  .layout-margin        > .flex-lg,
+  .layout-margin        > .flex-gt-lg
   {
     margin: $layout-gutter-width / 1;
   }
 
   .layout-wrap {
     flex-wrap: wrap;
+  }
+
+  .layout-nowrap {
+      flex-wrap: nowrap;
   }
 
   .layout-fill {
@@ -912,16 +882,22 @@ input {
   }
 }
 
+@mixin layouts_for_breakpoint($name:null) {
+    @include flex-order-for-name($name);
+    @include offset-for-name($name);
+    @include layout-align-for-name($name);
+
+    @include flex-properties-for-name($name);
+    @include layout-for-name($name);
+}
+
 /*
  *  Apply Mixins to create Layout/Flexbox styles
  *
  */
 
-@include layout-for-name();
-@include flex-properties-for-name();
-@include layout-align-for-name();
-@include flex-order-for-name();
-@include offset-for-name();
+
+@include layouts_for_breakpoint();
 @include layout-padding-margin();
 
 
@@ -939,73 +915,64 @@ input {
  */
 
 
-// SMALL SCREEN
+
 @media (max-width: $layout-breakpoint-sm - 1) {
+  // SMALL SCREEN
   .hide-sm, .hide {
     &:not(.show-sm):not(.show) {
       display: none;
     }
   }
-
-  @include layout-for-name(sm);
-  @include flex-properties-for-name(sm);
+  @include layouts_for_breakpoint(sm);
 }
 
-// BIGGER THAN SMALL SCREEN
 @media (min-width: $layout-breakpoint-sm) {
-  @include layout-for-name(gt-sm);
-  @include flex-properties-for-name(gt-sm);
+  // BIGGER THAN SMALL SCREEN
+  @include layouts_for_breakpoint(gt-sm);
+
 }
 
-// MEDIUM SCREEN
 @media (min-width: $layout-breakpoint-sm) and (max-width: $layout-breakpoint-md - 1) {
-  .hide, .hide-gt-sm, {
+  // MEDIUM SCREEN
+  .hide, .hide-gt-sm {
     &:not(.show-gt-sm):not(.show-md):not(.show) {
       display: none;
     }
   }
-
   .hide-md:not(.show-md):not(.show) {
     display: none;
   }
-
-
-  @include layout-for-name(md);
-  @include flex-properties-for-name(md);
+  @include layouts_for_breakpoint(md);
 }
 
-// BIGGER THAN MEDIUM SCREEN
 @media (min-width: $layout-breakpoint-md) {
-  @include layout-for-name(gt-md);
-  @include flex-properties-for-name(gt-md);
+  // BIGGER THAN MEDIUM SCREEN
+  @include layouts_for_breakpoint(gt-md);
 }
 
-// LARGE SCREEN
 @media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg - 1) {
+  // LARGE SCREEN
   .hide, .hide-gt-sm, .hide-gt-md {
-    &:not(.show-gt-sm):not(.show-gt-md):not(.show-lg):not(.show) {
+      &:not(.show-gt-sm):not(.show-gt-md):not(.show-lg):not(.show) {
+        display: none;
+      }
+    }
+    .hide-lg:not(.show-lg):not(.show) {
       display: none;
     }
-  }
-  .hide-lg:not(.show-lg):not(.show) {
-    display: none;
-  }
 
-  @include layout-for-name(lg);
-  @include flex-properties-for-name(lg);
+  @include layouts_for_breakpoint(lg);
 }
 
-
-// BIGGER THAN LARGE SCREEN
 @media (min-width: $layout-breakpoint-lg) {
+  // BIGGER THAN LARGE SCREEN
   .hide-gt-sm, .hide-gt-md, .hide-gt-lg, .hide {
     &:not(.show-gt-sm):not(.show-gt-md):not(.show-gt-lg):not(.show) {
       display: none;
     }
   }
 
-  @include layout-for-name(gt-lg);
-  @include flex-properties-for-name(gt-lg);
+  @include layouts_for_breakpoint(gt-lg);
 }
 
 $autocomplete-option-height: 48px;
@@ -1026,6 +993,7 @@ $input-error-height: 24px !default;
     opacity: 0;
   }
 }
+
 @keyframes md-autocomplete-list-in {
   0% {
     opacity: 0;
@@ -1041,6 +1009,7 @@ $input-error-height: 24px !default;
     height: 40px;
   }
 }
+
 md-autocomplete {
   border-radius: 2px;
   display: block;
@@ -1088,26 +1057,40 @@ md-autocomplete {
     &.md-menu-showing {
       z-index: $z-index-backdrop + 1;
     }
-    md-progress-linear .md-mode-indeterminate {
+    md-progress-linear {
       position: absolute;
-      top: 20px; left: 0; width: 100%;
-      height: 3px;
-      transition: none;
-
-      .md-container {
-        transition: none;
+      bottom: -2px;
+      left: 0;
+      // When `md-inline` is present, we adjust the offset to go over the `ng-message` space
+      &.md-inline {
+        bottom: 40px;
+        right: 2px;
+        left: 2px;
+        width: auto;
+      }
+      .md-mode-indeterminate {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         height: 3px;
-      }
-      &.ng-enter {
-        transition: opacity 0.15s linear;
-        &.ng-enter-active {
-          opacity: 1;
+        transition: none;
+
+        .md-container {
+          transition: none;
+          height: 3px;
         }
-      }
-      &.ng-leave {
-        transition: opacity 0.15s linear;
-        &.ng-leave-active {
-          opacity: 0;
+        &.ng-enter {
+          transition: opacity 0.15s linear;
+          &.ng-enter-active {
+            opacity: 1;
+          }
+        }
+        &.ng-leave {
+          transition: opacity 0.15s linear;
+          &.ng-leave-active {
+            opacity: 0;
+          }
         }
       }
     }
@@ -1194,12 +1177,12 @@ md-autocomplete {
   max-height: 41px * 5.5;
   z-index: $z-index-tooltip;
 }
+
 .md-autocomplete-suggestions {
   margin: 0;
   list-style: none;
   padding: 0;
   li {
-    cursor: pointer;
     font-size: 14px;
     overflow: hidden;
     padding: 0 15px;
@@ -1213,6 +1196,10 @@ md-autocomplete {
     &:focus {
       outline: none;
     }
+
+    &:not(.md-not-found-wrapper) {
+      cursor: pointer;
+    }
   }
 }
 
@@ -1222,65 +1209,6 @@ md-autocomplete {
     border: 1px solid #fff;
   }
 }
-
-// !!Important - Theme-based Background-color can be configured in backdrop-theme.scss
-//             - Animate background-color opacityy only for `.md-opaque` styles
-
-md-backdrop {
-  transition: opacity 450ms;
-
-  position: absolute;
-  top:0;
-  bottom:0;
-  left: 0;
-  right: 0;
-
-  z-index: $z-index-backdrop;
-
-  &.md-menu-backdrop {
-    position: fixed !important;
-    z-index: $z-index-menu - 1;
-  }
-  &.md-select-backdrop {
-    z-index: $z-index-dialog + 1;
-    transition-duration: 0;
-  }
-  &.md-dialog-backdrop {
-    z-index: $z-index-dialog - 1;
-  }
-  &.md-bottom-sheet-backdrop {
-    z-index: $z-index-bottom-sheet - 1;
-  }
-  &.md-sidenav-backdrop {
-    z-index: $z-index-sidenav - 1;
-  }
-
-
-  &.md-click-catcher {
-    position: absolute;
-  }
-
-  &.md-opaque {
-
-    opacity: .48;
-
-    &.ng-enter {
-      opacity: 0;
-    }
-    &.ng-enter.md-opaque.ng-enter-active {
-      opacity: .48;
-    }
-    &.ng-leave {
-      opacity: .48;
-      transition: opacity 400ms;
-    }
-    &.ng-leave.md-opaque.ng-leave-active {
-      opacity: 0;
-    }
-  }
-
-}
-
 
 $bottom-sheet-horizontal-padding: 2 * $baseline-grid !default;
 $bottom-sheet-vertical-padding: 1 * $baseline-grid !default;
@@ -1468,6 +1396,112 @@ md-bottom-sheet {
   }
 }
 
+// !!Important - Theme-based Background-color can be configured in backdrop-theme.scss
+//             - Animate background-color opacityy only for `.md-opaque` styles
+
+md-backdrop {
+  transition: opacity 450ms;
+
+  position: absolute;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+
+  z-index: $z-index-backdrop;
+
+  &.md-menu-backdrop {
+    position: fixed !important;
+    z-index: $z-index-menu - 1;
+  }
+  &.md-select-backdrop {
+    z-index: $z-index-dialog + 1;
+    transition-duration: 0;
+  }
+  &.md-dialog-backdrop {
+    z-index: $z-index-dialog - 1;
+  }
+  &.md-bottom-sheet-backdrop {
+    z-index: $z-index-bottom-sheet - 1;
+  }
+  &.md-sidenav-backdrop {
+    z-index: $z-index-sidenav - 1;
+  }
+
+
+  &.md-click-catcher {
+    position: absolute;
+  }
+
+  &.md-opaque {
+
+    opacity: .48;
+
+    &.ng-enter {
+      opacity: 0;
+    }
+    &.ng-enter.md-opaque.ng-enter-active {
+      opacity: .48;
+    }
+    &.ng-leave {
+      opacity: .48;
+      transition: opacity 400ms;
+    }
+    &.ng-leave.md-opaque.ng-leave-active {
+      opacity: 0;
+    }
+  }
+
+}
+
+
+$card-padding: 16px !default;
+$card-box-shadow: $whiteframe-shadow-1dp !default;
+
+md-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: $baseline-grid;
+
+  box-shadow: $card-box-shadow;
+
+  > img,
+  > :not(md-card-content) img {
+    display: flex;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+  }
+
+  md-card-content {
+    display: block;
+    padding: $card-padding;
+  }
+
+  .md-actions, md-card-actions {
+    margin: 0;
+
+    .md-button {
+      margin-bottom: $baseline-grid;
+      margin-top: $baseline-grid;
+      margin-right: $baseline-grid * .5;
+      margin-left: $baseline-grid * .5;
+    }
+  }
+  md-card-footer {
+    margin-top: auto;
+    padding: $card-padding;
+  }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  md-card {
+    border: 1px solid #fff;
+  }
+}
+
+
 $button-border-radius: 3px !default;
 $button-fab-border-radius: 50% !default;
 $button-icon-border-radius: $button-fab-border-radius;
@@ -1488,6 +1522,11 @@ $button-fab-toast-offset: $button-fab-height * 0.75 !default;
 $icon-button-height: rem(4.800) !default;
 $icon-button-width: rem(4.800) !default;
 $icon-button-margin: rem(0.600) !default;
+
+// Fix issue causing buttons in Firefox to be 2px bigger than they should
+button.md-button::-moz-focus-inner {
+  border: 0;
+}
 
 .md-button {
   border-radius: $button-border-radius;
@@ -1606,6 +1645,9 @@ $icon-button-margin: rem(0.600) !default;
       height: $button-fab-mini-height;
     }
 
+    &.ng-hide, &.ng-leave {
+      transition: none;
+    }
   }
 
   &:not([disabled]) {
@@ -1692,47 +1734,6 @@ $icon-button-margin: rem(0.600) !default;
   }
 }
 
-$card-padding: 16px !default;
-$card-box-shadow: $whiteframe-shadow-1dp !default;
-
-md-card {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  margin: $baseline-grid;
-
-  box-shadow: $card-box-shadow;
-
-  > img,
-  > :not(md-card-content) img {
-    width: 100%;
-  }
-
-  md-card-content {
-    padding: $card-padding;
-  }
-  .md-actions {
-    margin: 0;
-
-    .md-button {
-      margin-bottom: $baseline-grid;
-      margin-top: $baseline-grid;
-      margin-right: $baseline-grid * .5;
-      margin-left: $baseline-grid * .5;
-    }
-  }
-  md-card-footer {
-    padding: $card-padding;
-  }
-}
-
-@media screen and (-ms-high-contrast: active) {
-  md-card {
-    border: 1px solid #fff;
-  }
-}
-
-
 $checkbox-width: 18px !default;
 $checkbox-height: $checkbox-width !default;
 $checkbox-margin: 8px !default;
@@ -1741,16 +1742,23 @@ $checkbox-border-width: 2px !default;
 $checkbox-text-margin: 10px !default;
 $checkbox-top-left: 12px !default;
 
+.md-inline-form {
+  md-checkbox {
+    margin: 19px 0 18px;
+  }
+}
+
 md-checkbox {
   box-sizing: border-box;
-  display: block;
+  display: inline-block;
   margin: $checkbox-margin;
   white-space: nowrap;
   cursor: pointer;
   outline: none;
   user-select: none;
-  @include rtl(padding-left, $checkbox-width, 0);
-  @include rtl(padding-right, 0, $checkbox-width);
+  padding: 2px;
+  @include rtl(padding-left, $checkbox-width, 2px);
+  @include rtl(padding-right, 2px, $checkbox-width);
   position: relative;
   line-height: $checkbox-width + $checkbox-margin;
   min-width: $checkbox-width;
@@ -1883,6 +1891,7 @@ md-checkbox {
 $chip-font-size: rem(1.6) !default;
 $chip-height: rem(3.2) !default;
 $chip-padding: 0 rem(1.2) 0 rem(1.2) !default;
+$chip-input-padding: 0 !default;
 $chip-remove-padding-right: rem(2.2) !default;
 $chip-remove-line-height: rem(2.2) !default;
 $chip-margin: rem(0.8) rem(0.8) 0 0 !default;
@@ -1944,7 +1953,7 @@ $contact-chip-name-width: rem(12) !default;
   &:not(.md-readonly) {
     cursor: text;
 
-    .md-chip {
+    .md-chip:not(.md-readonly) {
       padding-right: $chip-remove-padding-right;
     }
   }
@@ -2004,7 +2013,7 @@ $contact-chip-name-width: rem(12) !default;
     display: block;
     line-height: $chip-height;
     margin: $chip-margin;
-    padding: $chip-padding;
+    padding: $chip-input-padding;
     float: left;
     input {
       &:not([type]),&[type="email"],&[type="number"],&[type="tel"],&[type="url"],&[type="text"] {
@@ -2261,14 +2270,25 @@ md-calendar {
 $md-datepicker-button-gap: 12px;  // Space between the text input and the calendar-icon button.
 $md-datepicker-border-bottom-gap: 5px;  // Space between input and the grey underline.
 $md-datepicker-open-animation-duration: 0.2s;
+$md-datepicker-triangle-button-width: 36px;
 
 md-datepicker {
   // Don't let linebreaks happen between the open icon-button and the input.
   white-space: nowrap;
+  overflow: hidden;
+
+  // Leave room for the down-triangle button to "overflow" it's parent without modifying scrollLeft
+  padding-right: $md-datepicker-triangle-button-width / 2;
+  margin-right: -$md-datepicker-triangle-button-width / 2;
+}
+
+.md-inline-form {
+  md-datepicker {
+    margin-top: 8px;
+  }
 }
 
 // The calendar icon button used to open the calendar pane.
-// Need absurd specificty to override md-button.md-icon-button.
 .md-datepicker-button {
   display: inline-block;
   box-sizing: border-box;
@@ -2390,7 +2410,7 @@ $md-date-arrow-size: 5px;
 // Only apply this high specifiy to the property we need to override.
 .md-datepicker-triangle-button.md-button.md-icon-button {
   height: 100%;
-  width: 36px;
+  width: $md-datepicker-triangle-button-width;
   position: absolute;
 }
 
@@ -2491,10 +2511,14 @@ md-dialog {
     flex-direction: column;
     overflow: auto;
   }
+
+  .md-dialog-content {
+    padding: $dialog-padding;
+  }
+
   md-dialog-content {
     order: 1;
     flex-direction: column;
-    padding: $dialog-padding;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
 
@@ -2527,7 +2551,7 @@ md-dialog {
     }
   }
 
-  .md-actions {
+  .md-actions, md-dialog-actions {
     display: flex;
     order: 2;
     box-sizing: border-box;
@@ -2546,9 +2570,11 @@ md-dialog {
       margin-top: $baseline-grid;
     }
   }
-  &.md-content-overflow .md-actions {
-    border-top-width: 1px;
-    border-top-style: solid;
+  &.md-content-overflow {
+    .md-actions, md-dialog-actions {
+      border-top-width: 1px;
+      border-top-style: solid;
+    }
   }
 
 }
@@ -2575,8 +2601,27 @@ md-fab-speed-dial {
   display: flex;
   align-items: center;
 
-  // Include the top/left/bottom/right fab positions
+  // Include the top/left/bottom/right fab positions and set the z-index for absolute positioning
   @include fab-all-positions();
+  z-index: $z-index-fab;
+
+  // Allow users to enable/disable hovering over the entire speed dial (i.e. the empty space where
+  // items will eventually appear)
+  &:not(.md-hover-full) {
+    // Turn off pointer events when closed
+    pointer-events: none;
+
+    md-fab-trigger, .md-fab-action-item {
+      // Always make the trigger and action items always have pointer events (the tooltip looks
+      // for the first parent with pointer-events, so we must set this for tooltips to work)
+      pointer-events: auto;
+    }
+
+    &.md-is-open {
+      // Turn on pointer events when open
+      pointer-events: auto;
+    }
+  }
 
   .md-css-variables {
     z-index: $z-index-fab;
@@ -2584,7 +2629,6 @@ md-fab-speed-dial {
 
   &.md-is-open {
     .md-fab-action-item {
-      visibility: visible;
       align-items: center;
     }
   }
@@ -2596,7 +2640,6 @@ md-fab-speed-dial {
     height: auto;
 
     .md-fab-action-item {
-      visibility: hidden;
       transition: $swift-ease-in;
     }
   }
@@ -2662,12 +2705,21 @@ md-fab-speed-dial {
   }
 
   /*
+   * Hide some graphics glitches if switching animation types
+   */
+  &.md-fling-remove, &.md-scale-remove {
+    .md-fab-action-item > * {
+      visibility: hidden;
+    }
+  }
+
+  /*
    * Handle the animations
    */
   &.md-scale {
     .md-fab-action-item {
       opacity: 0;
-      transform: scale(0);
+      transform: scale(0.1);
       transition: $swift-ease-in;
 
       // Make the scale animation a bit faster since we are delaying each item
@@ -2882,63 +2934,6 @@ md-grid-list {
 }
 
 
-$icon-size: rem(2.4);
-
-md-icon {
-  margin: auto;
-  background-repeat: no-repeat no-repeat;
-  display: inline-block;
-  vertical-align: middle;
-  fill: currentColor;
-  height: $icon-size;
-  width: $icon-size;
-
-  svg {
-    pointer-events: none;
-  }
-
-  &[md-font-icon] {
-    line-height: 1;
-    width: auto;
-  }
-}
-
-//
-//@font-face {
-//  font-family:"material";
-//  src:url("/dist/material-font/material.eot");
-//  font-weight:normal;
-//  font-style:normal;
-//}
-//
-//@font-face {
-//  font-family:"material";
-//  src:url("/dist/material-font/material.eot");
-//  src:url("/dist/material-font/material.eot?#iefix") format("embedded-opentype"),
-//    url("/dist/material-font/material.woff") format("woff"),
-//    url("/dist/material-font/material.ttf") format("truetype"),
-//    url("/dist/material-font/material.svg?#material") format("svg");
-//  font-weight:normal;
-//  font-style:normal;
-//}
-//
-///* Bootstrap Overrides */
-//[class^="icon-"]:before,
-//[class*=" icon-"]:before {
-//  font-family:"material";
-//  display:inline-block;
-//  vertical-align:middle;
-//  line-height:1;
-//  font-weight:normal;
-//  font-style:normal;
-//  speak:none;
-//  text-decoration:inherit;
-//  text-transform:none;
-//  text-rendering:optimizeLegibility;
-//  -webkit-font-smoothing:antialiased;
-//  -moz-osx-font-smoothing:grayscale;
-//}
-
 $input-container-padding: 2px !default;
 
 $input-label-default-offset: 24px !default;
@@ -2958,16 +2953,21 @@ $input-error-height: 24px !default;
 
 $icon-offset : 36px !default;
 
-$icon-float-top: -16px !default;
 $icon-float-focused-top: -8px !default;
 
 md-input-container {
-  display: flex;
+  display: inline-block;
   position: relative;
-  flex-direction: column;
-
   padding: $input-container-padding;
-  padding-bottom: $input-container-padding + $input-error-height;
+  margin: 18px 0;
+
+  &.md-block {
+    display: block;
+  }
+
+  &.md-has-icon {
+    padding-left: $icon-offset;
+  }
 
   // When we have ng-messages, remove the input error height from our bottom padding, since the
   // ng-messages wrapper has a min-height of 1 error (so we don't adjust height as often; see below)
@@ -2980,7 +2980,6 @@ md-input-container {
     top: 5px;
     left: 2px;
     + input {
-          margin-left: $icon-offset;
     }
   }
 
@@ -3021,8 +3020,8 @@ md-input-container {
   }
 
   label {
-    position: relative;
-    top: -2px;
+    position: absolute;
+    bottom: 100%;
   }
 
 
@@ -3044,9 +3043,6 @@ md-input-container {
     opacity: 0;
     transition-property: opacity, transform;
     transform: translate3d(0, $input-placeholder-offset + $baseline-grid * 0.75, 0);
-    &.md-static {
-      position: static;
-    }
   }
   &.md-input-focused .md-placeholder {
     opacity: 1;
@@ -3078,7 +3074,7 @@ md-input-container {
   .md-input {
     order: 2;
     display: block;
-    margin-top: auto;
+    margin-top: 0;
 
     background: none;
     padding-top: $input-padding-top;
@@ -3087,11 +3083,14 @@ md-input-container {
     padding-right: 2px;
     border-width: 0 0 $input-border-width-default 0;
     line-height: $input-line-height;
+    height: $input-line-height + ($input-padding-top * 2);
     -ms-flex-preferred-size: $input-line-height; //IE fix
     border-radius: 0;
+    border-style: solid; // Firefox fix
 
     // Fix number inputs in Firefox to be full-width
-    width: auto;
+    width: 100%;
+    box-sizing: border-box;
 
     &:focus {
       outline: none;
@@ -3107,9 +3106,16 @@ md-input-container {
   }
 
   .md-char-counter {
-    position: relative;
-    text-align: right;
-    order: 3;
+    position: absolute;
+    right: $input-container-padding;
+    bottom: 7px;
+  }
+
+  &.md-input-invalid {
+    ng-messages, data-ng-messages, x-ng-messages,
+    [ng-messages], [data-ng-messages], [x-ng-messages] {
+      opacity: 1;
+    }
   }
 
   ng-messages, data-ng-messages, x-ng-messages,
@@ -3117,11 +3123,16 @@ md-input-container {
     position: relative;
     order: 4;
     min-height: $input-error-height;
+    overflow: hidden;
+    transition: $swift-ease-out;
+    transition-duration: $swift-ease-out-duration / 1.5;
+    opacity: 0;
 
     .md-char-counter {
       position: absolute;
       top: 0;
       right: 0;
+      bottom: auto;
     }
   }
 
@@ -3152,24 +3163,20 @@ md-input-container {
 
       // Since we're delaying the transition, we speed up the duration a little bit to compensate
       transition-duration: $swift-ease-in-duration / 1.5;
+      opacity: 0;
+      margin-top: -$input-error-line-height - $error-padding-top;
+      &.ng-enter-active {
+        opacity: 1;
+        margin-top: 0;
+      }
     }
     &.ng-leave {
       transition: $swift-ease-out;
-
-      // Speed up the duration (see enter comment above)
       transition-duration: $swift-ease-out-duration / 1.5;
-    }
-    &.ng-enter,
-    &.ng-leave.ng-leave-active {
-      // Move the error upwards off the screen and fade it out
-      margin-top: -$input-error-line-height - $error-padding-top;
-      opacity: 0;
-    }
-    &.ng-leave,
-    &.ng-enter.ng-enter-active {
-      // Move the error down into position and fade it in
-      margin-top: 0;
-      opacity: 1;
+      &.ng-leave-active {
+        margin-top: -$input-error-line-height - $error-padding-top;
+        opacity: 0;
+      }
     }
   }
 
@@ -3211,34 +3218,21 @@ md-input-container {
 
 md-input-container.md-icon-float {
 
-  margin-top : $icon-float-top;
   transition : margin-top 0.5s $swift-ease-out-timing-function ;
 
 
   > label  {
       pointer-events:none;
       position:absolute;
-      margin-left: $icon-offset;
   }
 
   > md-icon {
-    top: 26px;
+    top: 2px;
     left: 2px;
-    + input,
-    + textarea {
-          margin-left: $icon-offset;
-    }
-  }
-
-  > input,
-  > textarea {
-    padding-top : $input-line-height - $input-container-padding;
   }
 
   &.md-input-focused,
   &.md-input-has-value {
-
-    margin-top: $icon-float-focused-top;
 
     label {
         transform: translate3d(0,$input-label-float-offset,0) scale($input-label-float-scale);
@@ -3246,6 +3240,17 @@ md-input-container.md-icon-float {
       }
   }
 
+}
+
+md-input-container.md-icon-right {
+  input {
+    margin-right: $icon-offset;
+    + md-icon {
+      top: 26px;
+      right: 2px;
+      margin-right: 0;
+    }
+  }
 }
 
 @media screen and (-ms-high-contrast: active) {
@@ -3273,6 +3278,8 @@ $max-dense-menu-height: 2 * $baseline-grid + $max-visible-items * $dense-menu-it
     margin-top: $baseline-grid / 2;
     margin-bottom: $baseline-grid / 2;
     height: 1px;
+    min-height: 1px;
+    max-height: 1px;
     width: 100%;
   }
 
@@ -3345,13 +3352,14 @@ md-menu-item {
     font-size: (2*$baseline-grid) - 1;
     text-transform: none;
     font-weight: 400;
+    text-align: left;
     text-align: start;
     height: 100%;
     padding-left: 2*$baseline-grid;
     padding-right: 2*$baseline-grid;
     display: inline-block;
     align-items: baseline;
-    align-content: left;
+    align-content: flex-start;
     width:100%;
     md-icon {
       margin: auto 2*$baseline-grid auto 0;
@@ -3378,6 +3386,7 @@ md-toolbar {
   .md-menu {
     height: auto;
     margin: auto;
+    padding: 0;
   }
 }
 
@@ -3443,6 +3452,9 @@ md-list {
 }
 
 md-list-item {
+  // Ensure nested dividers are properly positioned
+  position: relative;
+
   &.md-proxy-focus.md-focused .md-no-style {
     transition: background-color 0.15s linear;
   }
@@ -3450,7 +3462,7 @@ md-list-item {
   .md-no-style {
     position: relative;
     padding: $list-item-padding-vertical $list-item-padding-horizontal;
-    flex: 1;
+    flex: 1 1 auto;
     
     &.md-button {
       font-size: inherit;
@@ -3461,6 +3473,11 @@ md-list-item {
       white-space: normal;
       flex-direction: inherit;
       align-items: inherit;
+      border-radius: 0;
+
+      & > .md-ripple-container {
+        border-radius: 0;
+      }
     }
     &:focus {
       outline: none
@@ -3491,12 +3508,13 @@ md-list-item, md-list-item .md-list-item-inner {
   justify-content: flex-start;
   align-items: center;
   min-height: $list-item-height;
+  height:auto;
 
   // Layout for controls in primary or secondary divs, or auto-infered first child
-  & > div.md-primary > md-icon,
-  & > div.md-secondary > md-icon,
-  & > md-icon:first-child, 
-  > md-icon.md-secondary {
+  & > div.md-primary > md-icon:not(.md-avatar-icon),
+  & > div.md-secondary > md-icon:not(.md-avatar-icon),
+  & > md-icon:first-child:not(.md-avatar-icon),
+  > md-icon.md-secondary:not(.md-avatar-icon) {
     width: $list-item-primary-icon-width;
     margin-top: 16px;
     margin-bottom: 12px;
@@ -3510,7 +3528,7 @@ md-list-item, md-list-item .md-list-item-inner {
     .md-label { display: none; }
   }
 
-  & > md-icon:first-child {
+  & > md-icon:first-child:not(.md-avatar-icon) {
     margin-right: $list-item-primary-width - $list-item-primary-icon-width;
   }
   & > md-checkbox:first-child {
@@ -3518,21 +3536,33 @@ md-list-item, md-list-item .md-list-item-inner {
     margin-left: 3px;
     margin-right: 29px;
   }
-  & > .md-avatar:first-child {
-    width: $list-item-primary-avatar-width;
-    height: $list-item-primary-avatar-width;
+  & > .md-avatar, .md-avatar-icon {
     margin-top: $baseline-grid;
     margin-bottom: $baseline-grid;
     margin-right: $list-item-primary-width - $list-item-primary-avatar-width;
     border-radius: 50%;
     box-sizing: content-box;
   }
+  & > .md-avatar {
+    width: $list-item-primary-avatar-width;
+    height: $list-item-primary-avatar-width;
+  }
+  & > .md-avatar-icon {
+    padding: 8px;
+  }
 
   md-checkbox.md-secondary,
   md-switch.md-secondary {
-    margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  md-checkbox.md-secondary {
+    margin-right: 0;
+  }
+
+  md-switch.md-secondary {
+    margin-right: -6px;
   }
 
   button.md-button.md-secondary-container {
@@ -3544,6 +3574,11 @@ md-list-item, md-list-item .md-list-item-inner {
     .md-ripple,
     .md-ripple-container {
       border-radius: 50%;
+    }
+
+    &.md-icon-button {
+      // Make icon buttons align with checkboxes and other controls
+      margin-right: -12px;
     }
   }
 
@@ -3616,8 +3651,13 @@ md-list-item.md-3-line > .md-no-style {
 
 md-list-item.md-2-line,
 md-list-item.md-2-line > .md-no-style {
-  height: $list-item-two-line-height;
-  > .md-avatar:first-child {
+  height:auto;
+  min-height: $list-item-two-line-height;
+  &.md-long-text {
+      margin:1.6em;
+    }
+
+  > .md-avatar, .md-avatar-icon {
     margin-top: $baseline-grid * 1.5;
   }
   > md-icon:first-child {
@@ -3630,12 +3670,75 @@ md-list-item.md-2-line > .md-no-style {
 
 md-list-item.md-3-line,
 md-list-item.md-3-line > .md-no-style {
-  height: $list-item-three-line-height;
-  > md-icon:first-child, 
-  > .md-avatar:first-child {
+  height:auto;
+  min-height: $list-item-three-line-height;
+
+  &.md-long-text {
+    margin:1.6em;
+  }
+
+  > md-icon:first-child,
+  > .md-avatar {
     margin-top: $baseline-grid * 2;
   }
 }
+
+$icon-size: rem(2.4);
+
+md-icon {
+  margin: auto;
+  background-repeat: no-repeat no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  height: $icon-size;
+  width: $icon-size;
+
+  svg {
+    pointer-events: none;
+  }
+
+  &[md-font-icon] {
+    line-height: 1;
+    width: auto;
+  }
+}
+
+//
+//@font-face {
+//  font-family:"material";
+//  src:url("/dist/material-font/material.eot");
+//  font-weight:normal;
+//  font-style:normal;
+//}
+//
+//@font-face {
+//  font-family:"material";
+//  src:url("/dist/material-font/material.eot");
+//  src:url("/dist/material-font/material.eot?#iefix") format("embedded-opentype"),
+//    url("/dist/material-font/material.woff") format("woff"),
+//    url("/dist/material-font/material.ttf") format("truetype"),
+//    url("/dist/material-font/material.svg?#material") format("svg");
+//  font-weight:normal;
+//  font-style:normal;
+//}
+//
+///* Bootstrap Overrides */
+//[class^="icon-"]:before,
+//[class*=" icon-"]:before {
+//  font-family:"material";
+//  display:inline-block;
+//  vertical-align:middle;
+//  line-height:1;
+//  font-weight:normal;
+//  font-style:normal;
+//  speak:none;
+//  text-decoration:inherit;
+//  text-transform:none;
+//  text-rendering:optimizeLegibility;
+//  -webkit-font-smoothing:antialiased;
+//  -moz-osx-font-smoothing:grayscale;
+//}
 
 md-toolbar.md-menu-toolbar {
   h2.md-toolbar-tools {
@@ -3703,14 +3806,17 @@ md-menu-content.md-menu-bar-menu.md-dense {
     margin: $baseline-grid 0;
   }
 
+  md-menu-item > .md-button, .md-menu > .md-button {
+    text-align: left;
+    text-align: start;
+  }
+
   .md-menu {
     padding: 0;
     > .md-button {
       position: relative;
       margin: 0;
       width: 100%;
-      text-align: left;
-      text-align: start;
       text-transform: none;
       font-weight: normal;
       border-radius: 0px;
@@ -3892,126 +3998,6 @@ md-progress-circular {
 }
 
 
-$radio-width: 16px !default;
-$radio-height: $radio-width !default;
-$radio-text-margin: 10px !default;
-$radio-top-left: -15px !default;
-
-md-radio-button,
-.md-switch-thumb { // Used in switch
-  box-sizing: border-box;
-  display: block;
-  margin: 15px;
-  white-space: nowrap;
-  cursor: pointer;
-
-  .md-container {
-    box-sizing: border-box;
-    position: relative;
-    top: 4px;
-    display: inline-block;
-    width: $radio-width;
-    height: $radio-width;
-    cursor: pointer;
-
-    .md-ripple-container {
-      position: absolute;
-      display: block;
-      width: $radio-width * 3;
-      height: $radio-width * 3;
-      left: -$radio-width;
-      top: -$radio-width;
-    }
-
-    &:before {
-      box-sizing: border-box;
-      background-color: transparent;
-      border-radius: 50%;
-      content: '';
-      position: absolute;
-      display: block;
-      height: auto;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      transition: all 0.5s;
-      width: auto;
-    }
-  }
-
-  &.md-align-top-left > div.md-container {
-     top: $radio-top-left;
-   }
-
-  .md-off {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $radio-width;
-    height: $radio-width;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 50%;
-    transition: border-color ease 0.28s;
-  }
-
-  .md-on {
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $radio-width;
-    height: $radio-width;
-    border-radius: 50%;
-    transition: transform ease 0.28s;
-    transform: scale(0);
-  }
-
-  &.md-checked .md-on {
-    transform: scale(0.50);
-  }
-
-  .md-label {
-    box-sizing: border-box;
-    position: relative;
-    display: inline-block;
-
-    @include rtl(margin-left, $radio-text-margin, 0);
-    @include rtl(margin-right, 0, $radio-text-margin);
-
-    vertical-align: middle;
-    white-space: normal;
-    pointer-events: none;
-    width: auto;
-  }
-
-  .circle {
-    border-radius: 50%;
-  }
-
-}
-md-radio-group {
-  &:focus {
-    outline: none;
-  }
-  &.md-focused {
-    .md-checked .md-container:before {
-      left: -8px;
-      top: -8px;
-      right: -8px;
-      bottom: -8px;
-    }
-  }
-}
-
-@media screen and (-ms-high-contrast: active) {
-  md-radio-button.md-default-theme .md-on {
-    background-color: #fff;
-  }
-}
-
 $progress-linear-bar-height: 5px !default;
 
 md-progress-linear {
@@ -4031,7 +4017,7 @@ md-progress-linear {
     width:100%;
     height: $progress-linear-bar-height;
 
-    transform: translate(0, 0) scale(1, 1);;
+    transform: translate(0, 0) scale(1, 1);
 
     .md-bar {
       position: absolute;
@@ -4217,121 +4203,6 @@ md-progress-linear {
 
 
 
-$sidenav-default-width: 304px !default;
-$sidenav-min-space: 56px !default;
-
-md-sidenav {
-  box-sizing: border-box;
-  position: absolute;
-  flex-direction: column;
-  z-index: $z-index-sidenav;
-
-  width: $sidenav-default-width;
-  min-width: $sidenav-default-width;
-  max-width: $sidenav-default-width;
-  bottom: 0;
-  background-color: white;
-  overflow: auto;
-
-  ul {
-    list-style: none;
-  }
-
-  &.md-closed {
-    display: none;
-  }
-  &.md-closed-add,
-  &.md-closed-remove {
-    display: flex;
-    transition: 0.2s ease-in all;
-  }
-
-  &.md-closed-add.md-closed-add-active,
-  &.md-closed-remove.md-closed-remove-active {
-    transition: $swift-ease-out;
-  }
-
-  &.md-locked-open-add,
-  &.md-locked-open-remove {
-    position: static;
-    display: flex;
-    transform: translate3d(0, 0, 0);
-  }
-  &.md-locked-open {
-    width: $sidenav-default-width;
-    min-width: $sidenav-default-width;
-    max-width: $sidenav-default-width;
-  }
-
-  &.md-locked-open,
-  &.md-locked-open.md-closed,
-  &.md-locked-open.md-closed.md-sidenav-left,
-  &.md-locked-open.md-closed.md-sidenav-right,
-  &.md-locked-open-remove.md-closed {
-    position: static;
-    display: flex;
-    transform: translate3d(0, 0, 0);
-  }
-  &.md-locked-open-remove-active {
-    transition: width $swift-ease-in-duration $swift-ease-in-timing-function,
-                min-width $swift-ease-in-duration $swift-ease-in-timing-function;
-    width: 0;
-    min-width: 0;
-  }
-
-  &.md-closed.md-locked-open-add {
-    width: 0;
-    min-width: 0;
-    transform: translate3d(0%, 0, 0);
-  }
-
-  &.md-closed.md-locked-open-add-active {
-    transition: width $swift-ease-in-duration $swift-ease-in-timing-function,
-                min-width $swift-ease-in-duration $swift-ease-in-timing-function;
-    width: $sidenav-default-width;
-    min-width: $sidenav-default-width;
-    transform: translate3d(0%, 0, 0);
-  }
-
-  @extend .md-sidenav-left;
-}
-.md-sidenav-backdrop.md-locked-open {
-  display: none;
-}
-
-.md-sidenav-left {
-  left: 0;
-  top: 0;
-  transform: translate3d(0%, 0, 0);
-  &.md-closed {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.md-sidenav-right {
-  left: 100%;
-  top: 0;
-  transform: translate3d(-100%, 0, 0);
-  &.md-closed {
-    transform: translate3d(0%, 0, 0);
-  }
-}
-
-@media (max-width: $sidenav-default-width + $sidenav-min-space) {
-  md-sidenav {
-    width: 85%;
-  }
-}
-
-@media screen and (-ms-high-contrast: active) {
-  .md-sidenav-left {
-    border-right: 1px solid #fff;
-  }
-  .md-sidenav-right {
-    border-left: 1px solid #fff;
-  }
-}
-
 $select-option-height: 48px;
 $select-option-padding: 16px;
 $select-container-padding: 16px;
@@ -4381,7 +4252,7 @@ $select-max-visible-options: 5;
 }
 
 md-input-container > md-select {
-  margin: auto 0 0 0;
+  margin: 0;
   order: 2;
 }
 
@@ -4551,6 +4422,254 @@ md-optgroup {
   }
   md-select-menu {
     border: 1px solid #fff;
+  }
+}
+
+$radio-width: 16px !default;
+$radio-height: $radio-width !default;
+$radio-text-margin: 10px !default;
+$radio-top-left: -15px !default;
+
+md-radio-button,
+.md-switch-thumb { // Used in switch
+  box-sizing: border-box;
+  display: block;
+  margin: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  .md-container {
+    box-sizing: border-box;
+    position: relative;
+    top: 4px;
+    display: inline-block;
+    width: $radio-width;
+    height: $radio-width;
+    cursor: pointer;
+
+    .md-ripple-container {
+      position: absolute;
+      display: block;
+      width: $radio-width * 3;
+      height: $radio-width * 3;
+      left: -$radio-width;
+      top: -$radio-width;
+    }
+
+    &:before {
+      box-sizing: border-box;
+      background-color: transparent;
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+      display: block;
+      height: auto;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      transition: all 0.5s;
+      width: auto;
+    }
+  }
+
+  &.md-align-top-left > div.md-container {
+     top: $radio-top-left;
+   }
+
+  .md-off {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $radio-width;
+    height: $radio-width;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 50%;
+    transition: border-color ease 0.28s;
+  }
+
+  .md-on {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $radio-width;
+    height: $radio-width;
+    border-radius: 50%;
+    transition: transform ease 0.28s;
+    transform: scale(0);
+  }
+
+  &.md-checked .md-on {
+    transform: scale(0.50);
+  }
+
+  .md-label {
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+
+    @include rtl(margin-left, $radio-text-margin, 0);
+    @include rtl(margin-right, 0, $radio-text-margin);
+
+    vertical-align: middle;
+    white-space: normal;
+    pointer-events: none;
+    width: auto;
+  }
+
+  .circle {
+    border-radius: 50%;
+  }
+
+}
+md-radio-group {
+  &:focus {
+    outline: none;
+  }
+  &.md-focused {
+    .md-checked .md-container:before {
+      left: -8px;
+      top: -8px;
+      right: -8px;
+      bottom: -8px;
+    }
+  }
+}
+
+.md-inline-form {
+  md-radio-group {
+    margin: 18px 0 19px;
+    md-radio-button {
+      display: inline-block;
+      height: 30px;
+      padding: 2px;
+      box-sizing: border-box;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  md-radio-button.md-default-theme .md-on {
+    background-color: #fff;
+  }
+}
+
+$sidenav-default-width: 304px !default;
+$sidenav-min-space: 56px !default;
+
+md-sidenav {
+  box-sizing: border-box;
+  position: absolute;
+  flex-direction: column;
+  z-index: $z-index-sidenav;
+
+  width: $sidenav-default-width;
+  min-width: $sidenav-default-width;
+  max-width: $sidenav-default-width;
+  bottom: 0;
+  overflow: auto;
+
+  ul {
+    list-style: none;
+  }
+
+  &.md-closed {
+    display: none;
+  }
+  &.md-closed-add,
+  &.md-closed-remove {
+    display: flex;
+    transition: 0.2s ease-in all;
+  }
+
+  &.md-closed-add.md-closed-add-active,
+  &.md-closed-remove.md-closed-remove-active {
+    transition: $swift-ease-out;
+  }
+
+  &.md-locked-open-add,
+  &.md-locked-open-remove {
+    position: static;
+    display: flex;
+    transform: translate3d(0, 0, 0);
+  }
+  &.md-locked-open {
+    width: $sidenav-default-width;
+    min-width: $sidenav-default-width;
+    max-width: $sidenav-default-width;
+  }
+
+  &.md-locked-open,
+  &.md-locked-open.md-closed,
+  &.md-locked-open.md-closed.md-sidenav-left,
+  &.md-locked-open.md-closed.md-sidenav-right,
+  &.md-locked-open-remove.md-closed {
+    position: static;
+    display: flex;
+    transform: translate3d(0, 0, 0);
+  }
+  &.md-locked-open-remove-active {
+    transition: width $swift-ease-in-duration $swift-ease-in-timing-function,
+                min-width $swift-ease-in-duration $swift-ease-in-timing-function;
+    width: 0;
+    min-width: 0;
+  }
+
+  &.md-closed.md-locked-open-add {
+    width: 0;
+    min-width: 0;
+    transform: translate3d(0%, 0, 0);
+  }
+
+  &.md-closed.md-locked-open-add-active {
+    transition: width $swift-ease-in-duration $swift-ease-in-timing-function,
+                min-width $swift-ease-in-duration $swift-ease-in-timing-function;
+    width: $sidenav-default-width;
+    min-width: $sidenav-default-width;
+    transform: translate3d(0%, 0, 0);
+  }
+
+  @extend .md-sidenav-left;
+}
+.md-sidenav-backdrop.md-locked-open {
+  display: none;
+}
+
+.md-sidenav-left {
+  left: 0;
+  top: 0;
+  transform: translate3d(0%, 0, 0);
+  &.md-closed {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.md-sidenav-right {
+  left: 100%;
+  top: 0;
+  transform: translate3d(-100%, 0, 0);
+  &.md-closed {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@media (max-width: $sidenav-default-width + $sidenav-min-space) {
+  md-sidenav {
+    width: 85%;
+  }
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .md-sidenav-left {
+    border-right: 1px solid #fff;
+  }
+  .md-sidenav-right {
+    border-left: 1px solid #fff;
   }
 }
 
@@ -4867,10 +4986,9 @@ md-slider {
 
 $subheader-line-height: 1em !default;
 $subheader-font-size: rem(1.4) !default;
-$subheader-padding: ($baseline-grid * 2) 0px ($baseline-grid * 2) ($baseline-grid * 2) !default;
+$subheader-padding: ($baseline-grid * 2) !default;
 $subheader-font-weight: 500 !default;
 $subheader-margin: 0 0 0 0 !default;
-$subheader-margin-right: 16px !default;
 $subheader-sticky-shadow: 0px 2px 4px 0 rgba(0,0,0,0.16) !default;
 
 @keyframes subheaderStickyHoverIn {
@@ -4920,7 +5038,6 @@ $subheader-sticky-shadow: 0px 2px 4px 0 rgba(0,0,0,0.16) !default;
   font-weight: $subheader-font-weight;
   line-height: $subheader-line-height;
   margin: $subheader-margin;
-  margin-right: $subheader-margin-right;
   position: relative;
 
   .md-subheader-inner {
@@ -4940,16 +5057,26 @@ $switch-height: $baseline-grid * 3 !default;
 $switch-bar-height: 14px !default;
 $switch-thumb-size: 20px !default;
 
+.md-inline-form {
+  md-switch {
+    margin-top: 18px;
+    margin-bottom: 19px;
+  }
+}
+
 md-switch {
-
-  display: flex;
-  align-items: center;
-
+  display: inline-block;
   margin: 15px;
   white-space: nowrap;
   cursor: pointer;
   outline: none;
   user-select: none;
+  height: 30px;
+  line-height: 28px;
+
+  &.md-block {
+    display: block;
+  }
 
   .md-container {
     cursor: grab;
@@ -4958,6 +5085,8 @@ md-switch {
     position: relative;
     user-select: none;
     margin-right: 8px;
+    margin-top: (30 - $switch-height) / 2;
+    float: left;
   }
 
   // If the user moves his mouse off the switch, stil display grabbing cursor
@@ -4986,6 +5115,7 @@ md-switch {
   .md-label {
     border-color: transparent;
     border-width: 0;
+    float: left;
   }
 
   .md-bar {
@@ -5051,7 +5181,7 @@ md-switch {
     .md-bar,
     .md-thumb-container,
     .md-thumb {
-      transition: $swift-ease-in-out;
+      transition: $swift-linear;
       transition-property: transform, background-color;
     }
     .md-bar,
@@ -5079,15 +5209,9 @@ $tabs-tab-width: $baseline-grid * 12 !default;
 $tabs-header-height: 48px !default;
 
 @keyframes md-tab-content-hide {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 1; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 md-tab-data {
@@ -5111,12 +5235,14 @@ md-tabs {
     min-height: 200 + $tabs-header-height;
   }
   &[md-align-tabs="bottom"] {
+    padding-bottom: $tabs-header-height;
     md-tabs-wrapper {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       height: $tabs-header-height;
+      z-index: 2;
     }
     md-tabs-content-wrapper {
       top: 0;
@@ -5244,7 +5370,6 @@ md-pagination-wrapper {
   &.md-center-tabs {
     position: relative;
     width: initial;
-    flex: 1;
     margin: 0 auto;
   }
 }
@@ -5266,7 +5391,6 @@ md-tab-content {
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(0);
   transition: transform $swift-ease-in-out-duration $swift-ease-in-out-timing-function;
   overflow: auto;
   &.md-no-scroll {
@@ -5385,7 +5509,7 @@ md-toast {
   font-size: 14px;
   cursor: default;
 
-  height:auto;
+  height: 0px;
   max-height: 7*$toast-height;
   max-width: 100%;
 
@@ -5700,37 +5824,14 @@ md-tooltip {
     font-size: $tooltip-fontsize-lg;
   }
 
-  .md-background {
-    position: absolute;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-    &.md-show-add {
-      transition: $swift-ease-out;
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-    }
-    &.md-show, &.md-show-add-active {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-    }
-    &.md-show-remove {
-      transition: $swift-ease-in;
-      &.md-show-remove-active {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-      }
-    }
-  }
   .md-content {
     position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    background: transparent;
+    transform-origin: center top;
+    transform: scale(0);
     opacity: 0;
-
     height: $tooltip-height-sm;
     line-height: $tooltip-height-sm;
     padding-left: $tooltip-lr-padding-sm;
@@ -5743,14 +5844,19 @@ md-tooltip {
     }
     &.md-show-add {
       transition: $swift-ease-out;
+      transition-duration: .2s;
+      transform: scale(0);
       opacity: 0;
     }
     &.md-show, &.md-show-add-active {
+      transform: scale(1);
       opacity: 1;
     }
     &.md-show-remove {
-      transition: $swift-ease-in;
+      transition: $swift-ease-out;
+      transition-duration: .2s;
       &.md-show-remove-active {
+        transform: scale(0);
         opacity: 0;
       }
     }
@@ -5792,7 +5898,7 @@ $virtual-repeat-scrollbar-width: 16px;
   .md-virtual-repeat-sizer {
     box-sizing: border-box;
     height: 1px;
-    display: inline-block;
+    display: block;
     margin: 0;
     padding: 0;
     width: 1px;
@@ -5804,9 +5910,7 @@ $virtual-repeat-scrollbar-width: 16px;
     margin: 0;
     padding: 0;
     position: absolute;
-    // Leave room for the scroll bar.
-    // TODO: Will probably need to perform measurements at runtime.
-    right: $virtual-repeat-scrollbar-width;
+    right: 0;
     top: 0;
   }
 }

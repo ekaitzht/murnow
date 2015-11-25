@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.11.1
+ * v1.0.0-rc4
  */
 goog.provide('ng.material.components.input');
 goog.require('ng.material.core');
@@ -65,6 +65,7 @@ function mdInputContainerDirective($mdTheming, $parse) {
 
   function postLink(scope, element, attr) {
     $mdTheming(element);
+    if (element.find('md-icon').length) element.addClass('md-has-icon');
   }
 
   function ContainerCtrl($scope, $element, $attrs) {
@@ -136,6 +137,7 @@ function labelDirective() {
  * @param {string=} placeholder An alternative approach to using aria-label when the label is not
  *   PRESENT. The placeholder text is copied to the aria-label attribute.
  * @param md-no-autogrow {boolean=} When present, textareas will not grow automatically.
+ * @param md-detect-hidden {boolean=} When present, textareas will be sized properly when they are revealed after being hidden. This is off by default for performance reasons because it guarantees a reflow every digest cycle.
  *
  * @usage
  * <hljs lang="html">
@@ -330,8 +332,9 @@ function inputTextareaDirective($mdUtil, $window, $mdAria) {
             node.style.minHeight = null;
           }
 
-          var rows = Math.max(min_rows, Math.round(node.scrollHeight / lineHeight));
+          var rows = Math.min(min_rows, Math.round(node.scrollHeight / lineHeight));
           node.setAttribute("rows", rows);
+          node.style.height = lineHeight * rows + "px";
         }
 
         // reset everything back to normal
@@ -350,6 +353,31 @@ function inputTextareaDirective($mdUtil, $window, $mdAria) {
         var line = node.scrollHeight - node.offsetHeight;
         var height = node.offsetHeight + line;
         node.style.height = height + 'px';
+      }
+
+      // Attach a watcher to detect when the textarea gets shown.
+      if (angular.isDefined(element.attr('md-detect-hidden'))) {
+
+        var handleHiddenChange = function() {
+          var wasHidden = false;
+
+          return function() {
+            var isHidden = node.offsetHeight === 0;
+
+            if (isHidden === false && wasHidden === true) {
+              growTextarea();
+            }
+
+            wasHidden = isHidden;
+          };
+        }();
+
+        // Check every digest cycle whether the visibility of the textarea has changed.
+        // Queue up to run after the digest cycle is complete.
+        scope.$watch(function() {
+          $mdUtil.nextTick(handleHiddenChange, false);
+          return true;
+        });
       }
     }
   }
@@ -395,7 +423,7 @@ function mdMaxlengthDirective($animate) {
 
     ngModelCtrl.$formatters.push(renderCharCount);
     ngModelCtrl.$viewChangeListeners.push(renderCharCount);
-    element.on('input keydown', function() {
+    element.on('input keydown keyup', function() {
       renderCharCount(); //make sure it's called with no args
     });
 
@@ -419,7 +447,9 @@ function mdMaxlengthDirective($animate) {
     };
 
     function renderCharCount(value) {
-      charCountEl.text(( element.val() || value || '' ).length + '/' + maxlength);
+      // Force the value into a string since it may be a number,
+      // which does not have a length property.
+      charCountEl.text(String(element.val() || value || '').length + '/' + maxlength);
       return value;
     }
   }
@@ -438,14 +468,15 @@ function placeholderDirective($log) {
     // If there is no input container, just return
     if (!inputContainer) return;
 
-    // Add a placeholder class so we can target it in the CSS
-    inputContainer.setHasPlaceholder(true);
-
     var label = inputContainer.element.find('label');
     var hasNoFloat = angular.isDefined(inputContainer.element.attr('md-no-float'));
 
     // If we have a label, or they specify the md-no-float attribute, just return
-    if ((label && label.length) || hasNoFloat) return;
+    if ((label && label.length) || hasNoFloat) {
+      // Add a placeholder class so we can target it in the CSS
+      inputContainer.setHasPlaceholder(true);
+      return;
+    }
 
     // Otherwise, grab/remove the placeholder
     var placeholderText = attr.placeholder;

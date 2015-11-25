@@ -2,14 +2,14 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.11.1
+ * v1.0.0-rc4
  */
 md-toast {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  z-index: 90;
+  z-index: 105;
   box-sizing: border-box;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -21,7 +21,7 @@ md-toast {
   border-radius: 2px;
   font-size: 14px;
   cursor: default;
-  height: auto;
+  height: 0px;
   max-height: 168px;
   max-width: 100%;
   overflow: hidden;

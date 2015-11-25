@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v0.11.1
+ * v1.0.0-rc4
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -290,7 +290,7 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
     }
     function stepValidator(value) {
       if (angular.isNumber(value)) {
-        var formattedValue = (Math.round(value / step) * step);
+        var formattedValue = (Math.round((value - min) / step) * step + min);
         // Format to 3 digits after the decimal point - fixes #2015.
         return (Math.round(formattedValue * 1000) / 1000);
       }
@@ -300,12 +300,13 @@ function SliderDirective($$rAF, $window, $mdAria, $mdUtil, $mdConstant, $mdThemi
      * @param percent 0-1
      */
     function setSliderPercent(percent) {
-      activeTrack.css('width', (percent * 100) + '%');
-      thumbContainer.css(
-        'left',
-        (percent * 100) + '%'
-      );
-      element.toggleClass('md-min', percent === 0);
+        var percentStr = (percent * 100) + '%';
+
+        activeTrack.css('width', percentStr);
+        thumbContainer.css('left',percentStr);
+
+        element.toggleClass('md-min', percent === 0);
+        element.toggleClass('md-max', percent === 1);
     }
 
 
