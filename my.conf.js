@@ -7,7 +7,7 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
+//
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
@@ -16,10 +16,47 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
 	  'vendor/assets/bower_components/angular/angular.js',
+	  'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
+	  'vendor/assets/bower_components/angular-aria/angular-aria.js',
+	  'vendor/assets/bower_components/angular-material/angular-material.js',
+	  'vendor/assets/bower_components/angular-ui-router/release/angular-ui-router.js',
+	  'vendor/assets/bower_components/angular-devise/lib/devise.js',
+	  'vendor/assets/bower_components/angular-bootstrap/ui-bootstrap.js',
+	  'vendor/assets/bower_components/angular-messages/angular-messages.js',
+	  'vendor/assets/bower_components/angular-cookies/angular-cookies.js',
+	  'vendor/assets/bower_components/angular-touch/angular-touch.js',
+	  'vendor/assets/bower_components/ng-file-upload/angular-file-upload.js',
+	  'vendor/assets/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
+	  'vendor/assets/bower_components/ngImgCrop/compile/unminified/ng-img-crop.js',
 	  'app/assets/javascripts/app.js',
       'app/assets/javascripts/**/*.js',
-      'app/assets/test/**/*_spec.js'
+      'app/assets/test/**/*_spec.js',
+      'app/assets/javascripts/**/*.html'
+
     ],
+
+    preprocessors: {
+        'app/assets/javascripts/**/*.html': ['ng-html2js']
+    },
+    
+    ngHtml2JsPreprocessor: {
+	  //   prependPrefix: '/app/'
+	  //stripPrefix: "app/assets/javascripts/",
+	  //stripPrefix: '/Users/ekaitz/code_base/murnow/app/assets/javascripts',
+	  //prependPrefix: '/app/',
+	  prependPrefix: '/app/',
+      moduleName: 'templates'
+   
+      // Function that transforms the path to look exactly like 
+      // you have it in templateUrl in your Angular code
+      //
+      // Mine looks like this
+      //cacheIdFromPath: function(filepath) {
+	    //  console.log("karma, cacheIdFromPath " + filepath);
+        //return filepath.match(/\/app\/assets\/javascripts\/.*\.html/);
+       // return filepath.match('app/assets/javascripts/','');
+     // }
+    },
 
 
     // list of files to exclude

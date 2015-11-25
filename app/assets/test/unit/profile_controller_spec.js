@@ -1,10 +1,11 @@
- describe('ProfileController',function(){
+ describe('Profile',function(){
         
-        
-        beforeEach(module('app'));
-        var ctrl;
+		beforeEach(module('templates'));
+        beforeEach(module('murnow'));
+        var ctrl; 
         var $httpBackend;
         
+
         beforeEach(inject(function($injector){
                 $httpBackend = $injector.get('$httpBackend');
         }));
