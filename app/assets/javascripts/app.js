@@ -1,6 +1,6 @@
 
 
-var app = angular.module('murnow', ['ui.router','templates', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard','myPostRepeat','ngMessages','socialIcons']);
+var app = angular.module('murnow', ['ui.router', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard','myPostRepeat','ngMessages','socialIcons','templates']);
 
 app.config(['$mdThemingProvider',function($mdThemingProvider) {
 
