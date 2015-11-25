@@ -1,5 +1,5 @@
 angular.module('socialIcons',[])
-.directive('socialIcons', ['$state','$mdDialog', function( $state, $mdDialog){
+.directive('socialIcons', ['$state', function( $state){
 	return {
 		restrict: 'E',
 		scope: {

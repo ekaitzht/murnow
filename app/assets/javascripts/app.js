@@ -173,7 +173,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
             
         });
 
-app.run(['$rootScope','$location', '$mdDialog','$state','$anchorScroll','Intercom', 'Dialog','Auth',function($rootScope,$location, $mdDialog, $state, $anchorScroll, Intercom, Dialog, Auth) {
+app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog','Auth',function($rootScope,$location, $state, $anchorScroll, Intercom, Dialog, Auth) {
 	   var lock = false;
 	   
      
