@@ -16,10 +16,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
 	  'vendor/assets/bower_components/angular/angular.js',
+	  'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
 	  'vendor/assets/bower_components/angular-animate/angular-animate.js',
 	  'vendor/assets/bower_components/angular-aria/angular-aria.js',
 	  'vendor/assets/bower_components/angular-material/angular-material.js',
-	  'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
 	  'vendor/assets/bower_components/angular-ui-router/release/angular-ui-router.js',
 	  'vendor/assets/bower_components/angular-devise/lib/devise.js',
 	  'vendor/assets/bower_components/angular-bootstrap/ui-bootstrap.js',
@@ -42,16 +42,20 @@ module.exports = function(config) {
     
     ngHtml2JsPreprocessor: {
 	  //   prependPrefix: '/app/'
-	  //stripPrefix: "app/assets/javascripts/",
+	  //stripPrefix: ".*/code_base/murnow",
 	  //stripPrefix: '/Users/ekaitz/code_base/murnow/app/assets/javascripts',
 	  //prependPrefix: '/app/',
-	  prependPrefix: '/app/',
+	  //prependPrefix: '/app/',
       moduleName: 'templates'
    
       // Function that transforms the path to look exactly like 
       // you have it in templateUrl in your Angular code
       //
       // Mine looks like this
+      
+     //  cacheIdFromPath: function(filepath) {
+     //   return '/app/assets/' + filepath;
+    //}
       //cacheIdFromPath: function(filepath) {
 	    //  console.log("karma, cacheIdFromPath " + filepath);
         //return filepath.match(/\/app\/assets\/javascripts\/.*\.html/);
@@ -65,10 +69,7 @@ module.exports = function(config) {
     ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+
 
 
     // test results reporter to use
