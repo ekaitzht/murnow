@@ -10,11 +10,12 @@ module.exports = function(config) {
 //
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine-jquery','jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
+	  'vendor/assets/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
 	  'vendor/assets/bower_components/angular/angular.js',
 	  'vendor/assets/bower_components/angular-animate/angular-animate.js',
 	  'vendor/assets/bower_components/angular-aria/angular-aria.js',

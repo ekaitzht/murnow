@@ -34,7 +34,8 @@
     "moment": "~2.9.0",
     "moment-twitter": "~0.2.0",
     "angular-mocks": "~1.4.8",
-    "angular-animate": "~1.4.8"
+    "angular-animate": "~1.4.8",
+    "jasmine-jquery": "~2.1.1"
   },
   "resolutions": {
     "angular": "1.4.8",

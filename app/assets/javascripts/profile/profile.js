@@ -9,25 +9,6 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 	 	 $scope.enviroment = configMurnow.enviroment;
 	 	 $scope.invitationLink = '';
 	 	 
- 	Auth.currentUser().then(function (user){
-	 	
-	 	if(user.id === 70){ // This id has to be the user that has the power to generate invitations
-		 	$scope.isUlaize = true;
-	 	} else {
-		 	$scope.isUlaize = false;
-	 	}
-	 	
-	 	if(parseInt($stateParams.id) === user.id) { // if the user that we are is logged we have to modify profile view 
-		 	$scope.publicProfile = false;
-	 	} else {
-		 	$scope.publicProfile = true;
-	 	}
-	   
-	}, function(error) {
-		
-    });
-        
-
 	$scope._fetchDataUser =  function() {
       User.getSkinProblems().success(function(data, status, headers, config) {
 	    $scope.user.skin_problems =  data.skin_problems; 
@@ -60,16 +41,21 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 		
 		
 	  });
-
-	 User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
-		  
-	    $scope.reviews =  data.reviews; 
-	  });
-	}  
-    
-    
-  	if(Auth.isAuthenticated()) {
-	  if(parseInt($stateParams.id) == User.getId()) {
+ 	Auth.currentUser().then(function (user){
+	 	
+	 	if(user.id === 70){ // This id has to be the user that has the power to generate invitations
+		 	$scope.isUlaize = true;
+	 	} else {
+		 	$scope.isUlaize = false;
+	 	}
+	 	
+	 	if(parseInt($stateParams.id) === user.id) { // if the user that we are is logged we have to modify profile view 
+		 	$scope.publicProfile = false;
+	 	} else {
+		 	$scope.publicProfile = true;
+	 	}
+	 	
+	 	 if(parseInt($stateParams.id) == User.getId()) {
 	  	$scope.user = User.getUser();
 	    $scope.user.isProfileAuthenticated = {};
 	  	$scope.user.isProfileAuthenticated = true;
@@ -81,15 +67,27 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 		  $scope._fetchDataUser();
 	  	});
       }
-  	} else {
-	  	
-	  	User.getPublicUser($stateParams.id).then(function(res) {
+	   
+	}, function(error) {
+		  	User.getPublicUser($stateParams.id).then(function(res) {
 		  	$scope.user = res.data;
 		  	$scope.user.isProfileAuthenticated = {};
 		  	$scope.user.isProfileAuthenticated = false;
 		  	$scope._fetchDataUser();
 	  	});
-  	}
+    });
+        
+
+
+
+	 User.getReviewsUser($scope.user.id).success(function(data, status, headers, config) {
+		  
+	    $scope.reviews =  data.reviews; 
+	  });
+	}  
+    
+    
+
   	
   	$scope.getS3PolicyDocument = function(){
 	    Amazon.getS3PolicyDocument().success(function(data) {
