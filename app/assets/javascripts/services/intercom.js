@@ -26,7 +26,7 @@ angular.module('murnow')
 
 
 	this.update = function(data) {
-		window.update();
+		$intercom.update();
     };
 	
 	this.addReview = function(review){

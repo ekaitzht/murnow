@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 	  
 	  #relationships
 	  resources :relationships, only: [:create, :destroy]
-
+	  get 'am_i_following_this_user/:foolowed_id', to: 'relationships#am_i_following_this_user'
 	  
 	  
 	  		

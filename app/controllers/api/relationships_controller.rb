@@ -1,5 +1,5 @@
 class Api::RelationshipsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create, :destroy]
+  before_filter :authenticate_user!, :only => [:create, :destroy, :am_i_following_this_user]
 
   def create
     userfollowed = User.find(params[:followed_id])
@@ -16,6 +16,7 @@ class Api::RelationshipsController < ApplicationController
     current_user.unfollow(current_user) # we need to check if this gives a error and return 200 or 500
 	respond_with({:status => 200}, :location => nil)
   end
-end
+  
 
+end
 

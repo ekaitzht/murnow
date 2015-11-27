@@ -16,8 +16,9 @@
 					    <div class="username">
 					    	 <span itemprop="name"> {{user.username}} </span>
 					    </div>
-					    <div>
-							<md-button ng-click="followUser(user.id)" ng-show="publicProfile">Follow</md-button>
+					    <div  ng-show="publicProfile">
+							<md-button ng-click="unfollowUser(user.id)" ng-show="user.am_i_following_this_user"  class="md-accent md-raised md-hue-1">Unfollow</md-button>
+							<md-button ng-click="followUser(user.id)" ng-hide="user.am_i_following_this_user"  class="md-accent md-raised md-hue-1">Follow</md-button>
 					    </div>
 					    <label>Followers {{user.followers_count}}</label>
 					    <label>Following {{user.following_count}}</label>
