@@ -169,7 +169,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-		@response = client.search index: 'ultaindex', body: 
+@response = client.search index: 'macindex', body: 
 				{	
 				    filter:{
 				                bool: {
@@ -179,7 +179,7 @@ namespace :load do
 				                         {exists: {field:"summary.reviews"}}
 				                    ],
 				                    should: [       
-				                      {bool: {
+					                  {bool: {
 				                           	must_not: [
 					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics","Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
 					                        ],
@@ -188,28 +188,42 @@ namespace :load do
 				                                {term: {"levels.raw": "Makeup "}}    
 				                            ]
 				                         }
-				                      },
-				                      {bool: {
-				                            must_not:[
-				                               {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA",  "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced" ]}},
-				                               {term: {"levels.raw": "Bags & Cases"}},
-					                           {term: {"levels.raw": "Travel"}},
-					                           {term: {"levels.raw": "Makeup Gifts"}}
-					                        ],
-				                           must:[
-				                                {term: {retailer: "ulta"}},
-				                                {term: {"levels.raw": "Makeup"}}    
+				                      }, 
+					                   {bool: {
+				                            should:[
+				                                {bool:{
+				                                    must_not:[ 
+				                                          {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced"]}},
+				                                          {term: {"levels.raw": "Bags & Cases"}},  
+				                                          {term: {"levels.raw": "Travel"}},
+				                                          {term: {"levels.raw": "Makeup Gifts"}}
+				                                        ],
+				                                    must:[
+				                                            {term: {"retailer": "ulta"}},                             
+				                                            {term: {"levels.raw": "Makeup"}}
+				                                        ]
+				                                    }
+				                                },
+				                                {bool:{
+				                                    must: [
+				                                                  {term: {"levels.raw": "Makeup Gifts"}},
+				                                                  {term: {"retailer": "ulta"}},
+				                                                  {term: {"brand.raw": "Lorac"}}
+				                                        ]
+				                                    }
+				                                }
 				                            ]
+				
 				                         }
-				                      },
-				                       {bool: {
+                      				    },
+				                        {bool: {
 				                           	must_not: [
 					                           	terms: {"levels.raw": ["Fragance"]}
 					                        ],
 				                            must:[
 				                                {term: {retailer: "mac"}}
 				                            ]
-				                         }
+				                        }
 				                      } 
 				                    ]
 				                }    
