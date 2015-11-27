@@ -119,7 +119,7 @@ angular.module('murnow')
                 });
             }
             
-            $scope.unfolowUser = function(followed_id) {
+            $scope.unfollowUser = function(followed_id) {
                 User.unfollowUser(followed_id).success(function(data) {
                     $scope.user.followers_count -= 1;
                     $scope.user.am_i_following_this_user = false;

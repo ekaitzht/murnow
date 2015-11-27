@@ -10,13 +10,12 @@ class Api::RelationshipsController < ApplicationController
   end
 
   def destroy
-    userfollowed = Relationship.find(params[:id]).followed
+    userfollowed = User.find_by_id(params[:followed_id])
     userfollowed.decrement!(:followers_count)
-    current_user.derement!(:following_count)
-    current_user.unfollow(current_user) # we need to check if this gives a error and return 200 or 500
+    current_user.decrement!(:following_count)
+    current_user.unfollow(userfollowed) # we need to check if this gives a error and return 200 or 500
 	respond_with({:status => 200}, :location => nil)
   end
-  
-
+    
 end
 

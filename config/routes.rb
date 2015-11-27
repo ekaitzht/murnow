@@ -59,11 +59,9 @@ Rails.application.routes.draw do
 	  
 	  
 	  #relationships
-	  resources :relationships, only: [:create, :destroy]
-	  get 'am_i_following_this_user/:foolowed_id', to: 'relationships#am_i_following_this_user'
-	  
-	  
-	  		
+	  resources :relationships, only: [:create]
+	  delete 'relationships/:followed_id', to: 'relationships#destroy'
+
 	end 
 
   # Example resource route with options:
