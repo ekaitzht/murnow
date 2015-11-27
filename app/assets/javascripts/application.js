@@ -1,5 +1,6 @@
 //= require jquery
 //= require angular
+//= require angular-intercom
 //= require hammerjs
 //= require angular-animate
 //= require angular-aria

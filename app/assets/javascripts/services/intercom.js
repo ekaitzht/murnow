@@ -1,9 +1,9 @@
 angular.module('murnow')
-.factory('Intercom',[ '$http', function($http){
+.factory('Intercom',[ '$http','$intercom', function($http,$intercom){
     
     this.boot = function(ev) {
 		if( location.hostname == 'www.murnow.com' ) {
-	        window.Intercom('boot',  {
+	        $intercom.boot(  {
 			   app_id: 'ugedhl1s',
 			   email: ev.email,
 			   user_id: ev.id,
@@ -12,13 +12,12 @@ angular.module('murnow')
 			   created_at: ev.created_at
 			 } );
 		} else {
-			 window.Intercom('boot',  {
+			 $intercom.boot(  {
 			   app_id: 'xjo9xumi',
 			   email: ev.email,
 			   user_id: ev.id,
 			   profile: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ ev.id,
 			   name: ev.username,
-
 			   created_at: ev.created_at
 			 });
 		}	 
@@ -27,7 +26,7 @@ angular.module('murnow')
 
 
 	this.update = function(data) {
-		window.Intercom('update');
+		window.update();
     };
 	
 	this.addReview = function(review){
@@ -42,12 +41,12 @@ angular.module('murnow')
 			review_date: Math.floor(Date.now() / 1000)
 		}
 	    		
-	    window.Intercom('trackEvent','added-review',metadata);
+	    $intercom.trackEvent('added-review',metadata);
 	};
 	
 	
 	this.updateProfile = function(user){
-		window.Intercom('update',  {
+		$intercom.update(  {
 			name: user.username,
 			email: user.email	,
 			user_id: user.id
@@ -59,7 +58,7 @@ angular.module('murnow')
 					edited_date: Math.floor(Date.now() / 1000)
 		 }
     		
-    	window.Intercom('trackEvent','edited-profile',metadata);	
+    	$intercom.trackEvent('edited-profile',metadata);	
 	};
 	
 	this.likeReview = function(review, user_id){
@@ -71,11 +70,11 @@ angular.module('murnow')
 			product_url: location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/products/"+ review.product_id
 		}
 	    		
-	    window.Intercom('trackEvent','added-upvote',metadata);
+	    $intercom.trackEvent('added-upvote',metadata);
 	}
 	
 	this.shutdown = function() {
-		window.Intercom('shutdown'); 	
+		$interocm.shutdown();	
 	};
 	
 	this.requestProduct = function(request){
@@ -88,7 +87,7 @@ angular.module('murnow')
 			user_profile:location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/profile/"+ request.user_id
 		}
 		
-	    window.Intercom('trackEvent','requested-product',metadata);
+	    $intercom.trackEvent('requested-product',metadata);
 
 	};
 	

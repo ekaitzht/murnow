@@ -17,6 +17,7 @@ module.exports = function(config) {
     files: [
 	  'vendor/assets/bower_components/jquery/dist/jquery.js',
 	  'vendor/assets/bower_components/angular/angular.js',
+	  'vendor/assets/bower_components/angular-intercom/angular-intercom.js',
 	  'vendor/assets/bower_components/angular-animate/angular-animate.js',
 	  'vendor/assets/bower_components/angular-aria/angular-aria.js',
 	  'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
