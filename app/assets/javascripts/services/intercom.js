@@ -74,7 +74,7 @@ angular.module('murnow')
 	}
 	
 	this.shutdown = function() {
-		$interocm.shutdown();	
+		$intercom.shutdown();	
 	};
 	
 	this.requestProduct = function(request){
