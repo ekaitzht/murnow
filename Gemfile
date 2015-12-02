@@ -23,7 +23,7 @@ gem 'rack-rewrite'
 
 #elasticsearch libraries
 gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+gem 'elasticsearch-rails','0.1.8' 
 gem 'bonsai-elasticsearch-rails'
 gem 'aws-sdk'
 

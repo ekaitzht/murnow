@@ -7,9 +7,9 @@ namespace :load do
 		end
 		
 		def curateBrand(source)
-			if  source.has_key?('brand')
-				return source['brand']
-		    elsif source['brand'] == 'mac'
+			if  source.has_key?('brand_name')
+				return source['brand_name']
+		    elsif source['brand_name'] == 'mac'
 		         return 'MAC'
 		    end
 		end
@@ -97,7 +97,7 @@ namespace :load do
 			@response['hits']['hits'].each { |product|
 				
 				
-				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand'].to_s == brand.to_s and ['mac', 'sephora', 'ulta'].include?(product['_source']['retailer']))						
+				if (product['_source']['name'].to_s == name.to_s and product['_source']['brand_name'].to_s == brand.to_s and ['mac', 'sephora', 'ulta'].include?(product['_source']['retailer']))						
 					pos  << @response['hits']['hits'].index(product)
 					count = count + 1
 					
@@ -111,7 +111,7 @@ namespace :load do
 			}
 			
 			if count >= 2
-				print pos
+				#print pos
 				
 				for i in 1..(pos.length-1) #We remove here all duplicated products but we keep the first
 				
@@ -181,7 +181,7 @@ namespace :load do
 				                    should: [       
 					                  {bool: {
 				                           	must_not: [
-					                           	terms: {"brand.raw": ["Lit Cosemetics", "Amazing Cosmetics","BareMinerals","Benefinit Cosmetics","Butter London","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
+					                           	terms: {"brand_name.raw": ["Lit Cosmetics", "Amazing Cosmetics","bareMinerals","Benefit Cosmetics","butter LONDON","Clarins","Lancôme","Tweezerman","Urban Decay" ]}
 					                        ],
 				                            must:[
 				                                {term: {retailer: "sephora"}},
@@ -193,7 +193,7 @@ namespace :load do
 				                            should:[
 				                                {bool:{
 				                                    must_not:[ 
-				                                          {terms: {"brand.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", "Bliss","Butter London","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced"]}},
+				                                          {terms: {"brand_name.raw": ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", "Bliss","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced"]}},
 				                                          {term: {"levels.raw": "Bags & Cases"}},  
 				                                          {term: {"levels.raw": "Travel"}},
 				                                          {term: {"levels.raw": "Makeup Gifts"}}
@@ -208,7 +208,7 @@ namespace :load do
 				                                    must: [
 				                                                  {term: {"levels.raw": "Makeup Gifts"}},
 				                                                  {term: {"retailer": "ulta"}},
-				                                                  {term: {"brand.raw": "Lorac"}}
+				                                                  {term: {"brand_name.raw": "Lorac"}}
 				                                        ]
 				                                    }
 				                                }
@@ -228,15 +228,18 @@ namespace :load do
 				                    ]
 				                }    
 				    },
-					size: 6000
+					size: 8000
 		}
 				
 		puts "Elastisearch Query executed."
-
+		#print @response
+		
 		resourceS3 = Aws::S3::Resource.new
 		bucket = resourceS3.bucket('murnow')
 		
 		puts "Creating keys."
+
+
 		@selectedKeys = Array.new
 		bucket.objects.each do |obj|
 			@selectedKeys.push(obj.key)
@@ -247,13 +250,14 @@ namespace :load do
 		inserts = 0
 		count = 0 
 		@response['hits']['hits'].each { |document|
-			removeGeneralDuplicated(document['_source']['brand'], document['_source']['name'])
+
+			removeGeneralDuplicated(document['_source']['brand_name'], document['_source']['name'])
 			
 			if document['_source']['retailer'] ==  'mac' 
 				next if removeDuplicatesMac( document['_source']['name'])
 			end
 			if not /^.*[0-9]{2,3} ?(ml|ML)$/.match(document['_source']['name']).nil? and document['_source']['retailer'] == 'mac'	
-				puts 'hola'
+				#puts 'hola'
 				if count > 0 
 					next 
 				end
@@ -264,23 +268,22 @@ namespace :load do
 			productHash = createProductObject(document['_source'])	
 
 			
-			
 			# this returns array of objects each object represents and row in the database
 			response = Product.where("retailer = ? AND prod_id = ?",productHash['retailer'], productHash['prod_id']).limit(1) 			
 
 			if response.empty?
-				#puts "saving prod_id: "+ productHash['prod_id'].to_s
+				puts "saving prod_id: "+ productHash['prod_id'].to_s
 				Product.new(productHash).save
 				inserts = inserts + 1
 			else 
 				productDB = response.first
 				productHash['updated_at'] = DateTime.now  
 				productDB.update_attributes(productHash)
-				#puts "updated prod_id: "+productDB.prod_id.to_s
+				puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
 			
-			
+q   qq
 		}
 		
 		#User.where(bit_to_remove: true).destroy_all
