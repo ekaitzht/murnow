@@ -12,7 +12,9 @@ angular.module('murnow')
 	    youtube_channel: null,
 	    instagram_profile: null,
 	    hash_url_image: null,
-	    age:null
+	    age:null,
+	    following_count: null,
+	    followers_count: null
     }; 	
 
     this.forgotPassword = function(email) {
