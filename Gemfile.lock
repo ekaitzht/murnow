@@ -64,7 +64,7 @@ GEM
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
-    elasticsearch-rails (0.1.6)
+    elasticsearch-rails (0.1.8)
     elasticsearch-transport (1.0.7)
       faraday
       multi_json
@@ -195,7 +195,7 @@ DEPENDENCIES
   bonsai-elasticsearch-rails
   devise (~> 3.4.0)
   elasticsearch-model
-  elasticsearch-rails
+  elasticsearch-rails (= 0.1.8)
   font_assets
   heroku_rails_deflate
   jbuilder (~> 2.0)

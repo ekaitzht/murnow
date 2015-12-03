@@ -169,7 +169,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-@response = client.search index: 'macindex', body: 
+@response = client.search index: 'sephoraindex', body: 
 				{	
 				    filter:{
 				                bool: {
@@ -282,8 +282,7 @@ namespace :load do
 				puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
-			
-q   qq
+		
 		}
 		
 		#User.where(bit_to_remove: true).destroy_all
