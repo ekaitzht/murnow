@@ -111,7 +111,7 @@ angular.module('murnow')
 
             $scope.followUser = function(followed_id) {
                 User.followUser(followed_id).success(function(data) {
-                    $scope.user.followers_count += 1;
+                    $scope.user.followers_count = 'strong';
                     $scope.user.am_i_following_this_user = true;
 
                 }).error(function(error) {
