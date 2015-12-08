@@ -101,6 +101,28 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       templateUrl: 'auth/_forgotpassword.html',
       controller: 'AuthCtrl'
     })
+    .state('following', {  
+      url: '/following/{id}',
+      templateUrl: 'following/_following.html',
+      controller: 'FollowingCtrl',
+      resolve: {
+        followingUsers: ['User','$stateParams', function(User, $stateParams){        
+		    return User.whoIsFollowing($stateParams.id);
+	            
+        }]
+      }
+     })
+     .state('followers', {  
+      url: '/followers/{id}',
+      templateUrl: 'following/_followers.html',
+      controller: 'FollowingCtrl',
+      resolve: {
+        followingUsers: ['User','$stateParams', function(User, $stateParams){        
+		    return User.whoIsFollower($stateParams.id);
+	            
+        }]
+      }
+     })
      .state('profile', {
       url: '/profile/{id}',
       templateUrl: 'profile/_profile.html',

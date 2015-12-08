@@ -20,8 +20,8 @@
 							<md-button ng-click="unfollowUser(user.id)" ng-show="user.am_i_following_this_user"  class="md-accent md-raised md-hue-1">Unfollow</md-button>
 							<md-button ng-click="followUser(user.id)" ng-hide="user.am_i_following_this_user"  class="md-accent md-raised md-hue-1">Follow</md-button>
 					    </div>
-					    <label>Followers {{user.followers_count}}</label>
-					    <label>Following {{user.following_count}}</label>
+					    <a ng-href="/following/{{user.id}}"><label>Following {{user.following_count}}</label></a>
+					    <a ng-href="/followers/{{user.id}}"><label>Followers {{user.followers_count}}</label></a>
 					    <div class="bio">
 					      <span ng-show="user.bio" itemprop="description"> {{user.bio}}</span>
 					    </div>

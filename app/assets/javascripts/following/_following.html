@@ -1,0 +1,17 @@
+<md-card class="md-card-with-title">
+	<div layout="row">
+		<div class="state-title"> Following </div>
+		<!-- LIST OF REVIEWS -->
+		<md-list layout="row"  layout-align="space-between center" layout-wrap>
+			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="user in users | orderBy:'-created_at'"  >
+				<a ng-href="/profile/{{user.id}}" >
+					<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
+ 
+					<div> {{user.id}} </div>	
+					<div> {{user.username}}</div>
+				</a>	
+			</md-list-item>
+		  </md-list>
+	</div>
+ </md-card>
+

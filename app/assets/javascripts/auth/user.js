@@ -128,8 +128,16 @@ angular.module('murnow')
 		return $http.delete('/api/relationships/'+followed_id);
 	}
 	
+	this.whoIsFollowing = function(user_id){
+		return $http.get('/api/users/'+user_id+'/following');
+	}
 
 
+	this.whoIsFollower = function(user_id){
+		return $http.get('/api/users/'+user_id+'/followers');
+	}
+	
+	
 	this.fromState = null;
 
 	return this;

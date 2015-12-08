@@ -8,6 +8,17 @@ class Api::UsersController < ApplicationController
   end
   
   
+   def following
+    @user  = User.find(params[:id])
+    respond_with @user.following, each_serializer: ProfileFollowingSerializer
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    respond_with @user.followers, each_serializer: ProfileFollowingSerializer
+  end
+  
+  
 end
 
 

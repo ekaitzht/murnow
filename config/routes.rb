@@ -41,11 +41,19 @@ Rails.application.routes.draw do
 	  delete 'users/:user_id/skin_problems/:skin_problem_id', to: 'skin_problems#destroy'
 	  get 'users/:user_id/skin_problems/', to: 'skin_problems#show'
 	
+	 
+
 	  # Association model between User and Reviews for who is voting what review    User <=== Vote ===> Review
 	  put 'votes/:review_id/users/:user_id', to: 'votes#create'
 	  
 	  #Get a specific user this only should use for public_profile
-	  get 'users/:id/', to: 'users#show'	  
+	  get 'users/:id/', to: 'users#show'	
+	  
+	  
+	  # Routes for who is following and followers
+	  get 'users/:id/following/', to: 'users#following'
+	  get 'users/:id/followers/', to: 'users#followers'
+	    
 	  get 'reviews_by_user/:user_id', to: 'reviews#reviews_by_user'
 	  get 'most_popular_reviews_for_the_most_popular_products', to: 'products#most_popular_reviews_for_the_most_popular_products'
 	  

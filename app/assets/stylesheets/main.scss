@@ -270,6 +270,13 @@ md-dialog {
 }
 
 .not-home-page {
+	
+	
+	
+	
+	.state-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;max-width: 960px;@include state-title-typography;}
+	.md-card-with-title {margin-top:10rem;}
+
 	.trending-products-list  * { display:none !important;}
 	.trending-products-list  {display:none;}
 	md-card {padding:2.5rem;}
@@ -315,10 +322,6 @@ md-dialog {
 	}
 	.trending_products{
 		@include list-products;	
-		md-card {margin-top:10rem;}
-		.list-tranding-title{position: absolute;top: 20px; margin: 0 auto;width: 100%;text-align: center;max-width: 960px;@include list-title-typography;}
-		
-	
 
 
 	}
@@ -350,7 +353,12 @@ md-dialog {
 		}  
 	}
 
+	.following{
+		md-list-item.md-no-proxy, md-list-item .md-no-style {
+			-webkit-flex:none !important; flex:none !important;
+		}
 
+	}
 	
 	.profile {
 		.user-name-review-product {font-weight:bold;opacity:1;}
