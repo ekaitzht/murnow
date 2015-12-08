@@ -77,7 +77,7 @@ angular.module('murnow')
 		$mdDialog.show(
 	      $mdDialog.alert()
 	        .title('Email sent!')
-	        .content('We have sent you the confirmation instructions to your email address.')
+	        .textContent('We have sent you the confirmation instructions to your email address.')
 	        .ariaLabel('Password notification')
 	        .ok('Got it!')
 	    );
@@ -88,7 +88,7 @@ angular.module('murnow')
 		$mdDialog.show(
           $mdDialog.alert()
             .title('')
-            .content('You have already voted for this review.')
+            .textContent('You have already voted for this review.')
             .ariaLabel('')
             .ok('Got it!')
         );
@@ -132,7 +132,7 @@ angular.module('murnow')
 		$mdDialog.show(
           $mdDialog.alert()
             .title('Photo too big')
-            .content('The size of the image chosen is too big. Please upload a file with less than 2MB.')
+            .textContent('The size of the image chosen is too big. Please upload a file with less than 2MB.')
             .ariaLabel('Password notification')
             .ok('Got it!')
         );

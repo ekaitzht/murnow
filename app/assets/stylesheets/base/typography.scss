@@ -63,3 +63,12 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-family: 'Sue Ellen Francisco', $brand-font, cursive;font-size:4em;color:$accent-color;
 }
 
+
+
+.title-20-bold {
+	@include title; font-size:20px; font-weight:bold
+}
+
+.body {
+	@include body;
+}
