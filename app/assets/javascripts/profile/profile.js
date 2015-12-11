@@ -23,7 +23,7 @@ angular.module('murnow')
                     var userInfo = [$scope.user.ageView, $scope.user.skin_type, $scope.user.skin_tone];
 
                     if ($scope.user.eye_color !== null) {
-                        userInfo.push($scope.user.eye_color + " eye")
+                        userInfo.push($scope.user.eye_color + " eyes")
                     }
 
                     if (data.skin_problems[0].state) {
