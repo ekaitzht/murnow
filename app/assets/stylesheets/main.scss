@@ -113,7 +113,7 @@ md-dialog {
 	#send-review{padding-right:24px;}
 	.check-mark {margin-left:10px;position: relative;top: 10px;padding: 0px;}
 	#yes,#no {line-height: 49px;}
-	md-input-container{padding-bottom:15px;}
+	md-input-container{padding-bottom:15px;width:90%;}
 	#would-you-buy-it-again {margin-top:10px;}
 }
 #login-dialog{
@@ -353,7 +353,7 @@ md-dialog {
 		}  
 	}
 
-	.following{
+	.following,.followers{
 		md-list-item.md-no-proxy, md-list-item .md-no-style {
 			-webkit-flex:none !important; flex:none !important;
 		}
