@@ -80,6 +80,8 @@ function($scope,$state, Auth, Dialog, User, configMurnow,Intercom){
   }
   	
   
-
+  $scope.goToFollowingFeed = function(profile_id){
+	  $state.go('feed', { id: profile_id});
+  }
 
 }]);

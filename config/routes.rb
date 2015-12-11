@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 	  # Routes for who is following and followers
 	  get 'users/:id/following/', to: 'users#following'
 	  get 'users/:id/followers/', to: 'users#followers'
+	  get 'users/:id/feed/', to: 'users#feed'
 	    
 	  get 'reviews_by_user/:user_id', to: 'reviews#reviews_by_user'
 	  get 'most_popular_reviews_for_the_most_popular_products', to: 'products#most_popular_reviews_for_the_most_popular_products'

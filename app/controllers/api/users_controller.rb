@@ -19,6 +19,21 @@ class Api::UsersController < ApplicationController
   end
   
   
+  def feed
+	  
+	  @user  = User.find(params[:id])
+	  @reviews = []
+	  @user.following.each{ | user_following|
+		  
+		  logger.info user_following
+		   @reviews.concat(Review.where(user_id: user_following.id))
+		  
+	  }
+      respond_with @reviews, each_serializer: ReviewSerializer
+
+  end
+  
+  
 end
 
 

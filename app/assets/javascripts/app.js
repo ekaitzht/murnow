@@ -123,6 +123,17 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
         }]
       }
      })
+     .state('feed', {  
+      url: '/feed/{id}',
+      templateUrl: 'feed/_feed.html',
+      controller: 'FeedCtrl',
+      resolve: {
+        reviewsFeed: ['User','$stateParams', function(User, $stateParams){        
+		    return User.getFeedReviews($stateParams.id);
+	            
+        }]
+      }
+     })
      .state('profile', {
       url: '/profile/{id}',
       templateUrl: 'profile/_profile.html',

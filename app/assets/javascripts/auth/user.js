@@ -137,6 +137,10 @@ angular.module('murnow')
 		return $http.get('/api/users/'+user_id+'/followers');
 	}
 	
+	this.getFeedReviews = function(user_id){
+		return $http.get('/api/users/'+user_id+'/feed');
+	}
+	
 	
 	this.fromState = null;
 
