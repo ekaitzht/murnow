@@ -17,4 +17,10 @@ class CustomMailer < ActionMailer::Base
     
     mail to: "ulaize@murnow.com", subject: "New invitation request."
   end
+  
+  def review_liked_by_user(request)
+	 @request = request;
+    
+     mail to: @request['email_to'], subject: @request['username_gives_like'] +" likes your review"
+  end
 end
