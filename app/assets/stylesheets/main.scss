@@ -160,7 +160,10 @@ md-dialog {
 	}
 	.thumbnail-product{	border: 1px solid $accent-color;    position: relative;    width: 45px !important; height: 45px;   top: -30px;    left: 50px;}
 	.thumbnail-user {border: 1px solid $accent-color;}
-	#md-toolbar-header {height:90%; max-height:400px; background-image:url('/assets/backdrops/backdrop_desktop.jpg');background-size:100%;}
+	#md-toolbar-header {
+		height:90%; max-height:400px; background-image:url('/assets/backdrops/backdrop_desktop.jpg');background-size:100%;
+		
+	}
 	h1{margin-top:3rem;}
 	.trending-products-list {
 		font-family: $josefin-sans; 
@@ -292,9 +295,9 @@ md-dialog {
 		top: 84px;
 		left: 18px;    
     }
-    
-
-	//.mainNav {display: inline-block !important;float: right !important;}
+   	#md-toolbar-header header {padding-top:7px;}
+	
+	.mainNav {padding-top:7px;}
 	#search-bar-home-page {display:none;margin-bottom:0px;}
 
 	overflow:hidden;
@@ -369,6 +372,10 @@ md-dialog {
 
 	}
 	
+	
+	.feed{
+		@include feed-item;
+	}
 	.profile {
 		.user-name-review-product {font-weight:bold;opacity:1;}
 		background-color:white;
