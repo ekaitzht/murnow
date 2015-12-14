@@ -13,6 +13,9 @@ class Api::VotesController < ApplicationController
   	  	params['username_gives_like'] = @user_gives_like.username
   	  	params['username_receives_like'] = @user_receives_like.username
   	  	
+  	  	params['product_id'] = @product_reviewed.id
+  	  	params['user_id_gives_like'] = @user_gives_like.id
+  	  	
   	  	
   	  	CustomMailer.review_liked_by_user(params).deliver
         respond_with @response
