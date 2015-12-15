@@ -76,9 +76,8 @@
 	@mixin feed-item {  // this represent the style for the product info in product profile, and reviews in landing_page, and reviews in profile user
 		.review-item{
 			padding:0rem 0rem;margin-top:2.125rem;
-			.thumbnail-big {}
+			.thumbnail-big {border:1px solid $accent-color;border-radius:50%;}
 			.wrapper-images {padding-right:2rem;cursor:pointer;}
-			.thumbnail-small{position: relative;max-width: 50%;top: -50px;left: 80px;border:2px solid $accent-color;border-radius:50%;}	
 			.review-text{
 			
 				

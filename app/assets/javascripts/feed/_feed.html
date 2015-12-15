@@ -3,12 +3,12 @@
 	    <div class="state-title"> Reviews feed </div>
 		<md-list-item layout="row" ng-repeat="review in reviews  | orderBy:'-created_at'"  >
 			<div class="review-item" layout="row" flex="100">
-			   <div  class="md-list-item-image wrapper-images"  flex="20" >
+			   <div  class="md-list-item-image wrapper-images"  flex="15" >
 				  <div class="thumbnail-big"><img ng-click="goToProduct(review.product_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="thumbnail-product border-radius-50"></div>
-			      <div class="thumbnail-big"><img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="/assets/anonymousUser.png" class="md-avatar not-outline thumbnail-user border-radius-50" ></div> 
-			      <div class="thumbnail-small" ><img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>
+			      <!--<div class="thumbnail-big"><img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="/assets/anonymousUser.png" class="md-avatar not-outline thumbnail-user border-radius-50" ></div> 
+			      <div class="thumbnail-small" ><img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>-->
 			   </div>
-			   <div class="md-list-item-text review-text" layout="column" layout-align="start start" flex="80" >
+			   <div class="md-list-item-text review-text" layout="column" layout-align="start start" flex="85" >
 			      	<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
 							<div layout="row" layout-align="start center">
 								<img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
@@ -18,20 +18,17 @@
 								
 							</div>
 							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
-					        <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-gt-sm>
-					            <span   class="fa fa-thumbs-o-up">  </span>
-					            <span> {{review.votes.length}} </span>
-					         </div>
+					        
 			      	</div>
-			      <div id="brand-name" class="body" >{{review.product.product_name}} by {{review.product.brand_name}}</div>
+			      <!--<div id="brand-name" class="body" >{{review.product.product_name}} by {{review.product.brand_name}}</div>-->
 			      <div class="review-body margin-top-rem" ng-click="goToProduct(review.product_id)" >
-			         <p class="wordwrap">{{review.body | limitLength:103}}</p>
+			         <p class="wordwrap body">{{review.body}}</p>
 			      </div>
 			      <div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" >
 			         <div class="ratings"  >
 					 	<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 			         </div>
-			         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-sm>
+			         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)">
 			            <span   class="fa fa-thumbs-o-up">  </span>
 			            <span> {{review.votes.length}} </span>
 			         </div>
