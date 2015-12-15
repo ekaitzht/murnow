@@ -1,0 +1,10 @@
+Hi <%=  @request['username_receives_like'] %>,
+
+<%=  @request['username_gives_like'] %> has liked your review.
+
+Check out <a target="_blank" href="http://<%= ActionMailer::Base.default_url_options[:host] %>/profile/<%= @request['user_id_gives_like'] %>" >Ekaitz's profile</a> or click <a target="_blank" href="http://<%= ActionMailer::Base.default_url_options[:host] %>/products/<%= @request['product_id'] %>" >here</a> to see your review.
+
+
+
+
+
