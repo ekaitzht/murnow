@@ -1,0 +1,294 @@
+
+
+var app = angular.module('murnow', ['ui.router', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard','myPostRepeat','ngMessages','socialIcons','templates','ngIntercom']);
+
+app.config(['$mdThemingProvider',function($mdThemingProvider) {
+
+
+ var pinkMurnow = $mdThemingProvider.extendPalette('pink', {
+    '500': 'FFAABB'
+  });
+  
+  $mdThemingProvider.definePalette('pinkmurnow', pinkMurnow);
+
+ $mdThemingProvider.theme('default')
+    .primaryPalette('pinkmurnow');
+}]);
+
+
+app.constant('configMurnow', {
+  'enviroment':  "development",
+  'cdn_domain_name':"d3gm19tlfubzts.cloudfront.net"
+});
+
+
+
+app.config([
+'$stateProvider',
+'$urlRouterProvider',
+'$locationProvider',
+'$provide',
+function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $provide) {
+
+
+   /*************************** DON'T CREATE ANY STATE NAME WITH 'users' SUBSTRING!!! ***************************/
+  $locationProvider.html5Mode(true);
+  $stateProvider
+    .state('home', {  // CAMBIAR ESTOOOOOOO
+      url: '/{token:join.*| *}', //join4e8f3fc53562062257b81cd13d7decb86727c623
+      templateUrl: 'home/_reviews.html',
+      controller: 'MainCtrl',
+      resolve: {
+	  		productsPromise: [ 'products','Dialog','$stateParams','Auth', function( products, Dialog, $stateParams, Auth) {
+		  		
+		  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+					if( $stateParams.token.match(/join.*/) !== null){  // If it has a token structure we open the register dialog
+			  			Dialog.register();
+		  			} else {
+			  			Dialog.loginPrivate();
+		  			}
+		        });
+	        	return products.getMostPopularReviews();
+	        }]
+      }
+    })
+    .state('list_products', {  // CAMBIAR ESTOOOOOOO
+      url: '/list_products/:searchQuery',
+      templateUrl: 'list_products/_products_list.html',
+      controller: 'ListProducts',
+      resolve: {
+        productsPromise: ['products','$stateParams', function(products, $stateParams){        
+	       if( $stateParams.searchQuery === products.searchQuery) { // If qhe searchQuery is the same than in the last we don't do again the request.
+		       angular.copy(products.accumulateProducts,  products.products.search);
+		       return products;
+	       } else {
+		       products.accumulateProducts = [];
+		       return products.searchFirstPage($stateParams.searchQuery);
+	       }     
+        }]
+      },
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+      
+    })
+    .state('trending_products', {  // CAMBIAR ESTOOOOOOO
+      url: '/trending_products?list&list_name',
+      templateUrl: 'trending_products/_trending_list_products.html',
+      controller: 'TrendingListProductsCtrl',
+      resolve: {
+        productsPromise: ['products','$stateParams', function(products, $stateParams){        
+		    return products.getTrendingProducts($stateParams.list, $stateParams.list_name);
+	            
+        }]
+      },
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+    })
+    .state('forgotpassword', {
+      url: '/forgotpassword',
+      templateUrl: 'auth/_forgotpassword.html',
+      controller: 'AuthCtrl'
+    })
+    .state('following', {  
+      url: '/following/{id}',
+      templateUrl: 'following/_following.html',
+      controller: 'FollowingCtrl',
+      resolve: {
+        followingUsers: ['User','$stateParams', function(User, $stateParams){        
+		    return User.whoIsFollowing($stateParams.id);
+	            
+        }]
+      }
+     })
+     .state('followers', {  
+      url: '/followers/{id}',
+      templateUrl: 'following/_followers.html',
+      controller: 'FollowingCtrl',
+      resolve: {
+        followingUsers: ['User','$stateParams', function(User, $stateParams){        
+		    return User.whoIsFollower($stateParams.id);
+	            
+        }]
+      }
+     })
+     .state('feed', {  
+      url: '/feed/{id}',
+      templateUrl: 'feed/_feed.html',
+      controller: 'FeedCtrl',
+      resolve: {
+        reviewsFeed: ['User','$stateParams', function(User, $stateParams){        
+		    return User.getFeedReviews($stateParams.id);
+	            
+        }]
+      }
+     })
+     .state('profile', {
+      url: '/profile/{id}',
+      templateUrl: 'profile/_profile.html',
+      controller: 'Profile',
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+    })
+    .state('competition', {
+      url: '/competition',
+      templateUrl: 'competition/_competition.html',
+      controller: 'CompetitionCtrl'
+    })
+    .state('edit_profile', {
+      url: '/edit_profile',
+      onEnter: function(){
+	   //event.preventDefault();   //this was before without comments may can cause an old bug but if dont remove this change state for firefox is not working
+       //event.stopPropagation();
+  	  },
+      templateUrl: 'profile/_edit_profile.html',
+      controller: 'EditProfileCtrl',
+       onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+    })
+    .state('resetpassword', {
+      url: '/resetpassword?resetToken',
+	  onEnter: ['Dialog',function(Dialog){
+	  		Dialog.resetPassword();
+  	  }]   
+    })
+    .state('products', {
+  		url: '/products/{id}',
+  		templateUrl: 'products/_products.html',
+  		controller: 'ProductCtrl',
+  		resolve: {
+	  		product: ['$stateParams', 'products', function($stateParams, products) {
+	        	return products.get($stateParams.id);
+	        	$state.go('profile');
+	        }]
+      	},
+
+  		 onEnter: ['Dialog','Auth',function(Dialog, Auth){
+	  		Auth.currentUser().then(function (user){
+				   
+				}, function(error) { // User is not registered
+			  			Dialog.loginPrivate();
+		        });
+  	  	}]  
+	});
+
+  
+  $urlRouterProvider.otherwise('/');
+
+}]);
+
+   document.addEventListener('backbutton',function(e){
+            console.log("history is "+history.length);
+            if(history.length === 1){
+                e.preventDefault();
+            }
+            
+        });
+
+app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog','Auth',function($rootScope,$location, $state, $anchorScroll, Intercom, Dialog, Auth) {
+	   var lock = false;
+	   
+     
+	
+  	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	
+       
+    });
+    
+    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	    
+		 Auth.currentUser().then(function (user){
+   			$('.block-page').show();
+   			$('backdrop-active').removeClass('backdrop-active').addClass('backdrop-deactivate');
+   			
+   			if ($('body').hasClass('backdrop-active')){
+	   			$('body').toggleClass("backdrop-active backdrop-deactivate");
+   			}
+		}, function(error) { // User is not registered
+			$('.block-page').hide();
+			if ($('body').hasClass('backdrop-deactivate')){
+	   			$('body').toggleClass("backdrop-active backdrop-deactivate");
+   			}
+        });
+    });
+ 
+    $rootScope.closeDialog = function() {
+            Dialog.hide();
+    };
+  
+    
+  if ($location.path() == "/users/sign_in") {
+    $rootScope.deregistration_login_after_confirmation = $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+	    
+	 	Auth.currentUser().then(function (user){
+   			
+		}, function(error) { // README COMMENT: when we remove the invation system we have to activate this line
+        });        
+        $rootScope.deregistration_login_after_confirmation();
+        delete $rootScope.deregistration_login_after_confirmation;
+    });
+  }
+
+  
+    
+   $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
+	   Intercom.update();
+	   
+	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
+	   $rootScope.pageTitle = "Makeup Reviews Now"; // Default title
+	  
+	  	$rootScope.destState = toState.name;
+		$rootScope.fromState =  fromState.name;
+		
+		
+	  	if(toState.name === "products" && fromState.name === "list_products") {
+		  	$rootScope.scrollProductsPosition = $("md-content").scrollTop();
+		    $("md-content").scrollTop(0);
+	  	} else if (toState.name === "list_products" && fromState.name === "products") {
+		  
+	  	} else {
+		  	$("md-content").scrollTop(0);
+	  	}
+	  	
+	  
+		
+	    	
+		switch(toState.name) {
+		    case 'home':
+		        $rootScope.isHomePage = true;
+		        break;
+		    default:
+		        $rootScope.isHomePage = false;
+		}										 
+   });
+   
+    $rootScope.getCurrentNameState = function() {
+        return $state.current.name;
+    };
+    
+    $rootScope.trendingProductsLipstick = function (listQuery, listName){
+			$state.go('trending_products', { list: listQuery, list_name:listName});
+    }
+
+}]);

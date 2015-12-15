@@ -10,13 +10,18 @@
 					    <div ng-show="!user.hash_url_image" class="md-tile-left anonymous-image">
 					    	<img ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
 						</div>
-					    
 				</div>  
 			<div class="info-user-profile" layout="row" layout-align="space-between start">
 				<div layout="column" class="bio-block">
-					    <div class="username">
-					    	 <span itemprop="name"> {{user.username}} </span>
-					    </div>
+						<div layout="row"  layout-align="space-between center">
+						    <div class="username">
+						    	 <span itemprop="name"> {{user.username}} </span>
+						    </div>
+						    <div  ng-show="publicProfile">
+								<md-button ng-click="unfollowUser(user.id)" ng-show="user.am_i_following_this_user"  class="md-raised md-primary" >Unfollow</md-button>
+								<md-button ng-click="followUser(user.id)" ng-hide="user.am_i_following_this_user"  class="md-raised md-primary">Follow</md-button>
+						    </div>
+						</div>
 					    <div class="bio">
 					      <span ng-show="user.bio" itemprop="description"> {{user.bio}}</span>
 					    </div>
@@ -24,7 +29,28 @@
 						
 							<a ng-show="user.youtube_channel" ng-href="{{user.youtube_channel}}" target="_blank"><img  id="youtube-logo" ng-src="/assets/youtube_logo.png" alt="Youtube Profile"></a>
 							<a ng-show="user.instagram_profile" ng-href="https://instagram.com/{{user.instagram_profile}}" target="_blank"><img ng-show="user.instagram_profile" id="instagram-logo" ng-src="/assets/instagram_logo.png" alt="Instagram Profile"> </a>
-					    </div>						
+					    </div>
+					    
+					    <div layout="row" class="followers-info">
+						    	<div id="following-count">
+								    <a ng-href="/following/{{user.id}}">
+									    <div layout="column" layout-align="center center">
+									    	<div class="title-20-bold "> {{user.following_count}}</div>
+									    	<div class="body"> Following </div>
+									    </div>
+									</a>
+						    	</div>
+						    	<div id="followers-count">
+								    <a ng-href="/followers/{{user.id}}">
+									    <div layout="column" layout-align="center center">
+									    	<div  class="title-20-bold"> {{user.followers_count}}</div>
+									    	<div class="body"> Followers </div>
+									    </div>
+									</a>
+						    	</div>
+					    </div>
+					    
+					    					
 						<div class="user-biometric">
 							<p>		
 								{{biometrics}}

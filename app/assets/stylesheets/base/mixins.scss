@@ -73,6 +73,45 @@
 		}	
 	}
 	
+	@mixin feed-item {  // this represent the style for the product info in product profile, and reviews in landing_page, and reviews in profile user
+		.review-item{
+			
+			.md-list-item-image  {min-width:90px;}
+			.md-list-item-text {width:100%;}
+			padding:0rem 0rem;margin-top:2.125rem;
+			.thumbnail-big {
+				border-radius:50%;
+				img{width:95px;border:1px solid $accent-color;}	
+			}
+		    .thumbnail-small{
+			    position: relative;top: -40px;left: 50px;border-radius:50%;
+				img{max-width:70px; width:57px;border:1px solid $accent-color;}
+			
+			}	
+ 
+			.wrapper-images {padding-right:3rem;cursor:pointer;}
+			.review-text{
+			
+				
+				.footer-review {
+					width:100%;
+					margin-top: 0.5625rem;
+					@include separate-stars-review;	
+				}
+				.thumbs-up {
+					cursor:pointer;
+				}
+				.header-review{
+					.user-name-review-product {@include title; font-size:18px;}
+					width:100%;
+					cursor:pointer;
+					.date-review {@include hint-text;}
+				}
+				
+			}
+		}	
+	} 
+	
 	@mixin header-profile {
 		.wrapper-image-profile {
 			border-right: 1px solid $accent-color;padding-right: 1.875rem;
@@ -82,6 +121,12 @@
 		.info-user-profile {
 			padding-left:1.875rem;width:100%;
 			.username {@include title;}
+			.bio-block{width:100%;}
+			.followers-info {
+				#following-count{}
+				#followers-count{margin-left:1rem;}
+				margin-bottom:1.6rem;
+			}
 		}
 		
 		.profile-button {height:4.25rem;width:4.25rem;
@@ -90,7 +135,7 @@
 		
 		.social-links{
 			margin-top:0.5rem;
-			margin-bottom:3.9375rem;
+			margin-bottom:2rem;
 			img {width:inherit;}
 			#youtube-logo{margin-right:0.5625rem;}
 		}

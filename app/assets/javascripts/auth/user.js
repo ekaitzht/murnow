@@ -12,7 +12,9 @@ angular.module('murnow')
 	    youtube_channel: null,
 	    instagram_profile: null,
 	    hash_url_image: null,
-	    age:null
+	    age:null,
+	    following_count: null,
+	    followers_count: null
     }; 	
 
     this.forgotPassword = function(email) {
@@ -58,6 +60,8 @@ angular.module('murnow')
 		this.user.instagram_profile = this._curateInstagram(user.instagram_profile);
 		this.user.hash_url_image = user.hash_url_image;
 		this.user.age = user.age;
+		this.user.following_count = user.following_count;
+		this.user.followers_count = user.followers_count;
 	};
 	
 	
@@ -114,7 +118,30 @@ angular.module('murnow')
 	this.getReviewsUser = function(id) {
   		return $http.get('/api/reviews_by_user/'+id);
 	};
+	
+	
+	this.followUser = function(followed_id){
+		return $http.post('/api/relationships/',{followed_id:followed_id});
+	}
+	
+	this.unfollowUser = function(followed_id){
+		return $http.delete('/api/relationships/'+followed_id);
+	}
+	
+	this.whoIsFollowing = function(user_id){
+		return $http.get('/api/users/'+user_id+'/following');
+	}
 
+
+	this.whoIsFollower = function(user_id){
+		return $http.get('/api/users/'+user_id+'/followers');
+	}
+	
+	this.getFeedReviews = function(user_id){
+		return $http.get('/api/users/'+user_id+'/feed');
+	}
+	
+	
 	this.fromState = null;
 
 	return this;

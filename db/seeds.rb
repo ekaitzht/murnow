@@ -8,6 +8,11 @@
 
 
 
- cities = SkinProblem.create([{ name: 'acne prone' }, { name: 'sensitive' }, { name: 'eczema' }])
+ #cities = SkinProblem.create([{ name: 'acne prone' }, { name: 'sensitive' }, { name: 'eczema' }])
 
+
+ekaitz = User.find_by_email('ekaitz7@gmail.com')
+ulaize = User.find_by_email('ulaize@gmail.com')
+
+ekaitz.follow(ulaize)
 

@@ -1,6 +1,6 @@
 <div>
 	<div class="" ng-controller="NavCtrl" layout="row" >
-	    <a href="/"><div class="home" id="logo"><img src="/assets/happy_cupcake.png"></div></a>
+	    <a href="/" class="wrapper-logo"><div class="home" id="logo"><img src="/assets/happy_cupcake.png"></div></a>
 	    <div class="form-wrapper-search"><form id="search-bar-not-home-page" ng-submit="ctrl.submittingTextSearch(ctrl.searchText)" ng-controller="SearchCtrl as ctrl" >
 			<md-autocomplete
 						          ng-disabled="ctrl.isDisabled"
@@ -36,6 +36,9 @@
 			<md-menu-content width="2">
 	            <md-menu-item>
 	            	<md-button ng-click="goToProfile(user.id)">Profile</md-button>
+	            </md-menu-item>
+	            <md-menu-item>
+	            	<md-button ng-click="goToFollowingFeed(user.id)">Feed</md-button>
 	            </md-menu-item>
 	            <md-menu-item>
 	           	 	<md-button  ng-click="logout()" id="logout" >Log Out</md-button>

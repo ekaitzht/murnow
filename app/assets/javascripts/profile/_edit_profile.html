@@ -64,30 +64,31 @@
 							    <!-------------- SKIN TYPES -------------->
 								 <label > Skin Type</label>
 						        <md-radio-group ng-model="user.skin_type" class="md-primary">
-				        <md-radio-button ng-repeat="skin_type in skin_types"
-				                         ng-value="skin_type.value">
-				            {{ skin_type.title }}<br/>
-				        
-				        </md-radio-button>
-				    </md-radio-group>
-						   
+							        <md-radio-button ng-repeat="skin_type in skin_types"
+							                         ng-value="skin_type.value">
+							            {{ skin_type.title }}<br/>
+							        
+							        </md-radio-button>
+							    </md-radio-group>
+									   
 								<!-------------- SKIN PROBLEMS -------------->
-								 
-								<label>Skin Problems</label>
-								
-								
-						          <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[0].state" aria-label="user.skin_problems[0].name">
-						            {{user.skin_problems[0].name}}
-						          </md-checkbox>
-						           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[1].state" aria-label="user.skin_problems[1].name">
-						            {{user.skin_problems[1].name}}
-						          </md-checkbox>
-						           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[2].state" aria-label="user.skin_problems[2].name">
-						            {{user.skin_problems[2].name}}
-						          </md-checkbox>
-						           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[0].state || user.skin_problems[1].state || user.skin_problems[2].state"  ng-model="user.skin_problems[3].state" aria-label="user.skin_problems[3].name">
-						            {{user.skin_problems[3].name}}
-						          </md-checkbox>
+								<div layout="column"> 
+									<label>Skin Problems</label>
+									
+									
+							          <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[0].state" aria-label="user.skin_problems[0].name">
+							            {{user.skin_problems[0].name}}
+							          </md-checkbox>
+							           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[1].state" aria-label="user.skin_problems[1].name">
+							            {{user.skin_problems[1].name}}
+							          </md-checkbox>
+							           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[3].state" ng-model="user.skin_problems[2].state" aria-label="user.skin_problems[2].name">
+							            {{user.skin_problems[2].name}}
+							          </md-checkbox>
+							           <md-checkbox class="skin-problem-checkbox" ng-hide="user.skin_problems[0].state || user.skin_problems[1].state || user.skin_problems[2].state"  ng-model="user.skin_problems[3].state" aria-label="user.skin_problems[3].name">
+							            {{user.skin_problems[3].name}}
+							          </md-checkbox>
+								</div>
 						        <!-------------- EYES -------------->
 						        
 						        <label >Eye color</label>

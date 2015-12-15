@@ -136,7 +136,6 @@
 		.check-mark {margin-left:5px;}
 		md-card {margin:0px;padding:5px;}
 		md-content {margin-top:0px;}
-		#search-bar-not-home-page {position:relative;left:-30px;}
 		
 		.list_products,.trending_products {
 			md-list {
@@ -180,6 +179,22 @@
 					 .user-review-image img{width:45px;height:45px;}
 				 }
 			 }
+		}
+		
+		.feed {
+			
+			.review-item{
+					.md-list-item-image  {min-width:70px;}
+
+				.thumbnail-big {
+					img{width:60px;}	
+				}
+			    .thumbnail-small{
+				    top:-29px;left:32px;
+					img{width:40px;}
+				
+				}	
+			}
 		}
 	}
 	
