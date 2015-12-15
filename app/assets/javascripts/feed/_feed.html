@@ -3,12 +3,16 @@
 	    <div class="state-title"> Reviews feed </div>
 		<md-list-item layout="row" ng-repeat="review in reviews  | orderBy:'-created_at'"  >
 			<div class="review-item" layout="row" flex="100">
-			   <div  class="md-list-item-image wrapper-images"  flex="15" flex-sm="20">
-				  <div class="thumbnail-big"><img ng-click="goToProduct(review.product_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="thumbnail-product border-radius-50"></div>
-			      <!--<div class="thumbnail-big"><img ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="/assets/anonymousUser.png" class="md-avatar not-outline thumbnail-user border-radius-50" ></div> 
-			      <div class="thumbnail-small" ><img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>-->
+			   <div  class="md-list-item-image wrapper-images"   >
+				   
+				   
+				  <div class="thumbnail-big" ng-show="review.user.hash_url_image"><img  ng-click="goToProduct(review.product_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="thumbnail-product border-radius-50"></div>
+			      <div class="thumbnail-small" ng-hide="review.user.hash_url_image"><img  ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="/assets/anonymousUser.png" class="md-avatar not-outline thumbnail-user border-radius-50" ></div> 
+			      
+			      
+			      <div class="thumbnail-small" ><img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>
 			   </div>
-			   <div class="md-list-item-text review-text" layout="column" layout-align="start start" flex="85" flex-sm="80" >
+			   <div class="md-list-item-text review-text" layout="column" layout-align="start start" >
 			      	<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
 							<div layout="row" layout-align="start center">
 								<img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
