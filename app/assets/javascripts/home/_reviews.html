@@ -6,7 +6,7 @@
 		<div layout="column" layout-align="center center" class="header3">
 				Top  10		
 		</div>
-		<div  layout="row"  class="trending-products-images" layout-align="space-between start" hide-md hide-sm>
+		<div  layout="row"  class="trending-products-images" layout-align="space-between start" hide-sm hide-xs>
 		    <div class="list-thumbnail" ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"><img src="/assets/category_products/eye_liners.jpg" alt="Eye Liners" /><div class="caption"> Eye Liners </div> </div>
 		    <div class="list-thumbnail" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"><img src="/assets/category_products/foundations.jpg" alt="Foundations"  /><div class="caption"> Foundations </div></div>
 		    <div class="list-thumbnail"  ng-click="trendingProductsLipstick('32833,32830,32812,31536,29638,33614,31988,30320,31248,31248','Lipsticks')"><img  src="/assets/category_products/lipsticks.jpg" alt="Lipsticks"  /><div class="caption"> Lipsticks </div></div>
@@ -17,7 +17,7 @@
 
 		</div>
 		
-	    <div  layout="column"  class="trending-products-images" layout-align="center center" hide-gt-md>
+	    <div  layout="column"  class="trending-products-images" layout-align="center center"  hide-gt-sm>
 		    <div layout="row" layout-align="space-between center" >
 			    <div class="list-thumbnail"  ng-click="trendingProductsLipstick('34616,34091,30176,34084,30694,34080,29625,31212,30166', 'Eye Liners')"><img src="/assets/category_products/eye_liners.jpg" alt="Eye Liners" /><div class="caption"> Eye Liners </div> </div>
 				<div class="list-thumbnail" ng-click="trendingProductsLipstick('31133,31204,34350,31222,31227,31249,31244,34357,32030,31015','Foundations')"><img src="/assets/category_products/foundations.jpg" alt="Foundations"  /><div class="caption"> Foundations </div></div>
@@ -41,18 +41,18 @@
 	</div>
 	
 	<div layout="row" layout-align="space-between start" class="reviews"  layout-padding layout-wrap>
-			<div class="review-card-wrapper" flex="50" flex-sm="100" layout="column" layout-align="space-between start" layout-sm="row" layout-align-sm="space-around start">
+			<div class="review-card-wrapper" flex="50" flex-xs="100" layout="column" layout-align="space-between start" layout-sm="row" layout-align-sm="space-around start">
 				<div><review-card review="products[0]" index="0" > </review-card></div>
-				<div><hr hide-sm></div>
+				<div><hr hide-sm hide-xs></div>
 			</div>
-			<div class="review-card-wrapper" flex="50" flex-sm="100" layout="column" layout-align="space-between start">
+			<div class="review-card-wrapper" flex="50" flex-xs="100" layout="column" layout-align="space-between start">
 				<div><review-card review="products[1]" index="1" > </review-card></div>
-				<div><hr hide-sm></div>	
+				<div><hr hide-sm hide-xs></div>	
 			</div>
-			<div class="review-card-wrapper"  flex="50" flex-sm="100">
+			<div class="review-card-wrapper"  flex="50" flex-xs="100">
 				<review-card review="products[2]" index="2" > </review-card>		
 			</div>
-			<div class="review-card-wrapper"  flex="50" flex-sm="100">
+			<div class="review-card-wrapper"  flex="50" flex-xs="100">
 				<review-card review="products[3]" index="3" > </review-card>
 			</div>		
 	</div>
