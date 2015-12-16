@@ -5,7 +5,7 @@
 			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id)">
 				<div  class="md-list-item-text" layout="row" layout-align="space-around center" flex="100" >
 			        <div   id="image-product" flex-sm="16" flex-gt-sm="20">
-			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='md-avatar' alt="{product.product_name}"></a>
+			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='' alt="{product.product_name}"></a>
 			        </div>  
 					<div id="product-info" class="md-tile-content" layout="column"  flex-sm="50" flex-gt-sm="50" >
 						<div id="name-product " class="wordwrap"><h2 class="title" itemprop="name">{{product.product_name | limitLength:22}}<span></span></h2></div>

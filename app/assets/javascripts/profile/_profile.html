@@ -77,7 +77,7 @@
 			<md-list-item ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
 				<div class="review-item" layout="row"  layout-align="start start" flex="100">
 					<div class="md-list-item-image user-review-image"  >
-						<img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="md-avatar not-outline"> 
+						<img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class=" not-outline"> 
 					</div>
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
 							<div class="header-review" layout="row" layout-align="space-between center" >	
