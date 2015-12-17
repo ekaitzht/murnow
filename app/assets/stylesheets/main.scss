@@ -210,7 +210,7 @@ md-dialog {
     .review-card-wrapper {
 	    max-width:434px;
 	    h3 {@include sub-head;font-size:1rem;}
-	    .date-review {@include hint-text;}
+	    
 
 	    
     }
@@ -342,14 +342,13 @@ md-dialog {
 			padding:0px;
 		}
 		
-		.review-textarea{@include hint-text;padding:1rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
+		.review-textarea{padding:1rem; margin-bottom:0.5rem;height: 60px; border: 2px solid #979797;border-radius: 8px;margin-top:2.5rem;}
 		
 		.count-reviews {font-size: 2.1rem;margin-top:2rem;padding:0rem;font-family: $josefin-sans;font-style: italic;}
 		
 		md-list{
 			margin-left:2.5rem;
 			padding:0px;
-			.ratings { font-size:1.15rem;}
 			
 			
 			@include review-product-mixed;

@@ -2,32 +2,30 @@
 @import 'base/typography';
 
 
+
+	
+	
+
 @media screen and (max-width: 960px) {
 	
 	/* GENERAL FONTS */
+	
+	.ratings {font-size:14px;}
+	.thumbs-up {font-size:14px;}
+	.hint-text {font-size: 14px;}
+
 	html{
 		font-size:12px;
 	}
-	.hint-text {font-size: 14px;}
 	
-	.home-page #search-bar-home-page md-autocomplete
-	.not-home-page {	
-		.products md-list .ratings {font-size:15px}	
-		.ratings {font-size:15px;}
-		.thumbs-up {font-size:15px;}
-		
-		
-		.hint-text {font-size:15px;}
-	}
+	
+
 	
 	.home-page{
 		header{padding:0px;}
 		#search-bar-home-page md-autocomplete{width:100%;}
 		.title-landing-page{margin-top:80px;}
 		#search-bar-home-page{margin-top:2.5rem;}
-		.footer-review .ratings {font-size:15px}	
-		.thumbs-up {font-size:15px;}
-		.hint-text {font-size:15px;}
 	}
 	
 	

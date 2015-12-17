@@ -9,11 +9,13 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-family: $josefin-sans;font-weight:400;color:white;font-size:2.5rem;
 }
 
+
+
 .headline {font-size:2.5rem;font-weight: 400; }
 
 @mixin title{ // Name product
 	@include main-color; 
-	font-size:1.875rem ;
+	font-size:1.875rem ; //30px level 1
 	line-height:2rem;
 	margin:0rem; 
 	font-family:$base-font;
@@ -22,16 +24,16 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 
 @mixin sub-head{  // subitulo
 	@include secondary-color;
-	font-size:1.45rem;
+	font-size:1.45rem; //23.2px level 2
 	line-height:2rem;
 	margin:0rem;
 	font-family:$base-font;
 	font-weight: 400;
 }
 	
-@mixin hint-text {
+.hint-text {
 	@include hint-color;
-	font-size:1.125rem; 
+	font-size:18px; //18px level 
 	margin:0rem;
 	font-family:$josefin-sans;
 	font-weight: 400;
@@ -46,6 +48,11 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 	font-family:$base-font;
 	font-weight: 400;
 } // review text (paragraph) 
+
+@mixin level4 {
+	font-size:16px; //level 4
+}
+
 
 
 @mixin brand-font($color) {

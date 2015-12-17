@@ -2,10 +2,10 @@
 
 	<div  class="product-profile" layout="column" layout-align="center" layout-padding> 
 		<div layout= "row" class="header-product" layout-align="space-around center" >
-	    		<div  id="image-product" flex-sm="16" flex-gt-sm="20">
+	    		<div  id="image-product" flex-xs="16" flex-sm="16" flex-gt-sm="20">
 	    			<img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class="product-thumbnail" alt="{product.product_name}">
 	    		</div>
-		        <div id="product-info" layout="column"   flex-sm="50" flex-gt-sm="50">
+		        <div id="product-info" layout="column" flex-xs="50"  flex-sm="50" flex-gt-sm="50">
 						<div id="name-product" class="wordwrap"><h2  itemprop="name">{{product.product_name  }}</h2></div>
 						<div id="brand-name" ><h3 itemprop="brand">by {{product.brand_name}} </h3></div>
 						<div class="ratings" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">    
@@ -25,7 +25,7 @@
 
 	    <!-- TEXT AREA INPUT -->
 	  
-	    <div  ng-hide="hasReviewUser"  class="review-textarea" type="text"  placeholder="sdafs" disabled  ng-click="showAddReviewPanel()"> {{inputReviewPlaceholder}}</div>
+	    <div  ng-hide="hasReviewUser"  class="review-textarea hint-text" type="text"  placeholder="sdafs" disabled  ng-click="showAddReviewPanel()"> {{inputReviewPlaceholder}}</div>
 
 
 	    <!-- ALL COMMENTS -->
