@@ -8,7 +8,7 @@
          <div layout="row" layout-align="start center" ng-click="goToProduct(review.product_id)">
 	               <p class="user-name-review-product" > {{review.product_name | limitLength:18}}</p>
                      </div>
-         <div class="date-review" hide-xs hide-sm> {{review.created_at | fromNow}}</div>
+         <div class="date-review hint-text" hide-xs hide-sm> {{review.created_at | fromNow}}</div>
         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-gt-sm>
             <span   class="fa fa-thumbs-o-up">  </span>
             <span> {{review.votes}} </span>
