@@ -1,8 +1,8 @@
 <md-dialog id="add-review-dialog">
-	<form ng-submit="addReview()" name="addReviewForm" >
+	<form ng-submit="editReview()" name="addReviewForm" >
 		 <md-toolbar>
 		    <div class="md-toolbar-tools">
-		      <h2>Edit your review </h2>
+		      <h2>Add your review </h2>
 		      <span flex></span>
 		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
 		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
@@ -50,7 +50,8 @@
 		    
 	    </md-dialog-content>
 	    <div class="md-actions" layout="row" layout-align="end center" id="send-review">
-	    	<md-button  type='submit' class="md-raised md-primary"  >Send Review</md-button>  
+		    <md-button ng-click="closeDialog()"  class="md-raised md-primary"  >Cancel Dialog</md-button>  
+	    	<md-button  type='submit' class="md-raised md-primary"  >Edit Review</md-button>  
 	  	</div>
 	</form>
 </md-dialog>

@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom',
-function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom){
+  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom', 'Reviews',
+function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom, Reviews){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;
@@ -18,6 +18,8 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
 		    angular.forEach(reviews, function(review, key) {
 				if (review.user_id == user.id) { 
 					$scope.hasReviewUser = true;
+					$scope.review_id_user_that_is_login = review.id;
+					
 				}
 			});
 		}, function(error) {
@@ -60,6 +62,28 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
   };
 
 
+  $scope.deleteReview= function(review_id) {
+  		Dialog.areYouSureToDeleteReview(review_id).then(function(data){
+	  		$scope.repurchase_again_percent = parseInt(data.new_repurchase_percent);
+	  		$scope.product.stars = data.new_stars;
+	  		
+	  		// Removing review from the view.
+			for (var i = 0; i < $scope.product.reviews.length; i++) {
+			    if($scope.product.reviews[i].id == review_id){
+				    $scope.product.reviews.splice(i, 2)
+			    }
+			}	  		
+	  		
+			
+  		}).catch(function(){
+	  		
+  		});
+  };
+  
+  $scope.editReview= function(review) {
+  	Dialog.editReviewDialog(review);
+  };
+  
   
   $scope.incrementUpvotes = function(review){
 	  	

@@ -59,10 +59,18 @@
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
 									<meta ng-attr-content="{{review.stars}}" itemprop="ratingValue">
 								</div>
-								<div class="thumbs-up" ng-click="incrementUpvotes(review)">
-									<span   class="fa fa-thumbs-o-up" >  </span>
-									<span> {{review.votes.length}} </span>
-								</div> 
+								<div class='actions-review' layout="row">
+									<div ng-if="review.id == review_id_user_that_is_login" class="delete hint-text"> <!-- this renders delete if the user hat has done the review is login -->
+										 <md-button ng-click="deleteReview(review.id)" >delete</md-button>
+									</div>
+									<div ng-if="review.id == review_id_user_that_is_login" class="edit hint-text">
+										<md-button ng-click="editReview(review)">edit</md-button>
+									</div>
+									<div class="thumbs-up" ng-click="incrementUpvotes(review)">
+										<span   class="fa fa-thumbs-o-up" >  </span>
+										<span> {{review.votes.length}} </span>
+									</div> 
+								</div>
 						</div>			
 					</div>
 				</div>

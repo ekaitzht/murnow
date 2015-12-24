@@ -1,5 +1,5 @@
 angular.module('murnow')
-.controller('ReviewCtrl',
+.controller('AddReviewCtrl',
   ['$scope', 'scopeProduct','products', 'Dialog','Intercom',
 function($scope, scopeProduct, products, Dialog, Intercom){
 	$scope.repurchaseError = false;
@@ -36,6 +36,9 @@ function($scope, scopeProduct, products, Dialog, Intercom){
 	    		scopeProduct.product.reviews.push(review);
 	    		scopeProduct.hasReviewUser = true;
 	    		scopeProduct.zero_reviews = false;
+	    		scopeProduct.review_id_user_that_is_login = review.id;
+	    		
+	    		
 	    		if( $scope.repurchase === "true"){
 		   			var buyers = scopeProduct.product.buyers + 1;
 		   			var not_buyers = scopeProduct.product.not_buyers;
@@ -54,7 +57,7 @@ function($scope, scopeProduct, products, Dialog, Intercom){
 	  		}).error(function(error){
 		  		
 		  		if( $scope.stars == '') {
-			  		 $scope.errors.reviewDialog = "You didn't the stars for this product.";
+			  		 $scope.errors.reviewDialog = "You didn't fill the stars for this product.";
 		  		}
 		  		
 		  	

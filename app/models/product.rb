@@ -2,7 +2,7 @@ require 'elasticsearch/model'
 
 class Product < ActiveRecord::Base
   #extend FriendlyId
-  #friendly_id :product_name, use: :slugged
+  #friendly_id :product_name, use: :slugged  
   has_many :reviews
   validates :brand_name, :exclusion=> { :in => ["Lit Cosmetics", "Amazing Cosmetics","bareMinerals","Benefit Cosmetics","butter LONDON","Clarins","Lancôme","Tweezerman","Urban Decay" ] }, if: lambda { |o| o.retailer == 'sephora' }
  validates :brand_name, :exclusion=> { :in => ["Smashbox", "Algenist","Anastasia Beverly Hills","BECCA", "Bliss","Dr. Brandt","Eyeko","Murad","Stila","Tarte","Too Faced"] }, if: lambda { |o| o.retailer == 'ulta' } 
