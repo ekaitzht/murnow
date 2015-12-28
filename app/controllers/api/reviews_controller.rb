@@ -72,8 +72,8 @@ class Api::ReviewsController < ApplicationController
 	  # We have to calculate new average, new likes etc 
 	  # buyers, not_buyers, rating
 	  
-	  @review = Review.find_by_id(params[:id]);
-	  @product = Product.find_by_id(@review.product_id);
+	  @review = Review.find_by_id(params[:id])
+	  @product = Product.find_by_id(@review.product_id)
 	  
 	  old_repurchase = @review.repurchase;
 	  new_repurchase = review_params[:repurchase];
@@ -94,11 +94,17 @@ class Api::ReviewsController < ApplicationController
 	  end
 	  revert_product_stars = @product.product_stars * 2 - @review.stars 
 	  
-	  	
-	  @review.transaction do
-	  	@review.update_attributes({:stars =>review_params[:stars],:body =>review_params[:body],:repurchase =>review_params[:repurchase] })
-	  	@product.update_attributes({:product_stars => ((review_params[:stars] + revert_product_stars)/2), :rating => (buyers.to_f/(buyers + not_buyers).to_f)*100})  
-	  end
+	  	begin	
+		  
+		  @review.transaction do
+		  	@review.update_attributes({:stars =>review_params[:stars],:body =>review_params[:body],:repurchase =>review_params[:repurchase] })
+		  	@product.update_attributes({:product_stars => ((review_params[:stars] + revert_product_stars)/2), :rating => (buyers.to_f/(buyers + not_buyers).to_f)*100})  
+		  end
+		rescue ActiveRecord::RecordInvalid => invalid
+			respond_with({:msg => "Problem updating de the review send a email to ekaitz@murnow.com"}, :status => 500)
+		else 
+			respond_with({:msg => "Review updated"}, :status => 400)
+		end
   end
   
   

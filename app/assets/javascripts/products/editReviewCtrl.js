@@ -1,14 +1,14 @@
 angular.module('murnow')
 .controller('EditReviewCtrl',
-  ['$scope', 'scopeReview','products', 'Dialog','Intercom',
-function($scope, scopeReview, products, Dialog, Intercom){
+  ['$scope', 'scopeReview','products', 'Dialog','Intercom', 'Reviews',
+function($scope, scopeReview, products, Dialog, Intercom, Reviews){
 	
-	
+	var review_id = scopeReview.id;
 	$scope.body = scopeReview.body;
 	$scope.stars = scopeReview.stars;
 	$scope.repurchase = scopeReview.repurchase.toString();
 	
-	$scope.addReview = function(){
+	$scope.editReview = function(){
 		$scope.errors = {};
 		
 		if($scope.body === '') { return; }
@@ -24,12 +24,13 @@ function($scope, scopeReview, products, Dialog, Intercom){
   		if($scope.stars === undefined){$scope.stars = '';}
   		
   		if($scope.repurchase !== "" && $scope.body !== undefined ){
-	  		Reviews.editRreview(scopeReview.id, 
+	  		Reviews.editReview(
 			      {review:  
 			        { 
 			          body: $scope.body,
 			          repurchase: repurchaseBoolean,
-			          stars:  parseFloat($scope.stars )
+			          stars:  parseFloat($scope.stars ),
+			          id: review_id
 			        }
 			      }
 	  		).success(function(response) {

@@ -7,7 +7,7 @@ angular.module('murnow')
 	};
 	
 	this.editReview = function(review){
-	    return $http.put('/api/reviews/'+review.id,review);
+	    return $http.put('/api/reviews/'+review.review.id,review);
 	};
 
 	return this;
