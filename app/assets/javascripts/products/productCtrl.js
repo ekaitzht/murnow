@@ -72,8 +72,9 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
 			    if($scope.product.reviews[i].id == review_id){
 				    $scope.product.reviews.splice(i, 2)
 			    }
-			}	  		
-	  		
+			}	
+			
+			$scope.hasReviewUser = false;  		
 			
   		}).catch(function(){
 	  		
