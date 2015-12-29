@@ -59,12 +59,13 @@ index.html
       end
 
       ActionMailer::Base.smtp_settings = {
-          :port =>           '587',
-          :address =>        'smtp.mandrillapp.com',
-          :user_name =>      ENV['MANDRILL_USERNAME'],
-          :password =>       ENV['MANDRILL_APIKEY'],
-          :domain =>         ENV['APP_URL'],
-          :authentication => :plain
+	      :address              => "smtp.gmail.com",
+	      :port                 => 587,
+	      :domain               => "gmail.com",
+	      :user_name            => ENV['GMAIL_ULAIZE'],
+	      :password             => ENV['PASSWORD_ULAIZE_GMAIL'],
+	      :authentication       => :plain,
+	      :enable_starttls_auto => true
       }
     end
   end
