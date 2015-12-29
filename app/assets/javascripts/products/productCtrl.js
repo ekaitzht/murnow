@@ -82,7 +82,7 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   };
   
   $scope.editReview= function(review) {
-  	Dialog.editReviewDialog(review);
+  	Dialog.editReviewDialog(review,$scope);
   };
   
   

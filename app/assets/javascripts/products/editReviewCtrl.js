@@ -1,12 +1,12 @@
 angular.module('murnow')
 .controller('EditReviewCtrl',
-  ['$scope', 'scopeReview','products', 'Dialog','Intercom', 'Reviews',
-function($scope, scopeReview, products, Dialog, Intercom, Reviews){
+  ['$scope', 'scopeProduct', 'review', 'products', 'Dialog','Intercom', 'Reviews',
+function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
 	
-	var review_id = scopeReview.id;
-	$scope.body = scopeReview.body;
-	$scope.stars = scopeReview.stars;
-	$scope.repurchase = scopeReview.repurchase.toString();
+	var review_id = review.id;
+	$scope.body = review.body;
+	$scope.stars = review.stars;
+	$scope.repurchase = review.repurchase.toString();
 	
 	$scope.editReview = function(){
 		$scope.errors = {};
@@ -34,25 +34,9 @@ function($scope, scopeReview, products, Dialog, Intercom, Reviews){
 			        }
 			      }
 	  		).success(function(response) {
-		  		var review = response.review;
-		  	
-		  		  		
-		  		review["votes"] = []; // Adding votes property because when we start we don't have votes properties
-		  		
-	    		scopeProduct.product.reviews.push(review);
-	    		scopeProduct.hasReviewUser = true;
-	    		scopeProduct.zero_reviews = false;
-	    		if( $scope.repurchase === "true"){
-		   			var buyers = scopeProduct.product.buyers + 1;
-		   			var not_buyers = scopeProduct.product.not_buyers;
-		   		} else {
-			   		var buyers = scopeProduct.product.buyers;
-		   			var not_buyers = scopeProduct.product.not_buyers + 1;
-	    		}
-	    		
-				scopeProduct.repurchase_again_percent =  (buyers/(buyers + not_buyers))*100;
-	    			    		
-	    		scopeProduct.product.product_stars =  (scopeProduct.product.product_stars + review.stars)/2; //CALCULATE WITH CURRENTE ADDED REVIEW
+
+				scopeProduct.repurchase_again_percent =  response.new_repurchase_percent;
+	    		scopeProduct.product.product_stars = response.new_stars;
 	    		
 	    		Dialog.hide();
 	    			

@@ -181,7 +181,7 @@ angular.module('murnow')
 
       
       
-	this.editReviewDialog = function(review) {
+	this.editReviewDialog = function(review, $scope) {
 	    
 		$mdDialog.show({
 	        controller: 'EditReviewCtrl',
@@ -193,7 +193,7 @@ angular.module('murnow')
 	           
 	           $('#body-text-review').focus();
 	        },
-	        locals: {scopeReview: review}
+	        locals: {scopeProduct: $scope, review:review}
       	});
 	 
 	};
