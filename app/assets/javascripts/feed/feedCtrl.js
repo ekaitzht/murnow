@@ -14,5 +14,8 @@ function($scope, reviewsFeed, configMurnow, $state) {
             id: product_id
         });
     }
-
+    
+	$scope.goToProfile = function(profile_id){
+	 $state.go('profile', { id: profile_id});
+  	}
 }]);
