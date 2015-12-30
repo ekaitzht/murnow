@@ -7,7 +7,8 @@ function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
 	$scope.body = review.body;
 	$scope.stars = review.stars;
 	$scope.repurchase = review.repurchase.toString();
-	
+	$scope.review_id
+
 	$scope.editReview = function(){
 		$scope.errors = {};
 		
@@ -37,7 +38,9 @@ function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
 
 				scopeProduct.repurchase_again_percent =  response.new_repurchase_percent;
 	    		scopeProduct.product.product_stars = response.new_stars;
-	    		
+	    		scopeProduct.product.reviews[review.index_review].stars = $scope.stars;
+	    		scopeProduct.product.reviews[review.index_review].body = $scope.body;
+	    		scopeProduct.product.reviews[review.index_review].repurchase = $scope.repurchase;
 	    		Dialog.hide();
 	    			
 				//Intercom.addReview(review)
@@ -66,5 +69,23 @@ function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
     	Dialog.hide();
 	};
 	
+	$scope.deleteReview= function(review_id) {
+  		Dialog.areYouSureToDeleteReview(review_id).then(function(data){
+	  		scopeProduct.repurchase_again_percent = parseInt(data.new_repurchase_percent);
+	  		scopeProduct.product.stars = data.new_stars;
+	  		
+	  		// Removing review from the view.
+			for (var i = 0; i < $scope.product.reviews.length; i++) {
+			    if(scopeProduct.product.reviews[i].id == review_id){
+				    scopeProduct.product.reviews.splice(i, 2)
+			    }
+			}	
+			
+			scopeProduct.hasReviewUser = false;  		
+			
+  		}).catch(function(){
+	  		
+  		});
+  	};
 
 }]);

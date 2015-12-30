@@ -8,6 +8,7 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   	$scope.enviroment = configMurnow.enviroment;
     $rootScope.pageTitle = "Reviews for " + $scope.product.product_name;
 
+
     
     $scope.id = $stateParams.id;
     
@@ -62,26 +63,18 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   };
 
 
-  $scope.deleteReview= function(review_id) {
-  		Dialog.areYouSureToDeleteReview(review_id).then(function(data){
-	  		$scope.repurchase_again_percent = parseInt(data.new_repurchase_percent);
-	  		$scope.product.stars = data.new_stars;
-	  		
-	  		// Removing review from the view.
-			for (var i = 0; i < $scope.product.reviews.length; i++) {
-			    if($scope.product.reviews[i].id == review_id){
-				    $scope.product.reviews.splice(i, 2)
-			    }
-			}	
-			
-			$scope.hasReviewUser = false;  		
-			
-  		}).catch(function(){
-	  		
-  		});
-  };
+
   
   $scope.editReview= function(review) {
+	  
+	// I don't know why but the index is reverted
+	for (var i = 0; i < $scope.product.reviews.length; i++) {
+	    if($scope.product.reviews[i].id == review.id){
+		   review.index_review = i;
+	    }
+	}	
+			
+	$scope.product.reviews[0].body = "hello";
   	Dialog.editReviewDialog(review,$scope);
   };
   

@@ -6,7 +6,7 @@ class Api::ReviewsController < ApplicationController
     
     puts review_params[:stars]
     review_params[:stars] = review_params[:stars].to_f
-	sum_rating = @product.sum_rating + review_params[:stars]
+	sum_rating = @product.sum_rating + review_params[:stars].to_f
     number_reviews = @product.number_reviews + 1
     
     @review = @product.reviews.create(review_params.merge(user_id: current_user.id))
