@@ -55,7 +55,7 @@ index.html
       if ( ENV['APP_URL'] == 'www.murnow.com') then
       	ActionMailer::Base.delivery_method = :smtp
       else 
-      	ActionMailer::Base.delivery_method = :smtp
+      	ActionMailer::Base.delivery_method = :test
       	#ActionMailer::Base.delivery_method = :test <-fake
       end
 
