@@ -69,13 +69,13 @@ function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
     	Dialog.hide();
 	};
 	
-	$scope.deleteReview= function(review_id) {
+	$scope.deleteReview= function() {
   		Dialog.areYouSureToDeleteReview(review_id).then(function(data){
 	  		scopeProduct.repurchase_again_percent = parseInt(data.new_repurchase_percent);
 	  		scopeProduct.product.stars = data.new_stars;
 	  		
 	  		// Removing review from the view.
-			for (var i = 0; i < $scope.product.reviews.length; i++) {
+			for (var i = 0; i < scopeProduct.product.reviews.length; i++) {
 			    if(scopeProduct.product.reviews[i].id == review_id){
 				    scopeProduct.product.reviews.splice(i, 2)
 			    }
