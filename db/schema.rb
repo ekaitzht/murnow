@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151120160228) do
+ActiveRecord::Schema.define(version: 20151228163026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20151120160228) do
     t.boolean  "bit_to_remove",           default: true
     t.string   "levels"
     t.integer  "original_number_reviews"
+    t.decimal  "sum_rating"
   end
 
   add_index "products", ["prod_id", "retailer"], name: "index_products_on_prod_id_and_retailer", unique: true, using: :btree

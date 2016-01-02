@@ -30,6 +30,11 @@ Rails.application.routes.draw do
 	      put '/upvote' => 'products#upvote'
 	    end
 	  end
+	  
+	 # Remove review
+	 delete 'reviews/:id', to: 'reviews#delete'
+	 put 'reviews/:id', to: 'reviews#update'
+
 	
 	  get 'search_autocomplete', to: 'search#autocomplete'
 	  get 'search', to: 'search#search'

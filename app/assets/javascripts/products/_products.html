@@ -34,7 +34,7 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list>
-			<md-list-item  itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
+			<md-list-item   itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
 				<div class="review-item" layout="row"  layout-align="start start" flex="100" >
 					<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
 					<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class=" not-outline border-radius-50"> 
@@ -52,17 +52,23 @@
 							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 						</div>
 						<div class="review-body margin-top-rem">
-									<p class="wordwrap" itemprop="reviewBody">{{review.body}}</p>
+									<p class="wordwrap" itemprop="reviewBody" >{{review.body}}</p>
 						</div>
 						<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center">
 								<div class="ratings" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
 									<meta ng-attr-content="{{review.stars}}" itemprop="ratingValue">
 								</div>
-								<div class="thumbs-up" ng-click="incrementUpvotes(review)">
-									<span   class="fa fa-thumbs-o-up" >  </span>
-									<span> {{review.votes.length}} </span>
-								</div> 
+								<div class='actions-review' layout="row">
+						
+									<div ng-if="review.id == review_id_user_that_is_login" class="edit hint-text">
+										<md-button ng-click="editReview(review)">edit</md-button>
+									</div>
+									<div class="thumbs-up" ng-click="incrementUpvotes(review)">
+										<span   class="fa fa-thumbs-o-up" >  </span>
+										<span> {{review.votes.length}} </span>
+									</div> 
+								</div>
 						</div>			
 					</div>
 				</div>

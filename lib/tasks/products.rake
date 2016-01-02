@@ -136,6 +136,7 @@ namespace :load do
 			product['tags'] = curateTags(source)
 	        product['prod_id'] = source['id']
 		    product['retailer'] = source['retailer']
+		    
 		    product['product_stars'] = source['summary']['average']
 		    product['hash_url_image'] = processImageUrl(source['img'], product['brand_name'],  product['prod_id'], source['url'])
 			product['buyers'] = product['product_stars']*10
@@ -278,7 +279,17 @@ namespace :load do
 			else 
 				productDB = response.first
 				productHash['updated_at'] = DateTime.now  
-				productDB.update_attributes(productHash)
+				
+				if productDB.number_reviews > 0 #We don't to override Product.product_stars if we have reviews in the system.
+					productHash.delete('product_stars')
+					productHash.delete('buyers')
+					productHash.delete('not_buyers')
+				elsif productDB.number_reviews == 0
+					
+				end
+				
+				productDB.update_attributes(productHash)	
+				
 				puts "updated prod_id: "+productDB.prod_id.to_s
 				updates = updates + 1
 			end
@@ -336,4 +347,50 @@ Hypoallergenic.'
 		Product.new(product).save
 	end
 	
+	
+	
+	task :reset_reviews => :environment do
+	
+		Product.find_each do |product|
+			if product.number_reviews > 0 # we have reviews in the system
+				total_sum = 0
+				n = 0
+				average_product_stars = 0
+				buyers = 0 
+				not_buyers = 0
+				
+				Review.where(product_id: product.id).find_each do |review|
+					total_sum = total_sum + review.stars
+					
+					if review.repurchase == true 
+						buyers = buyers + 1
+					else
+						not_buyers = not_buyers + 1 
+					end
+					n = n + 1
+				end
+				
+				
+				if n == 0 
+					product.number_reviews = 0
+					product.sum_rating = product.product_stars.to_f * (product.buyers.to_f + product.not_buyers.to_f)
+
+				else 
+					average_product_stars = total_sum/n
+					product.sum_rating = total_sum
+					product.buyers = buyers
+					product.not_buyers = not_buyers
+					product.product_stars = average_product_stars
+				end
+
+
+				rating = (product.buyers.to_f/(product.buyers.to_f + product.not_buyers.to_f))*100
+				product.rating = rating	
+				product.save!
+			elsif product.number_reviews == 0 # we don't have reviews in the system
+				product.sum_rating = product.product_stars.to_f * (product.buyers.to_f + product.not_buyers.to_f)
+				product.save
+			end
+		end
+	end	
 end

@@ -61,7 +61,9 @@
 				}
 				.thumbs-up {
 					cursor:pointer;
+					line-height: 48px;
 				}
+				.actions-review .md-button{max-width:  none !important}
 				.header-review{
 					.user-name-review-product {@include title; font-size:18px;}
 					width:100%;

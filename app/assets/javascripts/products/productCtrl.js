@@ -1,12 +1,13 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom',
-function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom){
+  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom', 'Reviews',
+function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom, Reviews){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;
   	$scope.enviroment = configMurnow.enviroment;
     $rootScope.pageTitle = "Reviews for " + $scope.product.product_name;
+
 
     
     $scope.id = $stateParams.id;
@@ -18,6 +19,8 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
 		    angular.forEach(reviews, function(review, key) {
 				if (review.user_id == user.id) { 
 					$scope.hasReviewUser = true;
+					$scope.review_id_user_that_is_login = review.id;
+					
 				}
 			});
 		}, function(error) {
@@ -60,6 +63,21 @@ function($scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow
   };
 
 
+
+  
+  $scope.editReview= function(review) {
+	  
+	// I don't know why but the index is reverted
+	for (var i = 0; i < $scope.product.reviews.length; i++) {
+	    if($scope.product.reviews[i].id == review.id){
+		   review.index_review = i;
+	    }
+	}	
+			
+	$scope.product.reviews[0].body = "hello";
+  	Dialog.editReviewDialog(review,$scope);
+  };
+  
   
   $scope.incrementUpvotes = function(review){
 	  	

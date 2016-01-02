@@ -1,5 +1,5 @@
 angular.module('murnow')
-.factory('Dialog',['$mdDialog', function($mdDialog){
+.factory('Dialog',['$mdDialog','Reviews', '$q', function($mdDialog, Reviews, $q){
     
     this.register = function() {
 	    
@@ -113,7 +113,7 @@ angular.module('murnow')
 	
 	this.addReview = function($scope){
 		$mdDialog.show({
-	        controller: 'ReviewCtrl',
+	        controller: 'AddReviewCtrl',
 	        templateUrl: 'products/_add_review_dialog.html',
 	        hasBackdrop: true,
 	        clickOutsideToClose: true,
@@ -151,8 +151,55 @@ angular.module('murnow')
 	this.hide = function(){
 		$mdDialog.hide();
 	}
-				
+	
+	
+	this.areYouSureToDeleteReview = function(review_id){
+		
+		var q = $q.defer();
+		var confirm = $mdDialog.confirm()
+          .title('Are you sure that you want to do that action?')
+          .textContent('This action is no possible to revert')
+          .ariaLabel('Confirm action')
+          .ok('Please do it!')
+          .cancel('No!!');
+          
+	    $mdDialog.show(confirm).then(function() {
+		    Reviews.deleteReview(review_id).success(function(data){
+			    q.resolve(data);
+		    }).error(function(err){
+			    q.reject(err);
+		    });
+	    
+		    
+	    }, function() {
+		       console.log("Cancel dialog.")
+	    });
+	    
+	    return q.promise;
+	}
+	
 
+      
+      
+	this.editReviewDialog = function(review, $scope) {
+	    
+		$mdDialog.show({
+	        controller: 'EditReviewCtrl',
+	        templateUrl: 'products/_edit_review_dialog.html',
+	        hasBackdrop: true,
+	        clickOutsideToClose: true,
+	        bindToController: true,
+	        onComplete:function(){
+	           
+	           $('#body-text-review').focus();
+	        },
+	        locals: {scopeProduct: $scope, review:review}
+      	});
+	 
+	};
+		
+				
+ 
 	return this;
 }]);
 
