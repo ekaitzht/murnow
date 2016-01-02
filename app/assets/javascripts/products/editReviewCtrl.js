@@ -77,7 +77,7 @@ function($scope, scopeProduct, review, products, Dialog, Intercom, Reviews){
 	  		// Removing review from the view.
 			for (var i = 0; i < scopeProduct.product.reviews.length; i++) {
 			    if(scopeProduct.product.reviews[i].id == review_id){
-				    scopeProduct.product.reviews.splice(i, 2)
+				    scopeProduct.product.reviews.splice(i, 1)
 			    }
 			}	
 			

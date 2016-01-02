@@ -157,11 +157,10 @@ angular.module('murnow')
 		
 		var q = $q.defer();
 		var confirm = $mdDialog.confirm()
-          .title('Are you sure that you want to do that action?')
-          .textContent('This action is no possible to revert')
-          .ariaLabel('Confirm action')
-          .ok('Please do it!')
-          .cancel('No!!');
+          .title('Are you sure you want to delete your review?')
+          .ariaLabel('Confirm action delete review')
+          .ok('Yes')
+          .cancel('No');
           
 	    $mdDialog.show(confirm).then(function() {
 		    Reviews.deleteReview(review_id).success(function(data){
