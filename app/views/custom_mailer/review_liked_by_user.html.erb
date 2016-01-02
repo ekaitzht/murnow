@@ -2,4 +2,4 @@
 
 <p><%=  @request['username_gives_like'] %> has liked your review.</p>
 
-<p>Check out <%= link_to @request['username_gives_like'], ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_like'].to_s,:style=>'color:#FFAABB;', target: '_blank' %> or click <%= link_to 'here', ActionMailer::Base.default_url_options[:host] + "/products/" + @request['product_id'].to_s,:style=>'color:#FFAABB;', target: '_blank'   %> to see your review.</p>
+<p>Check out <%= link_to @request['username_gives_like']+"'s profile", ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_like'].to_s,:style=>'color:#FFAABB;', target: '_blank' %> or click <%= link_to 'here', ActionMailer::Base.default_url_options[:host] + "/products/" + @request['product_id'].to_s,:style=>'color:#FFAABB;', target: '_blank'   %> to see your review.</p>
