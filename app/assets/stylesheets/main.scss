@@ -386,6 +386,7 @@ md-dialog {
 		
 		md-list{
 			@include review-product-mixed;
+			.review-body {cursor:pointer;}
 		}
 		p {@include body;}
 		.profile-button svg{top: 1rem;}

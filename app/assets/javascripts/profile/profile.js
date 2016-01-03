@@ -1,7 +1,7 @@
 angular.module('murnow')
     .controller('Profile', [
-        '$scope', 'User', '$state', '$stateParams', '$upload', 'Auth', 'Amazon', 'Dialog', '$http', 'configMurnow', 'Invitations',
-        function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow, Invitations) {
+        '$scope', 'User', '$state', '$stateParams', '$upload', 'Auth', 'Amazon', 'Dialog', '$http', 'configMurnow', 'Invitations', 'products',
+        function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow, Invitations, products) {
 
 
 
@@ -146,6 +146,16 @@ angular.module('murnow')
                 });
             }
 
+            
+            $scope.incrementUpvotes = function(review){
+	  	
+					products.upvoteReview(Auth, review.id).success(function(data){
+						review.votes.length += 1;
+						Intercom.likeReview(review, Auth._currentUser.id);
+				    }).error(function(err){
+					   	Dialog.youAlreadyVotedThisReview();		
+				    });
+	  		};
 
 
         }

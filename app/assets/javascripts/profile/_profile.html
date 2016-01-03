@@ -74,13 +74,13 @@
 
 		<!-- LIST OF REVIEWS -->
 		<md-list> 
-			<md-list-item ng-repeat="review in reviews | orderBy: '-created_at'"  ng-click="goToProduct(review.product_id)" >
+			<md-list-item ng-repeat="review in reviews | orderBy: '-created_at'"   >
 				<div class="review-item" layout="row"  layout-align="start start" flex="100">
-					<div class="md-list-item-image user-review-image"  >
+					<div class="md-list-item-image user-review-image"  ng-click="goToProduct(review.product_id)">
 						<img ng-click="goProfile(review.user_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class=" not-outline"> 
 					</div>
 					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
-							<div class="header-review" layout="row" layout-align="space-between center" >	
+							<div class="header-review" layout="row" layout-align="space-between center" ng-click="goToProduct(review.product_id)">	
 								<div layout="row" layout-align="start center">
 								    <img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
 									<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
@@ -89,17 +89,17 @@
 								</div>
 								<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 							</div>
-							<div class="review-body margin-top-rem">
+							<div class="review-body margin-top-rem" ng-click="goToProduct(review.product_id)">
 								<p class="wordwrap">{{review.body}}</p>
 							</div>
 							<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center" >
-								<div class="ratings"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+								<div class="ratings"  itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" ng-click="goToProduct(review.product_id)">
 									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>																	
 									<meta content="review.stars" itemprop="ratingValue">
 
 								</div>
 								<div class="thumbs-up" >
-								<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review.id,$index)">  </span>
+								<span   class="fa fa-thumbs-o-up" ng-click="incrementUpvotes(review)">  </span>
 								<span> {{review.votes.length}} </span>
 							</div> 
 						</div>
