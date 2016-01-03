@@ -1,9 +1,10 @@
-$brand-font: 'Amatic SC';
+$brand-font: 'Amatic SC', sans-serif;
 $josefin-sans: 'Josefin Sans',sans-serif;
 
-$base-font: 'Lucida Sans Unicode';
-$verdana: 'verdana';
+$base-font: 'Roboto', sans-serif;
+$verdana: 'verdana', sans-serif;
 $josefin-sans-light: 'Josefin Sans Light', sans-serif;
+
 
 @mixin subheader {
 	font-family: $josefin-sans;font-weight:400;color:white;font-size:2.5rem;
