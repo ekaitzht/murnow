@@ -352,6 +352,7 @@ md-dialog {
 			
 			
 			@include review-product-mixed;
+			.pink-radius {border: 1px solid $accent-color;}
 		}  
 	}
 
