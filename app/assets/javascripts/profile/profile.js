@@ -1,7 +1,7 @@
 angular.module('murnow')
     .controller('Profile', [
-        '$scope', 'User', '$state', '$stateParams', '$upload', 'Auth', 'Amazon', 'Dialog', '$http', 'configMurnow', 'Invitations', 'products',
-        function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow, Invitations, products) {
+        '$scope', 'User', '$state', '$stateParams', '$upload', 'Auth', 'Amazon', 'Dialog', '$http', 'configMurnow', 'Invitations', 'products', 'Intercom', 'Vote',
+        function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $http, configMurnow, Invitations, products, Intercom, Vote) {
 
 
 
@@ -148,15 +148,28 @@ angular.module('murnow')
 
             
             $scope.incrementUpvotes = function(review){
-	  	
-					products.upvoteReview(Auth, review.id).success(function(data){
-						review.votes.length += 1;
-						Intercom.likeReview(review, Auth._currentUser.id);
+	            
+		
+				if(Auth._currentUser === null){
+					
+					Dialog.notSignUpUpvoteReview()
+				} else {
+				    
+				    Vote.create(Auth._currentUser.id, review.id).success(function(data){
+					    var vote_id = data.vote_id;
+					    
+					    if (typeof vote_id !== 'undefined') {
+							Vote.destroy(vote_id);
+							review.votes.length -= 1;
+						} else {
+							review.votes.length += 1;
+							Intercom.likeReview(review, Auth._currentUser.id);
+						}
+ 
 				    }).error(function(err){
-					   	Dialog.youAlreadyVotedThisReview();		
+					    
 				    });
-	  		};
-
-
+				}
+			};
         }
     ]);

@@ -31,6 +31,15 @@ Rails.application.routes.draw do
 	    end
 	  end
 	  
+	  
+	  
+	  resources :votes, only: [:create, :destroy, :show] do
+	  
+	  
+	  
+	  end
+	  
+	  
 	 # Remove review
 	 delete 'reviews/:id', to: 'reviews#delete'
 	 put 'reviews/:id', to: 'reviews#update'
@@ -48,11 +57,9 @@ Rails.application.routes.draw do
 	
 	 
 
-	  # Association model between User and Reviews for who is voting what review    User <=== Vote ===> Review
-	  put 'votes/:review_id/users/:user_id', to: 'votes#create'
-	  
+
 	  #Get a specific user this only should use for public_profile
-	  get 'users/:id/', to: 'users#show'	
+	  get 'users/:id/', to: 'users#show'
 	  
 	  
 	  # Routes for who is following and followers

@@ -75,16 +75,7 @@ angular.module('murnow')
 	};
   
   
-	o.upvoteReview = function(Auth, review_id) {
-		
-		if(Auth._currentUser === null){
-			
-			Dialog.notSignUpUpvoteReview()
-		} else {
-			
-			return $http.put('/api/votes/' + review_id + '/users/'+ Auth._currentUser.id);
-		}
-	};
+
 	
 	
 	return o;
