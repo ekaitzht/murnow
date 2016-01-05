@@ -5,31 +5,30 @@ angular.module('murnow')
 	    return $http.post('/api/votes/', {vote: {user_id, review_id: review_id}});
 	};
 	
-	this.show = function(id){
-	    return $http.put('/api/votes/'+id);
+	this.update = function(id, data){
+	    return $http.put('/api/votes/'+id, data);
 	};
 	
-	this.destroy = function(id){
-	    return $http.delete('/api/votes/'+id);
-	};
+
 	
 	this.incrementUpvotes = function(review){
-		var that = this;
+		var self = this;
 		if(Auth._currentUser === null){
 					
 					Dialog.notSignUpUpvoteReview()
 				} else {
 				    
 				    this.create(Auth._currentUser.id, review.id).success(function(data){
-					    var vote_id = data.vote_id;
 					    
-					    if ( vote_id === false) {
+					    
+					    if ( data.is_liked === false) {
 							review.votes.length += 1;
 							Intercom.likeReview(review, Auth._currentUser.id);
+							self.update(data.id, {vote:{ is_liked: true, is_sent:true}})			
 
 						} else {
-							that.destroy(vote_id);
 							review.votes.length -= 1;
+							self.update(data.id, {vote:{ is_liked: false, is_sent:true}})
 						}
  
 				    }).error(function(err){
@@ -42,3 +41,10 @@ angular.module('murnow')
 }]);
 
 
+created_at: "2016-01-05T12:03:02.034Z"
+id: 159
+is_liked: false
+is_sent: false
+review_id: 100
+updated_at: "2016-01-05T12:03:02.034Z"
+user_id: 70
