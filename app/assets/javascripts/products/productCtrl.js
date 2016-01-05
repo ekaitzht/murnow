@@ -1,7 +1,7 @@
 angular.module('murnow')
 .controller('ProductCtrl',
-  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom', 'Reviews',
-function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom, Reviews){
+  ['$scope','$rootScope', 'Dialog','products', 'product', 'Auth','$state','configMurnow', '$stateParams', 'Intercom', 'Reviews', 'Vote',
+function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurnow, $stateParams, Intercom, Reviews, Vote){
   	$scope.Math = window.Math;
   	$scope.product = product.product;
     $scope.cdn = configMurnow.cdn_domain_name;
@@ -81,12 +81,7 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   
   $scope.incrementUpvotes = function(review){
 	  	
-		products.upvoteReview(Auth, review.id).success(function(data){
-			review.votes.length += 1;
-			Intercom.likeReview(review, Auth._currentUser.id);
-	    }).error(function(err){
-		   	Dialog.youAlreadyVotedThisReview();		
-	    });
+		Vote.incrementUpvotes(review);
   };
   
 }]);

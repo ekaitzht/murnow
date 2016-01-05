@@ -149,27 +149,8 @@ angular.module('murnow')
             
             $scope.incrementUpvotes = function(review){
 	            
-		
-				if(Auth._currentUser === null){
-					
-					Dialog.notSignUpUpvoteReview()
-				} else {
-				    
-				    Vote.create(Auth._currentUser.id, review.id).success(function(data){
-					    var vote_id = data.vote_id;
-					    
-					    if (typeof vote_id !== 'undefined') {
-							Vote.destroy(vote_id);
-							review.votes.length -= 1;
-						} else {
-							review.votes.length += 1;
-							Intercom.likeReview(review, Auth._currentUser.id);
-						}
- 
-				    }).error(function(err){
-					    
-				    });
-				}
+				Vote.incrementUpvotes(review);
+			
 			};
         }
     ]);

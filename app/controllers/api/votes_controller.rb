@@ -7,6 +7,7 @@ class Api::VotesController < ApplicationController
   			
   			logger.info @vote.inspect			
   			if @vote.nil?
+	  			@response =  Vote.create(user_id: vote_params[:user_id], review_id: vote_params[:review_id])
 		  		@user_gives_like = User.find_by_id(vote_params[:user_id])
 		  	  	@user_receives_like = User.find_by_id(Review.find(vote_params[:review_id]).user_id)
 		  	  	@product_reviewed = Product.find_by_id(Review.find(vote_params[:review_id]).product_id)
@@ -21,7 +22,7 @@ class Api::VotesController < ApplicationController
 		  	  	
 		  	  	
 		  	  	CustomMailer.review_liked_by_user(params).deliver
-	  			respond_with(@response)	
+	  			render json: {vote_id: false}
 	  		else 
 
 	  			render json: {vote_id: @vote.id}
