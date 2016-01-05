@@ -9,7 +9,7 @@
 	               <p class="user-name-review-product" > {{review.product_name | limitLength:18}}</p>
                      </div>
          <div class="date-review hint-text" hide-xs hide-sm> {{review.created_at | fromNow}}</div>
-        <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-gt-sm>
+        <div class="thumbs-up"  ng-click="incrementUpvotes(review)" hide-gt-sm>
             <span   class="fa fa-thumbs-o-up">  </span>
             <span> {{review.votes}} </span>
          </div>
@@ -22,7 +22,7 @@
          <div class="ratings"  >
 		 	<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
          </div>
-         <div class="thumbs-up"  ng-click="incrementUpvotes(review.id)" hide-xs hide-sm>
+         <div class="thumbs-up"  ng-click="incrementUpvotes(review)" hide-xs hide-sm>
             <span   class="fa fa-thumbs-o-up">  </span>
             <span> {{review.votes}} </span>
          </div>

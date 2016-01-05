@@ -79,9 +79,17 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   };
   
   
-  $scope.incrementUpvotes = function(review){
+    $scope.incrementUpvotes = function(review){
 	  	
-		Vote.incrementUpvotes(review);
-  };
+		Vote.incrementUpvotes(review).then(function(data){
+			if (data == false){
+				review.votes.length -= 1;
+			} else if (data === true){
+				review.votes.length += 1;
+			}
+		}).catch(function(err){
+			
+		});
+    };
   
 }]);

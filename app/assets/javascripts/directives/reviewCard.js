@@ -1,5 +1,5 @@
 angular.module('reviewCard',[])
-.directive('reviewCard', ['$state','Dialog', function( $state, Dialog){
+.directive('reviewCard', ['$state','Dialog','Vote', function( $state, Dialog, Vote){
 	return {
 		restrict: 'E',
 		scope: {
@@ -20,14 +20,16 @@ angular.module('reviewCard',[])
    			}
    			
    			
-   			$scope.incrementUpvotes = function(review_id){
-		 		products.upvoteReview(Auth, review_id).success(function(data){
-					$scope.review.votes = parseInt($scope.review.votes) + 1;
+   			$scope.incrementUpvotes = function(review){
+ 				Vote.incrementUpvotes(review).then(function(data){
+					if (data == false){
+						review.votes -= 1;
+					} else if (data === true){
+						review.votes += 1;
+					}
+				}).catch(function(err){
 					
-			    }).error(function(err){
-					  Dialog.youAlreadyVotedThisReview();
-			    });
-		 		
+				});
 		 		 
   			};
 		}]

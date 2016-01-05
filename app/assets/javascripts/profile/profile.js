@@ -149,8 +149,17 @@ angular.module('murnow')
             
             $scope.incrementUpvotes = function(review){
 	            
-				Vote.incrementUpvotes(review);
-			
+	            
+				Vote.incrementUpvotes(review).then(function(data){
+					if (data == false){
+						review.votes.length -= 1;
+					} else if (data === true){
+						review.votes.length += 1;
+					}
+				}).catch(function(err){
+					
+				});
+
 			};
         }
     ]);
