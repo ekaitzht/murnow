@@ -41,10 +41,3 @@ angular.module('murnow')
 }]);
 
 
-created_at: "2016-01-05T12:03:02.034Z"
-id: 159
-is_liked: false
-is_sent: false
-review_id: 100
-updated_at: "2016-01-05T12:03:02.034Z"
-user_id: 70
