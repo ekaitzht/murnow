@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20160105112653) do
     t.integer  "user_id"
     t.integer  "review_id"
     t.boolean  "is_sent",    default: false
-    t.boolean  "is_liked",   default: false
+    t.boolean  "is_liked",   default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

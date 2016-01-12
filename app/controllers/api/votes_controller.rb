@@ -5,7 +5,6 @@ class Api::VotesController < ApplicationController
   	    	@vote_response =  Vote.where(user_id: vote_params[:user_id], review_id: vote_params[:review_id]).take
   			
   			
-  			logger.info @vote.inspect			
   			if @vote_response.nil?
 	  			@vote =  Vote.create(user_id: vote_params[:user_id], review_id: vote_params[:review_id])
 		  		@user_gives_like = User.find_by_id(vote_params[:user_id])
@@ -22,12 +21,15 @@ class Api::VotesController < ApplicationController
 		  	  	
 		  	  	
 		  	  	CustomMailer.review_liked_by_user(params).deliver
+		  	  		  		ActiveRecord::Base.connection.execute("REFRESH MATERIALIZED VIEW top_reviews;");
+
 	  			respond_with  @vote, :location => nil
 	  		else 
 
 	  			respond_with  @vote_response, :location => nil
 
 	  		end
+	  		
   	end
   
   	#testing desploy staging
@@ -36,7 +38,8 @@ class Api::VotesController < ApplicationController
 	    @vote.is_liked = vote_update_params[:is_liked]
 		@vote.is_sent = vote_update_params[:is_sent]
 		@vote.save!
-		
+			  		ActiveRecord::Base.connection.execute("REFRESH MATERIALIZED VIEW top_reviews;");
+
 		respond_with({:msg => "Updated"}, :status => 200)
 	end
 	
