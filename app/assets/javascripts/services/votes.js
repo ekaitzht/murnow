@@ -19,7 +19,7 @@ angular.module('murnow')
 		} else {
 			var q = $q.defer()
 
-		    
+		    // First we try to create the object is it retuns false is the first time that we create the object
 		    this.create(Auth._currentUser.id, review.id).success(function(data){
 			    
 			    
