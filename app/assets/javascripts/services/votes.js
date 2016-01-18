@@ -2,7 +2,7 @@ angular.module('murnow')
 .factory('Vote',[ '$http','Auth', 'Intercom', 'Dialog', '$q', function($http, Auth, Intercom, Dialog, $q){
     
 	this.create = function(user_id, review_id){
-	    return $http.post('/api/votes/', {vote: {user_id, review_id: review_id}});
+	    return $http.post('/api/votes/', {vote: {user_id: user_id, review_id: review_id}});
 	};
 	
 	this.update = function(id, data){
