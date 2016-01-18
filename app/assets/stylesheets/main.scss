@@ -78,6 +78,8 @@ md-dialog {
 	.facebook-login-button {text-transform: none !important;background-color:#3A5795 !important;margin-bottom:10px;}
 	md-radio-button{    margin-top: 5px; margin-bottom: 5px;}
 	.submit-button{float:right;}
+	md-dialog-content {overflow:visible;}
+	form {margin-bottom:0em;}
 }
 
 #register-dialog{min-height:583px;}
@@ -322,6 +324,7 @@ md-dialog {
 	// * LIST STYLING */
 	.list_products {  // state name
 		@include list-products;	
+		.md-card-with-title {margin-top: auto;}
 	}
 	.trending_products{
 		@include list-products;	
