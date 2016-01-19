@@ -72,6 +72,15 @@ angular.module('murnow')
             hasBackdrop: false
         });
 	}
+	
+	
+	this.requestInvitationYoutube = function(){
+		$mdDialog.show({
+            controller: 'AuthCtrl',
+            templateUrl: 'auth/_request_invitation_youtube.html',
+            hasBackdrop: false
+        });
+	}
 
 	this.alertSentConfirmation = function() {
 		$mdDialog.show(

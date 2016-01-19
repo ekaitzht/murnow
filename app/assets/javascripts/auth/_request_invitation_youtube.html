@@ -3,7 +3,9 @@
  	<md-toolbar>
 		    <div class="md-toolbar-tools">
 		        <span flex></span>
-	
+		        <md-button class="md-icon-button" ng-click="goToLoginPrivateDialog()" type="button">
+					<md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+				</md-button>
 		    </div>
 	</md-toolbar>
 	<md-dialog-content class="sticky-container">
@@ -11,14 +13,19 @@
 		<div layout="column" layout-align="center center">
 			<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
 			<div class="title"> 
-		    	MAKEUP REVIEWS NOW
+		    	REQUEST YOUR INVITATION
 	    	</div>
 	    	<div class="pitch">
 		    	The Makeup Review Haven
 	    	</div>
+	   
 	    	<div class="explanation"  hide-sm hide-md>
-				Please provide us with your email and name and we will reach out with an invitation as soon as these are available.
+		    	
+				Read user reviews of your favorite makeup, and add your voice to the conversation. You can request an invitation now.
 	    	</div>
+	    	
+	    	
+	    	
 		    <form name="requestInvitationForm" ng-submit="sendRequestInvitation()" layout="column" layout-align="center center">
 			        <md-input-container>
 			          <label> Email </label>

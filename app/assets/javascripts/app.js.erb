@@ -173,6 +173,12 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
 	  		Dialog.resetPassword();
   	  }]   
     })
+    .state('requestinvitation', {
+      url: '/requestinvitation',
+	  onEnter: ['Dialog',function(Dialog){
+	  		Dialog.requestInvitationYoutube();
+  	  }]   
+    })
     .state('products', {
   		url: '/products/{id}',
   		templateUrl: 'products/_products.html',
