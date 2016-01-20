@@ -1,7 +1,7 @@
 
 <md-card class="md-card-with-title">
 	<div layout="column">
-		<div class="state-title"> Following </div>
+		<div class="state-title"> Followers </div>
 		<!-- LIST OF REVIEWS -->
 		 <md-list layout="row" ng-repeat="rows in chunkedData"  >
   
@@ -12,8 +12,13 @@
 							<div id="username"> {{user.username}}</div>
 						</a>	
 			</md-list-item>
+	
 		</md-list>
-
+		
+			<div class="title-type" ng-if="users.length == 0" layout="column" layout-align="space-around center">
+				You currently don't have any followers.
+				
+			</div>
 	</div>
  </md-card>
  

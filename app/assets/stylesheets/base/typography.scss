@@ -74,9 +74,13 @@ $josefin-sans-light: 'Josefin Sans Light', sans-serif;
 
 
 .title-20-bold {
-	@include title; font-size:20px; font-weight:bold
+	@include title; font-size:20px; font-weight:bold;
 }
 
 .body {
 	@include body;
+}
+
+.title-type {
+	@include title;
 }
