@@ -360,6 +360,7 @@ md-dialog {
 	}
 
 	.following,.followers{
+		
 		md-list-item.md-no-proxy, md-list-item .md-no-style {
 			-webkit-flex:none !important; flex:none !important;
 		}
@@ -371,8 +372,8 @@ md-dialog {
     		//display: inline-block !important;margin: 0px auto;
 		}
 		
-		md-card div {margin: 0 auto;}
-
+		md-card div md-list {margin: 0 auto;}
+		md-card {padding: 20px 0px 20px 0px;}
 	}
 	
 	
