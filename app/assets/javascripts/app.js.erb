@@ -34,22 +34,25 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
    /*************************** DON'T CREATE ANY STATE NAME WITH 'users' SUBSTRING!!! ***************************/
   $locationProvider.html5Mode(true);
   $stateProvider
-    .state('home', {  // CAMBIAR ESTOOOOOOO
+    /*.state('home', {  // CAMBIAR ESTOOOOOOO
       url: '/{token:join.*| *}', //join4e8f3fc53562062257b81cd13d7decb86727c623
       templateUrl: 'home/_reviews.html',
       controller: 'MainCtrl',
       resolve: {
 	  		productsPromise: [ 'products','Dialog','$stateParams','Auth', function( products, Dialog, $stateParams, Auth) {
 		  		
-		  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-					if( $stateParams.token.match(/join.*/) !== null){  // If it has a token structure we open the register dialog
-			  			Dialog.register();
-		  			} else {
-			  			Dialog.loginPrivate();
-		  			}
-		        });
+		 
+	        	return products.getMostPopularReviews();
+	        }]
+      }
+    })*/
+    .state('home', {  // CAMBIAR ESTOOOOOOO
+      url: '/', //join4e8f3fc53562062257b81cd13d7decb86727c623
+      templateUrl: 'home/_reviews.html',
+      controller: 'MainCtrl',
+      resolve: {
+	  		productsPromise: [ 'products', function( products) {		  		
+
 	        	return products.getMostPopularReviews();
 	        }]
       }
@@ -222,7 +225,7 @@ app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog',
        
     });
     
-    $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
+    /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
 		 Auth.currentUser().then(function (user){
    			$('.block-page').show();
@@ -237,7 +240,7 @@ app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog',
 	   			$('body').toggleClass("backdrop-active backdrop-deactivate");
    			}
         });
-    });
+    });*/
  
     $rootScope.closeDialog = function() {
             Dialog.hide();
