@@ -15,6 +15,11 @@
 				<div>
 					<label>1. How good is this product?</label>
 				</div>
+				 
+          <md-input-container>
+            <label for="testInput">Label</label>
+            <input id="testInput" type="text" autofocus>
+          </md-input-container>
 				<div class="ratings-for-user">    
 		          <rating ng-model="stars"    state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
 		        </div>
@@ -39,7 +44,7 @@
 					<label>3. Tell us more about your experience</label>
 				</div>
 		    	<md-input-container md-no-float>
-		    		<textarea name="bodyField" type="text" id="body-text-review" class="form-control" ng-model="body" ></textarea>
+		    		<textarea name="bodyField" type="text" id="body-text-review" class="form-control" ng-model="body" tabindex="-1"></textarea>
 		    	</md-input-container>
 		    	
 		    	
