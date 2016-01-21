@@ -1,5 +1,5 @@
 <md-card class="md-card-with-title">
-	<div layout="column" layout-align="space-around start">
+	<div layout="column" >
 		<div class="state-title"> Following </div>
 		<!-- LIST OF REVIEWS -->
 		 <md-list layout="row" ng-repeat="rows in chunkedData"  >
@@ -12,13 +12,13 @@
 						</a>	
 			</md-list-item>
 			
-			<div class="title-type" ng-if="users.length == 0" layout="column" layout-align="space-around center">
+			
+		</md-list>
+		<div class="title-type" ng-if="users.length == 0" layout="column" layout-align="space-around center">
 
 				
 				You aren't following any reviewers.				
 			</div>
-		</md-list>
-
 	</div>
  </md-card>
  

@@ -1,29 +1,23 @@
-<md-dialog id="register-dialog" aria-label="Sign Up Dialog"  class="beta-dialog"> 
+<md-dialog aria-label="Sign Up Dialog"> 
  	<md-toolbar>
- 	
 		    <div class="md-toolbar-tools">
+		      <h2>Join our community! </h2>
 		      <span flex></span>
-		
+		      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
+		        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
+		      </md-button>
 		    </div>
 	</md-toolbar>
-	<md-dialog-content >
-	
-		<img id="happy-cupcake" src="/assets/happy_cupcake_big.png" hide-gt-sm>
-		<div layout="column" layout-align="center center">				
-			<div class="title"> 
-		    	MAKEUP REVIEWS NOW
-	    	</div>
-	    	<div class="pitch">
-		    	The Makeup Review Haven
-	    	</div>
-	    	<div class="explanation" hide-sm hide-md>
-		
-You have been invited to Murnow! Read user reviews of your favorite makeup, and add your voice to the conversation. Sign up now to get a preview of what's in store!	    	</div>
-		    <form name="registerForm" ng-submit="register()" layout="column">
+	<md-dialog-content class="sticky-container">
+		<div>
+			<div layout="row" layout-align="center center">
+			 	<md-button class="md-primary"  ng-click="showDialogLogin()">I already have an account</md-button>
+			</div>
+		    <form name="registerForm" ng-submit="register()">
 				<div layout="column">
 			        <md-input-container>
 			          <label> Email </label>
-			          <input ng-model="user.email" type="email" name="email" autofocus autocomplete="email" required>
+			          <input ng-model="user.email" type="email" name="email" autofocus autocomplete="email" >
 			        </md-input-container>
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorEmail">
 			          {{errors.errorEmail}}
@@ -31,7 +25,7 @@ You have been invited to Murnow! Read user reviews of your favorite makeup, and 
 			        
 			        <md-input-container>
 			          <label> Name </label>
-			          <input type="text"  ng-model="user.username"  name="name" autocomplete="name" required>
+			          <input type="text"  ng-model="user.username"  name="name" autocomplete="name" >
 			        </md-input-container>
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorName">
 			          {{errors.errorName}}
@@ -39,31 +33,22 @@ You have been invited to Murnow! Read user reviews of your favorite makeup, and 
 			
 			        <md-input-container>
 			          <label> Password </label>
-			          <input ng-model="user.password" type="password" name="password" ng-model="user.password" autocomplete="password" required>
+			          <input ng-model="user.password" type="password" name="password" ng-model="user.password" autocomplete="password"  >
 			        </md-input-container>
 			
 			        <div class="alert alert-danger" role="alert" ng-show="errors.errorPassword">
 			          {{errors.errorPassword}}
 			        </div>
 			    </div>
-			    <div layout="column" layout-align="center center">
+			    <div layout="row" layout-align="space-between center">
 					
 						
-							<!--<md-button class="md-raised md-primary facebook-login-button" ng-click="facebookRegister()"  >Connect with Facebook</md-button>-->
-						<md-button type="submit" class="md-raised md-primary" ng-hide="invitationUsed">JOIN</md-button>	
-				    	<md-button  class="button-not-raised" type="button" ng-click="goToLoginPrivateDialog()"  >I already have an account</md-button>		
+						<md-button class="md-raised md-primary facebook-login-button" ng-href="/users/auth/facebook" target="_self">Connect with Facebook</md-button>
+						<md-button type="submit" class="md-raised md-primary">Sign Up</md-button>	
 
-						<div ng-show="invitationUsed" class="body">
-							This invitation has already been used. You can request a new invitation <span class="cursor" ng-click="showRequestInvitationDialog()"> here </span>.		        
- 						</div>
-				</div>	
-			    <div class="explanation margin" show-md  hide-gt-sm>
-		You have been invited to Murnow! Make Up Reviews Now allows you to voice your opinion on your favourite makeup and see what other people are saying. Sign up now to get a preview of what is in store!
-	    	</div>	  
-	    	
-	    	
+				</div>		  
 			</form>
-			
+
 						
 		</div>
 		</md-dialog-content> 

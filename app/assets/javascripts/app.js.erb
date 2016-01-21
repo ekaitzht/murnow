@@ -134,11 +134,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       templateUrl: 'profile/_profile.html',
       controller: 'Profile',
        onEnter: ['Dialog','Auth',function(Dialog, Auth){
-	  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-			  			Dialog.loginPrivate();
-		        });
+	
   	  	}]  
     })
     .state('competition', {
@@ -155,11 +151,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       templateUrl: 'profile/_edit_profile.html',
       controller: 'EditProfileCtrl',
        onEnter: ['Dialog','Auth',function(Dialog, Auth){
-	  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-			  			Dialog.loginPrivate();
-		        });
+	  
   	  	}]  
     })
     .state('resetpassword', {
@@ -186,11 +178,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
       	},
 
   		 onEnter: ['Dialog','Auth',function(Dialog, Auth){
-	  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-			  			Dialog.loginPrivate();
-		        });
+	
   	  	}]  
 	});
 
