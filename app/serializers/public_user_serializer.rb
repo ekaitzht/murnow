@@ -17,6 +17,10 @@ class PublicUserSerializer < ActiveModel::Serializer
 	
 	# This function checks if a user has a relationship between both users.
 	def am_i_following_this_user
+	  if serialization_options[:current_user].nil? # We also return false is the user is not login
+		  return false
+      end 
+      
 	  if  serialization_options[:current_user].active_relationships.find_by(followed_id: serialization_options[:public_user].id).present?
 		  return true
       else 
