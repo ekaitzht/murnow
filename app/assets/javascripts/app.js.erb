@@ -73,11 +73,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
         }]
       },
        onEnter: ['Dialog','Auth',function(Dialog, Auth){
-	  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-			  			Dialog.loginPrivate();
-		        });
+	 
   	  	}]  
       
     })
@@ -92,11 +88,7 @@ function($stateProvider, $urlRouterProvider,$locationProvider, $rootScope, $prov
         }]
       },
        onEnter: ['Dialog','Auth',function(Dialog, Auth){
-	  		Auth.currentUser().then(function (user){
-				   
-				}, function(error) { // User is not registered
-			  			Dialog.loginPrivate();
-		        });
+	  	
   	  	}]  
     })
     .state('forgotpassword', {
