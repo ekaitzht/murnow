@@ -32,7 +32,7 @@
 					    </div>
 					    
 					    <div layout="row" class="followers-info">
-						    	<div id="following-count">
+						    	<div id="following-count"   ng-class="{'linkinactive': user.following_count === 0}">
 								    <a ng-href="/following/{{user.id}}">
 									    <div layout="column" layout-align="center center">
 									    	<div class="title-20-bold "> {{user.following_count}}</div>
@@ -40,7 +40,7 @@
 									    </div>
 									</a>
 						    	</div>
-						    	<div id="followers-count">
+						    	<div id="followers-count" ng-class="{'linkinactive': user.followers_count === 0}">
 								    <a ng-href="/followers/{{user.id}}">
 									    <div layout="column" layout-align="center center">
 									    	<div  class="title-20-bold"> {{user.followers_count}}</div>

@@ -126,7 +126,16 @@
 				#following-count{}
 				#followers-count{margin-left:1rem;}
 				margin-bottom:1.6rem;
+				#following-count.linkinactive, #followers-count.linkinactive{
+				   pointer-events: none !important;
+				   cursor: default;
+				   a > div > div{
+					   color: #ccc;
+				   }
+				 }
 			}
+			
+			
 		}
 		
 		.profile-button {height:4.25rem;width:4.25rem;
