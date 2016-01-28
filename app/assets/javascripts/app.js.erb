@@ -243,7 +243,7 @@ app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog',
     
    $rootScope.$on('$stateChangeSuccess', function(event, toState,   toParams , fromState, fromParams){    
 	   Intercom.update();
-	   
+	   fbq('track', "PageView");
 	   $("md-autocomplete-wrap input").blur(); // This fix a bug in mobile 
 	   $rootScope.pageTitle = "Makeup Reviews Now"; // Default title
 	  
