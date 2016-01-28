@@ -29,7 +29,7 @@ function($scope, scopeProduct, products, Dialog, Intercom){
 			      }
 	  		).success(function(response) {
 		  		var review = response.review;
-		  	
+		  		fbq('track', 'AddToWishlist');
 		  		  		
 		  		review["votes"] = []; // Adding votes property because when we start we don't have votes properties
 		  		
