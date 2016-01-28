@@ -55,6 +55,7 @@ angular.module('murnow')
 		o.searchQuery = searchQuery;     
 		
 		o.from = 0;
+		fbq('track', 'Search');
 		return searchToElasticSearch(searchQuery)		
 	 
 	};
