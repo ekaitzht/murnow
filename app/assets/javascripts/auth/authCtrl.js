@@ -80,7 +80,6 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
 	    Auth.register($scope.user).then(function(ev){
 	     	 Intercom.boot(ev);
-	     	 fbq('init', '1677356145856930');
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.
