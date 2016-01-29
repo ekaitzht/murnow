@@ -434,7 +434,8 @@ md-dialog {
 			color:black;
 			opacity:1;
 		}
-		a:visited,a{color:$accent-color;}
+		li a:visited,a{color:$accent-color;}
+		md-button {font-size:25px;}
 		
 	}
 

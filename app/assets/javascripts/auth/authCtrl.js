@@ -77,13 +77,12 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 
     $scope.errors = {};
     
-    $http.get('/api/check_register_token/'+$stateParams.token).success(function(data){
-	    Auth.register($scope.user).then(function(ev){
+      Auth.register($scope.user).then(function(ev){
 	     	 Intercom.boot(ev);
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.
-			fbq('track', 'CompleteRegistration');
+	     
 	    }, function(error) {
 	        // There was an error logging in.
 	        // Reject the original request's promise.
@@ -97,12 +96,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
 	        if ( errors.hasOwnProperty("username") ) {
 	          $scope.errors.errorName = "Name " + errors.username[0];
 	        }
-	    });    
-    }).error(function(err, statusCode){
-	    if ( statusCode == 401) {
-		     $scope.invitationUsed = true;
-	    }
-    });
+	    });   
     
   };
   
