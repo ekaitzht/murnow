@@ -49,7 +49,7 @@
 		        	{{errors.reviewDialog}}
 		      	</div>
 		       <div class="md-actions" layout="row" layout-align="end center" id="send-review">
-			   		<md-button  type='submit' class="md-raised md-primary"  >Send Review</md-button>  
+			   		<md-button id="add-review-buton"  type='submit' class="md-raised md-primary" ng-disabled="sendButtonDisabled" md-no-ink="sendButtonDisabled">{{sendButtonName}}</md-button>  
 	  			</div>
 	    </md-dialog-content>
 	 
