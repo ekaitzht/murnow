@@ -79,6 +79,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     
       Auth.register($scope.user).then(function(ev){
 	     	 Intercom.boot(ev);
+	     	   fbq('track', 'CompleteRegistration');
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.
