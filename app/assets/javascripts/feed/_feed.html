@@ -6,11 +6,11 @@
 			   <div  class="md-list-item-image wrapper-images"   >
 				   
 				   
-				  <div class="thumbnail-big" ng-show="review.user.hash_url_image"><img  ng-click="goToProduct(review.product_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="thumbnail-product border-radius-50"></div>
-			      <div class="thumbnail-small" ng-hide="review.user.hash_url_image"><img  ng-click="goProfile(review.user_id)" ng-show="review.hash_url_image" ng-src="/assets/anonymousUser.png" class=" not-outline thumbnail-user border-radius-50" ></div> 
+				  <div class="thumbnail-big"><img  ng-click="goToProduct(review.product_id)" ng-src="https://{{cdn}}/images_products/{{review.product.hash_url_image}}.jpg" class="thumbnail-product border-radius-50"></div>
+				  
+			      <div class="thumbnail-small" ng-hide="review.user.hash_url_image"><img  ng-click="goProfile(review.user_id)" ng-src="/assets/anonymousUser.png" class=" not-outline thumbnail-user border-radius-50" ></div> 
 			      
-			      
-			      <div class="thumbnail-small" ><img ng-click="goToProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>
+			      <div class="thumbnail-small" ng-show="review.user.hash_url_image" ><img ng-click="goToProfile(review.user_id)" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="thumbnail-product border-radius-50"></div>
 			   </div>
 			   <div class="md-list-item-text review-text" layout="column" layout-align="start start" >
 			      	<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
