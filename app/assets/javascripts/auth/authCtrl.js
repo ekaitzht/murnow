@@ -19,7 +19,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     }
     Auth.login($scope.user).then(function(ev){
 		Intercom.boot(ev);
-		$state.go('home');
+		Dialog.hide();
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
         // Resolve the original request's promise.
