@@ -394,6 +394,7 @@ md-dialog {
 			@include review-product-mixed;
 			.review-body {cursor:pointer;}
 		}
+		
 		p {@include body;}
 		.profile-button svg{top: 1rem;}
 		.anonymous-image .profile-button {display:initial !important;}
@@ -401,7 +402,8 @@ md-dialog {
 	}
 	
 	.edit_profile {
-	
+		md-radio-button {margin-top:10px !important;}
+		md-checkbox {margin-top:10px !important;}
 		.skin-problem-checkbox{text-transform: capitalize;}
 		.wrapper-image-profile {cursor:pointer;}
 		@include header-profile;
