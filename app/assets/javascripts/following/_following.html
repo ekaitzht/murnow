@@ -5,9 +5,16 @@
 		 <md-list layout="row" ng-repeat="rows in chunkedData"  >
   
 		    <md-list-item   itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="user in rows | orderBy:'-created_at'"  >
-						<a ng-href="/profile/{{user.id}}" >
+						<a ng-show="user.hash_url_image" ng-href="/profile/{{user.id}}" >
 							<img ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{user.hash_url_image}}" class="face" alt="{{user.username}}">
 		 
+							<div id="username"> {{user.username}}</div>
+						</a>
+						
+						
+						<a ng-hide="user.hash_url_image" ng-href="/profile/{{user.id}}" >
+							<img  ng-src="/assets/anonymousUser.png" class="face" alt="{{user.username}}">
+							
 							<div id="username"> {{user.username}}</div>
 						</a>	
 			</md-list-item>
@@ -20,4 +27,6 @@
  
  
  
+
+
 
