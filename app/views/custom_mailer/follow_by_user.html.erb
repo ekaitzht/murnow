@@ -1,0 +1,5 @@
+<p>Hi <%=  @request['username_receives_follow'] %>,</p>
+
+<p><%=  @request['username_gives_follow'] %> has liked your review.</p>
+
+<p>Check out <%= link_to @request['username_gives_follow']+"'s profile", ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s,:style=>'color:#FFAABB;', target: '_blank' %>

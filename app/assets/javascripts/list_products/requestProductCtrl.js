@@ -23,19 +23,19 @@ function($http, $scope, Dialog, Auth, Intercom){
 	
 	$scope.requestProduct = function(){
 
-	 	if($scope.hasOwnProperty('user')) {
+	 	/*if($scope.hasOwnProperty('user')) {
 			$scope.application.user_id = $scope.user.user_id; 
 			Intercom.requestProduct($scope.application);
 			$scope.sentRequest = true;
 
-		} else {
+		} else { */
 			$http.put('/api/requests/', {application: $scope.application} ).success(function(data){
 	 			$scope.sentRequest = true;
 		 	}).error(function(err){
 			 	
 			 	
 		 	});
-		}
+		/*}*/
  	}
  	
  	
