@@ -56,6 +56,7 @@ angular.module('murnow')
 		
 		o.from = 0;
 		fbq('track', 'Search');
+		ga('send', 'event', 'Research', 'Search', 'Action to search a producto in the header');
 		return searchToElasticSearch(searchQuery)		
 	 
 	};
