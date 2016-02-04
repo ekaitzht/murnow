@@ -6,6 +6,21 @@ class Api::RelationshipsController < ApplicationController
     userfollowed.increment!(:followers_count)
     current_user.increment!(:following_count)
     current_user.follow(userfollowed) # we need to check if this gives a error and return 200 or 500
+    
+    
+    
+    
+    
+    params['email_to'] = userfollowed.email
+	params['username_gives_follow'] = current_user.username
+	params['username_receives_follow'] = userfollowed.username
+		  	  	
+	params['user_id_gives_follow'] = current_user.id
+		  	  	
+		  	  	
+    CustomMailer.follow_by_user(params).deliver
+    
+    
 	respond_with({:status => 200}, :location => nil)
   end
 
