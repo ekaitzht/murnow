@@ -9,6 +9,7 @@ angular.module('murnow')
 function($scope, $rootScope, $state,$stateParams, products, configMurnow, User){
   		var cdn = configMurnow.cdn_domain_name;
   		var enviroment = configMurnow.enviroment;
+  		$rootScope.pageTitle = "Make Up Reviews Now";
   		var products = products.products;
 	
 			for (i = 0; i <= 3; i++) {
