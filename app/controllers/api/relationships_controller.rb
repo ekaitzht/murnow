@@ -11,12 +11,23 @@ class Api::RelationshipsController < ApplicationController
     
     
     
+    
+    
+    
+    #Preparing parameters for email
     params['email_to'] = userfollowed.email
 	params['username_gives_follow'] = current_user.username
 	params['username_receives_follow'] = userfollowed.username
-		  	  	
 	params['user_id_gives_follow'] = current_user.id
-		  	  	
+	params['followers_count'] = current_user.followers_count
+	params['following_count'] = current_user.following_count
+	
+	if current_user.hash_url_image.empty?  then
+		params['url_image_profile'] = '/assets/anonymousUser.png'
+		
+	else
+		params['url_image_profile'] = 'https://' + ENV['CDN_DOMAIN_NAME'].to_s + '/profile_images_'+  Rails.env.to_s  + '/' + current_user.hash_url_image.to_s
+	end	  	  	
 		  	  	
     CustomMailer.follow_by_user(params).deliver
     
@@ -33,4 +44,7 @@ class Api::RelationshipsController < ApplicationController
   end
     
 end
+
+
+
 
