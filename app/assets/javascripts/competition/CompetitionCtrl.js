@@ -1,7 +1,8 @@
 angular.module('murnow')
 .controller('CompetitionCtrl',
-  ['$scope',
-  function($scope){
-	  
+  ['$scope','$rootScope',
+  function($scope, $rootScope){
+	    		$rootScope.pageTitle = "Make Up Reviews Now Competition";
+
 	 
 }]);
