@@ -20,7 +20,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     Auth.login($scope.user).then(function(ev){
 		Intercom.boot(ev);
 		
-		ga('send', 'event', 'MinorAction', 'Login', $scope.user.username,  $scope.user.id);
+		ga('send', 'event', 'MinorAction', 'Login', 'user_id='+$scope.user.id);
 		Dialog.hide();
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
