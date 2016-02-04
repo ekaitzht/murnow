@@ -111,8 +111,10 @@ angular.module('murnow')
 
             $scope.followUser = function(followed_id) {
                 User.followUser(followed_id).success(function(data) {
+	                ga('send', 'event', 'MinorAction', 'FollowUser', 'Profile Followed', $scope.user.id);
+
                     $scope.user.followers_count += 1;
-					 User.user.following_count += 1;
+					User.user.following_count += 1;
                     $scope.user.am_i_following_this_user = true;
 
                 }).error(function(error) {
@@ -125,6 +127,7 @@ angular.module('murnow')
                     $scope.user.followers_count -= 1;
                     User.user.following_count -= 1;
                     $scope.user.am_i_following_this_user = false;
+                    ga('send', 'event', 'MinorAction', 'UnfollowUser', 'Profile Unfollowed', $scope.user.id);
                 }).error(function(error) {
 
                 });

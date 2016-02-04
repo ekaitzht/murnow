@@ -19,6 +19,8 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     }
     Auth.login($scope.user).then(function(ev){
 		Intercom.boot(ev);
+		
+		ga('send', 'event', 'MinorAction', 'Login', $scope.user.username,  $scope.user.id);
 		Dialog.hide();
     }).then(function(response) {
         // Successfully recovered from unauthorized error.
@@ -78,8 +80,12 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
     $scope.errors = {};
     
       Auth.register($scope.user).then(function(ev){
-	     	 Intercom.boot(ev);
-	     	   fbq('track', 'CompleteRegistration');
+	     	Intercom.boot(ev);
+	     	fbq('track', 'CompleteRegistration');
+		 	ga('send', 'event', 'MinorAction', 'Signup', $scope.user.username,  $scope.user.id);
+		 	
+		 	
+		 	
 	    }).then(function(response) {
 	        // Successfully recovered from unauthorized error.
 	        // Resolve the original request's promise.

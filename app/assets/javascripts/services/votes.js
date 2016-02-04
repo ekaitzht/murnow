@@ -26,12 +26,13 @@ angular.module('murnow')
 			    if ( data.is_liked === false) {
 					
 					Intercom.likeReview(review, Auth._currentUser.id);
+					ga('send', 'event', 'MinorAction', 'Like', 'User gives like to review');
 					self.update(data.id, {vote:{ is_liked: true, is_sent:true}});
 					q.resolve(true);			
 
 				} else {
 					
-					
+					ga('send', 'event', 'MinorAction', 'Unlike', 'User gives unlike to review');
 					self.update(data.id, {vote:{ is_liked: false, is_sent:true}});
 					q.resolve(false);
 				}

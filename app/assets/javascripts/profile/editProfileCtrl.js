@@ -127,6 +127,8 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 		    User.updateUserProfile($scope.user, $scope.user.skin_problems);
 		    
 		    Auth.currentUser().then(function(user) {$state.go('profile', {id: user.id});});
+		    ga('send', 'event', 'MinorAction', 'ProfileUpdated', 'Profile Updated');
+
 		    console.log('file ' + config.file.name + 'is uploaded successfully. Response: ' + data);
 		}).error(function(err){
 		
@@ -135,7 +137,7 @@ function($scope, User, $state, $stateParams, $upload, Auth, Amazon, Dialog, $htt
 	    
         User.updateUserProfile($scope.user, $scope.user.skin_problems)
         Auth.currentUser().then(function(user) {
-	     
+	     	 ga('send', 'event', 'MinorAction', 'ProfileUpdated', 'Profile Updated', user.id);	
 	         $state.go('profile', {id: user.id});
 	    }, function(error) {
 	        // unauthenticated error
