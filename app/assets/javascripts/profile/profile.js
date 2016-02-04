@@ -111,7 +111,7 @@ angular.module('murnow')
 
             $scope.followUser = function(followed_id) {
                 User.followUser(followed_id).success(function(data) {
-	                ga('send', 'event', 'MinorAction', 'FollowUser', 'Profile Followed', $scope.user.id);
+	                ga('send', 'event', 'MinorAction', 'FollowUser', 'Profile Followed' +  $scope.user.id);
 
                     $scope.user.followers_count += 1;
 					User.user.following_count += 1;

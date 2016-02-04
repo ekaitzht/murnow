@@ -39,7 +39,7 @@ function($scope, scopeProduct, products, Dialog, Intercom){
 		  		).success(function(response) {
 			  		var review = response.review;
 			  		fbq('track', 'AddToWishlist');
-			  		ga('send', 'event', 'MayorAction', 'AddReview', 'User gives review to a product');
+			  		ga('send', 'event', 'MayorAction', 'AddReview', 'User gives review to a product review_id='+ review.id);
 			  		
 			  		review["votes"] = []; // Adding votes property because when we start we don't have votes properties
 			  		

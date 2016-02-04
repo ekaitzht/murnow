@@ -82,7 +82,7 @@ function($scope, $state, Auth, User, $stateParams, $cookies, Dialog, $rootScope,
       Auth.register($scope.user).then(function(ev){
 	     	Intercom.boot(ev);
 	     	fbq('track', 'CompleteRegistration');
-		 	ga('send', 'event', 'MinorAction', 'Signup', $scope.user.username,  $scope.user.id);
+		 	ga('send', 'event', 'MinorAction', 'Signup', 'user_id='+$scope.user.id);
 		 	
 		 	
 		 	
