@@ -1,54 +1,36 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
 
-  <style>
-	#follow-user-notification {font-family:"Roboto", sans-serif;}
-  	.wrapper-image-profile img {border-radius:50%; border: 2px solid #ffaabb;}
-  	.wrapper-image-profile > div  {display:inline-block;}
-  	.info-user-profile {    position: absolute;margin-left: 2rem;}
-  	.followers-info{text-align: center;margin-left: -3rem;}
-  	#following-count, #followers-count {margin-top:1rem;}
-  	.followers-info .body {    opacity: 0.54;font-size: 18px;line-height: 21px;}
-    .title-20-bold{    opacity: 0.87;color: black;font-size: 1.875rem;line-height: 2rem;margin: 0rem;font-family: "Roboto", sans-serif;font-weight: 400;font-size: 20px;font-weight: bold;}
-    a {text-decoration: none; color:black;}
-  	.username{    opacity: 0.87;    color: black;    font-size: 1.875rem;}
-  </style>
-</head>
-<body>
  
-<div id="follow-user-notification" title="Follow user notification">
-	<p>Hey <%=  @request['username_receives_follow'] %>,</p>
+<div id="follow-user-notification" title="Follow user notification" >
+	<p style="font-family:'Roboto', sans-serif;">Hey <%=  @request['username_receives_follow'] %>,</p>
 
-	<p>You got a new follower! 😀</p>
+	<p style="font-family:'Roboto', sans-serif;">You got a new follower! 😀</p>
 	
 			<div class="wrapper-image-profile">
-				<div>
-			    	<a href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s %>"> <%= image_tag(@request['url_image_profile'], :alt => "Image user") %> </a>
+				<div style="display: inline-block;font-family:'Roboto', sans-serif;">
+			    	<a style="text-decoration: none;color: black;font-family:'Roboto', sans-serif;" href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s %>"> <%= image_tag(@request['url_image_profile'], :alt => "Image user", :style=> 'border-radius:50%; border: 2px solid #ffaabb;') %> </a>
 				</div>
-				<div class="info-user-profile layout-align-space-between-start layout-row" layout="row" layout-align="space-between start">
-					<a href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s %>"> <div layout="row" layout-align="space-between center" >
+				<div class="info-user-profile layout-align-space-between-start layout-row" layout="row" layout-align="space-between start" style="position: absolute;margin-left: 2rem;display: inline-block;font-family:'Roboto', sans-serif;">
+					<a href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s %>"  style="text-decoration: none;color: black;font-family:'Roboto', sans-serif;"> <div layout="row" layout-align="space-between center" >
 						<div layout="column" class="bio-block layout-column">
 								
-								    <div class="username">
-								    	 <span itemprop="name" class="ng-binding"> <%=  @request['username_receives_follow'] %></span>
+								    <div class="username" style="opacity: 0.87;color: black;font-size: 1.875rem;">
+								    	 <span itemprop="name" class="ng-binding" style="font-family:'Roboto', sans-serif;"> <%=  @request['username_receives_follow'] %></span>
 								    </div>
 								</div>
 							    <div class="bio">
-							      <span ng-show="user.bio" itemprop="description" class="ng-binding" aria-hidden="false"> Makeup is Art &lt;3</span>
+							      <span ng-show="user.bio" itemprop="description" class="ng-binding" aria-hidden="false" style="font-family:'Roboto', sans-serif;"> Makeup is Art &lt;3</span>
 							    </div>
-							    <div layout="row" class="followers-info layout-row">
-								    	<div id="following-count" accesskey="">
+							    <div layout="row" class="followers-info layout-row" tyle="margin-left: -3rem;">
+								    	<div id="following-count" accesskey="" style="margin-top: 1rem;    margin-right: 3rem;">
 											    <div layout="column" layout-align="center center" class="layout-align-center-center layout-column">
-											    	<div class="title-20-bold  ng-binding"> <%= @request['following_count'].to_s %></div>
-											    	<div class="body"> Following </div>
+											    	<div class="title-20-bold  ng-binding" style="opacity: 0.87;color: black;font-size: 20px;line-height: 2rem;margin: 0rem;font-family: &quot;Roboto&quot;, sans-serif;font-weight: bold;font-family:'Roboto', sans-serif;text-align: center;"> <%= @request['following_count'].to_s %></div>
+											    	<div class="body"  style="opacity: 0.54;font-size: 18px;line-height: 21px;font-family:'Roboto', sans-serif;text-align: center;"> Following </div>
 											    </div>
 								    	</div>
-								    	<div id="followers-count" >
+								    	<div id="followers-count" style="margin-top: 1rem;    margin-right: 3rem;">
 											    <div layout="column" layout-align="center center" class="layout-align-center-center layout-column">
-											    	<div class="title-20-bold ng-binding"> <%= @request['followers_count'].to_s %></div>
-											    	<div class="body"> Followers </div>
+											    	<div class="title-20-bold ng-binding" style="opacity: 0.87;color: black;font-size: 20px;line-height: 2rem;margin: 0rem;font-family: &quot;Roboto&quot;, sans-serif;font-weight: bold;font-family:'Roboto', sans-serif;text-align: center;"> <%= @request['followers_count'].to_s %></div>
+											    	<div class="body"  style="opacity: 0.54;font-size: 18px;line-height: 21px;font-family:'Roboto', sans-serif;text-align: center;"> Followers </div>
 											    </div>
 								    	</div>
 							    </div>
@@ -57,10 +39,8 @@
 				</div>	
   
 			</div>
-		<p>PS: We have a weekly give away. The more you review, the more likely you are to win. Click <%= link_to 'here', ActionMailer::Base.default_url_options[:host] + "/competition", target: '_blank',:style=>'color:#FFAABB;'   %> to check out this week's give away.</p>	
+		<p style="font-family:'Roboto', sans-serif;">PS: We have a weekly give away. The more you review, the more likely you are to win. Click <%= link_to 'here', ActionMailer::Base.default_url_options[:host] + "/competition", target: '_blank',:style=>'color:#FFAABB;'   %> to check out this week's give away.</p>	
 		
 	   
 </div>
  
-</body>
-</html>
