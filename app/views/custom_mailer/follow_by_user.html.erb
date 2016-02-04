@@ -2,11 +2,11 @@
 
 <p>You got a new follower! 😀</p>
 
-<%=  @request['username_gives_follow'] %> has liked your review.</p>
-
 <p>Check her profile out <%= link_to "here", ActionMailer::Base.default_url_options[:host] + "/profile/" + @request['user_id_gives_follow'].to_s,:style=>'color:#FFAABB;', target: '_blank' %>.</p>
 
 PS: We have a weekly give away. Click here to check out this week’s give away.
+
+
 
 
 
