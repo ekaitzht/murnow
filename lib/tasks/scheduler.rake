@@ -14,9 +14,9 @@ namespace :cron do
 				result.each do |row|
 					if !row['created_at'].nil? then
 						if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 7.days)
-							
+
 							params['users_array_names'] << { username: User.find_by_id(row['user_gives_like_id']).username, id: User.find_by_id(row['user_gives_like_id']).id }
-							params['user_email_report'] = user.email
+							params['email_to'] = user.email
 							params['user_username_report'] = user.username
 						else
 						
@@ -24,10 +24,9 @@ namespace :cron do
 					end
 				end
 			
-			
 				# We don't have any user in users_array_name we don't send the email
 				if !params['users_array_names'].empty?
-					#CustomMailer.follow_by_user(params).deliver
+					CustomMailer.likes_report(params).deliver
 				end
 			end
 			
@@ -43,7 +42,7 @@ namespace :cron do
 					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 7.days) then
 						params['followers'] << { username: follower.username, id: follower.id}
 						
-						params['user_email_report'] = user.email
+						params['email_to'] = user.email
 						params['user_username_report'] = user.username
 					else
 					
@@ -51,7 +50,15 @@ namespace :cron do
 					
 					print params
 				end
+				# We don't have any user in users_array_name we don't send the email
+				if params.has_key?('followers')
+					if !params['followers'].empty?
+						CustomMailer.followers_report(params).deliver
+					end
+				end
 			end
+			
+			
 			
 		  	puts "FINSHING EMAILS TO --->"+ user.email.to_s
 		end

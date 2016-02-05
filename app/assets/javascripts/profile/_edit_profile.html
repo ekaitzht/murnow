@@ -113,10 +113,22 @@
 			      <label>Instagram Username</label>
 			      <input ng-model="user.instagram_profile">
 			    </md-input-container>
-		        
+			    <!--NOTIFICATIONS -->
+			    
+		       			 <md-checkbox class="notifications"  ng-model="user.notification_followers" aria-label="Notification Followers">
+							            Receive each week notification followers.
+						</md-checkbox>
+						<md-checkbox class="notifications"  ng-model="user.notification_likes" aria-label="Notification Followers">
+							            Receive each week notification likes.
+						</md-checkbox>
+						
+				<!-- NOFICATIONS -->
 		          <div layout="row" class="submit-button"  layout-align="end center">
 						<md-button  type="submit"  ng-disabled="updateForm.$invalid" class="md-raised md-primary">SAVE</md-button>  
 			        </div>
+			        
+			        
+			        
 		        
 		        
 		  </div>

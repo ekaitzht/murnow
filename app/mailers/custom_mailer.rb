@@ -25,21 +25,18 @@ class CustomMailer < ActionMailer::Base
   end
   
   
-  def follow_by_user(request)
-	 @request = request;
+
+  def  likes_report(request)
+	   @request = request;
     
-     mail to: @request['email_to'], subject: @request['username_gives_follow'] +" is following you."
+	   mail to: @request['email_to'], subject: "You have new likes in your reviews"	  
   end
   
   
-  def  send_email_report_followers(request)
-	  
-	  
-  end
-  
-  
-  def send_email_report_likes(request)
-	  
+  def followers_report(request)
+	@request = request;
+    
+    mail to: @request['email_to'], subject: "You have new followers "
 
 
   end

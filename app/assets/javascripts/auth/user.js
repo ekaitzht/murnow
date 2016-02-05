@@ -14,7 +14,9 @@ angular.module('murnow')
 	    hash_url_image: null,
 	    age:null,
 	    following_count: null,
-	    followers_count: null
+	    followers_count: null,
+	    notification_followers: null,
+	    notification_likes: null
     }; 	
 
     this.forgotPassword = function(email) {
@@ -62,6 +64,8 @@ angular.module('murnow')
 		this.user.age = user.age;
 		this.user.following_count = user.following_count;
 		this.user.followers_count = user.followers_count;
+		this.user.notification_followers = user.notification_followers;
+		this.user.notification_likes = user.notification_likes;
 	};
 	
 	
