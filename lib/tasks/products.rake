@@ -350,7 +350,6 @@ Hypoallergenic.'
 	
 	
 	task :reset_reviews => :environment do
-	
 		Product.find_each do |product|
 			if product.number_reviews > 0 # we have reviews in the system
 				total_sum = 0

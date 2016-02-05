@@ -98,6 +98,9 @@ class User < ActiveRecord::Base
   	end
   	
   	
+
+  	
+  	
 	 # Follows a user.
 	def follow(other_user)
 		active_relationships.create(followed_id: other_user.id)
