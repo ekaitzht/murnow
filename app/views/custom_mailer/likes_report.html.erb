@@ -1,1 +1,7 @@
-<p> Likes report </p>
+<p>Hey <%=  @request['user_username_report'] %>  the next users have been given a like:</p>
+
+<%   @request['users_array_names'].each do |q| %>
+	  <%= link_to q[:username]+ " ", ActionMailer::Base.default_url_options[:host] + "/profile/" + q[:id].to_s,:style=>'color:#FFAABB;', target: '_blank' %> 
+
+<% end %>
+  

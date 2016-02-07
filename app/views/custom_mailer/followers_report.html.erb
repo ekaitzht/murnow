@@ -1,1 +1,7 @@
-<p> followers report </p>
+<p>Hey <%=  @request['user_username_report'] %> you have the next new followers:</p>
+
+<%   @request['followers'].each do |q| %>
+	  <%= link_to q[:username]+" ", ActionMailer::Base.default_url_options[:host] + "/profile/" + q[:id].to_s,:style=>'color:#FFAABB;', target: '_blank' %> 
+
+<% end %>
+  
