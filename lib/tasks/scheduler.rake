@@ -111,6 +111,16 @@ namespace :cron do
 				product.rating = rating	
 				product.save!
 			elsif product.number_reviews == 0 # we don't have reviews in the system
+				
+				if product.product_stars.to_s = "Infinity"
+					
+				end
+				
+				puts '----'+ product.id.to_s
+				puts product.product_stars.to_s
+				puts product.buyers.to_s
+				puts product.not_buyers.to_s
+				
 				product.sum_rating = product.product_stars.to_f * (product.buyers.to_f + product.not_buyers.to_f)
 				product.save
 			end
