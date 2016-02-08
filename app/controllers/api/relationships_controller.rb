@@ -19,6 +19,7 @@ class Api::RelationshipsController < ApplicationController
 	params['username_gives_follow'] = current_user.username
 	params['username_receives_follow'] = userfollowed.username
 	params['user_id_gives_follow'] = current_user.id
+	params['bio'] = current_user.bio
 	params['followers_count'] = current_user.followers_count
 	params['following_count'] = current_user.following_count
 	
