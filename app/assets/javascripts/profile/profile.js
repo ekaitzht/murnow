@@ -164,5 +164,8 @@ angular.module('murnow')
 				});
 
 			};
+            
+            
+         
         }
     ]);

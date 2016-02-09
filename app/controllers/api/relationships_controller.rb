@@ -30,7 +30,6 @@ class Api::RelationshipsController < ApplicationController
 		params['url_image_profile'] = 'https://' + ENV['CDN_DOMAIN_NAME'].to_s + '/profile_images_'+  Rails.env.to_s  + '/' + current_user.hash_url_image.to_s
 	end	  	  	
 		  	  	
-    CustomMailer.follow_by_user(params).deliver
     
     
 	respond_with({:status => 200}, :location => nil)
