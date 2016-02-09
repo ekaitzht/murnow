@@ -1,7 +1,66 @@
-<p>Hey <%=  @request['user_username_report'] %> you have the next new followers:</p>
-
-<%   @request['followers'].each do |q| %>
-	  <%= link_to q[:username]+" ", ActionMailer::Base.default_url_options[:host] + "/profile/" + q[:id].to_s,:style=>'color:#FFAABB;', target: '_blank' %> 
-
-<% end %>
+<div id="follow-user-notification" title="Follow user notification" >
+	<p style="font-family:'Roboto', sans-serif;">Yohoo! You got new followers! 😃</p>
+	
+	<p style="font-family:'Roboto', sans-serif;">Check them out!  </p>
+		<%   @request['followers'].each do |user| %>
+		
+			<div class="wrapper-image-profile" style="margin-bottom:3rem;">
+				<div style="display: inline-block;font-family:'Roboto', sans-serif;">
+			    	<a style="text-decoration: none;color: black;font-family:'Roboto', sans-serif;" href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + user[:id].to_s %>"> 
+						<img style="border-radius:50%; border: 2px solid #ffaabb;" src= "<%= user[:url_image_profile] %>" alt="User image profile">
+			    	</a>
+				</div>
+				<div class="info-user-profile layout-align-space-between-start layout-row" layout="row" layout-align="space-between start" style="position: absolute;margin-left: 2rem;display: inline-block;font-family:'Roboto', sans-serif;">
+					<a href="<%= ActionMailer::Base.default_url_options[:host] + "/profile/" + user[:id].to_s %>"  style="text-decoration: none;color: black;font-family:'Roboto', sans-serif;"> <div layout="row" layout-align="space-between center" >
+						<div layout="column" class="bio-block layout-column">
+								
+								    <div class="username" style="opacity: 0.87;color: black;font-size: 1.875rem;">
+								    	 <span itemprop="name" class="ng-binding" style="font-family:'Roboto', sans-serif;"> <%=  user[:username] %></span>
+								    </div>
+								</div>
+							    <div class="bio">
+							      <span ng-show="user.bio" itemprop="description" class="ng-binding" aria-hidden="false" style="font-family:'Roboto', sans-serif;"> <%= user[:bio] %></span>
+							    </div>
+							    <div layout="row" class="followers-info layout-row" tyle="margin-left: -3rem;">
+								    	<div id="following-count" accesskey="" style="margin-top: 1rem;    margin-right: 3rem;">
+											    <div layout="column" layout-align="center center" class="layout-align-center-center layout-column">
+											    	<div class="title-20-bold  ng-binding" style="opacity: 0.87;color: black;font-size: 20px;line-height: 2rem;margin: 0rem;margin-left:2rem;font-family: &quot;Roboto&quot;, sans-serif;font-weight: bold;font-family:'Roboto', sans-serif;"> <%= user[:following_count].to_s %></div>
+											    	<div class="body"  style="opacity: 0.54;font-size: 18px;line-height: 21px;font-family:'Roboto', sans-serif;"> Following </div>
+											    </div>
+								    	</div>
+								    	<div id="followers-count" style="margin-top: 1rem;    margin-right: 3rem;">
+											    <div layout="column" layout-align="center center" class="layout-align-center-center layout-column">
+											    	<div class="title-20-bold ng-binding" style="opacity: 0.87;color: black;font-size: 20px;line-height: 2rem;margin: 0rem;margin-left:2rem;font-family: &quot;Roboto&quot;, sans-serif;font-weight: bold;font-family:'Roboto', sans-serif;"> <%= user[:followers_count].to_s %></div>
+											    	<div class="body"  style="opacity: 0.54;font-size: 18px;line-height: 21px;font-family:'Roboto', sans-serif;"> Followers </div>
+											    </div>
+								    	</div>
+							    </div>
+						</div> 
+					</a>
+				</div>	
   
+			</div>
+			
+		<% end %>	
+			
+		<p style="font-family:'Roboto', sans-serif;margin-bottom:3rem;margin-top:3rem;"> PS: We have a weekly giveaway. Click <%= link_to "here", ActionMailer::Base.default_url_options[:host] + "/competition" ,:style=>'color:#FFAABB;font-family:\'Roboto\', sans-serif;', target: '_blank' %>  and check out this week’s giveaway!
+ </p>
+		
+		<div><img style="border-radius:5px;" src= "http://<%= ActionMailer::Base.default_url_options[:host] %>/assets/hello.gif" alt="Hello!" height="220" width="410"></div>
+
+
+	   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

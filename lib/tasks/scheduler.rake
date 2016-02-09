@@ -12,7 +12,7 @@ namespace :cron do
 			params['users_giving_likes'] = Array.new
 			
 			# LIKE REPORT!!!!!!
-			if user.notification_likes == true then
+			if user.notification_likes == false then
 				result.first(3).each do |row|
 					if !row['created_at'].nil? then
 						if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 7.days)
@@ -61,7 +61,7 @@ namespace :cron do
 			
 			
 			# FOLLOWER REPORT!!!!!!
-			if user.notification_followers == false then
+			if user.notification_followers == true then
 
 				params = Hash.new
 				params['followers'] = Array.new
@@ -72,10 +72,29 @@ namespace :cron do
 					
 					created_at = result[0]['created_at']
 					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 7.days) then
-						params['followers'] << { username: follower.username, id: follower.id}
+						
+						
+						if follower.hash_url_image.nil?  then
+							url_image_profile =	 'http://'+ActionMailer::Base.default_url_options[:host] + '/assets/anonymousUser.png'
+						else
+							url_image_profile = 'https://' + ENV['CDN_DOMAIN_NAME'].to_s + '/profile_images_'+  Rails.env.to_s  + '/' + follower.hash_url_image.to_s
+						end
+								
+								
+						params['followers'] << { 
+							username: follower.username, 
+							id: follower.id,
+							following_count: follower.following.count,
+							followers_count: follower.followers_count,
+							bio: follower.bio,
+							url_image_profile: url_image_profile
+							
+						}
 						
 						params['email_to'] = user.email
 						params['user_username_report'] = user.username
+						
+							
 					else
 					
 					end
