@@ -28,15 +28,15 @@ class CustomMailer < ActionMailer::Base
 
   def  likes_report(request)
 	   @request = request;
-    
-	   mail to: @request['email_to'], subject: "You have new likes in your reviews"	  
+     
+	   mail to: @request['email_to'], subject: "Other people are liking your reviews!! 😍💄"	  
   end
   
   
   def followers_report(request)
 	@request = request;
     
-    mail to: @request['email_to'], subject: "You have new followers "
+    mail to: @request['email_to'], subject: "You have new followers! 😍💄"
 
 
   end
