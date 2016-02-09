@@ -12,7 +12,7 @@ namespace :cron do
 			params['users_giving_likes'] = Array.new
 			
 			# LIKE REPORT!!!!!!
-			if user.notification_likes == false then
+			if user.notification_likes == true then
 				result.first(3).each do |row|
 					if !row['created_at'].nil? then
 						if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 7.days)
