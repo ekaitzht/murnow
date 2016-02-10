@@ -34,7 +34,7 @@ gem 'sitemap_generator'
 
 # Serializer gem
 gem 'active_model_serializers'
-
+# Cron jobs 
 gem 'pg'
 gem 'angular_rails_csrf'
 # Use SCSS for stylesheets
