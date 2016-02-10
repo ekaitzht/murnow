@@ -2,6 +2,9 @@ namespace :cron do
 
 	desc "This task send new followers and likes during the last week"
 	task :send_notifications => :environment do
+		ApplicationController.new.set_config_email
+		
+		
 	  	User.find_each do |user|
 		  	
 		  	#A que usuarios a dado like el usuario "user.id"
