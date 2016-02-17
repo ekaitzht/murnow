@@ -250,9 +250,12 @@
 		    	 .repurchase-percent{font-size:40px !important;}
 	    	 }
 	    	 
-	    .list_products {
+	    .list_products, .trending_products{
 			.md-list-item-inner{width:100%;margin-left:0px;}    
 			md-divider {width:100% !important;margin-left:0px !important;}
+			
+			#image-product {max-width:202px;}
+			#product-info{margin-top: 58px;}
 		    
 		}
 
@@ -261,6 +264,28 @@
 
 }
 
+
+
+// IPHONE 
+//Microsoft Lumia 900	480	800	320	480	1.5	217	144
+//Samsung Galaxy S	480	800	320	533	1.5	233	144
+//Samsung Galaxy S2	480	800	320	533	1.5	217	144
+//Samsung Galaxy S3 mini	480	800	320	533	1.5	233	144
+//HTC 8X	720	1280	320	480	3	341	288
+//ZTE Open (Firefox OS)	480	720	320	480	1.5	165	144
+//Microsoft Lumia 620	480	800	320	480	1.5	252	144
+//Microsoft Lumia 830	720	1280	320	480	2	294	192
+//Apple iPhone 5	640	1136	320	568	2	326	192
+//Microsoft Lumia 920	768	1280	320	480	2.4	332	220
+//Microsoft Lumia 925	768	1280	320	480	2.4	332	220
+//Microsoft Lumia 1020	768	1280	320	480	2.4	332	220
+//Apple iPod Touch	640	1136	320	568	2	326	192
+//Apple iPhone 3	320	480	320	480	1	163	96
+//Apple iPhone 4	640	960	320	480
+@media screen and (max-width: 320px) {
+	
+	html { font-size:8px;}
+	}
 
 
 

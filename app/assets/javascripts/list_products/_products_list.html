@@ -1,17 +1,19 @@
 <md-card>
 	<md-list  class="products-list" layout="column" my-post-repeat>
 			<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id, $index)"  my-post-repeat id="item_{{$index}}" >
-				<div  class="md-list-item-text" layout="row" layout-align="space-around center" flex="100" >
-			        <div   id="image-product" flex-sm="16" flex-gt-sm="20">
+				<div  class="md-list-item-text" layout="row" layout-align="space-between center" flex="100" >
+			        <div layout="row" layout-align="start start" >
+				        <div   id="image-product"  flex-xs="16" flex-sm="16" flex-gt-sm="20">
 			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='' alt="{product.product_name}"></a>
 			        </div>  
-					<div id="product-info" class="md-tile-content" layout="column"  flex-sm="50" flex-gt-sm="50" >
-						<div id="name-product " class="wordwrap"><h2 itemprop="name">{{product.product_name | limitLength:22}}<span></span></h2></div>
-						<div id="brand-name"><h3  itemprop="brand">by {{product.brand_name}}</h3></div>
-						<div class="ratings">    
+						<div id="product-info" class="md-tile-content" layout="column" layout-align="space-around start "  >
+							<div id="name-product " class="wordwrap"><h2 itemprop="name">{{product.product_name | limitLength:22}}<span></span></h2></div>
+							<div id="brand-name"><h3  itemprop="brand">by {{product.brand_name}}</h3></div>
+							<div class="ratings">    
 							   <rating ng-model="product.product_stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>
-		        		</div>
-					</div>
+							   </div>
+						</div>
+			        </div>
 					<div  class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center"  flex-gt-sm="20">
 						      <div class="repurchase-percent "> 
 						      <span>{{ product.rating | number:0 }} </span> <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
