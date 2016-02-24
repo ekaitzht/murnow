@@ -4,7 +4,7 @@
 
 				<md-list-item  itemscope itemtype="http://schema.org/Product" ng-repeat="product in products" ng-click="goToProductState('products',product.id, $index)"  my-post-repeat id="item_{{$index}}" >
 				<div  class="md-list-item-text" layout="row" layout-align="space-between center" flex="100" >
-			        <div layout="row" layout-align="start start" >
+			        <div layout="row" layout-align="start start" flex-xs="60" flex-gt-sm="80">
 				        <div   id="image-product"  flex-xs="16" flex-sm="16" flex-gt-sm="20">
 			        	<a ng-href="/products/{{product.id}}"> <img itemprop="image" ng-src="https://{{cdn}}/images_products/{{product.hash_url_image}}.jpg" class='' alt="{product.product_name}"></a>
 			        </div>  
@@ -16,7 +16,7 @@
 							   </div>
 						</div>
 			        </div>
-					<div  class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center"  flex-gt-sm="20">
+					<div  class="wrapper-rate-approval" layout="column"  layout="column" layout-align="space-around center" flex-gt-sm="20"  >
 						      <div class="repurchase-percent "> 
 						      <span>{{ product.rating | number:0 }} </span> <span ng-hide="product.buyers ==0 && product.not_buyers ==0"> % </span>
 						      </div>
