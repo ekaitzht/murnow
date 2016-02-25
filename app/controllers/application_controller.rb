@@ -46,15 +46,15 @@ index.html
       if ( ENV['APP_URL'] == 'www.murnow.com') then
       	ActionMailer::Base.delivery_method = :smtp
       else 
-      	ActionMailer::Base.delivery_method = :test
+      	ActionMailer::Base.delivery_method = :smtp
       	#ActionMailer::Base.delivery_method = :test <-fake
       end
 
       ActionMailer::Base.smtp_settings = {
           :port =>           '587',
-          :address =>        'smtp.mandrillapp.com',
-          :user_name =>      ENV['MANDRILL_USERNAME'],
-          :password =>       ENV['MANDRILL_APIKEY'],
+          :address =>        'smtp.sendgrid.net',
+          :user_name =>      ENV['SENDGRID_USERNAME'],
+          :password =>       ENV['SENDGRID_PASSWORD'],
           :domain =>         ENV['APP_URL'],
           :authentication => :plain
       }
