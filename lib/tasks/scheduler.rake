@@ -4,67 +4,68 @@ namespace :cron do
 	task :send_notifications => :environment do
 		ApplicationController.new.set_config_email
 		
-		
 	  	User.find_each do |user|
 		  	
 		  	#A que usuarios a dado like el usuario "user.id"
 		  	sql = "SELECT DISTINCT ON (votes.user_id) votes.user_id AS user_gives_like_id , reviews.user_id, votes.created_at FROM reviews, votes WHERE reviews.id = votes.review_id AND is_liked = true AND reviews.user_id ="+user.id.to_s+" AND votes.user_id <>"+user.id.to_s+"  AND votes.created_at IS NOT NULL;"
+		  	
+		  	
 			result = ActiveRecord::Base.connection.execute(sql);
 
 			params = Hash.new
 			params['users_giving_likes'] = Array.new
-			
 			# LIKE REPORT!!!!!!
 			if user.notification_likes == true then
-				result.first(3).each do |row|
-					if !row['created_at'].nil? then
-						if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 7.days)
-								
-								users_giving_likes = User.find_by_id(row['user_gives_like_id'])
-								
-								if users_giving_likes.hash_url_image.nil?  then
-									url_image_profile =	 'http://'+ActionMailer::Base.default_url_options[:host] + '/assets/anonymousUser.png'
+					result.first(3).each do |row|
+						if !row['created_at'].nil? then
+							if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 10.days)
 									
-								else
-								
-								
-									url_image_profile = 'https://' + ENV['CDN_DOMAIN_NAME'].to_s + '/profile_images_'+  Rails.env.to_s  + '/' + users_giving_likes.hash_url_image.to_s
-								end	  	  	
-								
-							params['users_giving_likes'] << { 
-								username: users_giving_likes.username, 
-								id: users_giving_likes.id, 
-								following_count: users_giving_likes.following_count,
-								followers_count: users_giving_likes.followers_count,
-								bio: users_giving_likes.bio,
-								url_image_profile: url_image_profile								
-								}
-								
-								
-								
-							params['email_to'] = user.email
-							params['user_username_report'] = user.username
-							params['user_id_report'] = user.id
-						else
-						
-						end	
+									users_giving_likes = User.find_by_id(row['user_gives_like_id'])
+									
+									if users_giving_likes.hash_url_image.nil?  then
+										url_image_profile =	 'http://'+ActionMailer::Base.default_url_options[:host] + '/assets/anonymousUser.png'
+										
+									else
+									
+									
+										url_image_profile = 'https://' + ENV['CDN_DOMAIN_NAME'].to_s + '/profile_images_'+  Rails.env.to_s  + '/' + users_giving_likes.hash_url_image.to_s
+									end	  	  	
+									
+								params['users_giving_likes'] << { 
+									username: users_giving_likes.username, 
+									id: users_giving_likes.id, 
+									following_count: users_giving_likes.following_count,
+									followers_count: users_giving_likes.followers_count,
+									bio: users_giving_likes.bio,
+									url_image_profile: url_image_profile								
+									}
+									
+									
+									
+								params['email_to'] = user.email
+								params['user_username_report'] = user.username
+								params['user_id_report'] = user.id
+							else
+							
+							end	
+						end
 					end
-				end
-				# We don't have any user in users_array_name we don't send the email
-				if !params['users_giving_likes'].empty?
-					CustomMailer.likes_report(params).deliver
-					print params
-					puts "SENDING LIKE REPORT --->"+ user.email.to_s
-				else
-				end
-				
+					
+					# We don't have any user in users_array_name we don't send the email
+					if !params['users_giving_likes'].empty?
+						CustomMailer.likes_report(params).deliver
+						print params
+						puts "SENDING LIKE REPORT --->"+ user.email.to_s
+					else
+					
+					end
 			end
 			
 			
 			
 			
 			# FOLLOWER REPORT!!!!!!
-			if user.notification_followers == true then
+			if user.notification_followers == false then
 
 				params = Hash.new
 				params['followers'] = Array.new
@@ -74,7 +75,7 @@ namespace :cron do
 					result = ActiveRecord::Base.connection.execute("SELECT created_at FROM  relationships WHERE relationships.followed_id = "+user.id.to_s+" AND relationships.follower_id = "+follower.id.to_s+";");
 					
 					created_at = result[0]['created_at']
-					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 7.days) then
+					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 10.days) then
 						
 						
 						if follower.hash_url_image.nil?  then
