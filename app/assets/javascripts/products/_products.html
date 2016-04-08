@@ -29,11 +29,15 @@
 
 
 	    <!-- ALL COMMENTS -->
-	    <div class="all-comments count-reviews "  layout="row" layout-padding> Reviews ({{product.reviews.length}}) </div>
-	  
+	    <div layout="row"       layout-align="space-between center">
+	    	<div class="all-comments count-reviews "   layout-padding> Reviews ({{product.reviews.length}}) </div>
+			<md-button class="md-raised md-primary"  layout-padding ng-click="showVideos()"> {{buttonTitleShowVideos}} </md-button>		    
+	    </div>
+
+
 
 		<!-- LIST OF REVIEWS -->
-		<md-list>
+		<md-list id="list-reviews" ng-show="showReviews">
 			<md-list-item   itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
 				<div class="review-item" layout="row"  layout-align="start start" flex="100" >
 					<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
@@ -73,7 +77,13 @@
 					</div>
 				</div>
 			</md-list-item>
-		  </md-list>
+		</md-list>
+		
+		
+		<div id="youtube-grid" ng-hide="showReviews">
+			<youtube-grid name="product.product_name" brand="product.brand_name"> </youtube-grid>
+		</div>
+	
 	</div>
 </md-card>
  
