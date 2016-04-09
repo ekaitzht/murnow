@@ -1,7 +1,11 @@
-<md-list>
-	<md-list-item itemprop="VideoObject"  intemscope itemtype="http://schema.org/Review" ng-repeat="video in videos">
-		<div itemprop="thumbnail">
-			<iframe ng-src="{{trustSrc(video.id.videoId)}}">
+<div layout="row" layout-wrap >
+	<div flex="33" flex-xs="100" layout-padding itemprop="VideoObject"  intemscope itemtype="http://schema.org/Review" ng-repeat="video in videos" >
+		<div itemprop="thumbnail" class="thumbnail">
+						
+			<img ng-src="http://img.youtube.com/vi/{{video.id.videoId}}/0.jpg">
+			<div class="play-button"> </div>
 		</div>
-	</md-list-item> 
-</md-list>
+	</div> 
+</div>
+
+

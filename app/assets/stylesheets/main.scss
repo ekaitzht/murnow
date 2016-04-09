@@ -324,15 +324,17 @@ md-dialog {
 	// * LIST STYLING */
 	.list_products {  // state name
 		@include list-products;	
-		.md-card-with-title {margin-top: auto;}
+		.md-card-with-title {margin-top: auto;}	.trending_products{
 	}
-	.trending_products{
+
 		@include list-products;	
 
 
 	}
 	
 	.products {
+		.thumbnail{position:relative;}
+		.play-button { width: 73px;height: 73px;background: url("http://i.imgur.com/TxzC70f.png") no-repeat;   margin: auto;position: absolute;top: 0;left: 0;bottom: 0;right: 0; cursor:pointer;  }
 		.user-name-review-product {font-weight:bold;opacity:1;}
 
 		.header-product {
@@ -357,6 +359,7 @@ md-dialog {
 			@include review-product-mixed;
 			.pink-radius {border: 1px solid $accent-color;}
 		}  
+		#show-reviews-button{ margin-top: 2rem;padding: 0rem;}
 	}
 
 	.following,.followers{
