@@ -10,7 +10,7 @@ angular.module('youtubeGrid',[])
 		replace:true,
 		templateUrl:'directives/_youtubeGrid.html',
 		
-		controller:['$scope', '$sce', function($scope, $sce){
+		controller:['$scope', 'Dialog', function($scope, Dialog){
 			
 			
 			var youtubeCall = ('https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + $scope.name + ' ' + $scope.brand + ' review&maxResults=12&key=AIzaSyCR5In4DZaTP6IEZQ0r1JceuvluJRzQNLE');
@@ -21,10 +21,10 @@ angular.module('youtubeGrid',[])
                
             });
             
-             
-            $scope.trustSrc = function(videoId) {
-			    return $sce.trustAsResourceUrl( 'https://www.youtube.com/embed/' + videoId);
-			}
+            $scope.showVideo = function(videoId){
+	            
+	            Dialog.video(videoId);
+            }
           
 		}]
 	};
