@@ -35,54 +35,63 @@
 	    </div>
 
 
+		<md-tabs md-dynamic-height md-border-bottom>
 
-		<!-- LIST OF REVIEWS -->
-		<md-list id="list-reviews" ng-show="showReviews">
-			<md-list-item   itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
-				<div class="review-item" layout="row"  layout-align="start start" flex="100" >
-					<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
-					<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="pink-radius not-outline border-radius-50"> 
-					<img  ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.png" class=" not-outline border-radius-50" > 
-				</div>
-					<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
-						<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
-							<div layout="row" layout-align="start center">
-								<img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
-								<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
-
-								<p class="user-name-review-product"   itemprop="author"> {{review.user.username}}</p>
-								
-							</div>
-							<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
+			<!-- LIST OF REVIEWS -->
+			<md-tab label="one">
+				<md-list id="list-reviews">
+					<md-list-item   itemprop="review" itemscope itemtype="http://schema.org/Review" ng-repeat="review in product.reviews | orderBy:'-created_at'"  >
+						<div class="review-item" layout="row"  layout-align="start start" flex="100" >
+							<div class="md-list-item-image user-review-image"  ng-click="goProfile(review.user_id)" >
+							<img ng-show="review.user.hash_url_image" ng-src="https://{{cdn}}/profile_images_{{enviroment}}/{{review.user.hash_url_image}}" class="pink-radius not-outline border-radius-50"> 
+							<img  ng-hide="review.user.hash_url_image" ng-src="/assets/anonymousUser.png" class=" not-outline border-radius-50" > 
 						</div>
-						<div class="review-body margin-top-rem">
-									<p class="wordwrap" itemprop="reviewBody" >{{review.body}}</p>
-						</div>
-						<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center">
-								<div class="ratings" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-									<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
-									<meta ng-attr-content="{{review.stars}}" itemprop="ratingValue">
-								</div>
-								<div class='actions-review' layout="row">
-						
-									<div ng-if="review.id == review_id_user_that_is_login" class="edit hint-text">
-										<md-button ng-click="editReview(review)">edit</md-button>
+						<div class="md-list-item-text review-text" layout="column" layout-align="start start">	
+								<div class="header-review" layout="row" layout-align="space-between center" ng-click="goProfile(review.user_id)">	
+									<div layout="row" layout-align="start center">
+										<img src="/assets/happy_cupcake.png" ng-show="review.repurchase" class="check-mark " alt="Repurchase again">
+										<img src="/assets/sad_cupcake.png" ng-show="!review.repurchase" class="check-mark " alt="Repurchase again">
+		
+										<p class="user-name-review-product"   itemprop="author"> {{review.user.username}}</p>
+										
 									</div>
-									<div class="thumbs-up" ng-click="incrementUpvotes(review)">
-										<span   class="fa fa-thumbs-o-up" >  </span>
-										<span> {{review.votes.length}} </span>
-									</div> 
+									<div class="date-review hint-text"> {{review.created_at | fromNow}}</div>
 								</div>
-						</div>			
-					</div>
+								<div class="review-body margin-top-rem">
+											<p class="wordwrap" itemprop="reviewBody" >{{review.body}}</p>
+								</div>
+								<div class="footer-review" layout="row" class="margin-top-rem" layout-align="space-between center">
+										<div class="ratings" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+											<rating ng-model="review.stars"  readonly="true"  state-on="'fa fa-star'" state-off="'fa fa-star-o'" on-hover="" on-leave="" max="5"></rating>						
+											<meta ng-attr-content="{{review.stars}}" itemprop="ratingValue">
+										</div>
+										<div class='actions-review' layout="row">
+								
+											<div ng-if="review.id == review_id_user_that_is_login" class="edit hint-text">
+												<md-button ng-click="editReview(review)">edit</md-button>
+											</div>
+											<div class="thumbs-up" ng-click="incrementUpvotes(review)">
+												<span   class="fa fa-thumbs-o-up" >  </span>
+												<span> {{review.votes.length}} </span>
+											</div> 
+										</div>
+								</div>			
+							</div>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-tab>
+
+
+			
+			<md-tab label="two">
+				<!-- GRID VIDEO -->
+				<div id="youtube-grid">
+					<youtube-grid name="product.product_name" brand="product.brand_name"> </youtube-grid>
 				</div>
-			</md-list-item>
-		</md-list>
-		
-		
-		<div id="youtube-grid" ng-hide="showReviews">
-			<youtube-grid name="product.product_name" brand="product.brand_name"> </youtube-grid>
-		</div>
+			</md-tab>
+		</md-tabs>
+
 	
 	</div>
 </md-card>

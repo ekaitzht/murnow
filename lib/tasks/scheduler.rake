@@ -16,6 +16,7 @@ namespace :cron do
 			params['users_giving_likes'] = Array.new
 			# LIKE REPORT!!!!!!
 			if user.notification_likes == true then
+
 					result.first(3).each do |row|
 						if !row['created_at'].nil? then
 							if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 10.days)
@@ -50,7 +51,7 @@ namespace :cron do
 							end	
 						end
 					end
-					
+
 					# We don't have any user in users_array_name we don't send the email
 					if !params['users_giving_likes'].empty?
 						CustomMailer.likes_report(params).deliver
@@ -157,6 +158,9 @@ namespace :cron do
 				end
 
 				rating = (product.buyers.to_f/(product.buyers.to_f + product.not_buyers.to_f))*100
+				puts product.buyers.to_s
+				puts product.not_buyers.to_s
+				puts 'Rating'+rating.to_s
 				product.rating = rating	
 				product.save!
 			elsif product.number_reviews == 0 # we don't have reviews in the system
