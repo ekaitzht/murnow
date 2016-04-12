@@ -355,8 +355,12 @@ md-dialog {
 	// * LIST STYLING */
 	.list_products {  // state name
 		@include list-products;	
-		.md-card-with-title {margin-top: auto;}	.trending_products{
+		.md-card-with-title {margin-top: auto;}	
+	
 	}
+	
+	
+	.trending_products{
 
 		@include list-products;	
 
