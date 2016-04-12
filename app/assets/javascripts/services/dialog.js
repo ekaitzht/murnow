@@ -211,12 +211,19 @@ angular.module('murnow')
 	        templateUrl: 'products/_video_dialog.html',
 	        hasBackdrop: true,
 	        controller: 'ShowVideoCtrl',
-	        locals: {videoId: videoId}
+	        locals: {videoId: videoId},
+	        onComplete:function(){
+	           
+					      
+	        }
+	        
 		});
 	}
 	
 	
-	
+			// Find all YouTube videos
+
+
 	
 
 				

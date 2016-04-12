@@ -1,7 +1,6 @@
-<md-dialog aria-label="Login Dialog" id="video-dialog">
+<md-dialog aria-label="Video Dialog" id="video-dialog">
 	 <md-toolbar>
 	    <div class="md-toolbar-tools">
-	      <!--<h2>Login </h2>-->
 	      <span flex></span>
 	      <md-button class="md-icon-button" ng-click="closeDialog()" type="button">
 	        <md-icon md-svg-src="/assets/ic_close_black_24px.svg" aria-label="Close dialog"></md-icon>
@@ -9,8 +8,8 @@
 	    </div>
 	  </md-toolbar>
     <md-dialog-content class="sticky-container">
-    	<div>
-	    	<iframe width="640" height="390" ng-src="{{trustSrc(videoId)}}">
+    	<div id="video-wrapper">
+	    	<iframe  ng-src="{{trustSrc(videoId)}}">
 		</div>
 	</md-dialog-content>      
 

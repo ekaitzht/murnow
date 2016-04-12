@@ -81,6 +81,36 @@ md-dialog {
 	md-dialog-content {overflow:visible;}
 	form {margin-bottom:0em;}
 	
+	#video-dialog{
+		width:100%;
+		
+		#video-wrapper {
+		
+		position: relative;
+		
+		padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+		
+		padding-top: 0px;
+		
+		padding-left:0px;
+		
+		}
+		
+		#video-wrapper iframe {
+		
+			position: absolute;
+			
+			width: 100%!important;
+			
+			height: 100%!important;
+
+		}
+
+
+		
+
+	}
+	
 }
 
 #register-dialog{min-height:583px;}
@@ -337,7 +367,9 @@ md-dialog {
 		.thumbnail{position:relative; cursor:pointer;}
 		.play-button { width: 50px;height: 50px; margin: auto;position: absolute;top: 0;left: 0;bottom: 0;right: 0;   }
 		.user-name-review-product {font-weight:bold;opacity:1;}
-
+		
+		#videos-wrapper {padding:0.5rem;}
+	
 		.header-product {
 			
 			@include row-product-info;	

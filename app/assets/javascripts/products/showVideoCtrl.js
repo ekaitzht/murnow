@@ -4,6 +4,9 @@ angular.module('murnow')
 function($scope, videoId,  Dialog, $sce){
 
 	
+	
+
+
 	$scope.videoId = videoId;
 	
 	$scope.closeDialog = function() {

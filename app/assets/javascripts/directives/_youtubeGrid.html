@@ -1,5 +1,5 @@
 <div layout="row" layout-wrap >
-	<div flex="33" flex-xs="50" layout-padding itemprop="VideoObject"  intemscope itemtype="http://schema.org/Review" ng-repeat="video in videos" >
+	<div id="videos-wrapper" flex="33" flex-xs="50"  itemprop="VideoObject"  intemscope itemtype="http://schema.org/Review" ng-repeat="video in videos" >
 		<div itemprop="thumbnail" class="thumbnail" ng-click="showVideo(video.id.videoId)">
 						
 			<img ng-src="http://img.youtube.com/vi/{{video.id.videoId}}/0.jpg">

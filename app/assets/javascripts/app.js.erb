@@ -205,6 +205,14 @@ app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog',
        
     });
     
+    
+    $rootScope.$on('$routeChangeStart', function (scope, next, current) {
+        if (next.$$route.controller != "Your Controller Name") {
+            // Show here for your model, and do what you need**
+            $("#yourModel").show();
+        }
+    });
+    
     /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	    
 		 Auth.currentUser().then(function (user){
