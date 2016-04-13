@@ -8,8 +8,6 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   	$scope.enviroment = configMurnow.enviroment;
     $rootScope.pageTitle = "Reviews for " + $scope.product.product_name;
 
-
-    
     $scope.id = $stateParams.id;
     
   	this.hasReviewUser = function(reviews){
@@ -63,7 +61,6 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
   };
 
 
-
   
   $scope.editReview= function(review) {
 	  
@@ -91,5 +88,13 @@ function( $scope,$rootScope, Dialog, products, product, Auth, $state,configMurno
 			
 		});
     };
+    
+    
+	$scope.showVideos = function(review){
+    };
+  
+  
+  
+  
   
 }]);

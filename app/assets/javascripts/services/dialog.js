@@ -205,7 +205,27 @@ angular.module('murnow')
       	});
 	 
 	};
-		
+	
+    this.video = function(videoId){
+		$mdDialog.show({
+	        templateUrl: 'products/_video_dialog.html',
+	        hasBackdrop: true,
+	        controller: 'ShowVideoCtrl',
+	        locals: {videoId: videoId},
+	        onComplete:function(){
+	           
+					      
+	        }
+	        
+		});
+	}
+	
+	
+			// Find all YouTube videos
+
+
+	
+
 				
  
 	return this;

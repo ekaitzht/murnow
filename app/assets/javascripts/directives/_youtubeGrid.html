@@ -1,0 +1,12 @@
+<div layout="row" layout-wrap >
+	<div id="videos-wrapper" flex="33" flex-xs="50"  itemprop="VideoObject"  intemscope itemtype="http://schema.org/Review" ng-repeat="video in videos" >
+		<div itemprop="thumbnail" class="thumbnail" ng-click="showVideo(video.id.videoId)">
+						
+			<img ng-src="http://img.youtube.com/vi/{{video.id.videoId}}/0.jpg">
+			<md-icon  class="play-button" md-svg-src="/assets/ic_play_circle_filled_white_24px.svg" class="s24" aria-label="Play Button"    ></md-icon>
+
+		</div>
+	</div> 
+</div>
+
+

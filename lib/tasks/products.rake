@@ -170,7 +170,7 @@ namespace :load do
 		
 		print "Excuting elastisearch query... wait please."
 		
-@response = client.search index: 'sephoraindex', body: 
+@response = client.search index: 'macindex', body: 
 				{	
 				    filter:{
 				                bool: {

@@ -1,6 +1,6 @@
 
 
-var app = angular.module('murnow', ['ui.router', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard','myPostRepeat','ngMessages','socialIcons','templates','ngIntercom']);
+var app = angular.module('murnow', ['ui.router', 'Devise', 'ui.bootstrap', 'ngMaterial','ngCookies', 'angularFileUpload','infinite-scroll','ngTouch','ngImgCrop','ngAnimate','murnowFilters','reviewCard','youtubeGrid','myPostRepeat','ngMessages','socialIcons','templates','ngIntercom']);
 
 app.config(['$mdThemingProvider',function($mdThemingProvider) {
 
@@ -203,6 +203,14 @@ app.run(['$rootScope','$location','$state','$anchorScroll','Intercom', 'Dialog',
   	$rootScope.$on('$locationChangeStart', function(event, toState, toParams, fromState, fromParams){ 
 	
        
+    });
+    
+    
+    $rootScope.$on('$routeChangeStart', function (scope, next, current) {
+        if (next.$$route.controller != "Your Controller Name") {
+            // Show here for your model, and do what you need**
+            $("#yourModel").show();
+        }
     });
     
     /*$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){ 
