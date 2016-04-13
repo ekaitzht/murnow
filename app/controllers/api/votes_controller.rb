@@ -32,7 +32,7 @@ class Api::VotesController < ApplicationController
 	  		
   	end
   
-  	#testing desploy staging
+  	#testing desploy staging.
   	def update 
 	    @vote = Vote.find_by_id(params[:id])
 	    @vote.is_liked = vote_update_params[:is_liked]
