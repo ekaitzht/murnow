@@ -84,31 +84,11 @@ md-dialog {
 	#video-dialog{
 		width:100%;
 		
-		#video-wrapper {
-		
-		position: relative;
-		
-		padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-		
-		padding-top: 0px;
-		
-		padding-left:0px;
-		
-		}
-		
-		#video-wrapper iframe {
-		
-			position: absolute;
-			
-			width: 100%!important;
-			
-			height: 100%!important;
+	
+		iframe{height: calc(100vh - 60px); width: 100vw;}
+		   
 
-		}
-
-
-		
-
+		#video-wrapper{padding:0px !important;}
 	}
 	
 }
