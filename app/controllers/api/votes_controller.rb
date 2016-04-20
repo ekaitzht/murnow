@@ -20,7 +20,7 @@ class Api::VotesController < ApplicationController
 		  	  	params['user_id_gives_like'] = @user_gives_like.id
 		  	  	
 		  	  	
-		  	  	CustomMailer.review_liked_by_user(params).deliver
+		  	  	#CustomMailer.review_liked_by_user(params).deliver
 		  	  	ActiveRecord::Base.connection.execute("REFRESH MATERIALIZED VIEW top_reviews;");
 
 	  			respond_with  @vote, :location => nil
