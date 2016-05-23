@@ -19,7 +19,7 @@ namespace :cron do
 
 					result.first(3).each do |row|
 						if !row['created_at'].nil? then
-							if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 10.days)
+							if Date.parse(row['created_at'].to_s ) <= Date.today and Date.parse(row['created_at'].to_s ) >= (Date.today - 14.days)
 									
 									users_giving_likes = User.find_by_id(row['user_gives_like_id'])
 									
@@ -76,7 +76,7 @@ namespace :cron do
 					result = ActiveRecord::Base.connection.execute("SELECT created_at FROM  relationships WHERE relationships.followed_id = "+user.id.to_s+" AND relationships.follower_id = "+follower.id.to_s+";");
 					
 					created_at = result[0]['created_at']
-					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 10.days) then
+					if Date.parse(created_at) <= Date.today and Date.parse(created_at) >= (Date.today - 14.days) then
 						
 						
 						if follower.hash_url_image.nil?  then
